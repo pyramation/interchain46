@@ -193,8 +193,6 @@ import { AminoTypes, SigningStargateClient } from "@cosmjs/stargate";
 import { 
     cosmosAminoConverters,
     cosmosProtoRegistry,
-    cosmwasmAminoConverters,
-    cosmwasmProtoRegistry,
     ibcProtoRegistry,
     ibcAminoConverters,
     cosmosAminoConverters,
