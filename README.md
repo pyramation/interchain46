@@ -1,4 +1,4 @@
-# interchain46
+# interchain 46
 
 <p align="center">
   <img src="https://user-images.githubusercontent.com/545047/188804067-28e67e5e-0214-4449-ab04-2e0c564a6885.svg" width="80"><br />
@@ -19,8 +19,7 @@ npm install interchain46
 - [Usage](#usage)
     - [RPC Clients](#rpc-clients)
     - [Composing Messages](#composing-messages)
-        - Cosmos, CosmWasm, and IBC
-            - [CosmWasm](#cosmwasm-messages)
+        - Cosmos, and IBC
             - [IBC](#ibc-messages)
             - [Cosmos](#cosmos-messages)
 - [Wallets and Signers](#connecting-with-wallets-and-signing-messages)
@@ -43,10 +42,6 @@ const client = await createRPCQueryClient({ rpcEndpoint: RPC_ENDPOINT });
 // now you can query the cosmos modules
 const balance = await client.cosmos.bank.v1beta1
     .allBalances({ address: 'cosmos1addresshere' });
-
-// you can also query the cosmos modules
-const balances = await client.cosmos.exchange.v1beta1
-    .exchangeBalances()
 ```
 
 ### Composing Messages
@@ -62,22 +57,6 @@ const {
     deposit
 } = cosmos.exchange.v1beta1.MessageComposer.withTypeUrl;
 ```
-
-#### CosmWasm Messages
-
-```js
-import { cosmwasm } from "interchain46";
-
-const {
-    clearAdmin,
-    executeContract,
-    instantiateContract,
-    migrateContract,
-    storeCode,
-    updateAdmin
-} = cosmwasm.wasm.v1.MessageComposer.withTypeUrl;
-```
-
 #### IBC Messages
 
 ```js
@@ -166,7 +145,7 @@ import { chains } from 'chain-registry';
 
 const mnemonic =
   'unfold client turtle either pilot stock floor glow toward bullet car science';
-  const chain = chains.find(({ chain_name }) => chain_name === 'cosmos');
+  const chain = chains.find(({ chain_name }) => chain_name === 'cosmoshub');
   const signer = await getOfflineSigner({
     mnemonic,
     chain
@@ -223,18 +202,16 @@ import {
 } from 'interchain46';
 
 const signer: OfflineSigner = /* create your signer (see above)  */
-const rpcEndpint = 'https://rpc.cosmos.directory/cosmos'; // or another URL
+const rpcEndpint = 'https://rpc.cosmos.directory/cosmoshub'; // or another URL
 
 const protoRegistry: ReadonlyArray<[string, GeneratedType]> = [
     ...cosmosProtoRegistry,
-    ...cosmwasmProtoRegistry,
     ...ibcProtoRegistry,
     ...cosmosProtoRegistry
 ];
 
 const aminoConverters = {
     ...cosmosAminoConverters,
-    ...cosmwasmAminoConverters,
     ...ibcAminoConverters,
     ...cosmosAminoConverters
 };
