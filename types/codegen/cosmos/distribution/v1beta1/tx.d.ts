@@ -45,7 +45,6 @@ export interface MsgWithdrawDelegatorRewardResponse {
 }
 /** MsgWithdrawDelegatorRewardResponse defines the Msg/WithdrawDelegatorReward response type. */
 export interface MsgWithdrawDelegatorRewardResponseSDKType {
-    /** Since: cosmos-sdk 0.46 */
     amount: CoinSDKType[];
 }
 /**
@@ -69,7 +68,6 @@ export interface MsgWithdrawValidatorCommissionResponse {
 }
 /** MsgWithdrawValidatorCommissionResponse defines the Msg/WithdrawValidatorCommission response type. */
 export interface MsgWithdrawValidatorCommissionResponseSDKType {
-    /** Since: cosmos-sdk 0.46 */
     amount: CoinSDKType[];
 }
 /**
