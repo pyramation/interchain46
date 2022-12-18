@@ -1,11 +1,15 @@
-import { Vote, VoteSDKType, LightBlock, LightBlockSDKType } from "./types";
-import { Timestamp, TimestampSDKType } from "../../google/protobuf/timestamp";
-import { Validator, ValidatorSDKType } from "./validator";
+import { Vote, VoteAmino, VoteSDKType, LightBlock, LightBlockAmino, LightBlockSDKType } from "./types";
+import { Timestamp, TimestampAmino, TimestampSDKType } from "../../google/protobuf/timestamp";
+import { Validator, ValidatorAmino, ValidatorSDKType } from "./validator";
 import * as _m0 from "protobufjs/minimal";
 import { Long } from "../../helpers";
 export interface Evidence {
     duplicateVoteEvidence?: DuplicateVoteEvidence;
     lightClientAttackEvidence?: LightClientAttackEvidence;
+}
+export interface EvidenceAmino {
+    duplicate_vote_evidence?: DuplicateVoteEvidenceAmino;
+    light_client_attack_evidence?: LightClientAttackEvidenceAmino;
 }
 export interface EvidenceSDKType {
     duplicate_vote_evidence?: DuplicateVoteEvidenceSDKType;
@@ -18,6 +22,14 @@ export interface DuplicateVoteEvidence {
     totalVotingPower: Long;
     validatorPower: Long;
     timestamp?: Timestamp;
+}
+/** DuplicateVoteEvidence contains evidence of a validator signed two conflicting votes. */
+export interface DuplicateVoteEvidenceAmino {
+    vote_a?: VoteAmino;
+    vote_b?: VoteAmino;
+    total_voting_power: string;
+    validator_power: string;
+    timestamp?: TimestampAmino;
 }
 /** DuplicateVoteEvidence contains evidence of a validator signed two conflicting votes. */
 export interface DuplicateVoteEvidenceSDKType {
@@ -36,6 +48,14 @@ export interface LightClientAttackEvidence {
     timestamp?: Timestamp;
 }
 /** LightClientAttackEvidence contains evidence of a set of validators attempting to mislead a light client. */
+export interface LightClientAttackEvidenceAmino {
+    conflicting_block?: LightBlockAmino;
+    common_height: string;
+    byzantine_validators: ValidatorAmino[];
+    total_voting_power: string;
+    timestamp?: TimestampAmino;
+}
+/** LightClientAttackEvidence contains evidence of a set of validators attempting to mislead a light client. */
 export interface LightClientAttackEvidenceSDKType {
     conflicting_block?: LightBlockSDKType;
     common_height: Long;
@@ -46,6 +66,9 @@ export interface LightClientAttackEvidenceSDKType {
 export interface EvidenceList {
     evidence: Evidence[];
 }
+export interface EvidenceListAmino {
+    evidence: EvidenceAmino[];
+}
 export interface EvidenceListSDKType {
     evidence: EvidenceSDKType[];
 }
@@ -55,6 +78,8 @@ export declare const Evidence: {
     fromJSON(object: any): Evidence;
     toJSON(message: Evidence): unknown;
     fromPartial(object: Partial<Evidence>): Evidence;
+    fromAmino(object: EvidenceAmino): Evidence;
+    toAmino(message: Evidence): EvidenceAmino;
 };
 export declare const DuplicateVoteEvidence: {
     encode(message: DuplicateVoteEvidence, writer?: _m0.Writer): _m0.Writer;
@@ -62,6 +87,8 @@ export declare const DuplicateVoteEvidence: {
     fromJSON(object: any): DuplicateVoteEvidence;
     toJSON(message: DuplicateVoteEvidence): unknown;
     fromPartial(object: Partial<DuplicateVoteEvidence>): DuplicateVoteEvidence;
+    fromAmino(object: DuplicateVoteEvidenceAmino): DuplicateVoteEvidence;
+    toAmino(message: DuplicateVoteEvidence): DuplicateVoteEvidenceAmino;
 };
 export declare const LightClientAttackEvidence: {
     encode(message: LightClientAttackEvidence, writer?: _m0.Writer): _m0.Writer;
@@ -69,6 +96,8 @@ export declare const LightClientAttackEvidence: {
     fromJSON(object: any): LightClientAttackEvidence;
     toJSON(message: LightClientAttackEvidence): unknown;
     fromPartial(object: Partial<LightClientAttackEvidence>): LightClientAttackEvidence;
+    fromAmino(object: LightClientAttackEvidenceAmino): LightClientAttackEvidence;
+    toAmino(message: LightClientAttackEvidence): LightClientAttackEvidenceAmino;
 };
 export declare const EvidenceList: {
     encode(message: EvidenceList, writer?: _m0.Writer): _m0.Writer;
@@ -76,4 +105,6 @@ export declare const EvidenceList: {
     fromJSON(object: any): EvidenceList;
     toJSON(message: EvidenceList): unknown;
     fromPartial(object: Partial<EvidenceList>): EvidenceList;
+    fromAmino(object: EvidenceListAmino): EvidenceList;
+    toAmino(message: EvidenceList): EvidenceListAmino;
 };

@@ -1,4 +1,4 @@
-import { GroupInfo, GroupInfoSDKType, GroupMember, GroupMemberSDKType, GroupPolicyInfo, GroupPolicyInfoSDKType, Proposal, ProposalSDKType, Vote, VoteSDKType } from "./types";
+import { GroupInfo, GroupInfoAmino, GroupInfoSDKType, GroupMember, GroupMemberAmino, GroupMemberSDKType, GroupPolicyInfo, GroupPolicyInfoAmino, GroupPolicyInfoSDKType, Proposal, ProposalAmino, ProposalSDKType, Vote, VoteAmino, VoteSDKType } from "./types";
 import { Long } from "../../../helpers";
 import * as _m0 from "protobufjs/minimal";
 /** GenesisState defines the group module's genesis state. */
@@ -30,6 +30,34 @@ export interface GenesisState {
     votes: Vote[];
 }
 /** GenesisState defines the group module's genesis state. */
+export interface GenesisStateAmino {
+    /**
+     * group_seq is the group table orm.Sequence,
+     * it is used to get the next group ID.
+     */
+    group_seq: string;
+    /** groups is the list of groups info. */
+    groups: GroupInfoAmino[];
+    /** group_members is the list of groups members. */
+    group_members: GroupMemberAmino[];
+    /**
+     * group_policy_seq is the group policy table orm.Sequence,
+     * it is used to generate the next group policy account address.
+     */
+    group_policy_seq: string;
+    /** group_policies is the list of group policies info. */
+    group_policies: GroupPolicyInfoAmino[];
+    /**
+     * proposal_seq is the proposal table orm.Sequence,
+     * it is used to get the next proposal ID.
+     */
+    proposal_seq: string;
+    /** proposals is the list of proposals. */
+    proposals: ProposalAmino[];
+    /** votes is the list of votes. */
+    votes: VoteAmino[];
+}
+/** GenesisState defines the group module's genesis state. */
 export interface GenesisStateSDKType {
     group_seq: Long;
     groups: GroupInfoSDKType[];
@@ -46,4 +74,6 @@ export declare const GenesisState: {
     fromJSON(object: any): GenesisState;
     toJSON(message: GenesisState): unknown;
     fromPartial(object: Partial<GenesisState>): GenesisState;
+    fromAmino(object: GenesisStateAmino): GenesisState;
+    toAmino(message: GenesisState): GenesisStateAmino;
 };

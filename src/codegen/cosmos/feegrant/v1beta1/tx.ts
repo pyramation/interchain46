@@ -1,6 +1,7 @@
-import { Any, AnySDKType } from "../../../google/protobuf/any";
+import { Any, AnyAmino, AnySDKType } from "../../../google/protobuf/any";
+import { BasicAllowance, PeriodicAllowance, AllowedMsgAllowance } from "./feegrant";
 import * as _m0 from "protobufjs/minimal";
-import { isSet } from "../../../helpers";
+import { isSet, DeepPartial } from "../../../helpers";
 /**
  * MsgGrantAllowance adds permission for Grantee to spend up to Allowance
  * of fees from the account of Granter.
@@ -14,7 +15,22 @@ export interface MsgGrantAllowance {
   grantee: string;
   /** allowance can be any of basic, periodic, allowed fee allowance. */
 
-  allowance?: Any;
+  allowance?: (BasicAllowance & PeriodicAllowance & AllowedMsgAllowance & Any) | undefined;
+}
+/**
+ * MsgGrantAllowance adds permission for Grantee to spend up to Allowance
+ * of fees from the account of Granter.
+ */
+
+export interface MsgGrantAllowanceAmino {
+  /** granter is the address of the user granting an allowance of their funds. */
+  granter: string;
+  /** grantee is the address of the user being granted an allowance of another user's funds. */
+
+  grantee: string;
+  /** allowance can be any of basic, periodic, allowed fee allowance. */
+
+  allowance?: AnyAmino;
 }
 /**
  * MsgGrantAllowance adds permission for Grantee to spend up to Allowance
@@ -31,10 +47,22 @@ export interface MsgGrantAllowanceSDKType {
 export interface MsgGrantAllowanceResponse {}
 /** MsgGrantAllowanceResponse defines the Msg/GrantAllowanceResponse response type. */
 
+export interface MsgGrantAllowanceResponseAmino {}
+/** MsgGrantAllowanceResponse defines the Msg/GrantAllowanceResponse response type. */
+
 export interface MsgGrantAllowanceResponseSDKType {}
 /** MsgRevokeAllowance removes any existing Allowance from Granter to Grantee. */
 
 export interface MsgRevokeAllowance {
+  /** granter is the address of the user granting an allowance of their funds. */
+  granter: string;
+  /** grantee is the address of the user being granted an allowance of another user's funds. */
+
+  grantee: string;
+}
+/** MsgRevokeAllowance removes any existing Allowance from Granter to Grantee. */
+
+export interface MsgRevokeAllowanceAmino {
   /** granter is the address of the user granting an allowance of their funds. */
   granter: string;
   /** grantee is the address of the user being granted an allowance of another user's funds. */
@@ -50,6 +78,9 @@ export interface MsgRevokeAllowanceSDKType {
 /** MsgRevokeAllowanceResponse defines the Msg/RevokeAllowanceResponse response type. */
 
 export interface MsgRevokeAllowanceResponse {}
+/** MsgRevokeAllowanceResponse defines the Msg/RevokeAllowanceResponse response type. */
+
+export interface MsgRevokeAllowanceResponseAmino {}
 /** MsgRevokeAllowanceResponse defines the Msg/RevokeAllowanceResponse response type. */
 
 export interface MsgRevokeAllowanceResponseSDKType {}
@@ -73,7 +104,7 @@ export const MsgGrantAllowance = {
     }
 
     if (message.allowance !== undefined) {
-      Any.encode(message.allowance, writer.uint32(26).fork()).ldelim();
+      Any.encode((message.allowance as Any), writer.uint32(26).fork()).ldelim();
     }
 
     return writer;
@@ -97,7 +128,7 @@ export const MsgGrantAllowance = {
           break;
 
         case 3:
-          message.allowance = Any.decode(reader, reader.uint32());
+          message.allowance = (FeeAllowanceI_InterfaceDecoder(reader) as Any);
           break;
 
         default:
@@ -131,6 +162,22 @@ export const MsgGrantAllowance = {
     message.grantee = object.grantee ?? "";
     message.allowance = object.allowance !== undefined && object.allowance !== null ? Any.fromPartial(object.allowance) : undefined;
     return message;
+  },
+
+  fromAmino(object: MsgGrantAllowanceAmino): MsgGrantAllowance {
+    return {
+      granter: object.granter,
+      grantee: object.grantee,
+      allowance: object?.allowance ? FeeAllowanceI_FromAmino(object.allowance) : undefined
+    };
+  },
+
+  toAmino(message: MsgGrantAllowance): MsgGrantAllowanceAmino {
+    const obj: any = {};
+    obj.granter = message.granter;
+    obj.grantee = message.grantee;
+    obj.allowance = message.allowance ? FeeAllowanceI_ToAmino((message.allowance as Any)) : undefined;
+    return obj;
   }
 
 };
@@ -174,6 +221,15 @@ export const MsgGrantAllowanceResponse = {
   fromPartial(_: Partial<MsgGrantAllowanceResponse>): MsgGrantAllowanceResponse {
     const message = createBaseMsgGrantAllowanceResponse();
     return message;
+  },
+
+  fromAmino(_: MsgGrantAllowanceResponseAmino): MsgGrantAllowanceResponse {
+    return {};
+  },
+
+  toAmino(_: MsgGrantAllowanceResponse): MsgGrantAllowanceResponseAmino {
+    const obj: any = {};
+    return obj;
   }
 
 };
@@ -243,6 +299,20 @@ export const MsgRevokeAllowance = {
     message.granter = object.granter ?? "";
     message.grantee = object.grantee ?? "";
     return message;
+  },
+
+  fromAmino(object: MsgRevokeAllowanceAmino): MsgRevokeAllowance {
+    return {
+      granter: object.granter,
+      grantee: object.grantee
+    };
+  },
+
+  toAmino(message: MsgRevokeAllowance): MsgRevokeAllowanceAmino {
+    const obj: any = {};
+    obj.granter = message.granter;
+    obj.grantee = message.grantee;
+    return obj;
   }
 
 };
@@ -286,6 +356,81 @@ export const MsgRevokeAllowanceResponse = {
   fromPartial(_: Partial<MsgRevokeAllowanceResponse>): MsgRevokeAllowanceResponse {
     const message = createBaseMsgRevokeAllowanceResponse();
     return message;
+  },
+
+  fromAmino(_: MsgRevokeAllowanceResponseAmino): MsgRevokeAllowanceResponse {
+    return {};
+  },
+
+  toAmino(_: MsgRevokeAllowanceResponse): MsgRevokeAllowanceResponseAmino {
+    const obj: any = {};
+    return obj;
   }
 
+};
+export const FeeAllowanceI_InterfaceDecoder = (input: _m0.Reader | Uint8Array): BasicAllowance | PeriodicAllowance | AllowedMsgAllowance | Any => {
+  const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+  const data = Any.decode(reader, reader.uint32());
+
+  switch (data.typeUrl) {
+    case "/cosmos.feegrant.v1beta1.BasicAllowance":
+      return BasicAllowance.decode(data.value);
+
+    case "/cosmos.feegrant.v1beta1.PeriodicAllowance":
+      return PeriodicAllowance.decode(data.value);
+
+    case "/cosmos.feegrant.v1beta1.AllowedMsgAllowance":
+      return AllowedMsgAllowance.decode(data.value);
+
+    default:
+      return data;
+  }
+};
+export const FeeAllowanceI_FromAmino = (content: AnyAmino) => {
+  switch (content.type) {
+    case "cosmos-sdk/BasicAllowance":
+      return Any.fromPartial({
+        typeUrl: "/cosmos.feegrant.v1beta1.BasicAllowance",
+        value: BasicAllowance.encode(BasicAllowance.fromPartial((content.value as DeepPartial<BasicAllowance>))).finish()
+      });
+
+    case "cosmos-sdk/PeriodicAllowance":
+      return Any.fromPartial({
+        typeUrl: "/cosmos.feegrant.v1beta1.PeriodicAllowance",
+        value: PeriodicAllowance.encode(PeriodicAllowance.fromPartial((content.value as DeepPartial<PeriodicAllowance>))).finish()
+      });
+
+    case "cosmos-sdk/AllowedMsgAllowance":
+      return Any.fromPartial({
+        typeUrl: "/cosmos.feegrant.v1beta1.AllowedMsgAllowance",
+        value: AllowedMsgAllowance.encode(AllowedMsgAllowance.fromPartial((content.value as DeepPartial<AllowedMsgAllowance>))).finish()
+      });
+
+    default:
+      return Any.fromAmino(content);
+  }
+};
+export const FeeAllowanceI_ToAmino = (content: Any) => {
+  switch (content.typeUrl) {
+    case "/cosmos.feegrant.v1beta1.BasicAllowance":
+      return {
+        type: "cosmos-sdk/BasicAllowance",
+        value: BasicAllowance.toAmino(BasicAllowance.decode(content.value))
+      };
+
+    case "/cosmos.feegrant.v1beta1.PeriodicAllowance":
+      return {
+        type: "cosmos-sdk/PeriodicAllowance",
+        value: PeriodicAllowance.toAmino(PeriodicAllowance.decode(content.value))
+      };
+
+    case "/cosmos.feegrant.v1beta1.AllowedMsgAllowance":
+      return {
+        type: "cosmos-sdk/AllowedMsgAllowance",
+        value: AllowedMsgAllowance.toAmino(AllowedMsgAllowance.decode(content.value))
+      };
+
+    default:
+      return Any.toAmino(content);
+  }
 };

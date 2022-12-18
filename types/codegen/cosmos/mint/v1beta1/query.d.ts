@@ -1,7 +1,10 @@
-import { Params, ParamsSDKType } from "./mint";
+import { Params, ParamsAmino, ParamsSDKType } from "./mint";
 import * as _m0 from "protobufjs/minimal";
 /** QueryParamsRequest is the request type for the Query/Params RPC method. */
 export interface QueryParamsRequest {
+}
+/** QueryParamsRequest is the request type for the Query/Params RPC method. */
+export interface QueryParamsRequestAmino {
 }
 /** QueryParamsRequest is the request type for the Query/Params RPC method. */
 export interface QueryParamsRequestSDKType {
@@ -12,11 +15,19 @@ export interface QueryParamsResponse {
     params?: Params;
 }
 /** QueryParamsResponse is the response type for the Query/Params RPC method. */
+export interface QueryParamsResponseAmino {
+    /** params defines the parameters of the module. */
+    params?: ParamsAmino;
+}
+/** QueryParamsResponse is the response type for the Query/Params RPC method. */
 export interface QueryParamsResponseSDKType {
     params?: ParamsSDKType;
 }
 /** QueryInflationRequest is the request type for the Query/Inflation RPC method. */
 export interface QueryInflationRequest {
+}
+/** QueryInflationRequest is the request type for the Query/Inflation RPC method. */
+export interface QueryInflationRequestAmino {
 }
 /** QueryInflationRequest is the request type for the Query/Inflation RPC method. */
 export interface QueryInflationRequestSDKType {
@@ -26,6 +37,14 @@ export interface QueryInflationRequestSDKType {
  * method.
  */
 export interface QueryInflationResponse {
+    /** inflation is the current minting inflation value. */
+    inflation: Uint8Array;
+}
+/**
+ * QueryInflationResponse is the response type for the Query/Inflation RPC
+ * method.
+ */
+export interface QueryInflationResponseAmino {
     /** inflation is the current minting inflation value. */
     inflation: Uint8Array;
 }
@@ -46,6 +65,12 @@ export interface QueryAnnualProvisionsRequest {
  * QueryAnnualProvisionsRequest is the request type for the
  * Query/AnnualProvisions RPC method.
  */
+export interface QueryAnnualProvisionsRequestAmino {
+}
+/**
+ * QueryAnnualProvisionsRequest is the request type for the
+ * Query/AnnualProvisions RPC method.
+ */
 export interface QueryAnnualProvisionsRequestSDKType {
 }
 /**
@@ -60,6 +85,14 @@ export interface QueryAnnualProvisionsResponse {
  * QueryAnnualProvisionsResponse is the response type for the
  * Query/AnnualProvisions RPC method.
  */
+export interface QueryAnnualProvisionsResponseAmino {
+    /** annual_provisions is the current minting annual provisions value. */
+    annual_provisions: Uint8Array;
+}
+/**
+ * QueryAnnualProvisionsResponse is the response type for the
+ * Query/AnnualProvisions RPC method.
+ */
 export interface QueryAnnualProvisionsResponseSDKType {
     annual_provisions: Uint8Array;
 }
@@ -69,6 +102,8 @@ export declare const QueryParamsRequest: {
     fromJSON(_: any): QueryParamsRequest;
     toJSON(_: QueryParamsRequest): unknown;
     fromPartial(_: Partial<QueryParamsRequest>): QueryParamsRequest;
+    fromAmino(_: QueryParamsRequestAmino): QueryParamsRequest;
+    toAmino(_: QueryParamsRequest): QueryParamsRequestAmino;
 };
 export declare const QueryParamsResponse: {
     encode(message: QueryParamsResponse, writer?: _m0.Writer): _m0.Writer;
@@ -76,6 +111,8 @@ export declare const QueryParamsResponse: {
     fromJSON(object: any): QueryParamsResponse;
     toJSON(message: QueryParamsResponse): unknown;
     fromPartial(object: Partial<QueryParamsResponse>): QueryParamsResponse;
+    fromAmino(object: QueryParamsResponseAmino): QueryParamsResponse;
+    toAmino(message: QueryParamsResponse): QueryParamsResponseAmino;
 };
 export declare const QueryInflationRequest: {
     encode(_: QueryInflationRequest, writer?: _m0.Writer): _m0.Writer;
@@ -83,6 +120,8 @@ export declare const QueryInflationRequest: {
     fromJSON(_: any): QueryInflationRequest;
     toJSON(_: QueryInflationRequest): unknown;
     fromPartial(_: Partial<QueryInflationRequest>): QueryInflationRequest;
+    fromAmino(_: QueryInflationRequestAmino): QueryInflationRequest;
+    toAmino(_: QueryInflationRequest): QueryInflationRequestAmino;
 };
 export declare const QueryInflationResponse: {
     encode(message: QueryInflationResponse, writer?: _m0.Writer): _m0.Writer;
@@ -90,6 +129,8 @@ export declare const QueryInflationResponse: {
     fromJSON(object: any): QueryInflationResponse;
     toJSON(message: QueryInflationResponse): unknown;
     fromPartial(object: Partial<QueryInflationResponse>): QueryInflationResponse;
+    fromAmino(object: QueryInflationResponseAmino): QueryInflationResponse;
+    toAmino(message: QueryInflationResponse): QueryInflationResponseAmino;
 };
 export declare const QueryAnnualProvisionsRequest: {
     encode(_: QueryAnnualProvisionsRequest, writer?: _m0.Writer): _m0.Writer;
@@ -97,6 +138,8 @@ export declare const QueryAnnualProvisionsRequest: {
     fromJSON(_: any): QueryAnnualProvisionsRequest;
     toJSON(_: QueryAnnualProvisionsRequest): unknown;
     fromPartial(_: Partial<QueryAnnualProvisionsRequest>): QueryAnnualProvisionsRequest;
+    fromAmino(_: QueryAnnualProvisionsRequestAmino): QueryAnnualProvisionsRequest;
+    toAmino(_: QueryAnnualProvisionsRequest): QueryAnnualProvisionsRequestAmino;
 };
 export declare const QueryAnnualProvisionsResponse: {
     encode(message: QueryAnnualProvisionsResponse, writer?: _m0.Writer): _m0.Writer;
@@ -104,4 +147,6 @@ export declare const QueryAnnualProvisionsResponse: {
     fromJSON(object: any): QueryAnnualProvisionsResponse;
     toJSON(message: QueryAnnualProvisionsResponse): unknown;
     fromPartial(object: Partial<QueryAnnualProvisionsResponse>): QueryAnnualProvisionsResponse;
+    fromAmino(object: QueryAnnualProvisionsResponseAmino): QueryAnnualProvisionsResponse;
+    toAmino(message: QueryAnnualProvisionsResponse): QueryAnnualProvisionsResponseAmino;
 };

@@ -1,4 +1,4 @@
-import { Minter, MinterSDKType, Params, ParamsSDKType } from "./mint";
+import { Minter, MinterAmino, MinterSDKType, Params, ParamsAmino, ParamsSDKType } from "./mint";
 import * as _m0 from "protobufjs/minimal";
 /** GenesisState defines the mint module's genesis state. */
 export interface GenesisState {
@@ -6,6 +6,13 @@ export interface GenesisState {
     minter?: Minter;
     /** params defines all the paramaters of the module. */
     params?: Params;
+}
+/** GenesisState defines the mint module's genesis state. */
+export interface GenesisStateAmino {
+    /** minter is a space for holding current inflation information. */
+    minter?: MinterAmino;
+    /** params defines all the paramaters of the module. */
+    params?: ParamsAmino;
 }
 /** GenesisState defines the mint module's genesis state. */
 export interface GenesisStateSDKType {
@@ -18,4 +25,6 @@ export declare const GenesisState: {
     fromJSON(object: any): GenesisState;
     toJSON(message: GenesisState): unknown;
     fromPartial(object: Partial<GenesisState>): GenesisState;
+    fromAmino(object: GenesisStateAmino): GenesisState;
+    toAmino(message: GenesisState): GenesisStateAmino;
 };

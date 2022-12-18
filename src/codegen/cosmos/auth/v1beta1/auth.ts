@@ -1,4 +1,4 @@
-import { Any, AnySDKType } from "../../../google/protobuf/any";
+import { Any, AnyAmino, AnySDKType } from "../../../google/protobuf/any";
 import { Long, isSet } from "../../../helpers";
 import * as _m0 from "protobufjs/minimal";
 /**
@@ -8,6 +8,7 @@ import * as _m0 from "protobufjs/minimal";
  */
 
 export interface BaseAccount {
+  $typeUrl?: string;
   address: string;
   pubKey?: Any;
   accountNumber: Long;
@@ -19,7 +20,20 @@ export interface BaseAccount {
  * type for additional functionality (e.g. vesting).
  */
 
+export interface BaseAccountAmino {
+  address: string;
+  pub_key?: AnyAmino;
+  account_number: string;
+  sequence: string;
+}
+/**
+ * BaseAccount defines a base account type. It contains all the necessary fields
+ * for basic account functionality. Any custom account type should extend this
+ * type for additional functionality (e.g. vesting).
+ */
+
 export interface BaseAccountSDKType {
+  $typeUrl?: string;
   address: string;
   pub_key?: AnySDKType;
   account_number: Long;
@@ -28,13 +42,22 @@ export interface BaseAccountSDKType {
 /** ModuleAccount defines an account for modules that holds coins on a pool. */
 
 export interface ModuleAccount {
+  $typeUrl?: string;
   baseAccount?: BaseAccount;
   name: string;
   permissions: string[];
 }
 /** ModuleAccount defines an account for modules that holds coins on a pool. */
 
+export interface ModuleAccountAmino {
+  base_account?: BaseAccountAmino;
+  name: string;
+  permissions: string[];
+}
+/** ModuleAccount defines an account for modules that holds coins on a pool. */
+
 export interface ModuleAccountSDKType {
+  $typeUrl?: string;
   base_account?: BaseAccountSDKType;
   name: string;
   permissions: string[];
@@ -50,6 +73,15 @@ export interface Params {
 }
 /** Params defines the parameters for the auth module. */
 
+export interface ParamsAmino {
+  max_memo_characters: string;
+  tx_sig_limit: string;
+  tx_size_cost_per_byte: string;
+  sig_verify_cost_ed25519: string;
+  sig_verify_cost_secp256k1: string;
+}
+/** Params defines the parameters for the auth module. */
+
 export interface ParamsSDKType {
   max_memo_characters: Long;
   tx_sig_limit: Long;
@@ -60,6 +92,7 @@ export interface ParamsSDKType {
 
 function createBaseBaseAccount(): BaseAccount {
   return {
+    $typeUrl: "/cosmos.auth.v1beta1.BaseAccount",
     address: "",
     pubKey: undefined,
     accountNumber: Long.UZERO,
@@ -147,12 +180,31 @@ export const BaseAccount = {
     message.accountNumber = object.accountNumber !== undefined && object.accountNumber !== null ? Long.fromValue(object.accountNumber) : Long.UZERO;
     message.sequence = object.sequence !== undefined && object.sequence !== null ? Long.fromValue(object.sequence) : Long.UZERO;
     return message;
+  },
+
+  fromAmino(object: BaseAccountAmino): BaseAccount {
+    return {
+      address: object.address,
+      pubKey: object?.pub_key ? Any.fromAmino(object.pub_key) : undefined,
+      accountNumber: Long.fromString(object.account_number),
+      sequence: Long.fromString(object.sequence)
+    };
+  },
+
+  toAmino(message: BaseAccount): BaseAccountAmino {
+    const obj: any = {};
+    obj.address = message.address;
+    obj.pub_key = message.pubKey ? Any.toAmino(message.pubKey) : undefined;
+    obj.account_number = message.accountNumber ? message.accountNumber.toString() : undefined;
+    obj.sequence = message.sequence ? message.sequence.toString() : undefined;
+    return obj;
   }
 
 };
 
 function createBaseModuleAccount(): ModuleAccount {
   return {
+    $typeUrl: "/cosmos.auth.v1beta1.ModuleAccount",
     baseAccount: undefined,
     name: "",
     permissions: []
@@ -234,6 +286,28 @@ export const ModuleAccount = {
     message.name = object.name ?? "";
     message.permissions = object.permissions?.map(e => e) || [];
     return message;
+  },
+
+  fromAmino(object: ModuleAccountAmino): ModuleAccount {
+    return {
+      baseAccount: object?.base_account ? BaseAccount.fromAmino(object.base_account) : undefined,
+      name: object.name,
+      permissions: Array.isArray(object?.permissions) ? object.permissions.map((e: any) => e) : []
+    };
+  },
+
+  toAmino(message: ModuleAccount): ModuleAccountAmino {
+    const obj: any = {};
+    obj.base_account = message.baseAccount ? BaseAccount.toAmino(message.baseAccount) : undefined;
+    obj.name = message.name;
+
+    if (message.permissions) {
+      obj.permissions = message.permissions.map(e => e);
+    } else {
+      obj.permissions = [];
+    }
+
+    return obj;
   }
 
 };
@@ -339,6 +413,26 @@ export const Params = {
     message.sigVerifyCostEd25519 = object.sigVerifyCostEd25519 !== undefined && object.sigVerifyCostEd25519 !== null ? Long.fromValue(object.sigVerifyCostEd25519) : Long.UZERO;
     message.sigVerifyCostSecp256k1 = object.sigVerifyCostSecp256k1 !== undefined && object.sigVerifyCostSecp256k1 !== null ? Long.fromValue(object.sigVerifyCostSecp256k1) : Long.UZERO;
     return message;
+  },
+
+  fromAmino(object: ParamsAmino): Params {
+    return {
+      maxMemoCharacters: Long.fromString(object.max_memo_characters),
+      txSigLimit: Long.fromString(object.tx_sig_limit),
+      txSizeCostPerByte: Long.fromString(object.tx_size_cost_per_byte),
+      sigVerifyCostEd25519: Long.fromString(object.sig_verify_cost_ed25519),
+      sigVerifyCostSecp256k1: Long.fromString(object.sig_verify_cost_secp256k1)
+    };
+  },
+
+  toAmino(message: Params): ParamsAmino {
+    const obj: any = {};
+    obj.max_memo_characters = message.maxMemoCharacters ? message.maxMemoCharacters.toString() : undefined;
+    obj.tx_sig_limit = message.txSigLimit ? message.txSigLimit.toString() : undefined;
+    obj.tx_size_cost_per_byte = message.txSizeCostPerByte ? message.txSizeCostPerByte.toString() : undefined;
+    obj.sig_verify_cost_ed25519 = message.sigVerifyCostEd25519 ? message.sigVerifyCostEd25519.toString() : undefined;
+    obj.sig_verify_cost_secp256k1 = message.sigVerifyCostSecp256k1 ? message.sigVerifyCostSecp256k1.toString() : undefined;
+    return obj;
   }
 
 };

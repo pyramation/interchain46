@@ -14,6 +14,15 @@ export interface App {
  * This information is included in ResponseInfo. The App.Protocol can be
  * updated in ResponseEndBlock.
  */
+export interface AppAmino {
+    protocol: string;
+    software: string;
+}
+/**
+ * App includes the protocol and software version for the application.
+ * This information is included in ResponseInfo. The App.Protocol can be
+ * updated in ResponseEndBlock.
+ */
 export interface AppSDKType {
     protocol: Long;
     software: string;
@@ -32,6 +41,15 @@ export interface Consensus {
  * including all blockchain data structures and the rules of the application's
  * state transition machine.
  */
+export interface ConsensusAmino {
+    block: string;
+    app: string;
+}
+/**
+ * Consensus captures the consensus rules for processing a block in the blockchain,
+ * including all blockchain data structures and the rules of the application's
+ * state transition machine.
+ */
 export interface ConsensusSDKType {
     block: Long;
     app: Long;
@@ -42,6 +60,8 @@ export declare const App: {
     fromJSON(object: any): App;
     toJSON(message: App): unknown;
     fromPartial(object: Partial<App>): App;
+    fromAmino(object: AppAmino): App;
+    toAmino(message: App): AppAmino;
 };
 export declare const Consensus: {
     encode(message: Consensus, writer?: _m0.Writer): _m0.Writer;
@@ -49,4 +69,6 @@ export declare const Consensus: {
     fromJSON(object: any): Consensus;
     toJSON(message: Consensus): unknown;
     fromPartial(object: Partial<Consensus>): Consensus;
+    fromAmino(object: ConsensusAmino): Consensus;
+    toAmino(message: Consensus): ConsensusAmino;
 };

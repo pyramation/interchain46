@@ -14,6 +14,15 @@ export interface CommitInfo {
  * a version/height.
  */
 
+export interface CommitInfoAmino {
+  version: string;
+  store_infos: StoreInfoAmino[];
+}
+/**
+ * CommitInfo defines commit information used by the multi-store when committing
+ * a version/height.
+ */
+
 export interface CommitInfoSDKType {
   version: Long;
   store_infos: StoreInfoSDKType[];
@@ -32,6 +41,15 @@ export interface StoreInfo {
  * between a store name and the commit ID.
  */
 
+export interface StoreInfoAmino {
+  name: string;
+  commit_id?: CommitIDAmino;
+}
+/**
+ * StoreInfo defines store-specific commit information. It contains a reference
+ * between a store name and the commit ID.
+ */
+
 export interface StoreInfoSDKType {
   name: string;
   commit_id?: CommitIDSDKType;
@@ -43,6 +61,15 @@ export interface StoreInfoSDKType {
 
 export interface CommitID {
   version: Long;
+  hash: Uint8Array;
+}
+/**
+ * CommitID defines the committment information when a specific store is
+ * committed.
+ */
+
+export interface CommitIDAmino {
+  version: string;
   hash: Uint8Array;
 }
 /**
@@ -126,6 +153,26 @@ export const CommitInfo = {
     message.version = object.version !== undefined && object.version !== null ? Long.fromValue(object.version) : Long.ZERO;
     message.storeInfos = object.storeInfos?.map(e => StoreInfo.fromPartial(e)) || [];
     return message;
+  },
+
+  fromAmino(object: CommitInfoAmino): CommitInfo {
+    return {
+      version: Long.fromString(object.version),
+      storeInfos: Array.isArray(object?.store_infos) ? object.store_infos.map((e: any) => StoreInfo.fromAmino(e)) : []
+    };
+  },
+
+  toAmino(message: CommitInfo): CommitInfoAmino {
+    const obj: any = {};
+    obj.version = message.version ? message.version.toString() : undefined;
+
+    if (message.storeInfos) {
+      obj.store_infos = message.storeInfos.map(e => e ? StoreInfo.toAmino(e) : undefined);
+    } else {
+      obj.store_infos = [];
+    }
+
+    return obj;
   }
 
 };
@@ -195,6 +242,20 @@ export const StoreInfo = {
     message.name = object.name ?? "";
     message.commitId = object.commitId !== undefined && object.commitId !== null ? CommitID.fromPartial(object.commitId) : undefined;
     return message;
+  },
+
+  fromAmino(object: StoreInfoAmino): StoreInfo {
+    return {
+      name: object.name,
+      commitId: object?.commit_id ? CommitID.fromAmino(object.commit_id) : undefined
+    };
+  },
+
+  toAmino(message: StoreInfo): StoreInfoAmino {
+    const obj: any = {};
+    obj.name = message.name;
+    obj.commit_id = message.commitId ? CommitID.toAmino(message.commitId) : undefined;
+    return obj;
   }
 
 };
@@ -264,6 +325,20 @@ export const CommitID = {
     message.version = object.version !== undefined && object.version !== null ? Long.fromValue(object.version) : Long.ZERO;
     message.hash = object.hash ?? new Uint8Array();
     return message;
+  },
+
+  fromAmino(object: CommitIDAmino): CommitID {
+    return {
+      version: Long.fromString(object.version),
+      hash: object.hash
+    };
+  },
+
+  toAmino(message: CommitID): CommitIDAmino {
+    const obj: any = {};
+    obj.version = message.version ? message.version.toString() : undefined;
+    obj.hash = message.hash;
+    return obj;
   }
 
 };

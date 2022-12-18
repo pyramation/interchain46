@@ -11,6 +11,7 @@ export declare enum HashOp {
     UNRECOGNIZED = -1
 }
 export declare const HashOpSDKType: typeof HashOp;
+export declare const HashOpAmino: typeof HashOp;
 export declare function hashOpFromJSON(object: any): HashOp;
 export declare function hashOpToJSON(object: HashOp): string;
 /**
@@ -41,6 +42,7 @@ export declare enum LengthOp {
     UNRECOGNIZED = -1
 }
 export declare const LengthOpSDKType: typeof LengthOp;
+export declare const LengthOpAmino: typeof LengthOp;
 export declare function lengthOpFromJSON(object: any): LengthOp;
 export declare function lengthOpToJSON(object: LengthOp): string;
 /**
@@ -91,6 +93,33 @@ export interface ExistenceProof {
  * in the ProofSpec is valuable to prevent this mutability. And why all trees should
  * length-prefix the data before hashing it.
  */
+export interface ExistenceProofAmino {
+    key: Uint8Array;
+    value: Uint8Array;
+    leaf?: LeafOpAmino;
+    path: InnerOpAmino[];
+}
+/**
+ * ExistenceProof takes a key and a value and a set of steps to perform on it.
+ * The result of peforming all these steps will provide a "root hash", which can
+ * be compared to the value in a header.
+ *
+ * Since it is computationally infeasible to produce a hash collission for any of the used
+ * cryptographic hash functions, if someone can provide a series of operations to transform
+ * a given key and value into a root hash that matches some trusted root, these key and values
+ * must be in the referenced merkle tree.
+ *
+ * The only possible issue is maliablity in LeafOp, such as providing extra prefix data,
+ * which should be controlled by a spec. Eg. with lengthOp as NONE,
+ * prefix = FOO, key = BAR, value = CHOICE
+ * and
+ * prefix = F, key = OOBAR, value = CHOICE
+ * would produce the same value.
+ *
+ * With LengthOp this is tricker but not impossible. Which is why the "leafPrefixEqual" field
+ * in the ProofSpec is valuable to prevent this mutability. And why all trees should
+ * length-prefix the data before hashing it.
+ */
 export interface ExistenceProofSDKType {
     key: Uint8Array;
     value: Uint8Array;
@@ -113,6 +142,17 @@ export interface NonExistenceProof {
  * one right of the desired key. If both proofs are valid AND they are neighbors,
  * then there is no valid proof for the given key.
  */
+export interface NonExistenceProofAmino {
+    /** TODO: remove this as unnecessary??? we prove a range */
+    key: Uint8Array;
+    left?: ExistenceProofAmino;
+    right?: ExistenceProofAmino;
+}
+/**
+ * NonExistenceProof takes a proof of two neighbors, one left of the desired key,
+ * one right of the desired key. If both proofs are valid AND they are neighbors,
+ * then there is no valid proof for the given key.
+ */
 export interface NonExistenceProofSDKType {
     key: Uint8Array;
     left?: ExistenceProofSDKType;
@@ -124,6 +164,13 @@ export interface CommitmentProof {
     nonexist?: NonExistenceProof;
     batch?: BatchProof;
     compressed?: CompressedBatchProof;
+}
+/** CommitmentProof is either an ExistenceProof or a NonExistenceProof, or a Batch of such messages */
+export interface CommitmentProofAmino {
+    exist?: ExistenceProofAmino;
+    nonexist?: NonExistenceProofAmino;
+    batch?: BatchProofAmino;
+    compressed?: CompressedBatchProofAmino;
 }
 /** CommitmentProof is either an ExistenceProof or a NonExistenceProof, or a Batch of such messages */
 export interface CommitmentProofSDKType {
@@ -152,6 +199,33 @@ export interface LeafOp {
     hash: HashOp;
     prehashKey: HashOp;
     prehashValue: HashOp;
+    length: LengthOp;
+    /**
+     * prefix is a fixed bytes that may optionally be included at the beginning to differentiate
+     * a leaf node from an inner node.
+     */
+    prefix: Uint8Array;
+}
+/**
+ * LeafOp represents the raw key-value data we wish to prove, and
+ * must be flexible to represent the internal transformation from
+ * the original key-value pairs into the basis hash, for many existing
+ * merkle trees.
+ *
+ * key and value are passed in. So that the signature of this operation is:
+ * leafOp(key, value) -> output
+ *
+ * To process this, first prehash the keys and values if needed (ANY means no hash in this case):
+ * hkey = prehashKey(key)
+ * hvalue = prehashValue(value)
+ *
+ * Then combine the bytes, and hash it
+ * output = hash(prefix || length(hkey) || hkey || length(hvalue) || hvalue)
+ */
+export interface LeafOpAmino {
+    hash: HashOp;
+    prehash_key: HashOp;
+    prehash_value: HashOp;
     length: LengthOp;
     /**
      * prefix is a fixed bytes that may optionally be included at the beginning to differentiate
@@ -221,6 +295,28 @@ export interface InnerOp {
  * some value to differentiate from leaf nodes, should be included in prefix and suffix.
  * If either of prefix or suffix is empty, we just treat it as an empty string
  */
+export interface InnerOpAmino {
+    hash: HashOp;
+    prefix: Uint8Array;
+    suffix: Uint8Array;
+}
+/**
+ * InnerOp represents a merkle-proof step that is not a leaf.
+ * It represents concatenating two children and hashing them to provide the next result.
+ *
+ * The result of the previous step is passed in, so the signature of this op is:
+ * innerOp(child) -> output
+ *
+ * The result of applying InnerOp should be:
+ * output = op.hash(op.prefix || child || op.suffix)
+ *
+ * where the || operator is concatenation of binary data,
+ * and child is the result of hashing all the tree below this step.
+ *
+ * Any special data, like prepending child with the length, or prepending the entire operation with
+ * some value to differentiate from leaf nodes, should be included in prefix and suffix.
+ * If either of prefix or suffix is empty, we just treat it as an empty string
+ */
 export interface InnerOpSDKType {
     hash: HashOp;
     prefix: Uint8Array;
@@ -249,6 +345,30 @@ export interface ProofSpec {
     maxDepth: number;
     /** min_depth (if > 0) is the minimum number of InnerOps allowed (mainly for fixed-depth tries) */
     minDepth: number;
+}
+/**
+ * ProofSpec defines what the expected parameters are for a given proof type.
+ * This can be stored in the client and used to validate any incoming proofs.
+ *
+ * verify(ProofSpec, Proof) -> Proof | Error
+ *
+ * As demonstrated in tests, if we don't fix the algorithm used to calculate the
+ * LeafHash for a given tree, there are many possible key-value pairs that can
+ * generate a given hash (by interpretting the preimage differently).
+ * We need this for proper security, requires client knows a priori what
+ * tree format server uses. But not in code, rather a configuration object.
+ */
+export interface ProofSpecAmino {
+    /**
+     * any field in the ExistenceProof must be the same as in this spec.
+     * except Prefix, which is just the first bytes of prefix (spec can be longer)
+     */
+    leaf_spec?: LeafOpAmino;
+    inner_spec?: InnerSpecAmino;
+    /** max_depth (if > 0) is the maximum number of InnerOps allowed (mainly for fixed-depth tries) */
+    max_depth: number;
+    /** min_depth (if > 0) is the minimum number of InnerOps allowed (mainly for fixed-depth tries) */
+    min_depth: number;
 }
 /**
  * ProofSpec defines what the expected parameters are for a given proof type.
@@ -303,6 +423,31 @@ export interface InnerSpec {
  * isRightMost(spec: InnerSpec, op: InnerOp)
  * isLeftNeighbor(spec: InnerSpec, left: InnerOp, right: InnerOp)
  */
+export interface InnerSpecAmino {
+    /**
+     * Child order is the ordering of the children node, must count from 0
+     * iavl tree is [0, 1] (left then right)
+     * merk is [0, 2, 1] (left, right, here)
+     */
+    child_order: number[];
+    child_size: number;
+    min_prefix_length: number;
+    max_prefix_length: number;
+    /** empty child is the prehash image that is used when one child is nil (eg. 20 bytes of 0) */
+    empty_child: Uint8Array;
+    /** hash is the algorithm that must be used for each InnerOp */
+    hash: HashOp;
+}
+/**
+ * InnerSpec contains all store-specific structure info to determine if two proofs from a
+ * given store are neighbors.
+ *
+ * This enables:
+ *
+ * isLeftMost(spec: InnerSpec, op: InnerOp)
+ * isRightMost(spec: InnerSpec, op: InnerOp)
+ * isLeftNeighbor(spec: InnerSpec, left: InnerOp, right: InnerOp)
+ */
 export interface InnerSpecSDKType {
     child_order: number[];
     child_size: number;
@@ -316,6 +461,10 @@ export interface BatchProof {
     entries: BatchEntry[];
 }
 /** BatchProof is a group of multiple proof types than can be compressed */
+export interface BatchProofAmino {
+    entries: BatchEntryAmino[];
+}
+/** BatchProof is a group of multiple proof types than can be compressed */
 export interface BatchProofSDKType {
     entries: BatchEntrySDKType[];
 }
@@ -325,6 +474,11 @@ export interface BatchEntry {
     nonexist?: NonExistenceProof;
 }
 /** Use BatchEntry not CommitmentProof, to avoid recursion */
+export interface BatchEntryAmino {
+    exist?: ExistenceProofAmino;
+    nonexist?: NonExistenceProofAmino;
+}
+/** Use BatchEntry not CommitmentProof, to avoid recursion */
 export interface BatchEntrySDKType {
     exist?: ExistenceProofSDKType;
     nonexist?: NonExistenceProofSDKType;
@@ -332,6 +486,10 @@ export interface BatchEntrySDKType {
 export interface CompressedBatchProof {
     entries: CompressedBatchEntry[];
     lookupInners: InnerOp[];
+}
+export interface CompressedBatchProofAmino {
+    entries: CompressedBatchEntryAmino[];
+    lookup_inners: InnerOpAmino[];
 }
 export interface CompressedBatchProofSDKType {
     entries: CompressedBatchEntrySDKType[];
@@ -343,6 +501,11 @@ export interface CompressedBatchEntry {
     nonexist?: CompressedNonExistenceProof;
 }
 /** Use BatchEntry not CommitmentProof, to avoid recursion */
+export interface CompressedBatchEntryAmino {
+    exist?: CompressedExistenceProofAmino;
+    nonexist?: CompressedNonExistenceProofAmino;
+}
+/** Use BatchEntry not CommitmentProof, to avoid recursion */
 export interface CompressedBatchEntrySDKType {
     exist?: CompressedExistenceProofSDKType;
     nonexist?: CompressedNonExistenceProofSDKType;
@@ -351,6 +514,13 @@ export interface CompressedExistenceProof {
     key: Uint8Array;
     value: Uint8Array;
     leaf?: LeafOp;
+    /** these are indexes into the lookup_inners table in CompressedBatchProof */
+    path: number[];
+}
+export interface CompressedExistenceProofAmino {
+    key: Uint8Array;
+    value: Uint8Array;
+    leaf?: LeafOpAmino;
     /** these are indexes into the lookup_inners table in CompressedBatchProof */
     path: number[];
 }
@@ -366,6 +536,12 @@ export interface CompressedNonExistenceProof {
     left?: CompressedExistenceProof;
     right?: CompressedExistenceProof;
 }
+export interface CompressedNonExistenceProofAmino {
+    /** TODO: remove this as unnecessary??? we prove a range */
+    key: Uint8Array;
+    left?: CompressedExistenceProofAmino;
+    right?: CompressedExistenceProofAmino;
+}
 export interface CompressedNonExistenceProofSDKType {
     key: Uint8Array;
     left?: CompressedExistenceProofSDKType;
@@ -377,6 +553,8 @@ export declare const ExistenceProof: {
     fromJSON(object: any): ExistenceProof;
     toJSON(message: ExistenceProof): unknown;
     fromPartial(object: Partial<ExistenceProof>): ExistenceProof;
+    fromAmino(object: ExistenceProofAmino): ExistenceProof;
+    toAmino(message: ExistenceProof): ExistenceProofAmino;
 };
 export declare const NonExistenceProof: {
     encode(message: NonExistenceProof, writer?: _m0.Writer): _m0.Writer;
@@ -384,6 +562,8 @@ export declare const NonExistenceProof: {
     fromJSON(object: any): NonExistenceProof;
     toJSON(message: NonExistenceProof): unknown;
     fromPartial(object: Partial<NonExistenceProof>): NonExistenceProof;
+    fromAmino(object: NonExistenceProofAmino): NonExistenceProof;
+    toAmino(message: NonExistenceProof): NonExistenceProofAmino;
 };
 export declare const CommitmentProof: {
     encode(message: CommitmentProof, writer?: _m0.Writer): _m0.Writer;
@@ -391,6 +571,8 @@ export declare const CommitmentProof: {
     fromJSON(object: any): CommitmentProof;
     toJSON(message: CommitmentProof): unknown;
     fromPartial(object: Partial<CommitmentProof>): CommitmentProof;
+    fromAmino(object: CommitmentProofAmino): CommitmentProof;
+    toAmino(message: CommitmentProof): CommitmentProofAmino;
 };
 export declare const LeafOp: {
     encode(message: LeafOp, writer?: _m0.Writer): _m0.Writer;
@@ -398,6 +580,8 @@ export declare const LeafOp: {
     fromJSON(object: any): LeafOp;
     toJSON(message: LeafOp): unknown;
     fromPartial(object: Partial<LeafOp>): LeafOp;
+    fromAmino(object: LeafOpAmino): LeafOp;
+    toAmino(message: LeafOp): LeafOpAmino;
 };
 export declare const InnerOp: {
     encode(message: InnerOp, writer?: _m0.Writer): _m0.Writer;
@@ -405,6 +589,8 @@ export declare const InnerOp: {
     fromJSON(object: any): InnerOp;
     toJSON(message: InnerOp): unknown;
     fromPartial(object: Partial<InnerOp>): InnerOp;
+    fromAmino(object: InnerOpAmino): InnerOp;
+    toAmino(message: InnerOp): InnerOpAmino;
 };
 export declare const ProofSpec: {
     encode(message: ProofSpec, writer?: _m0.Writer): _m0.Writer;
@@ -412,6 +598,8 @@ export declare const ProofSpec: {
     fromJSON(object: any): ProofSpec;
     toJSON(message: ProofSpec): unknown;
     fromPartial(object: Partial<ProofSpec>): ProofSpec;
+    fromAmino(object: ProofSpecAmino): ProofSpec;
+    toAmino(message: ProofSpec): ProofSpecAmino;
 };
 export declare const InnerSpec: {
     encode(message: InnerSpec, writer?: _m0.Writer): _m0.Writer;
@@ -419,6 +607,8 @@ export declare const InnerSpec: {
     fromJSON(object: any): InnerSpec;
     toJSON(message: InnerSpec): unknown;
     fromPartial(object: Partial<InnerSpec>): InnerSpec;
+    fromAmino(object: InnerSpecAmino): InnerSpec;
+    toAmino(message: InnerSpec): InnerSpecAmino;
 };
 export declare const BatchProof: {
     encode(message: BatchProof, writer?: _m0.Writer): _m0.Writer;
@@ -426,6 +616,8 @@ export declare const BatchProof: {
     fromJSON(object: any): BatchProof;
     toJSON(message: BatchProof): unknown;
     fromPartial(object: Partial<BatchProof>): BatchProof;
+    fromAmino(object: BatchProofAmino): BatchProof;
+    toAmino(message: BatchProof): BatchProofAmino;
 };
 export declare const BatchEntry: {
     encode(message: BatchEntry, writer?: _m0.Writer): _m0.Writer;
@@ -433,6 +625,8 @@ export declare const BatchEntry: {
     fromJSON(object: any): BatchEntry;
     toJSON(message: BatchEntry): unknown;
     fromPartial(object: Partial<BatchEntry>): BatchEntry;
+    fromAmino(object: BatchEntryAmino): BatchEntry;
+    toAmino(message: BatchEntry): BatchEntryAmino;
 };
 export declare const CompressedBatchProof: {
     encode(message: CompressedBatchProof, writer?: _m0.Writer): _m0.Writer;
@@ -440,6 +634,8 @@ export declare const CompressedBatchProof: {
     fromJSON(object: any): CompressedBatchProof;
     toJSON(message: CompressedBatchProof): unknown;
     fromPartial(object: Partial<CompressedBatchProof>): CompressedBatchProof;
+    fromAmino(object: CompressedBatchProofAmino): CompressedBatchProof;
+    toAmino(message: CompressedBatchProof): CompressedBatchProofAmino;
 };
 export declare const CompressedBatchEntry: {
     encode(message: CompressedBatchEntry, writer?: _m0.Writer): _m0.Writer;
@@ -447,6 +643,8 @@ export declare const CompressedBatchEntry: {
     fromJSON(object: any): CompressedBatchEntry;
     toJSON(message: CompressedBatchEntry): unknown;
     fromPartial(object: Partial<CompressedBatchEntry>): CompressedBatchEntry;
+    fromAmino(object: CompressedBatchEntryAmino): CompressedBatchEntry;
+    toAmino(message: CompressedBatchEntry): CompressedBatchEntryAmino;
 };
 export declare const CompressedExistenceProof: {
     encode(message: CompressedExistenceProof, writer?: _m0.Writer): _m0.Writer;
@@ -454,6 +652,8 @@ export declare const CompressedExistenceProof: {
     fromJSON(object: any): CompressedExistenceProof;
     toJSON(message: CompressedExistenceProof): unknown;
     fromPartial(object: Partial<CompressedExistenceProof>): CompressedExistenceProof;
+    fromAmino(object: CompressedExistenceProofAmino): CompressedExistenceProof;
+    toAmino(message: CompressedExistenceProof): CompressedExistenceProofAmino;
 };
 export declare const CompressedNonExistenceProof: {
     encode(message: CompressedNonExistenceProof, writer?: _m0.Writer): _m0.Writer;
@@ -461,4 +661,6 @@ export declare const CompressedNonExistenceProof: {
     fromJSON(object: any): CompressedNonExistenceProof;
     toJSON(message: CompressedNonExistenceProof): unknown;
     fromPartial(object: Partial<CompressedNonExistenceProof>): CompressedNonExistenceProof;
+    fromAmino(object: CompressedNonExistenceProofAmino): CompressedNonExistenceProof;
+    toAmino(message: CompressedNonExistenceProof): CompressedNonExistenceProofAmino;
 };

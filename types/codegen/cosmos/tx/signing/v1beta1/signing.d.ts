@@ -1,5 +1,5 @@
-import { CompactBitArray, CompactBitArraySDKType } from "../../../crypto/multisig/v1beta1/multisig";
-import { Any, AnySDKType } from "../../../../google/protobuf/any";
+import { CompactBitArray, CompactBitArrayAmino, CompactBitArraySDKType } from "../../../crypto/multisig/v1beta1/multisig";
+import { Any, AnyAmino, AnySDKType } from "../../../../google/protobuf/any";
 import * as _m0 from "protobufjs/minimal";
 import { Long } from "../../../../helpers";
 /**
@@ -59,12 +59,18 @@ export declare enum SignMode {
     UNRECOGNIZED = -1
 }
 export declare const SignModeSDKType: typeof SignMode;
+export declare const SignModeAmino: typeof SignMode;
 export declare function signModeFromJSON(object: any): SignMode;
 export declare function signModeToJSON(object: SignMode): string;
 /** SignatureDescriptors wraps multiple SignatureDescriptor's. */
 export interface SignatureDescriptors {
     /** signatures are the signature descriptors */
     signatures: SignatureDescriptor[];
+}
+/** SignatureDescriptors wraps multiple SignatureDescriptor's. */
+export interface SignatureDescriptorsAmino {
+    /** signatures are the signature descriptors */
+    signatures: SignatureDescriptorAmino[];
 }
 /** SignatureDescriptors wraps multiple SignatureDescriptor's. */
 export interface SignatureDescriptorsSDKType {
@@ -93,6 +99,23 @@ export interface SignatureDescriptor {
  * signature itself. It is primarily used for coordinating signatures between
  * clients.
  */
+export interface SignatureDescriptorAmino {
+    /** public_key is the public key of the signer */
+    public_key?: AnyAmino;
+    data?: SignatureDescriptor_DataAmino;
+    /**
+     * sequence is the sequence of the account, which describes the
+     * number of committed transactions signed by a given address. It is used to prevent
+     * replay attacks.
+     */
+    sequence: string;
+}
+/**
+ * SignatureDescriptor is a convenience type which represents the full data for
+ * a signature including the public key of the signer, signing modes and the
+ * signature itself. It is primarily used for coordinating signatures between
+ * clients.
+ */
 export interface SignatureDescriptorSDKType {
     public_key?: AnySDKType;
     data?: SignatureDescriptor_DataSDKType;
@@ -106,12 +129,26 @@ export interface SignatureDescriptor_Data {
     multi?: SignatureDescriptor_Data_Multi;
 }
 /** Data represents signature data */
+export interface SignatureDescriptor_DataAmino {
+    /** single represents a single signer */
+    single?: SignatureDescriptor_Data_SingleAmino;
+    /** multi represents a multisig signer */
+    multi?: SignatureDescriptor_Data_MultiAmino;
+}
+/** Data represents signature data */
 export interface SignatureDescriptor_DataSDKType {
     single?: SignatureDescriptor_Data_SingleSDKType;
     multi?: SignatureDescriptor_Data_MultiSDKType;
 }
 /** Single is the signature data for a single signer */
 export interface SignatureDescriptor_Data_Single {
+    /** mode is the signing mode of the single signer */
+    mode: SignMode;
+    /** signature is the raw signature bytes */
+    signature: Uint8Array;
+}
+/** Single is the signature data for a single signer */
+export interface SignatureDescriptor_Data_SingleAmino {
     /** mode is the signing mode of the single signer */
     mode: SignMode;
     /** signature is the raw signature bytes */
@@ -130,6 +167,13 @@ export interface SignatureDescriptor_Data_Multi {
     signatures: SignatureDescriptor_Data[];
 }
 /** Multi is the signature data for a multisig public key */
+export interface SignatureDescriptor_Data_MultiAmino {
+    /** bitarray specifies which keys within the multisig are signing */
+    bitarray?: CompactBitArrayAmino;
+    /** signatures is the signatures of the multi-signature */
+    signatures: SignatureDescriptor_DataAmino[];
+}
+/** Multi is the signature data for a multisig public key */
 export interface SignatureDescriptor_Data_MultiSDKType {
     bitarray?: CompactBitArraySDKType;
     signatures: SignatureDescriptor_DataSDKType[];
@@ -140,6 +184,8 @@ export declare const SignatureDescriptors: {
     fromJSON(object: any): SignatureDescriptors;
     toJSON(message: SignatureDescriptors): unknown;
     fromPartial(object: Partial<SignatureDescriptors>): SignatureDescriptors;
+    fromAmino(object: SignatureDescriptorsAmino): SignatureDescriptors;
+    toAmino(message: SignatureDescriptors): SignatureDescriptorsAmino;
 };
 export declare const SignatureDescriptor: {
     encode(message: SignatureDescriptor, writer?: _m0.Writer): _m0.Writer;
@@ -147,6 +193,8 @@ export declare const SignatureDescriptor: {
     fromJSON(object: any): SignatureDescriptor;
     toJSON(message: SignatureDescriptor): unknown;
     fromPartial(object: Partial<SignatureDescriptor>): SignatureDescriptor;
+    fromAmino(object: SignatureDescriptorAmino): SignatureDescriptor;
+    toAmino(message: SignatureDescriptor): SignatureDescriptorAmino;
 };
 export declare const SignatureDescriptor_Data: {
     encode(message: SignatureDescriptor_Data, writer?: _m0.Writer): _m0.Writer;
@@ -154,6 +202,8 @@ export declare const SignatureDescriptor_Data: {
     fromJSON(object: any): SignatureDescriptor_Data;
     toJSON(message: SignatureDescriptor_Data): unknown;
     fromPartial(object: Partial<SignatureDescriptor_Data>): SignatureDescriptor_Data;
+    fromAmino(object: SignatureDescriptor_DataAmino): SignatureDescriptor_Data;
+    toAmino(message: SignatureDescriptor_Data): SignatureDescriptor_DataAmino;
 };
 export declare const SignatureDescriptor_Data_Single: {
     encode(message: SignatureDescriptor_Data_Single, writer?: _m0.Writer): _m0.Writer;
@@ -161,6 +211,8 @@ export declare const SignatureDescriptor_Data_Single: {
     fromJSON(object: any): SignatureDescriptor_Data_Single;
     toJSON(message: SignatureDescriptor_Data_Single): unknown;
     fromPartial(object: Partial<SignatureDescriptor_Data_Single>): SignatureDescriptor_Data_Single;
+    fromAmino(object: SignatureDescriptor_Data_SingleAmino): SignatureDescriptor_Data_Single;
+    toAmino(message: SignatureDescriptor_Data_Single): SignatureDescriptor_Data_SingleAmino;
 };
 export declare const SignatureDescriptor_Data_Multi: {
     encode(message: SignatureDescriptor_Data_Multi, writer?: _m0.Writer): _m0.Writer;
@@ -168,4 +220,6 @@ export declare const SignatureDescriptor_Data_Multi: {
     fromJSON(object: any): SignatureDescriptor_Data_Multi;
     toJSON(message: SignatureDescriptor_Data_Multi): unknown;
     fromPartial(object: Partial<SignatureDescriptor_Data_Multi>): SignatureDescriptor_Data_Multi;
+    fromAmino(object: SignatureDescriptor_Data_MultiAmino): SignatureDescriptor_Data_Multi;
+    toAmino(message: SignatureDescriptor_Data_Multi): SignatureDescriptor_Data_MultiAmino;
 };

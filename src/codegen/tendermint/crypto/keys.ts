@@ -8,6 +8,12 @@ export interface PublicKey {
 }
 /** PublicKey defines the keys available for use with Tendermint Validators */
 
+export interface PublicKeyAmino {
+  ed25519?: Uint8Array;
+  secp256k1?: Uint8Array;
+}
+/** PublicKey defines the keys available for use with Tendermint Validators */
+
 export interface PublicKeySDKType {
   ed25519?: Uint8Array;
   secp256k1?: Uint8Array;
@@ -78,6 +84,20 @@ export const PublicKey = {
     message.ed25519 = object.ed25519 ?? undefined;
     message.secp256k1 = object.secp256k1 ?? undefined;
     return message;
+  },
+
+  fromAmino(object: PublicKeyAmino): PublicKey {
+    return {
+      ed25519: object?.ed25519,
+      secp256k1: object?.secp256k1
+    };
+  },
+
+  toAmino(message: PublicKey): PublicKeyAmino {
+    const obj: any = {};
+    obj.ed25519 = message.ed25519;
+    obj.secp256k1 = message.secp256k1;
+    return obj;
   }
 
 };

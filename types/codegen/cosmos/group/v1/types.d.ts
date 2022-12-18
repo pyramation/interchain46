@@ -1,6 +1,6 @@
-import { Timestamp, TimestampSDKType } from "../../../google/protobuf/timestamp";
-import { Duration, DurationSDKType } from "../../../google/protobuf/duration";
-import { Any, AnySDKType } from "../../../google/protobuf/any";
+import { Timestamp, TimestampAmino, TimestampSDKType } from "../../../google/protobuf/timestamp";
+import { Duration, DurationAmino, DurationSDKType } from "../../../google/protobuf/duration";
+import { Any, AnyAmino, AnySDKType } from "../../../google/protobuf/any";
 import * as _m0 from "protobufjs/minimal";
 import { Long } from "../../../helpers";
 /** VoteOption enumerates the valid vote options for a given proposal. */
@@ -21,6 +21,7 @@ export declare enum VoteOption {
     UNRECOGNIZED = -1
 }
 export declare const VoteOptionSDKType: typeof VoteOption;
+export declare const VoteOptionAmino: typeof VoteOption;
 export declare function voteOptionFromJSON(object: any): VoteOption;
 export declare function voteOptionToJSON(object: VoteOption): string;
 /** ProposalStatus defines proposal statuses. */
@@ -52,6 +53,7 @@ export declare enum ProposalStatus {
     UNRECOGNIZED = -1
 }
 export declare const ProposalStatusSDKType: typeof ProposalStatus;
+export declare const ProposalStatusAmino: typeof ProposalStatus;
 export declare function proposalStatusFromJSON(object: any): ProposalStatus;
 export declare function proposalStatusToJSON(object: ProposalStatus): string;
 /** ProposalExecutorResult defines types of proposal executor results. */
@@ -67,6 +69,7 @@ export declare enum ProposalExecutorResult {
     UNRECOGNIZED = -1
 }
 export declare const ProposalExecutorResultSDKType: typeof ProposalExecutorResult;
+export declare const ProposalExecutorResultAmino: typeof ProposalExecutorResult;
 export declare function proposalExecutorResultFromJSON(object: any): ProposalExecutorResult;
 export declare function proposalExecutorResultToJSON(object: ProposalExecutorResult): string;
 /**
@@ -82,6 +85,20 @@ export interface Member {
     metadata: string;
     /** added_at is a timestamp specifying when a member was added. */
     addedAt?: Timestamp;
+}
+/**
+ * Member represents a group member with an account address,
+ * non-zero weight, metadata and added_at timestamp.
+ */
+export interface MemberAmino {
+    /** address is the member's account address. */
+    address: string;
+    /** weight is the member's voting weight that should be greater than 0. */
+    weight: string;
+    /** metadata is any arbitrary metadata attached to the member. */
+    metadata: string;
+    /** added_at is a timestamp specifying when a member was added. */
+    added_at?: TimestampAmino;
 }
 /**
  * Member represents a group member with an account address,
@@ -111,6 +128,19 @@ export interface MemberRequest {
  * Contrary to `Member`, it doesn't have any `added_at` field
  * since this field cannot be set as part of requests.
  */
+export interface MemberRequestAmino {
+    /** address is the member's account address. */
+    address: string;
+    /** weight is the member's voting weight that should be greater than 0. */
+    weight: string;
+    /** metadata is any arbitrary metadata attached to the member. */
+    metadata: string;
+}
+/**
+ * MemberRequest represents a group member to be used in Msg server requests.
+ * Contrary to `Member`, it doesn't have any `added_at` field
+ * since this field cannot be set as part of requests.
+ */
 export interface MemberRequestSDKType {
     address: string;
     weight: string;
@@ -125,6 +155,7 @@ export interface MemberRequestSDKType {
  *    given by `windows`.
  */
 export interface ThresholdDecisionPolicy {
+    $typeUrl?: string;
     /**
      * threshold is the minimum weighted sum of `YES` votes that must be met or
      * exceeded for a proposal to succeed.
@@ -141,7 +172,25 @@ export interface ThresholdDecisionPolicy {
  * 2. The voting and execution periods of the proposal respect the parameters
  *    given by `windows`.
  */
+export interface ThresholdDecisionPolicyAmino {
+    /**
+     * threshold is the minimum weighted sum of `YES` votes that must be met or
+     * exceeded for a proposal to succeed.
+     */
+    threshold: string;
+    /** windows defines the different windows for voting and execution. */
+    windows?: DecisionPolicyWindowsAmino;
+}
+/**
+ * ThresholdDecisionPolicy is a decision policy where a proposal passes when it
+ * satisfies the two following conditions:
+ * 1. The sum of all `YES` voters' weights is greater or equal than the defined
+ *    `threshold`.
+ * 2. The voting and execution periods of the proposal respect the parameters
+ *    given by `windows`.
+ */
 export interface ThresholdDecisionPolicySDKType {
+    $typeUrl?: string;
     threshold: string;
     windows?: DecisionPolicyWindowsSDKType;
 }
@@ -154,6 +203,7 @@ export interface ThresholdDecisionPolicySDKType {
  *    given by `windows`.
  */
 export interface PercentageDecisionPolicy {
+    $typeUrl?: string;
     /**
      * percentage is the minimum percentage the weighted sum of `YES` votes must
      * meet for a proposal to succeed.
@@ -170,7 +220,25 @@ export interface PercentageDecisionPolicy {
  * 2. The voting and execution periods of the proposal respect the parameters
  *    given by `windows`.
  */
+export interface PercentageDecisionPolicyAmino {
+    /**
+     * percentage is the minimum percentage the weighted sum of `YES` votes must
+     * meet for a proposal to succeed.
+     */
+    percentage: string;
+    /** windows defines the different windows for voting and execution. */
+    windows?: DecisionPolicyWindowsAmino;
+}
+/**
+ * PercentageDecisionPolicy is a decision policy where a proposal passes when
+ * it satisfies the two following conditions:
+ * 1. The percentage of all `YES` voters' weights out of the total group weight
+ *    is greater or equal than the given `percentage`.
+ * 2. The voting and execution periods of the proposal respect the parameters
+ *    given by `windows`.
+ */
 export interface PercentageDecisionPolicySDKType {
+    $typeUrl?: string;
     percentage: string;
     windows?: DecisionPolicyWindowsSDKType;
 }
@@ -195,6 +263,28 @@ export interface DecisionPolicyWindows {
      * won't be able to be executed.
      */
     minExecutionPeriod?: Duration;
+}
+/** DecisionPolicyWindows defines the different windows for voting and execution. */
+export interface DecisionPolicyWindowsAmino {
+    /**
+     * voting_period is the duration from submission of a proposal to the end of voting period
+     * Within this times votes can be submitted with MsgVote.
+     */
+    voting_period?: DurationAmino;
+    /**
+     * min_execution_period is the minimum duration after the proposal submission
+     * where members can start sending MsgExec. This means that the window for
+     * sending a MsgExec transaction is:
+     * `[ submission + min_execution_period ; submission + voting_period + max_execution_period]`
+     * where max_execution_period is a app-specific config, defined in the keeper.
+     * If not set, min_execution_period will default to 0.
+     *
+     * Please make sure to set a `min_execution_period` that is smaller than
+     * `voting_period + max_execution_period`, or else the above execution window
+     * is empty, meaning that all proposals created with this decision policy
+     * won't be able to be executed.
+     */
+    min_execution_period?: DurationAmino;
 }
 /** DecisionPolicyWindows defines the different windows for voting and execution. */
 export interface DecisionPolicyWindowsSDKType {
@@ -222,6 +312,26 @@ export interface GroupInfo {
     createdAt?: Timestamp;
 }
 /** GroupInfo represents the high-level on-chain information for a group. */
+export interface GroupInfoAmino {
+    /** id is the unique ID of the group. */
+    id: string;
+    /** admin is the account address of the group's admin. */
+    admin: string;
+    /** metadata is any arbitrary metadata to attached to the group. */
+    metadata: string;
+    /**
+     * version is used to track changes to a group's membership structure that
+     * would break existing proposals. Whenever any members weight is changed,
+     * or any member is added or removed this version is incremented and will
+     * cause proposals based on older versions of this group to fail
+     */
+    version: string;
+    /** total_weight is the sum of the group members' weights. */
+    total_weight: string;
+    /** created_at is a timestamp specifying when a group was created. */
+    created_at?: TimestampAmino;
+}
+/** GroupInfo represents the high-level on-chain information for a group. */
 export interface GroupInfoSDKType {
     id: Long;
     admin: string;
@@ -236,6 +346,13 @@ export interface GroupMember {
     groupId: Long;
     /** member is the member data. */
     member?: Member;
+}
+/** GroupMember represents the relationship between a group and a member. */
+export interface GroupMemberAmino {
+    /** group_id is the unique ID of the group. */
+    group_id: string;
+    /** member is the member data. */
+    member?: MemberAmino;
 }
 /** GroupMember represents the relationship between a group and a member. */
 export interface GroupMemberSDKType {
@@ -258,9 +375,29 @@ export interface GroupPolicyInfo {
      */
     version: Long;
     /** decision_policy specifies the group policy's decision policy. */
-    decisionPolicy?: Any;
+    decisionPolicy?: (ThresholdDecisionPolicy & PercentageDecisionPolicy & Any) | undefined;
     /** created_at is a timestamp specifying when a group policy was created. */
     createdAt?: Timestamp;
+}
+/** GroupPolicyInfo represents the high-level on-chain information for a group policy. */
+export interface GroupPolicyInfoAmino {
+    /** address is the account address of group policy. */
+    address: string;
+    /** group_id is the unique ID of the group. */
+    group_id: string;
+    /** admin is the account address of the group admin. */
+    admin: string;
+    /** metadata is any arbitrary metadata to attached to the group policy. */
+    metadata: string;
+    /**
+     * version is used to track changes to a group's GroupPolicyInfo structure that
+     * would create a different result on a running proposal.
+     */
+    version: string;
+    /** decision_policy specifies the group policy's decision policy. */
+    decision_policy?: AnyAmino;
+    /** created_at is a timestamp specifying when a group policy was created. */
+    created_at?: TimestampAmino;
 }
 /** GroupPolicyInfo represents the high-level on-chain information for a group policy. */
 export interface GroupPolicyInfoSDKType {
@@ -329,6 +466,57 @@ export interface Proposal {
  * A proposal consists of a set of `sdk.Msg`s that will be executed if the proposal
  * passes as well as some optional metadata associated with the proposal.
  */
+export interface ProposalAmino {
+    /** id is the unique id of the proposal. */
+    id: string;
+    /** group_policy_address is the account address of group policy. */
+    group_policy_address: string;
+    /** metadata is any arbitrary metadata to attached to the proposal. */
+    metadata: string;
+    /** proposers are the account addresses of the proposers. */
+    proposers: string[];
+    /** submit_time is a timestamp specifying when a proposal was submitted. */
+    submit_time?: TimestampAmino;
+    /**
+     * group_version tracks the version of the group at proposal submission.
+     * This field is here for informational purposes only.
+     */
+    group_version: string;
+    /**
+     * group_policy_version tracks the version of the group policy at proposal submission.
+     * When a decision policy is changed, existing proposals from previous policy
+     * versions will become invalid with the `ABORTED` status.
+     * This field is here for informational purposes only.
+     */
+    group_policy_version: string;
+    /** status represents the high level position in the life cycle of the proposal. Initial value is Submitted. */
+    status: ProposalStatus;
+    /**
+     * final_tally_result contains the sums of all weighted votes for this
+     * proposal for each vote option. It is empty at submission, and only
+     * populated after tallying, at voting period end or at proposal execution,
+     * whichever happens first.
+     */
+    final_tally_result?: TallyResultAmino;
+    /**
+     * voting_period_end is the timestamp before which voting must be done.
+     * Unless a successfull MsgExec is called before (to execute a proposal whose
+     * tally is successful before the voting period ends), tallying will be done
+     * at this point, and the `final_tally_result`and `status` fields will be
+     * accordingly updated.
+     */
+    voting_period_end?: TimestampAmino;
+    /** executor_result is the final result of the proposal execution. Initial value is NotRun. */
+    executor_result: ProposalExecutorResult;
+    /** messages is a list of `sdk.Msg`s that will be executed if the proposal passes. */
+    messages: AnyAmino[];
+}
+/**
+ * Proposal defines a group proposal. Any member of a group can submit a proposal
+ * for a group policy to decide upon.
+ * A proposal consists of a set of `sdk.Msg`s that will be executed if the proposal
+ * passes as well as some optional metadata associated with the proposal.
+ */
 export interface ProposalSDKType {
     id: Long;
     group_policy_address: string;
@@ -355,6 +543,17 @@ export interface TallyResult {
     noWithVetoCount: string;
 }
 /** TallyResult represents the sum of weighted votes for each vote option. */
+export interface TallyResultAmino {
+    /** yes_count is the weighted sum of yes votes. */
+    yes_count: string;
+    /** abstain_count is the weighted sum of abstainers. */
+    abstain_count: string;
+    /** no_count is the weighted sum of no votes. */
+    no_count: string;
+    /** no_with_veto_count is the weighted sum of veto. */
+    no_with_veto_count: string;
+}
+/** TallyResult represents the sum of weighted votes for each vote option. */
 export interface TallyResultSDKType {
     yes_count: string;
     abstain_count: string;
@@ -375,6 +574,19 @@ export interface Vote {
     submitTime?: Timestamp;
 }
 /** Vote represents a vote for a proposal. */
+export interface VoteAmino {
+    /** proposal is the unique ID of the proposal. */
+    proposal_id: string;
+    /** voter is the account address of the voter. */
+    voter: string;
+    /** option is the voter's choice on the proposal. */
+    option: VoteOption;
+    /** metadata is any arbitrary metadata to attached to the vote. */
+    metadata: string;
+    /** submit_time is the timestamp when the vote was submitted. */
+    submit_time?: TimestampAmino;
+}
+/** Vote represents a vote for a proposal. */
 export interface VoteSDKType {
     proposal_id: Long;
     voter: string;
@@ -388,6 +600,8 @@ export declare const Member: {
     fromJSON(object: any): Member;
     toJSON(message: Member): unknown;
     fromPartial(object: Partial<Member>): Member;
+    fromAmino(object: MemberAmino): Member;
+    toAmino(message: Member): MemberAmino;
 };
 export declare const MemberRequest: {
     encode(message: MemberRequest, writer?: _m0.Writer): _m0.Writer;
@@ -395,6 +609,8 @@ export declare const MemberRequest: {
     fromJSON(object: any): MemberRequest;
     toJSON(message: MemberRequest): unknown;
     fromPartial(object: Partial<MemberRequest>): MemberRequest;
+    fromAmino(object: MemberRequestAmino): MemberRequest;
+    toAmino(message: MemberRequest): MemberRequestAmino;
 };
 export declare const ThresholdDecisionPolicy: {
     encode(message: ThresholdDecisionPolicy, writer?: _m0.Writer): _m0.Writer;
@@ -402,6 +618,8 @@ export declare const ThresholdDecisionPolicy: {
     fromJSON(object: any): ThresholdDecisionPolicy;
     toJSON(message: ThresholdDecisionPolicy): unknown;
     fromPartial(object: Partial<ThresholdDecisionPolicy>): ThresholdDecisionPolicy;
+    fromAmino(object: ThresholdDecisionPolicyAmino): ThresholdDecisionPolicy;
+    toAmino(message: ThresholdDecisionPolicy): ThresholdDecisionPolicyAmino;
 };
 export declare const PercentageDecisionPolicy: {
     encode(message: PercentageDecisionPolicy, writer?: _m0.Writer): _m0.Writer;
@@ -409,6 +627,8 @@ export declare const PercentageDecisionPolicy: {
     fromJSON(object: any): PercentageDecisionPolicy;
     toJSON(message: PercentageDecisionPolicy): unknown;
     fromPartial(object: Partial<PercentageDecisionPolicy>): PercentageDecisionPolicy;
+    fromAmino(object: PercentageDecisionPolicyAmino): PercentageDecisionPolicy;
+    toAmino(message: PercentageDecisionPolicy): PercentageDecisionPolicyAmino;
 };
 export declare const DecisionPolicyWindows: {
     encode(message: DecisionPolicyWindows, writer?: _m0.Writer): _m0.Writer;
@@ -416,6 +636,8 @@ export declare const DecisionPolicyWindows: {
     fromJSON(object: any): DecisionPolicyWindows;
     toJSON(message: DecisionPolicyWindows): unknown;
     fromPartial(object: Partial<DecisionPolicyWindows>): DecisionPolicyWindows;
+    fromAmino(object: DecisionPolicyWindowsAmino): DecisionPolicyWindows;
+    toAmino(message: DecisionPolicyWindows): DecisionPolicyWindowsAmino;
 };
 export declare const GroupInfo: {
     encode(message: GroupInfo, writer?: _m0.Writer): _m0.Writer;
@@ -423,6 +645,8 @@ export declare const GroupInfo: {
     fromJSON(object: any): GroupInfo;
     toJSON(message: GroupInfo): unknown;
     fromPartial(object: Partial<GroupInfo>): GroupInfo;
+    fromAmino(object: GroupInfoAmino): GroupInfo;
+    toAmino(message: GroupInfo): GroupInfoAmino;
 };
 export declare const GroupMember: {
     encode(message: GroupMember, writer?: _m0.Writer): _m0.Writer;
@@ -430,6 +654,8 @@ export declare const GroupMember: {
     fromJSON(object: any): GroupMember;
     toJSON(message: GroupMember): unknown;
     fromPartial(object: Partial<GroupMember>): GroupMember;
+    fromAmino(object: GroupMemberAmino): GroupMember;
+    toAmino(message: GroupMember): GroupMemberAmino;
 };
 export declare const GroupPolicyInfo: {
     encode(message: GroupPolicyInfo, writer?: _m0.Writer): _m0.Writer;
@@ -437,6 +663,8 @@ export declare const GroupPolicyInfo: {
     fromJSON(object: any): GroupPolicyInfo;
     toJSON(message: GroupPolicyInfo): unknown;
     fromPartial(object: Partial<GroupPolicyInfo>): GroupPolicyInfo;
+    fromAmino(object: GroupPolicyInfoAmino): GroupPolicyInfo;
+    toAmino(message: GroupPolicyInfo): GroupPolicyInfoAmino;
 };
 export declare const Proposal: {
     encode(message: Proposal, writer?: _m0.Writer): _m0.Writer;
@@ -444,6 +672,8 @@ export declare const Proposal: {
     fromJSON(object: any): Proposal;
     toJSON(message: Proposal): unknown;
     fromPartial(object: Partial<Proposal>): Proposal;
+    fromAmino(object: ProposalAmino): Proposal;
+    toAmino(message: Proposal): ProposalAmino;
 };
 export declare const TallyResult: {
     encode(message: TallyResult, writer?: _m0.Writer): _m0.Writer;
@@ -451,6 +681,8 @@ export declare const TallyResult: {
     fromJSON(object: any): TallyResult;
     toJSON(message: TallyResult): unknown;
     fromPartial(object: Partial<TallyResult>): TallyResult;
+    fromAmino(object: TallyResultAmino): TallyResult;
+    toAmino(message: TallyResult): TallyResultAmino;
 };
 export declare const Vote: {
     encode(message: Vote, writer?: _m0.Writer): _m0.Writer;
@@ -458,4 +690,15 @@ export declare const Vote: {
     fromJSON(object: any): Vote;
     toJSON(message: Vote): unknown;
     fromPartial(object: Partial<Vote>): Vote;
+    fromAmino(object: VoteAmino): Vote;
+    toAmino(message: Vote): VoteAmino;
+};
+export declare const DecisionPolicy_InterfaceDecoder: (input: _m0.Reader | Uint8Array) => ThresholdDecisionPolicy | PercentageDecisionPolicy | Any;
+export declare const DecisionPolicy_FromAmino: (content: AnyAmino) => Any;
+export declare const DecisionPolicy_ToAmino: (content: Any) => AnyAmino | {
+    type: string;
+    value: ThresholdDecisionPolicyAmino;
+} | {
+    type: string;
+    value: PercentageDecisionPolicyAmino;
 };

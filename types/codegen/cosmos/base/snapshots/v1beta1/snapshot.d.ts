@@ -9,6 +9,14 @@ export interface Snapshot {
     metadata?: Metadata;
 }
 /** Snapshot contains Tendermint state sync snapshot info. */
+export interface SnapshotAmino {
+    height: string;
+    format: number;
+    chunks: number;
+    hash: Uint8Array;
+    metadata?: MetadataAmino;
+}
+/** Snapshot contains Tendermint state sync snapshot info. */
 export interface SnapshotSDKType {
     height: Long;
     format: number;
@@ -20,6 +28,11 @@ export interface SnapshotSDKType {
 export interface Metadata {
     /** SHA-256 chunk hashes */
     chunkHashes: Uint8Array[];
+}
+/** Metadata contains SDK-specific snapshot metadata. */
+export interface MetadataAmino {
+    /** SHA-256 chunk hashes */
+    chunk_hashes: Uint8Array[];
 }
 /** Metadata contains SDK-specific snapshot metadata. */
 export interface MetadataSDKType {
@@ -43,6 +56,19 @@ export interface SnapshotItem {
  *
  * Since: cosmos-sdk 0.46
  */
+export interface SnapshotItemAmino {
+    store?: SnapshotStoreItemAmino;
+    iavl?: SnapshotIAVLItemAmino;
+    extension?: SnapshotExtensionMetaAmino;
+    extension_payload?: SnapshotExtensionPayloadAmino;
+    kv?: SnapshotKVItemAmino;
+    schema?: SnapshotSchemaAmino;
+}
+/**
+ * SnapshotItem is an item contained in a rootmulti.Store snapshot.
+ *
+ * Since: cosmos-sdk 0.46
+ */
 export interface SnapshotItemSDKType {
     store?: SnapshotStoreItemSDKType;
     iavl?: SnapshotIAVLItemSDKType;
@@ -57,6 +83,14 @@ export interface SnapshotItemSDKType {
  * Since: cosmos-sdk 0.46
  */
 export interface SnapshotStoreItem {
+    name: string;
+}
+/**
+ * SnapshotStoreItem contains metadata about a snapshotted store.
+ *
+ * Since: cosmos-sdk 0.46
+ */
+export interface SnapshotStoreItemAmino {
     name: string;
 }
 /**
@@ -85,6 +119,19 @@ export interface SnapshotIAVLItem {
  *
  * Since: cosmos-sdk 0.46
  */
+export interface SnapshotIAVLItemAmino {
+    key: Uint8Array;
+    value: Uint8Array;
+    /** version is block height */
+    version: string;
+    /** height is depth of the tree. */
+    height: number;
+}
+/**
+ * SnapshotIAVLItem is an exported IAVL node.
+ *
+ * Since: cosmos-sdk 0.46
+ */
 export interface SnapshotIAVLItemSDKType {
     key: Uint8Array;
     value: Uint8Array;
@@ -97,6 +144,15 @@ export interface SnapshotIAVLItemSDKType {
  * Since: cosmos-sdk 0.46
  */
 export interface SnapshotExtensionMeta {
+    name: string;
+    format: number;
+}
+/**
+ * SnapshotExtensionMeta contains metadata about an external snapshotter.
+ *
+ * Since: cosmos-sdk 0.46
+ */
+export interface SnapshotExtensionMetaAmino {
     name: string;
     format: number;
 }
@@ -122,6 +178,14 @@ export interface SnapshotExtensionPayload {
  *
  * Since: cosmos-sdk 0.46
  */
+export interface SnapshotExtensionPayloadAmino {
+    payload: Uint8Array;
+}
+/**
+ * SnapshotExtensionPayload contains payloads of an external snapshotter.
+ *
+ * Since: cosmos-sdk 0.46
+ */
 export interface SnapshotExtensionPayloadSDKType {
     payload: Uint8Array;
 }
@@ -131,6 +195,15 @@ export interface SnapshotExtensionPayloadSDKType {
  * Since: cosmos-sdk 0.46
  */
 export interface SnapshotKVItem {
+    key: Uint8Array;
+    value: Uint8Array;
+}
+/**
+ * SnapshotKVItem is an exported Key/Value Pair
+ *
+ * Since: cosmos-sdk 0.46
+ */
+export interface SnapshotKVItemAmino {
     key: Uint8Array;
     value: Uint8Array;
 }
@@ -156,6 +229,14 @@ export interface SnapshotSchema {
  *
  * Since: cosmos-sdk 0.46
  */
+export interface SnapshotSchemaAmino {
+    keys: Uint8Array[];
+}
+/**
+ * SnapshotSchema is an exported schema of smt store
+ *
+ * Since: cosmos-sdk 0.46
+ */
 export interface SnapshotSchemaSDKType {
     keys: Uint8Array[];
 }
@@ -165,6 +246,8 @@ export declare const Snapshot: {
     fromJSON(object: any): Snapshot;
     toJSON(message: Snapshot): unknown;
     fromPartial(object: Partial<Snapshot>): Snapshot;
+    fromAmino(object: SnapshotAmino): Snapshot;
+    toAmino(message: Snapshot): SnapshotAmino;
 };
 export declare const Metadata: {
     encode(message: Metadata, writer?: _m0.Writer): _m0.Writer;
@@ -172,6 +255,8 @@ export declare const Metadata: {
     fromJSON(object: any): Metadata;
     toJSON(message: Metadata): unknown;
     fromPartial(object: Partial<Metadata>): Metadata;
+    fromAmino(object: MetadataAmino): Metadata;
+    toAmino(message: Metadata): MetadataAmino;
 };
 export declare const SnapshotItem: {
     encode(message: SnapshotItem, writer?: _m0.Writer): _m0.Writer;
@@ -179,6 +264,8 @@ export declare const SnapshotItem: {
     fromJSON(object: any): SnapshotItem;
     toJSON(message: SnapshotItem): unknown;
     fromPartial(object: Partial<SnapshotItem>): SnapshotItem;
+    fromAmino(object: SnapshotItemAmino): SnapshotItem;
+    toAmino(message: SnapshotItem): SnapshotItemAmino;
 };
 export declare const SnapshotStoreItem: {
     encode(message: SnapshotStoreItem, writer?: _m0.Writer): _m0.Writer;
@@ -186,6 +273,8 @@ export declare const SnapshotStoreItem: {
     fromJSON(object: any): SnapshotStoreItem;
     toJSON(message: SnapshotStoreItem): unknown;
     fromPartial(object: Partial<SnapshotStoreItem>): SnapshotStoreItem;
+    fromAmino(object: SnapshotStoreItemAmino): SnapshotStoreItem;
+    toAmino(message: SnapshotStoreItem): SnapshotStoreItemAmino;
 };
 export declare const SnapshotIAVLItem: {
     encode(message: SnapshotIAVLItem, writer?: _m0.Writer): _m0.Writer;
@@ -193,6 +282,8 @@ export declare const SnapshotIAVLItem: {
     fromJSON(object: any): SnapshotIAVLItem;
     toJSON(message: SnapshotIAVLItem): unknown;
     fromPartial(object: Partial<SnapshotIAVLItem>): SnapshotIAVLItem;
+    fromAmino(object: SnapshotIAVLItemAmino): SnapshotIAVLItem;
+    toAmino(message: SnapshotIAVLItem): SnapshotIAVLItemAmino;
 };
 export declare const SnapshotExtensionMeta: {
     encode(message: SnapshotExtensionMeta, writer?: _m0.Writer): _m0.Writer;
@@ -200,6 +291,8 @@ export declare const SnapshotExtensionMeta: {
     fromJSON(object: any): SnapshotExtensionMeta;
     toJSON(message: SnapshotExtensionMeta): unknown;
     fromPartial(object: Partial<SnapshotExtensionMeta>): SnapshotExtensionMeta;
+    fromAmino(object: SnapshotExtensionMetaAmino): SnapshotExtensionMeta;
+    toAmino(message: SnapshotExtensionMeta): SnapshotExtensionMetaAmino;
 };
 export declare const SnapshotExtensionPayload: {
     encode(message: SnapshotExtensionPayload, writer?: _m0.Writer): _m0.Writer;
@@ -207,6 +300,8 @@ export declare const SnapshotExtensionPayload: {
     fromJSON(object: any): SnapshotExtensionPayload;
     toJSON(message: SnapshotExtensionPayload): unknown;
     fromPartial(object: Partial<SnapshotExtensionPayload>): SnapshotExtensionPayload;
+    fromAmino(object: SnapshotExtensionPayloadAmino): SnapshotExtensionPayload;
+    toAmino(message: SnapshotExtensionPayload): SnapshotExtensionPayloadAmino;
 };
 export declare const SnapshotKVItem: {
     encode(message: SnapshotKVItem, writer?: _m0.Writer): _m0.Writer;
@@ -214,6 +309,8 @@ export declare const SnapshotKVItem: {
     fromJSON(object: any): SnapshotKVItem;
     toJSON(message: SnapshotKVItem): unknown;
     fromPartial(object: Partial<SnapshotKVItem>): SnapshotKVItem;
+    fromAmino(object: SnapshotKVItemAmino): SnapshotKVItem;
+    toAmino(message: SnapshotKVItem): SnapshotKVItemAmino;
 };
 export declare const SnapshotSchema: {
     encode(message: SnapshotSchema, writer?: _m0.Writer): _m0.Writer;
@@ -221,4 +318,6 @@ export declare const SnapshotSchema: {
     fromJSON(object: any): SnapshotSchema;
     toJSON(message: SnapshotSchema): unknown;
     fromPartial(object: Partial<SnapshotSchema>): SnapshotSchema;
+    fromAmino(object: SnapshotSchemaAmino): SnapshotSchema;
+    toAmino(message: SnapshotSchema): SnapshotSchemaAmino;
 };

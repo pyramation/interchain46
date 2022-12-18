@@ -11,6 +11,15 @@ export interface Minter {
 }
 /** Minter represents the minting state. */
 
+export interface MinterAmino {
+  /** current annual inflation rate */
+  inflation: string;
+  /** current annual expected provisions */
+
+  annual_provisions: string;
+}
+/** Minter represents the minting state. */
+
 export interface MinterSDKType {
   inflation: string;
   annual_provisions: string;
@@ -35,6 +44,27 @@ export interface Params {
   /** expected blocks per year */
 
   blocksPerYear: Long;
+}
+/** Params holds parameters for the mint module. */
+
+export interface ParamsAmino {
+  /** type of coin to mint */
+  mint_denom: string;
+  /** maximum annual change in inflation rate */
+
+  inflation_rate_change: string;
+  /** maximum inflation rate */
+
+  inflation_max: string;
+  /** minimum inflation rate */
+
+  inflation_min: string;
+  /** goal of percent bonded atoms */
+
+  goal_bonded: string;
+  /** expected blocks per year */
+
+  blocks_per_year: string;
 }
 /** Params holds parameters for the mint module. */
 
@@ -112,6 +142,20 @@ export const Minter = {
     message.inflation = object.inflation ?? "";
     message.annualProvisions = object.annualProvisions ?? "";
     return message;
+  },
+
+  fromAmino(object: MinterAmino): Minter {
+    return {
+      inflation: object.inflation,
+      annualProvisions: object.annual_provisions
+    };
+  },
+
+  toAmino(message: Minter): MinterAmino {
+    const obj: any = {};
+    obj.inflation = message.inflation;
+    obj.annual_provisions = message.annualProvisions;
+    return obj;
   }
 
 };
@@ -229,6 +273,28 @@ export const Params = {
     message.goalBonded = object.goalBonded ?? "";
     message.blocksPerYear = object.blocksPerYear !== undefined && object.blocksPerYear !== null ? Long.fromValue(object.blocksPerYear) : Long.UZERO;
     return message;
+  },
+
+  fromAmino(object: ParamsAmino): Params {
+    return {
+      mintDenom: object.mint_denom,
+      inflationRateChange: object.inflation_rate_change,
+      inflationMax: object.inflation_max,
+      inflationMin: object.inflation_min,
+      goalBonded: object.goal_bonded,
+      blocksPerYear: Long.fromString(object.blocks_per_year)
+    };
+  },
+
+  toAmino(message: Params): ParamsAmino {
+    const obj: any = {};
+    obj.mint_denom = message.mintDenom;
+    obj.inflation_rate_change = message.inflationRateChange;
+    obj.inflation_max = message.inflationMax;
+    obj.inflation_min = message.inflationMin;
+    obj.goal_bonded = message.goalBonded;
+    obj.blocks_per_year = message.blocksPerYear ? message.blocksPerYear.toString() : undefined;
+    return obj;
   }
 
 };

@@ -1,8 +1,12 @@
-import { GrantAuthorization, GrantAuthorizationSDKType } from "./authz";
+import { GrantAuthorization, GrantAuthorizationAmino, GrantAuthorizationSDKType } from "./authz";
 import * as _m0 from "protobufjs/minimal";
 /** GenesisState defines the authz module's genesis state. */
 export interface GenesisState {
     authorization: GrantAuthorization[];
+}
+/** GenesisState defines the authz module's genesis state. */
+export interface GenesisStateAmino {
+    authorization: GrantAuthorizationAmino[];
 }
 /** GenesisState defines the authz module's genesis state. */
 export interface GenesisStateSDKType {
@@ -14,4 +18,6 @@ export declare const GenesisState: {
     fromJSON(object: any): GenesisState;
     toJSON(message: GenesisState): unknown;
     fromPartial(object: Partial<GenesisState>): GenesisState;
+    fromAmino(object: GenesisStateAmino): GenesisState;
+    toAmino(message: GenesisState): GenesisStateAmino;
 };

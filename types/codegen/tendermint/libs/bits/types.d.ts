@@ -4,6 +4,10 @@ export interface BitArray {
     bits: Long;
     elems: Long[];
 }
+export interface BitArrayAmino {
+    bits: string;
+    elems: string[];
+}
 export interface BitArraySDKType {
     bits: Long;
     elems: Long[];
@@ -14,4 +18,6 @@ export declare const BitArray: {
     fromJSON(object: any): BitArray;
     toJSON(message: BitArray): unknown;
     fromPartial(object: Partial<BitArray>): BitArray;
+    fromAmino(object: BitArrayAmino): BitArray;
+    toAmino(message: BitArray): BitArrayAmino;
 };

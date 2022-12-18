@@ -5,6 +5,11 @@ export interface GenesisState {
     genTxs: Uint8Array[];
 }
 /** GenesisState defines the raw genesis transaction in JSON. */
+export interface GenesisStateAmino {
+    /** gen_txs defines the genesis transactions. */
+    gen_txs: Uint8Array[];
+}
+/** GenesisState defines the raw genesis transaction in JSON. */
 export interface GenesisStateSDKType {
     gen_txs: Uint8Array[];
 }
@@ -14,4 +19,6 @@ export declare const GenesisState: {
     fromJSON(object: any): GenesisState;
     toJSON(message: GenesisState): unknown;
     fromPartial(object: Partial<GenesisState>): GenesisState;
+    fromAmino(object: GenesisStateAmino): GenesisState;
+    toAmino(message: GenesisState): GenesisStateAmino;
 };

@@ -1,7 +1,7 @@
-import { Any, AnySDKType } from "../../../google/protobuf/any";
+import { Any, AnyAmino, AnySDKType } from "../../../google/protobuf/any";
 import { SignMode, signModeFromJSON, signModeToJSON } from "../signing/v1beta1/signing";
-import { CompactBitArray, CompactBitArraySDKType } from "../../crypto/multisig/v1beta1/multisig";
-import { Coin, CoinSDKType } from "../../base/v1beta1/coin";
+import { CompactBitArray, CompactBitArrayAmino, CompactBitArraySDKType } from "../../crypto/multisig/v1beta1/multisig";
+import { Coin, CoinAmino, CoinSDKType } from "../../base/v1beta1/coin";
 import * as _m0 from "protobufjs/minimal";
 import { isSet, bytesFromBase64, base64FromBytes, Long } from "../../../helpers";
 /** Tx is the standard type used for broadcasting transactions. */
@@ -15,6 +15,25 @@ export interface Tx {
    */
 
   authInfo?: AuthInfo;
+  /**
+   * signatures is a list of signatures that matches the length and order of
+   * AuthInfo's signer_infos to allow connecting signature meta information like
+   * public key and signing mode by position.
+   */
+
+  signatures: Uint8Array[];
+}
+/** Tx is the standard type used for broadcasting transactions. */
+
+export interface TxAmino {
+  /** body is the processable content of the transaction */
+  body?: TxBodyAmino;
+  /**
+   * auth_info is the authorization related content of the transaction,
+   * specifically signers, signer modes and fee
+   */
+
+  auth_info?: AuthInfoAmino;
   /**
    * signatures is a list of signatures that matches the length and order of
    * AuthInfo's signer_infos to allow connecting signature meta information like
@@ -66,6 +85,34 @@ export interface TxRaw {
  * as the transaction ID.
  */
 
+export interface TxRawAmino {
+  /**
+   * body_bytes is a protobuf serialization of a TxBody that matches the
+   * representation in SignDoc.
+   */
+  body_bytes: Uint8Array;
+  /**
+   * auth_info_bytes is a protobuf serialization of an AuthInfo that matches the
+   * representation in SignDoc.
+   */
+
+  auth_info_bytes: Uint8Array;
+  /**
+   * signatures is a list of signatures that matches the length and order of
+   * AuthInfo's signer_infos to allow connecting signature meta information like
+   * public key and signing mode by position.
+   */
+
+  signatures: Uint8Array[];
+}
+/**
+ * TxRaw is a variant of Tx that pins the signer's exact binary representation
+ * of body and auth_info. This is used for signing, broadcasting and
+ * verification. The binary `serialize(tx: TxRaw)` is stored in Tendermint and
+ * the hash `sha256(serialize(tx: TxRaw))` becomes the "txhash", commonly used
+ * as the transaction ID.
+ */
+
 export interface TxRawSDKType {
   body_bytes: Uint8Array;
   auth_info_bytes: Uint8Array;
@@ -95,6 +142,31 @@ export interface SignDoc {
   /** account_number is the account number of the account in state */
 
   accountNumber: Long;
+}
+/** SignDoc is the type used for generating sign bytes for SIGN_MODE_DIRECT. */
+
+export interface SignDocAmino {
+  /**
+   * body_bytes is protobuf serialization of a TxBody that matches the
+   * representation in TxRaw.
+   */
+  body_bytes: Uint8Array;
+  /**
+   * auth_info_bytes is a protobuf serialization of an AuthInfo that matches the
+   * representation in TxRaw.
+   */
+
+  auth_info_bytes: Uint8Array;
+  /**
+   * chain_id is the unique identifier of the chain this transaction targets.
+   * It prevents signed transactions from being used on another chain by an
+   * attacker
+   */
+
+  chain_id: string;
+  /** account_number is the account number of the account in state */
+
+  account_number: string;
 }
 /** SignDoc is the type used for generating sign bytes for SIGN_MODE_DIRECT. */
 
@@ -143,6 +215,46 @@ export interface SignDocDirectAux {
    */
 
   tip?: Tip;
+}
+/**
+ * SignDocDirectAux is the type used for generating sign bytes for
+ * SIGN_MODE_DIRECT_AUX.
+ * 
+ * Since: cosmos-sdk 0.46
+ */
+
+export interface SignDocDirectAuxAmino {
+  /**
+   * body_bytes is protobuf serialization of a TxBody that matches the
+   * representation in TxRaw.
+   */
+  body_bytes: Uint8Array;
+  /** public_key is the public key of the signing account. */
+
+  public_key?: AnyAmino;
+  /**
+   * chain_id is the identifier of the chain this transaction targets.
+   * It prevents signed transactions from being used on another chain by an
+   * attacker.
+   */
+
+  chain_id: string;
+  /** account_number is the account number of the account in state. */
+
+  account_number: string;
+  /** sequence is the sequence number of the signing account. */
+
+  sequence: string;
+  /**
+   * Tip is the optional tip used for transactions fees paid in another denom.
+   * It should be left empty if the signer is not the tipper for this
+   * transaction.
+   * 
+   * This field is ignored if the chain didn't enable tips, i.e. didn't add the
+   * `TipDecorator` in its posthandler.
+   */
+
+  tip?: TipAmino;
 }
 /**
  * SignDocDirectAux is the type used for generating sign bytes for
@@ -202,6 +314,47 @@ export interface TxBody {
 }
 /** TxBody is the body of a transaction that all signers sign over. */
 
+export interface TxBodyAmino {
+  /**
+   * messages is a list of messages to be executed. The required signers of
+   * those messages define the number and order of elements in AuthInfo's
+   * signer_infos and Tx's signatures. Each required signer address is added to
+   * the list only the first time it occurs.
+   * By convention, the first required signer (usually from the first message)
+   * is referred to as the primary signer and pays the fee for the whole
+   * transaction.
+   */
+  messages: AnyAmino[];
+  /**
+   * memo is any arbitrary note/comment to be added to the transaction.
+   * WARNING: in clients, any publicly exposed text should not be called memo,
+   * but should be called `note` instead (see https://github.com/cosmos/cosmos-sdk/issues/9122).
+   */
+
+  memo: string;
+  /**
+   * timeout is the block height after which this transaction will not
+   * be processed by the chain
+   */
+
+  timeout_height: string;
+  /**
+   * extension_options are arbitrary options that can be added by chains
+   * when the default options are not sufficient. If any of these are present
+   * and can't be handled, the transaction will be rejected
+   */
+
+  extension_options: AnyAmino[];
+  /**
+   * extension_options are arbitrary options that can be added by chains
+   * when the default options are not sufficient. If any of these are present
+   * and can't be handled, they will be ignored
+   */
+
+  non_critical_extension_options: AnyAmino[];
+}
+/** TxBody is the body of a transaction that all signers sign over. */
+
 export interface TxBodySDKType {
   messages: AnySDKType[];
   memo: string;
@@ -246,6 +399,38 @@ export interface AuthInfo {
  * transaction.
  */
 
+export interface AuthInfoAmino {
+  /**
+   * signer_infos defines the signing modes for the required signers. The number
+   * and order of elements must match the required signers from TxBody's
+   * messages. The first element is the primary signer and the one which pays
+   * the fee.
+   */
+  signer_infos: SignerInfoAmino[];
+  /**
+   * Fee is the fee and gas limit for the transaction. The first signer is the
+   * primary signer and the one which pays the fee. The fee can be calculated
+   * based on the cost of evaluating the body and doing signature verification
+   * of the signers. This can be estimated via simulation.
+   */
+
+  fee?: FeeAmino;
+  /**
+   * Tip is the optional tip used for transactions fees paid in another denom.
+   * 
+   * This field is ignored if the chain didn't enable tips, i.e. didn't add the
+   * `TipDecorator` in its posthandler.
+   * 
+   * Since: cosmos-sdk 0.46
+   */
+
+  tip?: TipAmino;
+}
+/**
+ * AuthInfo describes the fee and signer modes that are used to sign a
+ * transaction.
+ */
+
 export interface AuthInfoSDKType {
   signer_infos: SignerInfoSDKType[];
   fee?: FeeSDKType;
@@ -282,6 +467,32 @@ export interface SignerInfo {
  * signer.
  */
 
+export interface SignerInfoAmino {
+  /**
+   * public_key is the public key of the signer. It is optional for accounts
+   * that already exist in state. If unset, the verifier can use the required \
+   * signer address for this position and lookup the public key.
+   */
+  public_key?: AnyAmino;
+  /**
+   * mode_info describes the signing mode of the signer and is a nested
+   * structure to support nested multisig pubkey's
+   */
+
+  mode_info?: ModeInfoAmino;
+  /**
+   * sequence is the sequence of the account, which describes the
+   * number of committed transactions signed by a given address. It is used to
+   * prevent replay attacks.
+   */
+
+  sequence: string;
+}
+/**
+ * SignerInfo describes the public key and signing mode of a single top-level
+ * signer.
+ */
+
 export interface SignerInfoSDKType {
   public_key?: AnySDKType;
   mode_info?: ModeInfoSDKType;
@@ -298,6 +509,15 @@ export interface ModeInfo {
 }
 /** ModeInfo describes the signing mode of a single or nested multisig signer. */
 
+export interface ModeInfoAmino {
+  /** single represents a single signer */
+  single?: ModeInfo_SingleAmino;
+  /** multi represents a nested multisig signer */
+
+  multi?: ModeInfo_MultiAmino;
+}
+/** ModeInfo describes the signing mode of a single or nested multisig signer. */
+
 export interface ModeInfoSDKType {
   single?: ModeInfo_SingleSDKType;
   multi?: ModeInfo_MultiSDKType;
@@ -309,6 +529,16 @@ export interface ModeInfoSDKType {
  */
 
 export interface ModeInfo_Single {
+  /** mode is the signing mode of the single signer */
+  mode: SignMode;
+}
+/**
+ * Single is the mode info for a single signer. It is structured as a message
+ * to allow for additional fields such as locale for SIGN_MODE_TEXTUAL in the
+ * future
+ */
+
+export interface ModeInfo_SingleAmino {
   /** mode is the signing mode of the single signer */
   mode: SignMode;
 }
@@ -335,6 +565,18 @@ export interface ModeInfo_Multi {
 }
 /** Multi is the mode info for a multisig public key */
 
+export interface ModeInfo_MultiAmino {
+  /** bitarray specifies which keys within the multisig are signing */
+  bitarray?: CompactBitArrayAmino;
+  /**
+   * mode_infos is the corresponding modes of the signers of the multisig
+   * which could include nested multisig public keys
+   */
+
+  mode_infos: ModeInfoAmino[];
+}
+/** Multi is the mode info for a multisig public key */
+
 export interface ModeInfo_MultiSDKType {
   bitarray?: CompactBitArraySDKType;
   mode_infos: ModeInfoSDKType[];
@@ -354,6 +596,36 @@ export interface Fee {
    */
 
   gasLimit: Long;
+  /**
+   * if unset, the first signer is responsible for paying the fees. If set, the specified account must pay the fees.
+   * the payer must be a tx signer (and thus have signed this field in AuthInfo).
+   * setting this field does *not* change the ordering of required signers for the transaction.
+   */
+
+  payer: string;
+  /**
+   * if set, the fee payer (either the first signer or the value of the payer field) requests that a fee grant be used
+   * to pay fees instead of the fee payer's own balance. If an appropriate fee grant does not exist or the chain does
+   * not support fee grants, this will fail
+   */
+
+  granter: string;
+}
+/**
+ * Fee includes the amount of coins paid in fees and the maximum
+ * gas to be used by the transaction. The ratio yields an effective "gasprice",
+ * which must be above some miminum to be accepted into the mempool.
+ */
+
+export interface FeeAmino {
+  /** amount is the amount of coins to be paid as a fee */
+  amount: CoinAmino[];
+  /**
+   * gas_limit is the maximum gas that can be used in transaction processing
+   * before an out of gas error occurs
+   */
+
+  gas_limit: string;
   /**
    * if unset, the first signer is responsible for paying the fees. If set, the specified account must pay the fees.
    * the payer must be a tx signer (and thus have signed this field in AuthInfo).
@@ -400,6 +672,19 @@ export interface Tip {
  * Since: cosmos-sdk 0.46
  */
 
+export interface TipAmino {
+  /** amount is the amount of the tip */
+  amount: CoinAmino[];
+  /** tipper is the address of the account paying for the tip */
+
+  tipper: string;
+}
+/**
+ * Tip is the tip used for meta-transactions.
+ * 
+ * Since: cosmos-sdk 0.46
+ */
+
 export interface TipSDKType {
   amount: CoinSDKType[];
   tipper: string;
@@ -427,6 +712,36 @@ export interface AuxSignerData {
    */
 
   signDoc?: SignDocDirectAux;
+  /** mode is the signing mode of the single signer. */
+
+  mode: SignMode;
+  /** sig is the signature of the sign doc. */
+
+  sig: Uint8Array;
+}
+/**
+ * AuxSignerData is the intermediary format that an auxiliary signer (e.g. a
+ * tipper) builds and sends to the fee payer (who will build and broadcast the
+ * actual tx). AuxSignerData is not a valid tx in itself, and will be rejected
+ * by the node if sent directly as-is.
+ * 
+ * Since: cosmos-sdk 0.46
+ */
+
+export interface AuxSignerDataAmino {
+  /**
+   * address is the bech32-encoded address of the auxiliary signer. If using
+   * AuxSignerData across different chains, the bech32 prefix of the target
+   * chain (where the final transaction is broadcasted) should be used.
+   */
+  address: string;
+  /**
+   * sign_doc is the SIGN_MODE_DIRECT_AUX sign doc that the auxiliary signer
+   * signs. Note: we use the same sign doc even if we're signing with
+   * LEGACY_AMINO_JSON.
+   */
+
+  sign_doc?: SignDocDirectAuxAmino;
   /** mode is the signing mode of the single signer. */
 
   mode: SignMode;
@@ -533,6 +848,28 @@ export const Tx = {
     message.authInfo = object.authInfo !== undefined && object.authInfo !== null ? AuthInfo.fromPartial(object.authInfo) : undefined;
     message.signatures = object.signatures?.map(e => e) || [];
     return message;
+  },
+
+  fromAmino(object: TxAmino): Tx {
+    return {
+      body: object?.body ? TxBody.fromAmino(object.body) : undefined,
+      authInfo: object?.auth_info ? AuthInfo.fromAmino(object.auth_info) : undefined,
+      signatures: Array.isArray(object?.signatures) ? object.signatures.map((e: any) => e) : []
+    };
+  },
+
+  toAmino(message: Tx): TxAmino {
+    const obj: any = {};
+    obj.body = message.body ? TxBody.toAmino(message.body) : undefined;
+    obj.auth_info = message.authInfo ? AuthInfo.toAmino(message.authInfo) : undefined;
+
+    if (message.signatures) {
+      obj.signatures = message.signatures.map(e => e);
+    } else {
+      obj.signatures = [];
+    }
+
+    return obj;
   }
 
 };
@@ -620,6 +957,28 @@ export const TxRaw = {
     message.authInfoBytes = object.authInfoBytes ?? new Uint8Array();
     message.signatures = object.signatures?.map(e => e) || [];
     return message;
+  },
+
+  fromAmino(object: TxRawAmino): TxRaw {
+    return {
+      bodyBytes: object.body_bytes,
+      authInfoBytes: object.auth_info_bytes,
+      signatures: Array.isArray(object?.signatures) ? object.signatures.map((e: any) => e) : []
+    };
+  },
+
+  toAmino(message: TxRaw): TxRawAmino {
+    const obj: any = {};
+    obj.body_bytes = message.bodyBytes;
+    obj.auth_info_bytes = message.authInfoBytes;
+
+    if (message.signatures) {
+      obj.signatures = message.signatures.map(e => e);
+    } else {
+      obj.signatures = [];
+    }
+
+    return obj;
   }
 
 };
@@ -713,6 +1072,24 @@ export const SignDoc = {
     message.chainId = object.chainId ?? "";
     message.accountNumber = object.accountNumber !== undefined && object.accountNumber !== null ? Long.fromValue(object.accountNumber) : Long.UZERO;
     return message;
+  },
+
+  fromAmino(object: SignDocAmino): SignDoc {
+    return {
+      bodyBytes: object.body_bytes,
+      authInfoBytes: object.auth_info_bytes,
+      chainId: object.chain_id,
+      accountNumber: Long.fromString(object.account_number)
+    };
+  },
+
+  toAmino(message: SignDoc): SignDocAmino {
+    const obj: any = {};
+    obj.body_bytes = message.bodyBytes;
+    obj.auth_info_bytes = message.authInfoBytes;
+    obj.chain_id = message.chainId;
+    obj.account_number = message.accountNumber ? message.accountNumber.toString() : undefined;
+    return obj;
   }
 
 };
@@ -830,6 +1207,28 @@ export const SignDocDirectAux = {
     message.sequence = object.sequence !== undefined && object.sequence !== null ? Long.fromValue(object.sequence) : Long.UZERO;
     message.tip = object.tip !== undefined && object.tip !== null ? Tip.fromPartial(object.tip) : undefined;
     return message;
+  },
+
+  fromAmino(object: SignDocDirectAuxAmino): SignDocDirectAux {
+    return {
+      bodyBytes: object.body_bytes,
+      publicKey: object?.public_key ? Any.fromAmino(object.public_key) : undefined,
+      chainId: object.chain_id,
+      accountNumber: Long.fromString(object.account_number),
+      sequence: Long.fromString(object.sequence),
+      tip: object?.tip ? Tip.fromAmino(object.tip) : undefined
+    };
+  },
+
+  toAmino(message: SignDocDirectAux): SignDocDirectAuxAmino {
+    const obj: any = {};
+    obj.body_bytes = message.bodyBytes;
+    obj.public_key = message.publicKey ? Any.toAmino(message.publicKey) : undefined;
+    obj.chain_id = message.chainId;
+    obj.account_number = message.accountNumber ? message.accountNumber.toString() : undefined;
+    obj.sequence = message.sequence ? message.sequence.toString() : undefined;
+    obj.tip = message.tip ? Tip.toAmino(message.tip) : undefined;
+    return obj;
   }
 
 };
@@ -952,6 +1351,43 @@ export const TxBody = {
     message.extensionOptions = object.extensionOptions?.map(e => Any.fromPartial(e)) || [];
     message.nonCriticalExtensionOptions = object.nonCriticalExtensionOptions?.map(e => Any.fromPartial(e)) || [];
     return message;
+  },
+
+  fromAmino(object: TxBodyAmino): TxBody {
+    return {
+      messages: Array.isArray(object?.messages) ? object.messages.map((e: any) => Any.fromAmino(e)) : [],
+      memo: object.memo,
+      timeoutHeight: Long.fromString(object.timeout_height),
+      extensionOptions: Array.isArray(object?.extension_options) ? object.extension_options.map((e: any) => Any.fromAmino(e)) : [],
+      nonCriticalExtensionOptions: Array.isArray(object?.non_critical_extension_options) ? object.non_critical_extension_options.map((e: any) => Any.fromAmino(e)) : []
+    };
+  },
+
+  toAmino(message: TxBody): TxBodyAmino {
+    const obj: any = {};
+
+    if (message.messages) {
+      obj.messages = message.messages.map(e => e ? Any.toAmino(e) : undefined);
+    } else {
+      obj.messages = [];
+    }
+
+    obj.memo = message.memo;
+    obj.timeout_height = message.timeoutHeight ? message.timeoutHeight.toString() : undefined;
+
+    if (message.extensionOptions) {
+      obj.extension_options = message.extensionOptions.map(e => e ? Any.toAmino(e) : undefined);
+    } else {
+      obj.extension_options = [];
+    }
+
+    if (message.nonCriticalExtensionOptions) {
+      obj.non_critical_extension_options = message.nonCriticalExtensionOptions.map(e => e ? Any.toAmino(e) : undefined);
+    } else {
+      obj.non_critical_extension_options = [];
+    }
+
+    return obj;
   }
 
 };
@@ -1039,6 +1475,28 @@ export const AuthInfo = {
     message.fee = object.fee !== undefined && object.fee !== null ? Fee.fromPartial(object.fee) : undefined;
     message.tip = object.tip !== undefined && object.tip !== null ? Tip.fromPartial(object.tip) : undefined;
     return message;
+  },
+
+  fromAmino(object: AuthInfoAmino): AuthInfo {
+    return {
+      signerInfos: Array.isArray(object?.signer_infos) ? object.signer_infos.map((e: any) => SignerInfo.fromAmino(e)) : [],
+      fee: object?.fee ? Fee.fromAmino(object.fee) : undefined,
+      tip: object?.tip ? Tip.fromAmino(object.tip) : undefined
+    };
+  },
+
+  toAmino(message: AuthInfo): AuthInfoAmino {
+    const obj: any = {};
+
+    if (message.signerInfos) {
+      obj.signer_infos = message.signerInfos.map(e => e ? SignerInfo.toAmino(e) : undefined);
+    } else {
+      obj.signer_infos = [];
+    }
+
+    obj.fee = message.fee ? Fee.toAmino(message.fee) : undefined;
+    obj.tip = message.tip ? Tip.toAmino(message.tip) : undefined;
+    return obj;
   }
 
 };
@@ -1120,6 +1578,22 @@ export const SignerInfo = {
     message.modeInfo = object.modeInfo !== undefined && object.modeInfo !== null ? ModeInfo.fromPartial(object.modeInfo) : undefined;
     message.sequence = object.sequence !== undefined && object.sequence !== null ? Long.fromValue(object.sequence) : Long.UZERO;
     return message;
+  },
+
+  fromAmino(object: SignerInfoAmino): SignerInfo {
+    return {
+      publicKey: object?.public_key ? Any.fromAmino(object.public_key) : undefined,
+      modeInfo: object?.mode_info ? ModeInfo.fromAmino(object.mode_info) : undefined,
+      sequence: Long.fromString(object.sequence)
+    };
+  },
+
+  toAmino(message: SignerInfo): SignerInfoAmino {
+    const obj: any = {};
+    obj.public_key = message.publicKey ? Any.toAmino(message.publicKey) : undefined;
+    obj.mode_info = message.modeInfo ? ModeInfo.toAmino(message.modeInfo) : undefined;
+    obj.sequence = message.sequence ? message.sequence.toString() : undefined;
+    return obj;
   }
 
 };
@@ -1189,6 +1663,20 @@ export const ModeInfo = {
     message.single = object.single !== undefined && object.single !== null ? ModeInfo_Single.fromPartial(object.single) : undefined;
     message.multi = object.multi !== undefined && object.multi !== null ? ModeInfo_Multi.fromPartial(object.multi) : undefined;
     return message;
+  },
+
+  fromAmino(object: ModeInfoAmino): ModeInfo {
+    return {
+      single: object?.single ? ModeInfo_Single.fromAmino(object.single) : undefined,
+      multi: object?.multi ? ModeInfo_Multi.fromAmino(object.multi) : undefined
+    };
+  },
+
+  toAmino(message: ModeInfo): ModeInfoAmino {
+    const obj: any = {};
+    obj.single = message.single ? ModeInfo_Single.toAmino(message.single) : undefined;
+    obj.multi = message.multi ? ModeInfo_Multi.toAmino(message.multi) : undefined;
+    return obj;
   }
 
 };
@@ -1246,6 +1734,18 @@ export const ModeInfo_Single = {
     const message = createBaseModeInfo_Single();
     message.mode = object.mode ?? 0;
     return message;
+  },
+
+  fromAmino(object: ModeInfo_SingleAmino): ModeInfo_Single {
+    return {
+      mode: isSet(object.mode) ? signModeFromJSON(object.mode) : 0
+    };
+  },
+
+  toAmino(message: ModeInfo_Single): ModeInfo_SingleAmino {
+    const obj: any = {};
+    message.mode !== undefined && (obj.mode = signModeToJSON(message.mode));
+    return obj;
   }
 
 };
@@ -1321,6 +1821,26 @@ export const ModeInfo_Multi = {
     message.bitarray = object.bitarray !== undefined && object.bitarray !== null ? CompactBitArray.fromPartial(object.bitarray) : undefined;
     message.modeInfos = object.modeInfos?.map(e => ModeInfo.fromPartial(e)) || [];
     return message;
+  },
+
+  fromAmino(object: ModeInfo_MultiAmino): ModeInfo_Multi {
+    return {
+      bitarray: object?.bitarray ? CompactBitArray.fromAmino(object.bitarray) : undefined,
+      modeInfos: Array.isArray(object?.mode_infos) ? object.mode_infos.map((e: any) => ModeInfo.fromAmino(e)) : []
+    };
+  },
+
+  toAmino(message: ModeInfo_Multi): ModeInfo_MultiAmino {
+    const obj: any = {};
+    obj.bitarray = message.bitarray ? CompactBitArray.toAmino(message.bitarray) : undefined;
+
+    if (message.modeInfos) {
+      obj.mode_infos = message.modeInfos.map(e => e ? ModeInfo.toAmino(e) : undefined);
+    } else {
+      obj.mode_infos = [];
+    }
+
+    return obj;
   }
 
 };
@@ -1420,6 +1940,30 @@ export const Fee = {
     message.payer = object.payer ?? "";
     message.granter = object.granter ?? "";
     return message;
+  },
+
+  fromAmino(object: FeeAmino): Fee {
+    return {
+      amount: Array.isArray(object?.amount) ? object.amount.map((e: any) => Coin.fromAmino(e)) : [],
+      gasLimit: Long.fromString(object.gas_limit),
+      payer: object.payer,
+      granter: object.granter
+    };
+  },
+
+  toAmino(message: Fee): FeeAmino {
+    const obj: any = {};
+
+    if (message.amount) {
+      obj.amount = message.amount.map(e => e ? Coin.toAmino(e) : undefined);
+    } else {
+      obj.amount = [];
+    }
+
+    obj.gas_limit = message.gasLimit ? message.gasLimit.toString() : undefined;
+    obj.payer = message.payer;
+    obj.granter = message.granter;
+    return obj;
   }
 
 };
@@ -1495,6 +2039,26 @@ export const Tip = {
     message.amount = object.amount?.map(e => Coin.fromPartial(e)) || [];
     message.tipper = object.tipper ?? "";
     return message;
+  },
+
+  fromAmino(object: TipAmino): Tip {
+    return {
+      amount: Array.isArray(object?.amount) ? object.amount.map((e: any) => Coin.fromAmino(e)) : [],
+      tipper: object.tipper
+    };
+  },
+
+  toAmino(message: Tip): TipAmino {
+    const obj: any = {};
+
+    if (message.amount) {
+      obj.amount = message.amount.map(e => e ? Coin.toAmino(e) : undefined);
+    } else {
+      obj.amount = [];
+    }
+
+    obj.tipper = message.tipper;
+    return obj;
   }
 
 };
@@ -1588,6 +2152,24 @@ export const AuxSignerData = {
     message.mode = object.mode ?? 0;
     message.sig = object.sig ?? new Uint8Array();
     return message;
+  },
+
+  fromAmino(object: AuxSignerDataAmino): AuxSignerData {
+    return {
+      address: object.address,
+      signDoc: object?.sign_doc ? SignDocDirectAux.fromAmino(object.sign_doc) : undefined,
+      mode: isSet(object.mode) ? signModeFromJSON(object.mode) : 0,
+      sig: object.sig
+    };
+  },
+
+  toAmino(message: AuxSignerData): AuxSignerDataAmino {
+    const obj: any = {};
+    obj.address = message.address;
+    obj.sign_doc = message.signDoc ? SignDocDirectAux.toAmino(message.signDoc) : undefined;
+    message.mode !== undefined && (obj.mode = signModeToJSON(message.mode));
+    obj.sig = message.sig;
+    return obj;
   }
 
 };

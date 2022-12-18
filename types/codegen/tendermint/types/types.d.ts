@@ -1,7 +1,7 @@
-import { Proof, ProofSDKType } from "../crypto/proof";
-import { Consensus, ConsensusSDKType } from "../version/types";
-import { Timestamp, TimestampSDKType } from "../../google/protobuf/timestamp";
-import { ValidatorSet, ValidatorSetSDKType } from "./validator";
+import { Proof, ProofAmino, ProofSDKType } from "../crypto/proof";
+import { Consensus, ConsensusAmino, ConsensusSDKType } from "../version/types";
+import { Timestamp, TimestampAmino, TimestampSDKType } from "../../google/protobuf/timestamp";
+import { ValidatorSet, ValidatorSetAmino, ValidatorSetSDKType } from "./validator";
 import * as _m0 from "protobufjs/minimal";
 import { Long } from "../../helpers";
 /** BlockIdFlag indicates which BlcokID the signature is for */
@@ -13,6 +13,7 @@ export declare enum BlockIDFlag {
     UNRECOGNIZED = -1
 }
 export declare const BlockIDFlagSDKType: typeof BlockIDFlag;
+export declare const BlockIDFlagAmino: typeof BlockIDFlag;
 export declare function blockIDFlagFromJSON(object: any): BlockIDFlag;
 export declare function blockIDFlagToJSON(object: BlockIDFlag): string;
 /** SignedMsgType is a type of signed message in the consensus. */
@@ -26,10 +27,16 @@ export declare enum SignedMsgType {
     UNRECOGNIZED = -1
 }
 export declare const SignedMsgTypeSDKType: typeof SignedMsgType;
+export declare const SignedMsgTypeAmino: typeof SignedMsgType;
 export declare function signedMsgTypeFromJSON(object: any): SignedMsgType;
 export declare function signedMsgTypeToJSON(object: SignedMsgType): string;
 /** PartsetHeader */
 export interface PartSetHeader {
+    total: number;
+    hash: Uint8Array;
+}
+/** PartsetHeader */
+export interface PartSetHeaderAmino {
     total: number;
     hash: Uint8Array;
 }
@@ -43,6 +50,11 @@ export interface Part {
     bytes: Uint8Array;
     proof?: Proof;
 }
+export interface PartAmino {
+    index: number;
+    bytes: Uint8Array;
+    proof?: ProofAmino;
+}
 export interface PartSDKType {
     index: number;
     bytes: Uint8Array;
@@ -52,6 +64,11 @@ export interface PartSDKType {
 export interface BlockID {
     hash: Uint8Array;
     partSetHeader?: PartSetHeader;
+}
+/** BlockID */
+export interface BlockIDAmino {
+    hash: Uint8Array;
+    part_set_header?: PartSetHeaderAmino;
 }
 /** BlockID */
 export interface BlockIDSDKType {
@@ -85,6 +102,32 @@ export interface Header {
     proposerAddress: Uint8Array;
 }
 /** Header defines the structure of a Tendermint block header. */
+export interface HeaderAmino {
+    /** basic block info */
+    version?: ConsensusAmino;
+    chain_id: string;
+    height: string;
+    time?: TimestampAmino;
+    /** prev block info */
+    last_block_id?: BlockIDAmino;
+    /** hashes of block data */
+    last_commit_hash: Uint8Array;
+    data_hash: Uint8Array;
+    /** hashes from the app output from the prev block */
+    validators_hash: Uint8Array;
+    /** validators for the next block */
+    next_validators_hash: Uint8Array;
+    /** consensus params for current block */
+    consensus_hash: Uint8Array;
+    /** state after txs from the previous block */
+    app_hash: Uint8Array;
+    last_results_hash: Uint8Array;
+    /** consensus info */
+    evidence_hash: Uint8Array;
+    /** original proposer of the block */
+    proposer_address: Uint8Array;
+}
+/** Header defines the structure of a Tendermint block header. */
 export interface HeaderSDKType {
     version?: ConsensusSDKType;
     chain_id: string;
@@ -103,6 +146,15 @@ export interface HeaderSDKType {
 }
 /** Data contains the set of transactions included in the block */
 export interface Data {
+    /**
+     * Txs that will be applied by state @ block.Height+1.
+     * NOTE: not all txs here are valid.  We're just agreeing on the order first.
+     * This means that block.AppHash does not include these txs.
+     */
+    txs: Uint8Array[];
+}
+/** Data contains the set of transactions included in the block */
+export interface DataAmino {
     /**
      * Txs that will be applied by state @ block.Height+1.
      * NOTE: not all txs here are valid.  We're just agreeing on the order first.
@@ -133,6 +185,21 @@ export interface Vote {
  * Vote represents a prevote, precommit, or commit vote from validators for
  * consensus.
  */
+export interface VoteAmino {
+    type: SignedMsgType;
+    height: string;
+    round: number;
+    /** zero if vote is nil. */
+    block_id?: BlockIDAmino;
+    timestamp?: TimestampAmino;
+    validator_address: Uint8Array;
+    validator_index: number;
+    signature: Uint8Array;
+}
+/**
+ * Vote represents a prevote, precommit, or commit vote from validators for
+ * consensus.
+ */
 export interface VoteSDKType {
     type: SignedMsgType;
     height: Long;
@@ -151,6 +218,13 @@ export interface Commit {
     signatures: CommitSig[];
 }
 /** Commit contains the evidence that a block was committed by a set of validators. */
+export interface CommitAmino {
+    height: string;
+    round: number;
+    block_id?: BlockIDAmino;
+    signatures: CommitSigAmino[];
+}
+/** Commit contains the evidence that a block was committed by a set of validators. */
 export interface CommitSDKType {
     height: Long;
     round: number;
@@ -162,6 +236,13 @@ export interface CommitSig {
     blockIdFlag: BlockIDFlag;
     validatorAddress: Uint8Array;
     timestamp?: Timestamp;
+    signature: Uint8Array;
+}
+/** CommitSig is a part of the Vote included in a Commit. */
+export interface CommitSigAmino {
+    block_id_flag: BlockIDFlag;
+    validator_address: Uint8Array;
+    timestamp?: TimestampAmino;
     signature: Uint8Array;
 }
 /** CommitSig is a part of the Vote included in a Commit. */
@@ -180,6 +261,15 @@ export interface Proposal {
     timestamp?: Timestamp;
     signature: Uint8Array;
 }
+export interface ProposalAmino {
+    type: SignedMsgType;
+    height: string;
+    round: number;
+    pol_round: number;
+    block_id?: BlockIDAmino;
+    timestamp?: TimestampAmino;
+    signature: Uint8Array;
+}
 export interface ProposalSDKType {
     type: SignedMsgType;
     height: Long;
@@ -193,6 +283,10 @@ export interface SignedHeader {
     header?: Header;
     commit?: Commit;
 }
+export interface SignedHeaderAmino {
+    header?: HeaderAmino;
+    commit?: CommitAmino;
+}
 export interface SignedHeaderSDKType {
     header?: HeaderSDKType;
     commit?: CommitSDKType;
@@ -200,6 +294,10 @@ export interface SignedHeaderSDKType {
 export interface LightBlock {
     signedHeader?: SignedHeader;
     validatorSet?: ValidatorSet;
+}
+export interface LightBlockAmino {
+    signed_header?: SignedHeaderAmino;
+    validator_set?: ValidatorSetAmino;
 }
 export interface LightBlockSDKType {
     signed_header?: SignedHeaderSDKType;
@@ -210,6 +308,12 @@ export interface BlockMeta {
     blockSize: Long;
     header?: Header;
     numTxs: Long;
+}
+export interface BlockMetaAmino {
+    block_id?: BlockIDAmino;
+    block_size: string;
+    header?: HeaderAmino;
+    num_txs: string;
 }
 export interface BlockMetaSDKType {
     block_id?: BlockIDSDKType;
@@ -224,6 +328,12 @@ export interface TxProof {
     proof?: Proof;
 }
 /** TxProof represents a Merkle proof of the presence of a transaction in the Merkle tree. */
+export interface TxProofAmino {
+    root_hash: Uint8Array;
+    data: Uint8Array;
+    proof?: ProofAmino;
+}
+/** TxProof represents a Merkle proof of the presence of a transaction in the Merkle tree. */
 export interface TxProofSDKType {
     root_hash: Uint8Array;
     data: Uint8Array;
@@ -235,6 +345,8 @@ export declare const PartSetHeader: {
     fromJSON(object: any): PartSetHeader;
     toJSON(message: PartSetHeader): unknown;
     fromPartial(object: Partial<PartSetHeader>): PartSetHeader;
+    fromAmino(object: PartSetHeaderAmino): PartSetHeader;
+    toAmino(message: PartSetHeader): PartSetHeaderAmino;
 };
 export declare const Part: {
     encode(message: Part, writer?: _m0.Writer): _m0.Writer;
@@ -242,6 +354,8 @@ export declare const Part: {
     fromJSON(object: any): Part;
     toJSON(message: Part): unknown;
     fromPartial(object: Partial<Part>): Part;
+    fromAmino(object: PartAmino): Part;
+    toAmino(message: Part): PartAmino;
 };
 export declare const BlockID: {
     encode(message: BlockID, writer?: _m0.Writer): _m0.Writer;
@@ -249,6 +363,8 @@ export declare const BlockID: {
     fromJSON(object: any): BlockID;
     toJSON(message: BlockID): unknown;
     fromPartial(object: Partial<BlockID>): BlockID;
+    fromAmino(object: BlockIDAmino): BlockID;
+    toAmino(message: BlockID): BlockIDAmino;
 };
 export declare const Header: {
     encode(message: Header, writer?: _m0.Writer): _m0.Writer;
@@ -256,6 +372,8 @@ export declare const Header: {
     fromJSON(object: any): Header;
     toJSON(message: Header): unknown;
     fromPartial(object: Partial<Header>): Header;
+    fromAmino(object: HeaderAmino): Header;
+    toAmino(message: Header): HeaderAmino;
 };
 export declare const Data: {
     encode(message: Data, writer?: _m0.Writer): _m0.Writer;
@@ -263,6 +381,8 @@ export declare const Data: {
     fromJSON(object: any): Data;
     toJSON(message: Data): unknown;
     fromPartial(object: Partial<Data>): Data;
+    fromAmino(object: DataAmino): Data;
+    toAmino(message: Data): DataAmino;
 };
 export declare const Vote: {
     encode(message: Vote, writer?: _m0.Writer): _m0.Writer;
@@ -270,6 +390,8 @@ export declare const Vote: {
     fromJSON(object: any): Vote;
     toJSON(message: Vote): unknown;
     fromPartial(object: Partial<Vote>): Vote;
+    fromAmino(object: VoteAmino): Vote;
+    toAmino(message: Vote): VoteAmino;
 };
 export declare const Commit: {
     encode(message: Commit, writer?: _m0.Writer): _m0.Writer;
@@ -277,6 +399,8 @@ export declare const Commit: {
     fromJSON(object: any): Commit;
     toJSON(message: Commit): unknown;
     fromPartial(object: Partial<Commit>): Commit;
+    fromAmino(object: CommitAmino): Commit;
+    toAmino(message: Commit): CommitAmino;
 };
 export declare const CommitSig: {
     encode(message: CommitSig, writer?: _m0.Writer): _m0.Writer;
@@ -284,6 +408,8 @@ export declare const CommitSig: {
     fromJSON(object: any): CommitSig;
     toJSON(message: CommitSig): unknown;
     fromPartial(object: Partial<CommitSig>): CommitSig;
+    fromAmino(object: CommitSigAmino): CommitSig;
+    toAmino(message: CommitSig): CommitSigAmino;
 };
 export declare const Proposal: {
     encode(message: Proposal, writer?: _m0.Writer): _m0.Writer;
@@ -291,6 +417,8 @@ export declare const Proposal: {
     fromJSON(object: any): Proposal;
     toJSON(message: Proposal): unknown;
     fromPartial(object: Partial<Proposal>): Proposal;
+    fromAmino(object: ProposalAmino): Proposal;
+    toAmino(message: Proposal): ProposalAmino;
 };
 export declare const SignedHeader: {
     encode(message: SignedHeader, writer?: _m0.Writer): _m0.Writer;
@@ -298,6 +426,8 @@ export declare const SignedHeader: {
     fromJSON(object: any): SignedHeader;
     toJSON(message: SignedHeader): unknown;
     fromPartial(object: Partial<SignedHeader>): SignedHeader;
+    fromAmino(object: SignedHeaderAmino): SignedHeader;
+    toAmino(message: SignedHeader): SignedHeaderAmino;
 };
 export declare const LightBlock: {
     encode(message: LightBlock, writer?: _m0.Writer): _m0.Writer;
@@ -305,6 +435,8 @@ export declare const LightBlock: {
     fromJSON(object: any): LightBlock;
     toJSON(message: LightBlock): unknown;
     fromPartial(object: Partial<LightBlock>): LightBlock;
+    fromAmino(object: LightBlockAmino): LightBlock;
+    toAmino(message: LightBlock): LightBlockAmino;
 };
 export declare const BlockMeta: {
     encode(message: BlockMeta, writer?: _m0.Writer): _m0.Writer;
@@ -312,6 +444,8 @@ export declare const BlockMeta: {
     fromJSON(object: any): BlockMeta;
     toJSON(message: BlockMeta): unknown;
     fromPartial(object: Partial<BlockMeta>): BlockMeta;
+    fromAmino(object: BlockMetaAmino): BlockMeta;
+    toAmino(message: BlockMeta): BlockMetaAmino;
 };
 export declare const TxProof: {
     encode(message: TxProof, writer?: _m0.Writer): _m0.Writer;
@@ -319,4 +453,6 @@ export declare const TxProof: {
     fromJSON(object: any): TxProof;
     toJSON(message: TxProof): unknown;
     fromPartial(object: Partial<TxProof>): TxProof;
+    fromAmino(object: TxProofAmino): TxProof;
+    toAmino(message: TxProof): TxProofAmino;
 };

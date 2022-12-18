@@ -43,11 +43,21 @@ export declare enum StorageType {
     UNRECOGNIZED = -1
 }
 export declare const StorageTypeSDKType: typeof StorageType;
+export declare const StorageTypeAmino: typeof StorageType;
 export declare function storageTypeFromJSON(object: any): StorageType;
 export declare function storageTypeToJSON(object: StorageType): string;
 /** ModuleSchemaDescriptor describe's a module's ORM schema. */
 export interface ModuleSchemaDescriptor {
     schemaFile: ModuleSchemaDescriptor_FileEntry[];
+    /**
+     * prefix is an optional prefix that precedes all keys in this module's
+     * store.
+     */
+    prefix: Uint8Array;
+}
+/** ModuleSchemaDescriptor describe's a module's ORM schema. */
+export interface ModuleSchemaDescriptorAmino {
+    schema_file: ModuleSchemaDescriptor_FileEntryAmino[];
     /**
      * prefix is an optional prefix that precedes all keys in this module's
      * store.
@@ -80,6 +90,26 @@ export interface ModuleSchemaDescriptor_FileEntry {
     storageType: StorageType;
 }
 /** FileEntry describes an ORM file used in a module. */
+export interface ModuleSchemaDescriptor_FileEntryAmino {
+    /**
+     * id is a prefix that will be varint encoded and prepended to all the
+     * table keys specified in the file's tables.
+     */
+    id: number;
+    /**
+     * proto_file_name is the name of a file .proto in that contains
+     * table definitions. The .proto file must be in a package that the
+     * module has referenced using cosmos.app.v1.ModuleDescriptor.use_package.
+     */
+    proto_file_name: string;
+    /**
+     * storage_type optionally indicates the type of storage this file's
+     * tables should used. If it is left unspecified, the default KV-storage
+     * of the app will be used.
+     */
+    storage_type: StorageType;
+}
+/** FileEntry describes an ORM file used in a module. */
 export interface ModuleSchemaDescriptor_FileEntrySDKType {
     id: number;
     proto_file_name: string;
@@ -91,6 +121,8 @@ export declare const ModuleSchemaDescriptor: {
     fromJSON(object: any): ModuleSchemaDescriptor;
     toJSON(message: ModuleSchemaDescriptor): unknown;
     fromPartial(object: Partial<ModuleSchemaDescriptor>): ModuleSchemaDescriptor;
+    fromAmino(object: ModuleSchemaDescriptorAmino): ModuleSchemaDescriptor;
+    toAmino(message: ModuleSchemaDescriptor): ModuleSchemaDescriptorAmino;
 };
 export declare const ModuleSchemaDescriptor_FileEntry: {
     encode(message: ModuleSchemaDescriptor_FileEntry, writer?: _m0.Writer): _m0.Writer;
@@ -98,4 +130,6 @@ export declare const ModuleSchemaDescriptor_FileEntry: {
     fromJSON(object: any): ModuleSchemaDescriptor_FileEntry;
     toJSON(message: ModuleSchemaDescriptor_FileEntry): unknown;
     fromPartial(object: Partial<ModuleSchemaDescriptor_FileEntry>): ModuleSchemaDescriptor_FileEntry;
+    fromAmino(object: ModuleSchemaDescriptor_FileEntryAmino): ModuleSchemaDescriptor_FileEntry;
+    toAmino(message: ModuleSchemaDescriptor_FileEntry): ModuleSchemaDescriptor_FileEntryAmino;
 };

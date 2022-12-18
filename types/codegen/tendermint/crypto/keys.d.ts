@@ -5,6 +5,11 @@ export interface PublicKey {
     secp256k1?: Uint8Array;
 }
 /** PublicKey defines the keys available for use with Tendermint Validators */
+export interface PublicKeyAmino {
+    ed25519?: Uint8Array;
+    secp256k1?: Uint8Array;
+}
+/** PublicKey defines the keys available for use with Tendermint Validators */
 export interface PublicKeySDKType {
     ed25519?: Uint8Array;
     secp256k1?: Uint8Array;
@@ -15,4 +20,6 @@ export declare const PublicKey: {
     fromJSON(object: any): PublicKey;
     toJSON(message: PublicKey): unknown;
     fromPartial(object: Partial<PublicKey>): PublicKey;
+    fromAmino(object: PublicKeyAmino): PublicKey;
+    toAmino(message: PublicKey): PublicKeyAmino;
 };

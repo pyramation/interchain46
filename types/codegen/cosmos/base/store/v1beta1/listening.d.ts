@@ -21,6 +21,21 @@ export interface StoreKVPair {
  *
  * Since: cosmos-sdk 0.43
  */
+export interface StoreKVPairAmino {
+    /** the store key for the KVStore this pair originates from */
+    store_key: string;
+    /** true indicates a delete operation, false indicates a set operation */
+    delete: boolean;
+    key: Uint8Array;
+    value: Uint8Array;
+}
+/**
+ * StoreKVPair is a KVStore KVPair used for listening to state changes (Sets and Deletes)
+ * It optionally includes the StoreKey for the originating KVStore and a Boolean flag to distinguish between Sets and
+ * Deletes
+ *
+ * Since: cosmos-sdk 0.43
+ */
 export interface StoreKVPairSDKType {
     store_key: string;
     delete: boolean;
@@ -33,4 +48,6 @@ export declare const StoreKVPair: {
     fromJSON(object: any): StoreKVPair;
     toJSON(message: StoreKVPair): unknown;
     fromPartial(object: Partial<StoreKVPair>): StoreKVPair;
+    fromAmino(object: StoreKVPairAmino): StoreKVPair;
+    toAmino(message: StoreKVPair): StoreKVPairAmino;
 };

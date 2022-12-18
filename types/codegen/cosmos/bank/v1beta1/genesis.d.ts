@@ -1,5 +1,5 @@
-import { Params, ParamsSDKType, Metadata, MetadataSDKType } from "./bank";
-import { Coin, CoinSDKType } from "../../base/v1beta1/coin";
+import { Params, ParamsAmino, ParamsSDKType, Metadata, MetadataAmino, MetadataSDKType } from "./bank";
+import { Coin, CoinAmino, CoinSDKType } from "../../base/v1beta1/coin";
 import * as _m0 from "protobufjs/minimal";
 /** GenesisState defines the bank module's genesis state. */
 export interface GenesisState {
@@ -14,6 +14,20 @@ export interface GenesisState {
     supply: Coin[];
     /** denom_metadata defines the metadata of the differents coins. */
     denomMetadata: Metadata[];
+}
+/** GenesisState defines the bank module's genesis state. */
+export interface GenesisStateAmino {
+    /** params defines all the paramaters of the module. */
+    params?: ParamsAmino;
+    /** balances is an array containing the balances of all the accounts. */
+    balances: BalanceAmino[];
+    /**
+     * supply represents the total supply. If it is left empty, then supply will be calculated based on the provided
+     * balances. Otherwise, it will be used to validate that the sum of the balances equals this amount.
+     */
+    supply: CoinAmino[];
+    /** denom_metadata defines the metadata of the differents coins. */
+    denom_metadata: MetadataAmino[];
 }
 /** GenesisState defines the bank module's genesis state. */
 export interface GenesisStateSDKType {
@@ -36,6 +50,16 @@ export interface Balance {
  * Balance defines an account address and balance pair used in the bank module's
  * genesis state.
  */
+export interface BalanceAmino {
+    /** address is the address of the balance holder. */
+    address: string;
+    /** coins defines the different coins this balance holds. */
+    coins: CoinAmino[];
+}
+/**
+ * Balance defines an account address and balance pair used in the bank module's
+ * genesis state.
+ */
 export interface BalanceSDKType {
     address: string;
     coins: CoinSDKType[];
@@ -46,6 +70,8 @@ export declare const GenesisState: {
     fromJSON(object: any): GenesisState;
     toJSON(message: GenesisState): unknown;
     fromPartial(object: Partial<GenesisState>): GenesisState;
+    fromAmino(object: GenesisStateAmino): GenesisState;
+    toAmino(message: GenesisState): GenesisStateAmino;
 };
 export declare const Balance: {
     encode(message: Balance, writer?: _m0.Writer): _m0.Writer;
@@ -53,4 +79,6 @@ export declare const Balance: {
     fromJSON(object: any): Balance;
     toJSON(message: Balance): unknown;
     fromPartial(object: Partial<Balance>): Balance;
+    fromAmino(object: BalanceAmino): Balance;
+    toAmino(message: Balance): BalanceAmino;
 };

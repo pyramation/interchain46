@@ -7,6 +7,13 @@ export interface EventSend {
     receiver: string;
 }
 /** EventSend is emitted on Msg/Send */
+export interface EventSendAmino {
+    class_id: string;
+    id: string;
+    sender: string;
+    receiver: string;
+}
+/** EventSend is emitted on Msg/Send */
 export interface EventSendSDKType {
     class_id: string;
     id: string;
@@ -16,6 +23,12 @@ export interface EventSendSDKType {
 /** EventMint is emitted on Mint */
 export interface EventMint {
     classId: string;
+    id: string;
+    owner: string;
+}
+/** EventMint is emitted on Mint */
+export interface EventMintAmino {
+    class_id: string;
     id: string;
     owner: string;
 }
@@ -32,6 +45,12 @@ export interface EventBurn {
     owner: string;
 }
 /** EventBurn is emitted on Burn */
+export interface EventBurnAmino {
+    class_id: string;
+    id: string;
+    owner: string;
+}
+/** EventBurn is emitted on Burn */
 export interface EventBurnSDKType {
     class_id: string;
     id: string;
@@ -43,6 +62,8 @@ export declare const EventSend: {
     fromJSON(object: any): EventSend;
     toJSON(message: EventSend): unknown;
     fromPartial(object: Partial<EventSend>): EventSend;
+    fromAmino(object: EventSendAmino): EventSend;
+    toAmino(message: EventSend): EventSendAmino;
 };
 export declare const EventMint: {
     encode(message: EventMint, writer?: _m0.Writer): _m0.Writer;
@@ -50,6 +71,8 @@ export declare const EventMint: {
     fromJSON(object: any): EventMint;
     toJSON(message: EventMint): unknown;
     fromPartial(object: Partial<EventMint>): EventMint;
+    fromAmino(object: EventMintAmino): EventMint;
+    toAmino(message: EventMint): EventMintAmino;
 };
 export declare const EventBurn: {
     encode(message: EventBurn, writer?: _m0.Writer): _m0.Writer;
@@ -57,4 +80,6 @@ export declare const EventBurn: {
     fromJSON(object: any): EventBurn;
     toJSON(message: EventBurn): unknown;
     fromPartial(object: Partial<EventBurn>): EventBurn;
+    fromAmino(object: EventBurnAmino): EventBurn;
+    toAmino(message: EventBurn): EventBurnAmino;
 };

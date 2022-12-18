@@ -6,6 +6,12 @@ export interface Proof {
     leafHash: Uint8Array;
     aunts: Uint8Array[];
 }
+export interface ProofAmino {
+    total: string;
+    index: string;
+    leaf_hash: Uint8Array;
+    aunts: Uint8Array[];
+}
 export interface ProofSDKType {
     total: Long;
     index: Long;
@@ -18,11 +24,22 @@ export interface ValueOp {
     /** To encode in ProofOp.Data */
     proof?: Proof;
 }
+export interface ValueOpAmino {
+    /** Encoded in ProofOp.Key. */
+    key: Uint8Array;
+    /** To encode in ProofOp.Data */
+    proof?: ProofAmino;
+}
 export interface ValueOpSDKType {
     key: Uint8Array;
     proof?: ProofSDKType;
 }
 export interface DominoOp {
+    key: string;
+    input: string;
+    output: string;
+}
+export interface DominoOpAmino {
     key: string;
     input: string;
     output: string;
@@ -47,6 +64,16 @@ export interface ProofOp {
  * The data could be arbitrary format, providing nessecary data
  * for example neighbouring node hash
  */
+export interface ProofOpAmino {
+    type: string;
+    key: Uint8Array;
+    data: Uint8Array;
+}
+/**
+ * ProofOp defines an operation used for calculating Merkle root
+ * The data could be arbitrary format, providing nessecary data
+ * for example neighbouring node hash
+ */
 export interface ProofOpSDKType {
     type: string;
     key: Uint8Array;
@@ -55,6 +82,10 @@ export interface ProofOpSDKType {
 /** ProofOps is Merkle proof defined by the list of ProofOps */
 export interface ProofOps {
     ops: ProofOp[];
+}
+/** ProofOps is Merkle proof defined by the list of ProofOps */
+export interface ProofOpsAmino {
+    ops: ProofOpAmino[];
 }
 /** ProofOps is Merkle proof defined by the list of ProofOps */
 export interface ProofOpsSDKType {
@@ -66,6 +97,8 @@ export declare const Proof: {
     fromJSON(object: any): Proof;
     toJSON(message: Proof): unknown;
     fromPartial(object: Partial<Proof>): Proof;
+    fromAmino(object: ProofAmino): Proof;
+    toAmino(message: Proof): ProofAmino;
 };
 export declare const ValueOp: {
     encode(message: ValueOp, writer?: _m0.Writer): _m0.Writer;
@@ -73,6 +106,8 @@ export declare const ValueOp: {
     fromJSON(object: any): ValueOp;
     toJSON(message: ValueOp): unknown;
     fromPartial(object: Partial<ValueOp>): ValueOp;
+    fromAmino(object: ValueOpAmino): ValueOp;
+    toAmino(message: ValueOp): ValueOpAmino;
 };
 export declare const DominoOp: {
     encode(message: DominoOp, writer?: _m0.Writer): _m0.Writer;
@@ -80,6 +115,8 @@ export declare const DominoOp: {
     fromJSON(object: any): DominoOp;
     toJSON(message: DominoOp): unknown;
     fromPartial(object: Partial<DominoOp>): DominoOp;
+    fromAmino(object: DominoOpAmino): DominoOp;
+    toAmino(message: DominoOp): DominoOpAmino;
 };
 export declare const ProofOp: {
     encode(message: ProofOp, writer?: _m0.Writer): _m0.Writer;
@@ -87,6 +124,8 @@ export declare const ProofOp: {
     fromJSON(object: any): ProofOp;
     toJSON(message: ProofOp): unknown;
     fromPartial(object: Partial<ProofOp>): ProofOp;
+    fromAmino(object: ProofOpAmino): ProofOp;
+    toAmino(message: ProofOp): ProofOpAmino;
 };
 export declare const ProofOps: {
     encode(message: ProofOps, writer?: _m0.Writer): _m0.Writer;
@@ -94,4 +133,6 @@ export declare const ProofOps: {
     fromJSON(object: any): ProofOps;
     toJSON(message: ProofOps): unknown;
     fromPartial(object: Partial<ProofOps>): ProofOps;
+    fromAmino(object: ProofOpsAmino): ProofOps;
+    toAmino(message: ProofOps): ProofOpsAmino;
 };

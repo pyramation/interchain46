@@ -1,5 +1,5 @@
-import { Any, AnySDKType } from "../../../../google/protobuf/any";
-import { Event, EventSDKType } from "../../../../tendermint/abci/types";
+import { Any, AnyAmino, AnySDKType } from "../../../../google/protobuf/any";
+import { Event, EventAmino, EventSDKType } from "../../../../tendermint/abci/types";
 import { Long } from "../../../../helpers";
 import * as _m0 from "protobufjs/minimal";
 /**
@@ -52,6 +52,52 @@ export interface TxResponse {
  * TxResponse defines a structure containing relevant tx data and metadata. The
  * tags are stringified and the log is JSON decoded.
  */
+export interface TxResponseAmino {
+    /** The block height */
+    height: string;
+    /** The transaction hash. */
+    txhash: string;
+    /** Namespace for the Code */
+    codespace: string;
+    /** Response code. */
+    code: number;
+    /** Result bytes, if any. */
+    data: string;
+    /**
+     * The output of the application's logger (raw string). May be
+     * non-deterministic.
+     */
+    raw_log: string;
+    /** The output of the application's logger (typed). May be non-deterministic. */
+    logs: ABCIMessageLogAmino[];
+    /** Additional information. May be non-deterministic. */
+    info: string;
+    /** Amount of gas requested for transaction. */
+    gas_wanted: string;
+    /** Amount of gas consumed by transaction. */
+    gas_used: string;
+    /** The request transaction bytes. */
+    tx?: AnyAmino;
+    /**
+     * Time of the previous block. For heights > 1, it's the weighted median of
+     * the timestamps of the valid votes in the block.LastCommit. For height == 1,
+     * it's genesis time.
+     */
+    timestamp: string;
+    /**
+     * Events defines all the events emitted by processing a transaction. Note,
+     * these events include those emitted by processing all the messages and those
+     * emitted from the ante. Whereas Logs contains the events, with
+     * additional metadata, emitted only by processing the messages.
+     *
+     * Since: cosmos-sdk 0.42.11, 0.44.5, 0.45
+     */
+    events: EventAmino[];
+}
+/**
+ * TxResponse defines a structure containing relevant tx data and metadata. The
+ * tags are stringified and the log is JSON decoded.
+ */
 export interface TxResponseSDKType {
     height: Long;
     txhash: string;
@@ -78,6 +124,16 @@ export interface ABCIMessageLog {
     events: StringEvent[];
 }
 /** ABCIMessageLog defines a structure containing an indexed tx ABCI message log. */
+export interface ABCIMessageLogAmino {
+    msg_index: number;
+    log: string;
+    /**
+     * Events contains a slice of Event objects that were emitted during some
+     * execution.
+     */
+    events: StringEventAmino[];
+}
+/** ABCIMessageLog defines a structure containing an indexed tx ABCI message log. */
 export interface ABCIMessageLogSDKType {
     msg_index: number;
     log: string;
@@ -90,6 +146,14 @@ export interface ABCIMessageLogSDKType {
 export interface StringEvent {
     type: string;
     attributes: Attribute[];
+}
+/**
+ * StringEvent defines en Event object wrapper where all the attributes
+ * contain key/value pairs that are strings instead of raw bytes.
+ */
+export interface StringEventAmino {
+    type: string;
+    attributes: AttributeAmino[];
 }
 /**
  * StringEvent defines en Event object wrapper where all the attributes
@@ -111,6 +175,14 @@ export interface Attribute {
  * Attribute defines an attribute wrapper where the key and value are
  * strings instead of raw bytes.
  */
+export interface AttributeAmino {
+    key: string;
+    value: string;
+}
+/**
+ * Attribute defines an attribute wrapper where the key and value are
+ * strings instead of raw bytes.
+ */
 export interface AttributeSDKType {
     key: string;
     value: string;
@@ -121,6 +193,13 @@ export interface GasInfo {
     gasWanted: Long;
     /** GasUsed is the amount of gas actually consumed. */
     gasUsed: Long;
+}
+/** GasInfo defines tx execution gas context. */
+export interface GasInfoAmino {
+    /** GasWanted is the maximum units of work we allow this tx to perform. */
+    gas_wanted: string;
+    /** GasUsed is the amount of gas actually consumed. */
+    gas_used: string;
 }
 /** GasInfo defines tx execution gas context. */
 export interface GasInfoSDKType {
@@ -152,6 +231,30 @@ export interface Result {
     msgResponses: Any[];
 }
 /** Result is the union of ResponseFormat and ResponseCheckTx. */
+export interface ResultAmino {
+    /**
+     * Data is any data returned from message or handler execution. It MUST be
+     * length prefixed in order to separate data from multiple message executions.
+     * Deprecated. This field is still populated, but prefer msg_response instead
+     * because it also contains the Msg response typeURL.
+     */
+    /** @deprecated */
+    data: Uint8Array;
+    /** Log contains the log information from message or handler execution. */
+    log: string;
+    /**
+     * Events contains a slice of Event objects that were emitted during message
+     * or handler execution.
+     */
+    events: EventAmino[];
+    /**
+     * msg_responses contains the Msg handler responses type packed in Anys.
+     *
+     * Since: cosmos-sdk 0.46
+     */
+    msg_responses: AnyAmino[];
+}
+/** Result is the union of ResponseFormat and ResponseCheckTx. */
 export interface ResultSDKType {
     /** @deprecated */
     data: Uint8Array;
@@ -171,6 +274,14 @@ export interface SimulationResponse {
  * SimulationResponse defines the response generated when a transaction is
  * successfully simulated.
  */
+export interface SimulationResponseAmino {
+    gas_info?: GasInfoAmino;
+    result?: ResultAmino;
+}
+/**
+ * SimulationResponse defines the response generated when a transaction is
+ * successfully simulated.
+ */
 export interface SimulationResponseSDKType {
     gas_info?: GasInfoSDKType;
     result?: ResultSDKType;
@@ -182,6 +293,15 @@ export interface SimulationResponseSDKType {
 /** @deprecated */
 export interface MsgData {
     msgType: string;
+    data: Uint8Array;
+}
+/**
+ * MsgData defines the data returned in a Result object during message
+ * execution.
+ */
+/** @deprecated */
+export interface MsgDataAmino {
+    msg_type: string;
     data: Uint8Array;
 }
 /**
@@ -212,6 +332,21 @@ export interface TxMsgData {
  * TxMsgData defines a list of MsgData. A transaction will have a MsgData object
  * for each message.
  */
+export interface TxMsgDataAmino {
+    /** data field is deprecated and not populated. */
+    /** @deprecated */
+    data: MsgDataAmino[];
+    /**
+     * msg_responses contains the Msg handler responses packed into Anys.
+     *
+     * Since: cosmos-sdk 0.46
+     */
+    msg_responses: AnyAmino[];
+}
+/**
+ * TxMsgData defines a list of MsgData. A transaction will have a MsgData object
+ * for each message.
+ */
 export interface TxMsgDataSDKType {
     /** @deprecated */
     data: MsgDataSDKType[];
@@ -233,6 +368,21 @@ export interface SearchTxsResult {
     txs: TxResponse[];
 }
 /** SearchTxsResult defines a structure for querying txs pageable */
+export interface SearchTxsResultAmino {
+    /** Count of all txs */
+    total_count: string;
+    /** Count of txs in current page */
+    count: string;
+    /** Index of current page, start from 1 */
+    page_number: string;
+    /** Count of total pages */
+    page_total: string;
+    /** Max count txs per page */
+    limit: string;
+    /** List of txs in current page */
+    txs: TxResponseAmino[];
+}
+/** SearchTxsResult defines a structure for querying txs pageable */
 export interface SearchTxsResultSDKType {
     total_count: Long;
     count: Long;
@@ -247,6 +397,8 @@ export declare const TxResponse: {
     fromJSON(object: any): TxResponse;
     toJSON(message: TxResponse): unknown;
     fromPartial(object: Partial<TxResponse>): TxResponse;
+    fromAmino(object: TxResponseAmino): TxResponse;
+    toAmino(message: TxResponse): TxResponseAmino;
 };
 export declare const ABCIMessageLog: {
     encode(message: ABCIMessageLog, writer?: _m0.Writer): _m0.Writer;
@@ -254,6 +406,8 @@ export declare const ABCIMessageLog: {
     fromJSON(object: any): ABCIMessageLog;
     toJSON(message: ABCIMessageLog): unknown;
     fromPartial(object: Partial<ABCIMessageLog>): ABCIMessageLog;
+    fromAmino(object: ABCIMessageLogAmino): ABCIMessageLog;
+    toAmino(message: ABCIMessageLog): ABCIMessageLogAmino;
 };
 export declare const StringEvent: {
     encode(message: StringEvent, writer?: _m0.Writer): _m0.Writer;
@@ -261,6 +415,8 @@ export declare const StringEvent: {
     fromJSON(object: any): StringEvent;
     toJSON(message: StringEvent): unknown;
     fromPartial(object: Partial<StringEvent>): StringEvent;
+    fromAmino(object: StringEventAmino): StringEvent;
+    toAmino(message: StringEvent): StringEventAmino;
 };
 export declare const Attribute: {
     encode(message: Attribute, writer?: _m0.Writer): _m0.Writer;
@@ -268,6 +424,8 @@ export declare const Attribute: {
     fromJSON(object: any): Attribute;
     toJSON(message: Attribute): unknown;
     fromPartial(object: Partial<Attribute>): Attribute;
+    fromAmino(object: AttributeAmino): Attribute;
+    toAmino(message: Attribute): AttributeAmino;
 };
 export declare const GasInfo: {
     encode(message: GasInfo, writer?: _m0.Writer): _m0.Writer;
@@ -275,6 +433,8 @@ export declare const GasInfo: {
     fromJSON(object: any): GasInfo;
     toJSON(message: GasInfo): unknown;
     fromPartial(object: Partial<GasInfo>): GasInfo;
+    fromAmino(object: GasInfoAmino): GasInfo;
+    toAmino(message: GasInfo): GasInfoAmino;
 };
 export declare const Result: {
     encode(message: Result, writer?: _m0.Writer): _m0.Writer;
@@ -282,6 +442,8 @@ export declare const Result: {
     fromJSON(object: any): Result;
     toJSON(message: Result): unknown;
     fromPartial(object: Partial<Result>): Result;
+    fromAmino(object: ResultAmino): Result;
+    toAmino(message: Result): ResultAmino;
 };
 export declare const SimulationResponse: {
     encode(message: SimulationResponse, writer?: _m0.Writer): _m0.Writer;
@@ -289,6 +451,8 @@ export declare const SimulationResponse: {
     fromJSON(object: any): SimulationResponse;
     toJSON(message: SimulationResponse): unknown;
     fromPartial(object: Partial<SimulationResponse>): SimulationResponse;
+    fromAmino(object: SimulationResponseAmino): SimulationResponse;
+    toAmino(message: SimulationResponse): SimulationResponseAmino;
 };
 export declare const MsgData: {
     encode(message: MsgData, writer?: _m0.Writer): _m0.Writer;
@@ -296,6 +460,8 @@ export declare const MsgData: {
     fromJSON(object: any): MsgData;
     toJSON(message: MsgData): unknown;
     fromPartial(object: Partial<MsgData>): MsgData;
+    fromAmino(object: MsgDataAmino): MsgData;
+    toAmino(message: MsgData): MsgDataAmino;
 };
 export declare const TxMsgData: {
     encode(message: TxMsgData, writer?: _m0.Writer): _m0.Writer;
@@ -303,6 +469,8 @@ export declare const TxMsgData: {
     fromJSON(object: any): TxMsgData;
     toJSON(message: TxMsgData): unknown;
     fromPartial(object: Partial<TxMsgData>): TxMsgData;
+    fromAmino(object: TxMsgDataAmino): TxMsgData;
+    toAmino(message: TxMsgData): TxMsgDataAmino;
 };
 export declare const SearchTxsResult: {
     encode(message: SearchTxsResult, writer?: _m0.Writer): _m0.Writer;
@@ -310,4 +478,6 @@ export declare const SearchTxsResult: {
     fromJSON(object: any): SearchTxsResult;
     toJSON(message: SearchTxsResult): unknown;
     fromPartial(object: Partial<SearchTxsResult>): SearchTxsResult;
+    fromAmino(object: SearchTxsResultAmino): SearchTxsResult;
+    toAmino(message: SearchTxsResult): SearchTxsResultAmino;
 };

@@ -1,4 +1,4 @@
-import { Plan, PlanSDKType } from "./upgrade";
+import { Plan, PlanAmino, PlanSDKType } from "./upgrade";
 import * as _m0 from "protobufjs/minimal";
 /**
  * MsgSoftwareUpgrade is the Msg/SoftwareUpgrade request type.
@@ -10,6 +10,17 @@ export interface MsgSoftwareUpgrade {
     authority: string;
     /** plan is the upgrade plan. */
     plan?: Plan;
+}
+/**
+ * MsgSoftwareUpgrade is the Msg/SoftwareUpgrade request type.
+ *
+ * Since: cosmos-sdk 0.46
+ */
+export interface MsgSoftwareUpgradeAmino {
+    /** authority is the address of the governance account. */
+    authority: string;
+    /** plan is the upgrade plan. */
+    plan?: PlanAmino;
 }
 /**
  * MsgSoftwareUpgrade is the Msg/SoftwareUpgrade request type.
@@ -32,6 +43,13 @@ export interface MsgSoftwareUpgradeResponse {
  *
  * Since: cosmos-sdk 0.46
  */
+export interface MsgSoftwareUpgradeResponseAmino {
+}
+/**
+ * MsgSoftwareUpgradeResponse is the Msg/SoftwareUpgrade response type.
+ *
+ * Since: cosmos-sdk 0.46
+ */
 export interface MsgSoftwareUpgradeResponseSDKType {
 }
 /**
@@ -40,6 +58,15 @@ export interface MsgSoftwareUpgradeResponseSDKType {
  * Since: cosmos-sdk 0.46
  */
 export interface MsgCancelUpgrade {
+    /** authority is the address of the governance account. */
+    authority: string;
+}
+/**
+ * MsgCancelUpgrade is the Msg/CancelUpgrade request type.
+ *
+ * Since: cosmos-sdk 0.46
+ */
+export interface MsgCancelUpgradeAmino {
     /** authority is the address of the governance account. */
     authority: string;
 }
@@ -63,6 +90,13 @@ export interface MsgCancelUpgradeResponse {
  *
  * Since: cosmos-sdk 0.46
  */
+export interface MsgCancelUpgradeResponseAmino {
+}
+/**
+ * MsgCancelUpgradeResponse is the Msg/CancelUpgrade response type.
+ *
+ * Since: cosmos-sdk 0.46
+ */
 export interface MsgCancelUpgradeResponseSDKType {
 }
 export declare const MsgSoftwareUpgrade: {
@@ -71,6 +105,8 @@ export declare const MsgSoftwareUpgrade: {
     fromJSON(object: any): MsgSoftwareUpgrade;
     toJSON(message: MsgSoftwareUpgrade): unknown;
     fromPartial(object: Partial<MsgSoftwareUpgrade>): MsgSoftwareUpgrade;
+    fromAmino(object: MsgSoftwareUpgradeAmino): MsgSoftwareUpgrade;
+    toAmino(message: MsgSoftwareUpgrade): MsgSoftwareUpgradeAmino;
 };
 export declare const MsgSoftwareUpgradeResponse: {
     encode(_: MsgSoftwareUpgradeResponse, writer?: _m0.Writer): _m0.Writer;
@@ -78,6 +114,8 @@ export declare const MsgSoftwareUpgradeResponse: {
     fromJSON(_: any): MsgSoftwareUpgradeResponse;
     toJSON(_: MsgSoftwareUpgradeResponse): unknown;
     fromPartial(_: Partial<MsgSoftwareUpgradeResponse>): MsgSoftwareUpgradeResponse;
+    fromAmino(_: MsgSoftwareUpgradeResponseAmino): MsgSoftwareUpgradeResponse;
+    toAmino(_: MsgSoftwareUpgradeResponse): MsgSoftwareUpgradeResponseAmino;
 };
 export declare const MsgCancelUpgrade: {
     encode(message: MsgCancelUpgrade, writer?: _m0.Writer): _m0.Writer;
@@ -85,6 +123,8 @@ export declare const MsgCancelUpgrade: {
     fromJSON(object: any): MsgCancelUpgrade;
     toJSON(message: MsgCancelUpgrade): unknown;
     fromPartial(object: Partial<MsgCancelUpgrade>): MsgCancelUpgrade;
+    fromAmino(object: MsgCancelUpgradeAmino): MsgCancelUpgrade;
+    toAmino(message: MsgCancelUpgrade): MsgCancelUpgradeAmino;
 };
 export declare const MsgCancelUpgradeResponse: {
     encode(_: MsgCancelUpgradeResponse, writer?: _m0.Writer): _m0.Writer;
@@ -92,4 +132,6 @@ export declare const MsgCancelUpgradeResponse: {
     fromJSON(_: any): MsgCancelUpgradeResponse;
     toJSON(_: MsgCancelUpgradeResponse): unknown;
     fromPartial(_: Partial<MsgCancelUpgradeResponse>): MsgCancelUpgradeResponse;
+    fromAmino(_: MsgCancelUpgradeResponseAmino): MsgCancelUpgradeResponse;
+    toAmino(_: MsgCancelUpgradeResponse): MsgCancelUpgradeResponseAmino;
 };

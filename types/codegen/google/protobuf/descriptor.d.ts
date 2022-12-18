@@ -43,6 +43,7 @@ export declare enum FieldDescriptorProto_Type {
     UNRECOGNIZED = -1
 }
 export declare const FieldDescriptorProto_TypeSDKType: typeof FieldDescriptorProto_Type;
+export declare const FieldDescriptorProto_TypeAmino: typeof FieldDescriptorProto_Type;
 export declare function fieldDescriptorProto_TypeFromJSON(object: any): FieldDescriptorProto_Type;
 export declare function fieldDescriptorProto_TypeToJSON(object: FieldDescriptorProto_Type): string;
 export declare enum FieldDescriptorProto_Label {
@@ -53,6 +54,7 @@ export declare enum FieldDescriptorProto_Label {
     UNRECOGNIZED = -1
 }
 export declare const FieldDescriptorProto_LabelSDKType: typeof FieldDescriptorProto_Label;
+export declare const FieldDescriptorProto_LabelAmino: typeof FieldDescriptorProto_Label;
 export declare function fieldDescriptorProto_LabelFromJSON(object: any): FieldDescriptorProto_Label;
 export declare function fieldDescriptorProto_LabelToJSON(object: FieldDescriptorProto_Label): string;
 /** Generated classes can be optimized for speed or code size. */
@@ -69,6 +71,7 @@ export declare enum FileOptions_OptimizeMode {
     UNRECOGNIZED = -1
 }
 export declare const FileOptions_OptimizeModeSDKType: typeof FileOptions_OptimizeMode;
+export declare const FileOptions_OptimizeModeAmino: typeof FileOptions_OptimizeMode;
 export declare function fileOptions_OptimizeModeFromJSON(object: any): FileOptions_OptimizeMode;
 export declare function fileOptions_OptimizeModeToJSON(object: FileOptions_OptimizeMode): string;
 export declare enum FieldOptions_CType {
@@ -79,6 +82,7 @@ export declare enum FieldOptions_CType {
     UNRECOGNIZED = -1
 }
 export declare const FieldOptions_CTypeSDKType: typeof FieldOptions_CType;
+export declare const FieldOptions_CTypeAmino: typeof FieldOptions_CType;
 export declare function fieldOptions_CTypeFromJSON(object: any): FieldOptions_CType;
 export declare function fieldOptions_CTypeToJSON(object: FieldOptions_CType): string;
 export declare enum FieldOptions_JSType {
@@ -91,6 +95,7 @@ export declare enum FieldOptions_JSType {
     UNRECOGNIZED = -1
 }
 export declare const FieldOptions_JSTypeSDKType: typeof FieldOptions_JSType;
+export declare const FieldOptions_JSTypeAmino: typeof FieldOptions_JSType;
 export declare function fieldOptions_JSTypeFromJSON(object: any): FieldOptions_JSType;
 export declare function fieldOptions_JSTypeToJSON(object: FieldOptions_JSType): string;
 /**
@@ -107,6 +112,7 @@ export declare enum MethodOptions_IdempotencyLevel {
     UNRECOGNIZED = -1
 }
 export declare const MethodOptions_IdempotencyLevelSDKType: typeof MethodOptions_IdempotencyLevel;
+export declare const MethodOptions_IdempotencyLevelAmino: typeof MethodOptions_IdempotencyLevel;
 export declare function methodOptions_IdempotencyLevelFromJSON(object: any): MethodOptions_IdempotencyLevel;
 export declare function methodOptions_IdempotencyLevelToJSON(object: MethodOptions_IdempotencyLevel): string;
 /**
@@ -115,6 +121,13 @@ export declare function methodOptions_IdempotencyLevelToJSON(object: MethodOptio
  */
 export interface FileDescriptorSet {
     file: FileDescriptorProto[];
+}
+/**
+ * The protocol compiler can output a FileDescriptorSet containing the .proto
+ * files it parses.
+ */
+export interface FileDescriptorSetAmino {
+    file: FileDescriptorProtoAmino[];
 }
 /**
  * The protocol compiler can output a FileDescriptorSet containing the .proto
@@ -157,6 +170,39 @@ export interface FileDescriptorProto {
     syntax: string;
 }
 /** Describes a complete .proto file. */
+export interface FileDescriptorProtoAmino {
+    /** file name, relative to root of source tree */
+    name: string;
+    package: string;
+    /** Names of files imported by this file. */
+    dependency: string[];
+    /** Indexes of the public imported files in the dependency list above. */
+    public_dependency: number[];
+    /**
+     * Indexes of the weak imported files in the dependency list.
+     * For Google-internal migration only. Do not use.
+     */
+    weak_dependency: number[];
+    /** All top-level definitions in this file. */
+    message_type: DescriptorProtoAmino[];
+    enum_type: EnumDescriptorProtoAmino[];
+    service: ServiceDescriptorProtoAmino[];
+    extension: FieldDescriptorProtoAmino[];
+    options?: FileOptionsAmino;
+    /**
+     * This field contains optional information about the original source code.
+     * You may safely remove this entire field without harming runtime
+     * functionality of the descriptors -- the information is needed only by
+     * development tools.
+     */
+    source_code_info?: SourceCodeInfoAmino;
+    /**
+     * The syntax of the proto file.
+     * The supported values are "proto2" and "proto3".
+     */
+    syntax: string;
+}
+/** Describes a complete .proto file. */
 export interface FileDescriptorProtoSDKType {
     name: string;
     package: string;
@@ -189,6 +235,23 @@ export interface DescriptorProto {
     reservedName: string[];
 }
 /** Describes a message type. */
+export interface DescriptorProtoAmino {
+    name: string;
+    field: FieldDescriptorProtoAmino[];
+    extension: FieldDescriptorProtoAmino[];
+    nested_type: DescriptorProtoAmino[];
+    enum_type: EnumDescriptorProtoAmino[];
+    extension_range: DescriptorProto_ExtensionRangeAmino[];
+    oneof_decl: OneofDescriptorProtoAmino[];
+    options?: MessageOptionsAmino;
+    reserved_range: DescriptorProto_ReservedRangeAmino[];
+    /**
+     * Reserved field names, which may not be used by fields in the same message.
+     * A given name may only be reserved once.
+     */
+    reserved_name: string[];
+}
+/** Describes a message type. */
 export interface DescriptorProtoSDKType {
     name: string;
     field: FieldDescriptorProtoSDKType[];
@@ -207,6 +270,13 @@ export interface DescriptorProto_ExtensionRange {
     /** Exclusive. */
     end: number;
     options?: ExtensionRangeOptions;
+}
+export interface DescriptorProto_ExtensionRangeAmino {
+    /** Inclusive. */
+    start: number;
+    /** Exclusive. */
+    end: number;
+    options?: ExtensionRangeOptionsAmino;
 }
 export interface DescriptorProto_ExtensionRangeSDKType {
     start: number;
@@ -229,6 +299,17 @@ export interface DescriptorProto_ReservedRange {
  * fields or extension ranges in the same message. Reserved ranges may
  * not overlap.
  */
+export interface DescriptorProto_ReservedRangeAmino {
+    /** Inclusive. */
+    start: number;
+    /** Exclusive. */
+    end: number;
+}
+/**
+ * Range of reserved tag numbers. Reserved tag numbers may not be used by
+ * fields or extension ranges in the same message. Reserved ranges may
+ * not overlap.
+ */
 export interface DescriptorProto_ReservedRangeSDKType {
     start: number;
     end: number;
@@ -236,6 +317,10 @@ export interface DescriptorProto_ReservedRangeSDKType {
 export interface ExtensionRangeOptions {
     /** The parser stores options it doesn't recognize here. See above. */
     uninterpretedOption: UninterpretedOption[];
+}
+export interface ExtensionRangeOptionsAmino {
+    /** The parser stores options it doesn't recognize here. See above. */
+    uninterpreted_option: UninterpretedOptionAmino[];
 }
 export interface ExtensionRangeOptionsSDKType {
     uninterpreted_option: UninterpretedOptionSDKType[];
@@ -286,6 +371,51 @@ export interface FieldDescriptorProto {
     options?: FieldOptions;
 }
 /** Describes a field within a message. */
+export interface FieldDescriptorProtoAmino {
+    name: string;
+    number: number;
+    label: FieldDescriptorProto_Label;
+    /**
+     * If type_name is set, this need not be set.  If both this and type_name
+     * are set, this must be one of TYPE_ENUM, TYPE_MESSAGE or TYPE_GROUP.
+     */
+    type: FieldDescriptorProto_Type;
+    /**
+     * For message and enum types, this is the name of the type.  If the name
+     * starts with a '.', it is fully-qualified.  Otherwise, C++-like scoping
+     * rules are used to find the type (i.e. first the nested types within this
+     * message are searched, then within the parent, on up to the root
+     * namespace).
+     */
+    type_name: string;
+    /**
+     * For extensions, this is the name of the type being extended.  It is
+     * resolved in the same manner as type_name.
+     */
+    extendee: string;
+    /**
+     * For numeric types, contains the original text representation of the value.
+     * For booleans, "true" or "false".
+     * For strings, contains the default text contents (not escaped in any way).
+     * For bytes, contains the C escaped value.  All bytes >= 128 are escaped.
+     * TODO(kenton):  Base-64 encode?
+     */
+    default_value: string;
+    /**
+     * If set, gives the index of a oneof in the containing type's oneof_decl
+     * list.  This field is a member of that oneof.
+     */
+    oneof_index: number;
+    /**
+     * JSON name of this field. The value is set by protocol compiler. If the
+     * user has set a "json_name" option on this field, that option's value
+     * will be used. Otherwise, it's deduced from the field's name by converting
+     * it to camelCase.
+     */
+    json_name: string;
+    options?: FieldOptionsAmino;
+}
+/** Describes a field within a message. */
 export interface FieldDescriptorProtoSDKType {
     name: string;
     number: number;
@@ -302,6 +432,11 @@ export interface FieldDescriptorProtoSDKType {
 export interface OneofDescriptorProto {
     name: string;
     options?: OneofOptions;
+}
+/** Describes a oneof. */
+export interface OneofDescriptorProtoAmino {
+    name: string;
+    options?: OneofOptionsAmino;
 }
 /** Describes a oneof. */
 export interface OneofDescriptorProtoSDKType {
@@ -324,6 +459,23 @@ export interface EnumDescriptorProto {
      * be reserved once.
      */
     reservedName: string[];
+}
+/** Describes an enum type. */
+export interface EnumDescriptorProtoAmino {
+    name: string;
+    value: EnumValueDescriptorProtoAmino[];
+    options?: EnumOptionsAmino;
+    /**
+     * Range of reserved numeric values. Reserved numeric values may not be used
+     * by enum values in the same enum declaration. Reserved ranges may not
+     * overlap.
+     */
+    reserved_range: EnumDescriptorProto_EnumReservedRangeAmino[];
+    /**
+     * Reserved enum value names, which may not be reused. A given name may only
+     * be reserved once.
+     */
+    reserved_name: string[];
 }
 /** Describes an enum type. */
 export interface EnumDescriptorProtoSDKType {
@@ -355,6 +507,20 @@ export interface EnumDescriptorProto_EnumReservedRange {
  * is inclusive such that it can appropriately represent the entire int32
  * domain.
  */
+export interface EnumDescriptorProto_EnumReservedRangeAmino {
+    /** Inclusive. */
+    start: number;
+    /** Inclusive. */
+    end: number;
+}
+/**
+ * Range of reserved numeric values. Reserved values may not be used by
+ * entries in the same enum. Reserved ranges may not overlap.
+ *
+ * Note that this is distinct from DescriptorProto.ReservedRange in that it
+ * is inclusive such that it can appropriately represent the entire int32
+ * domain.
+ */
 export interface EnumDescriptorProto_EnumReservedRangeSDKType {
     start: number;
     end: number;
@@ -364,6 +530,12 @@ export interface EnumValueDescriptorProto {
     name: string;
     number: number;
     options?: EnumValueOptions;
+}
+/** Describes a value within an enum. */
+export interface EnumValueDescriptorProtoAmino {
+    name: string;
+    number: number;
+    options?: EnumValueOptionsAmino;
 }
 /** Describes a value within an enum. */
 export interface EnumValueDescriptorProtoSDKType {
@@ -376,6 +548,12 @@ export interface ServiceDescriptorProto {
     name: string;
     method: MethodDescriptorProto[];
     options?: ServiceOptions;
+}
+/** Describes a service. */
+export interface ServiceDescriptorProtoAmino {
+    name: string;
+    method: MethodDescriptorProtoAmino[];
+    options?: ServiceOptionsAmino;
 }
 /** Describes a service. */
 export interface ServiceDescriptorProtoSDKType {
@@ -397,6 +575,21 @@ export interface MethodDescriptorProto {
     clientStreaming: boolean;
     /** Identifies if server streams multiple server messages */
     serverStreaming: boolean;
+}
+/** Describes a method of a service. */
+export interface MethodDescriptorProtoAmino {
+    name: string;
+    /**
+     * Input and output type names.  These are resolved in the same way as
+     * FieldDescriptorProto.type_name, but must refer to a message type.
+     */
+    input_type: string;
+    output_type: string;
+    options?: MethodOptionsAmino;
+    /** Identifies if client streams multiple client messages */
+    client_streaming: boolean;
+    /** Identifies if server streams multiple server messages */
+    server_streaming: boolean;
 }
 /** Describes a method of a service. */
 export interface MethodDescriptorProtoSDKType {
@@ -524,6 +717,123 @@ export interface FileOptions {
      */
     uninterpretedOption: UninterpretedOption[];
 }
+export interface FileOptionsAmino {
+    /**
+     * Sets the Java package where classes generated from this .proto will be
+     * placed.  By default, the proto package is used, but this is often
+     * inappropriate because proto packages do not normally start with backwards
+     * domain names.
+     */
+    java_package: string;
+    /**
+     * If set, all the classes from the .proto file are wrapped in a single
+     * outer class with the given name.  This applies to both Proto1
+     * (equivalent to the old "--one_java_file" option) and Proto2 (where
+     * a .proto always translates to a single class, but you may want to
+     * explicitly choose the class name).
+     */
+    java_outer_classname: string;
+    /**
+     * If set true, then the Java code generator will generate a separate .java
+     * file for each top-level message, enum, and service defined in the .proto
+     * file.  Thus, these types will *not* be nested inside the outer class
+     * named by java_outer_classname.  However, the outer class will still be
+     * generated to contain the file's getDescriptor() method as well as any
+     * top-level extensions defined in the file.
+     */
+    java_multiple_files: boolean;
+    /** This option does nothing. */
+    /** @deprecated */
+    java_generate_equals_and_hash: boolean;
+    /**
+     * If set true, then the Java2 code generator will generate code that
+     * throws an exception whenever an attempt is made to assign a non-UTF-8
+     * byte sequence to a string field.
+     * Message reflection will do the same.
+     * However, an extension field still accepts non-UTF-8 byte sequences.
+     * This option has no effect on when used with the lite runtime.
+     */
+    java_string_check_utf8: boolean;
+    optimize_for: FileOptions_OptimizeMode;
+    /**
+     * Sets the Go package where structs generated from this .proto will be
+     * placed. If omitted, the Go package will be derived from the following:
+     *   - The basename of the package import path, if provided.
+     *   - Otherwise, the package statement in the .proto file, if present.
+     *   - Otherwise, the basename of the .proto file, without extension.
+     */
+    go_package: string;
+    /**
+     * Should generic services be generated in each language?  "Generic" services
+     * are not specific to any particular RPC system.  They are generated by the
+     * main code generators in each language (without additional plugins).
+     * Generic services were the only kind of service generation supported by
+     * early versions of google.protobuf.
+     *
+     * Generic services are now considered deprecated in favor of using plugins
+     * that generate code specific to your particular RPC system.  Therefore,
+     * these default to false.  Old code which depends on generic services should
+     * explicitly set them to true.
+     */
+    cc_generic_services: boolean;
+    java_generic_services: boolean;
+    py_generic_services: boolean;
+    php_generic_services: boolean;
+    /**
+     * Is this file deprecated?
+     * Depending on the target platform, this can emit Deprecated annotations
+     * for everything in the file, or it will be completely ignored; in the very
+     * least, this is a formalization for deprecating files.
+     */
+    deprecated: boolean;
+    /**
+     * Enables the use of arenas for the proto messages in this file. This applies
+     * only to generated classes for C++.
+     */
+    cc_enable_arenas: boolean;
+    /**
+     * Sets the objective c class prefix which is prepended to all objective c
+     * generated classes from this .proto. There is no default.
+     */
+    objc_class_prefix: string;
+    /** Namespace for generated classes; defaults to the package. */
+    csharp_namespace: string;
+    /**
+     * By default Swift generators will take the proto package and CamelCase it
+     * replacing '.' with underscore and use that to prefix the types/symbols
+     * defined. When this options is provided, they will use this value instead
+     * to prefix the types/symbols defined.
+     */
+    swift_prefix: string;
+    /**
+     * Sets the php class prefix which is prepended to all php generated classes
+     * from this .proto. Default is empty.
+     */
+    php_class_prefix: string;
+    /**
+     * Use this option to change the namespace of php generated classes. Default
+     * is empty. When this option is empty, the package name will be used for
+     * determining the namespace.
+     */
+    php_namespace: string;
+    /**
+     * Use this option to change the namespace of php generated metadata classes.
+     * Default is empty. When this option is empty, the proto file name will be
+     * used for determining the namespace.
+     */
+    php_metadata_namespace: string;
+    /**
+     * Use this option to change the package of ruby generated classes. Default
+     * is empty. When this option is not set, the package name will be used for
+     * determining the ruby package.
+     */
+    ruby_package: string;
+    /**
+     * The parser stores options it doesn't recognize here.
+     * See the documentation for the "Options" section above.
+     */
+    uninterpreted_option: UninterpretedOptionAmino[];
+}
 export interface FileOptionsSDKType {
     java_package: string;
     java_outer_classname: string;
@@ -610,6 +920,68 @@ export interface MessageOptions {
     /** The parser stores options it doesn't recognize here. See above. */
     uninterpretedOption: UninterpretedOption[];
 }
+export interface MessageOptionsAmino {
+    /**
+     * Set true to use the old proto1 MessageSet wire format for extensions.
+     * This is provided for backwards-compatibility with the MessageSet wire
+     * format.  You should not use this for any other reason:  It's less
+     * efficient, has fewer features, and is more complicated.
+     *
+     * The message must be defined exactly as follows:
+     *   message Foo {
+     *     option message_set_wire_format = true;
+     *     extensions 4 to max;
+     *   }
+     * Note that the message cannot have any defined fields; MessageSets only
+     * have extensions.
+     *
+     * All extensions of your type must be singular messages; e.g. they cannot
+     * be int32s, enums, or repeated messages.
+     *
+     * Because this is an option, the above two restrictions are not enforced by
+     * the protocol compiler.
+     */
+    message_set_wire_format: boolean;
+    /**
+     * Disables the generation of the standard "descriptor()" accessor, which can
+     * conflict with a field of the same name.  This is meant to make migration
+     * from proto1 easier; new code should avoid fields named "descriptor".
+     */
+    no_standard_descriptor_accessor: boolean;
+    /**
+     * Is this message deprecated?
+     * Depending on the target platform, this can emit Deprecated annotations
+     * for the message, or it will be completely ignored; in the very least,
+     * this is a formalization for deprecating messages.
+     */
+    deprecated: boolean;
+    /**
+     * Whether the message is an automatically generated map entry type for the
+     * maps field.
+     *
+     * For maps fields:
+     *     map<KeyType, ValueType> map_field = 1;
+     * The parsed descriptor looks like:
+     *     message MapFieldEntry {
+     *         option map_entry = true;
+     *         optional KeyType key = 1;
+     *         optional ValueType value = 2;
+     *     }
+     *     repeated MapFieldEntry map_field = 1;
+     *
+     * Implementations may choose not to generate the map_entry=true message, but
+     * use a native map in the target language to hold the keys and values.
+     * The reflection APIs in such implementations still need to work as
+     * if the field is a repeated message field.
+     *
+     * NOTE: Do not set the option in .proto files. Always use the maps syntax
+     * instead. The option should only be implicitly set by the proto compiler
+     * parser.
+     */
+    map_entry: boolean;
+    /** The parser stores options it doesn't recognize here. See above. */
+    uninterpreted_option: UninterpretedOptionAmino[];
+}
 export interface MessageOptionsSDKType {
     message_set_wire_format: boolean;
     no_standard_descriptor_accessor: boolean;
@@ -690,6 +1062,79 @@ export interface FieldOptions {
     /** The parser stores options it doesn't recognize here. See above. */
     uninterpretedOption: UninterpretedOption[];
 }
+export interface FieldOptionsAmino {
+    /**
+     * The ctype option instructs the C++ code generator to use a different
+     * representation of the field than it normally would.  See the specific
+     * options below.  This option is not yet implemented in the open source
+     * release -- sorry, we'll try to include it in a future version!
+     */
+    ctype: FieldOptions_CType;
+    /**
+     * The packed option can be enabled for repeated primitive fields to enable
+     * a more efficient representation on the wire. Rather than repeatedly
+     * writing the tag and type for each element, the entire array is encoded as
+     * a single length-delimited blob. In proto3, only explicit setting it to
+     * false will avoid using packed encoding.
+     */
+    packed: boolean;
+    /**
+     * The jstype option determines the JavaScript type used for values of the
+     * field.  The option is permitted only for 64 bit integral and fixed types
+     * (int64, uint64, sint64, fixed64, sfixed64).  A field with jstype JS_STRING
+     * is represented as JavaScript string, which avoids loss of precision that
+     * can happen when a large value is converted to a floating point JavaScript.
+     * Specifying JS_NUMBER for the jstype causes the generated JavaScript code to
+     * use the JavaScript "number" type.  The behavior of the default option
+     * JS_NORMAL is implementation dependent.
+     *
+     * This option is an enum to permit additional types to be added, e.g.
+     * goog.math.Integer.
+     */
+    jstype: FieldOptions_JSType;
+    /**
+     * Should this field be parsed lazily?  Lazy applies only to message-type
+     * fields.  It means that when the outer message is initially parsed, the
+     * inner message's contents will not be parsed but instead stored in encoded
+     * form.  The inner message will actually be parsed when it is first accessed.
+     *
+     * This is only a hint.  Implementations are free to choose whether to use
+     * eager or lazy parsing regardless of the value of this option.  However,
+     * setting this option true suggests that the protocol author believes that
+     * using lazy parsing on this field is worth the additional bookkeeping
+     * overhead typically needed to implement it.
+     *
+     * This option does not affect the public interface of any generated code;
+     * all method signatures remain the same.  Furthermore, thread-safety of the
+     * interface is not affected by this option; const methods remain safe to
+     * call from multiple threads concurrently, while non-const methods continue
+     * to require exclusive access.
+     *
+     *
+     * Note that implementations may choose not to check required fields within
+     * a lazy sub-message.  That is, calling IsInitialized() on the outer message
+     * may return true even if the inner message has missing required fields.
+     * This is necessary because otherwise the inner message would have to be
+     * parsed in order to perform the check, defeating the purpose of lazy
+     * parsing.  An implementation which chooses not to check required fields
+     * must be consistent about it.  That is, for any particular sub-message, the
+     * implementation must either *always* check its required fields, or *never*
+     * check its required fields, regardless of whether or not the message has
+     * been parsed.
+     */
+    lazy: boolean;
+    /**
+     * Is this field deprecated?
+     * Depending on the target platform, this can emit Deprecated annotations
+     * for accessors, or it will be completely ignored; in the very least, this
+     * is a formalization for deprecating fields.
+     */
+    deprecated: boolean;
+    /** For Google-internal migration only. Do not use. */
+    weak: boolean;
+    /** The parser stores options it doesn't recognize here. See above. */
+    uninterpreted_option: UninterpretedOptionAmino[];
+}
 export interface FieldOptionsSDKType {
     ctype: FieldOptions_CType;
     packed: boolean;
@@ -702,6 +1147,10 @@ export interface FieldOptionsSDKType {
 export interface OneofOptions {
     /** The parser stores options it doesn't recognize here. See above. */
     uninterpretedOption: UninterpretedOption[];
+}
+export interface OneofOptionsAmino {
+    /** The parser stores options it doesn't recognize here. See above. */
+    uninterpreted_option: UninterpretedOptionAmino[];
 }
 export interface OneofOptionsSDKType {
     uninterpreted_option: UninterpretedOptionSDKType[];
@@ -722,6 +1171,22 @@ export interface EnumOptions {
     /** The parser stores options it doesn't recognize here. See above. */
     uninterpretedOption: UninterpretedOption[];
 }
+export interface EnumOptionsAmino {
+    /**
+     * Set this option to true to allow mapping different tag names to the same
+     * value.
+     */
+    allow_alias: boolean;
+    /**
+     * Is this enum deprecated?
+     * Depending on the target platform, this can emit Deprecated annotations
+     * for the enum, or it will be completely ignored; in the very least, this
+     * is a formalization for deprecating enums.
+     */
+    deprecated: boolean;
+    /** The parser stores options it doesn't recognize here. See above. */
+    uninterpreted_option: UninterpretedOptionAmino[];
+}
 export interface EnumOptionsSDKType {
     allow_alias: boolean;
     deprecated: boolean;
@@ -738,6 +1203,17 @@ export interface EnumValueOptions {
     /** The parser stores options it doesn't recognize here. See above. */
     uninterpretedOption: UninterpretedOption[];
 }
+export interface EnumValueOptionsAmino {
+    /**
+     * Is this enum value deprecated?
+     * Depending on the target platform, this can emit Deprecated annotations
+     * for the enum value, or it will be completely ignored; in the very least,
+     * this is a formalization for deprecating enum values.
+     */
+    deprecated: boolean;
+    /** The parser stores options it doesn't recognize here. See above. */
+    uninterpreted_option: UninterpretedOptionAmino[];
+}
 export interface EnumValueOptionsSDKType {
     deprecated: boolean;
     uninterpreted_option: UninterpretedOptionSDKType[];
@@ -752,6 +1228,17 @@ export interface ServiceOptions {
     deprecated: boolean;
     /** The parser stores options it doesn't recognize here. See above. */
     uninterpretedOption: UninterpretedOption[];
+}
+export interface ServiceOptionsAmino {
+    /**
+     * Is this service deprecated?
+     * Depending on the target platform, this can emit Deprecated annotations
+     * for the service, or it will be completely ignored; in the very least,
+     * this is a formalization for deprecating services.
+     */
+    deprecated: boolean;
+    /** The parser stores options it doesn't recognize here. See above. */
+    uninterpreted_option: UninterpretedOptionAmino[];
 }
 export interface ServiceOptionsSDKType {
     deprecated: boolean;
@@ -768,6 +1255,18 @@ export interface MethodOptions {
     idempotencyLevel: MethodOptions_IdempotencyLevel;
     /** The parser stores options it doesn't recognize here. See above. */
     uninterpretedOption: UninterpretedOption[];
+}
+export interface MethodOptionsAmino {
+    /**
+     * Is this method deprecated?
+     * Depending on the target platform, this can emit Deprecated annotations
+     * for the method, or it will be completely ignored; in the very least,
+     * this is a formalization for deprecating methods.
+     */
+    deprecated: boolean;
+    idempotency_level: MethodOptions_IdempotencyLevel;
+    /** The parser stores options it doesn't recognize here. See above. */
+    uninterpreted_option: UninterpretedOptionAmino[];
 }
 export interface MethodOptionsSDKType {
     deprecated: boolean;
@@ -803,6 +1302,27 @@ export interface UninterpretedOption {
  * or produced by Descriptor::CopyTo()) will never have UninterpretedOptions
  * in them.
  */
+export interface UninterpretedOptionAmino {
+    name: UninterpretedOption_NamePartAmino[];
+    /**
+     * The value of the uninterpreted option, in whatever type the tokenizer
+     * identified it as during parsing. Exactly one of these should be set.
+     */
+    identifier_value: string;
+    positive_int_value: string;
+    negative_int_value: string;
+    double_value: number;
+    string_value: Uint8Array;
+    aggregate_value: string;
+}
+/**
+ * A message representing a option the parser does not recognize. This only
+ * appears in options protos created by the compiler::Parser class.
+ * DescriptorPool resolves these when building Descriptor objects. Therefore,
+ * options protos in descriptor objects (e.g. returned by Descriptor::options(),
+ * or produced by Descriptor::CopyTo()) will never have UninterpretedOptions
+ * in them.
+ */
 export interface UninterpretedOptionSDKType {
     name: UninterpretedOption_NamePartSDKType[];
     identifier_value: string;
@@ -822,6 +1342,17 @@ export interface UninterpretedOptionSDKType {
 export interface UninterpretedOption_NamePart {
     namePart: string;
     isExtension: boolean;
+}
+/**
+ * The name of the uninterpreted option.  Each string represents a segment in
+ * a dot-separated name.  is_extension is true iff a segment represents an
+ * extension (denoted with parentheses in options specs in .proto files).
+ * E.g.,{ ["foo", false], ["bar.baz", true], ["qux", false] } represents
+ * "foo.(bar.baz).qux".
+ */
+export interface UninterpretedOption_NamePartAmino {
+    name_part: string;
+    is_extension: boolean;
 }
 /**
  * The name of the uninterpreted option.  Each string represents a segment in
@@ -885,6 +1416,58 @@ export interface SourceCodeInfo {
      *   be recorded in the future.
      */
     location: SourceCodeInfo_Location[];
+}
+/**
+ * Encapsulates information about the original source file from which a
+ * FileDescriptorProto was generated.
+ */
+export interface SourceCodeInfoAmino {
+    /**
+     * A Location identifies a piece of source code in a .proto file which
+     * corresponds to a particular definition.  This information is intended
+     * to be useful to IDEs, code indexers, documentation generators, and similar
+     * tools.
+     *
+     * For example, say we have a file like:
+     *   message Foo {
+     *     optional string foo = 1;
+     *   }
+     * Let's look at just the field definition:
+     *   optional string foo = 1;
+     *   ^       ^^     ^^  ^  ^^^
+     *   a       bc     de  f  ghi
+     * We have the following locations:
+     *   span   path               represents
+     *   [a,i)  [ 4, 0, 2, 0 ]     The whole field definition.
+     *   [a,b)  [ 4, 0, 2, 0, 4 ]  The label (optional).
+     *   [c,d)  [ 4, 0, 2, 0, 5 ]  The type (string).
+     *   [e,f)  [ 4, 0, 2, 0, 1 ]  The name (foo).
+     *   [g,h)  [ 4, 0, 2, 0, 3 ]  The number (1).
+     *
+     * Notes:
+     * - A location may refer to a repeated field itself (i.e. not to any
+     *   particular index within it).  This is used whenever a set of elements are
+     *   logically enclosed in a single code segment.  For example, an entire
+     *   extend block (possibly containing multiple extension definitions) will
+     *   have an outer location whose path refers to the "extensions" repeated
+     *   field without an index.
+     * - Multiple locations may have the same path.  This happens when a single
+     *   logical declaration is spread out across multiple places.  The most
+     *   obvious example is the "extend" block again -- there may be multiple
+     *   extend blocks in the same scope, each of which will have the same path.
+     * - A location's span is not always a subset of its parent's span.  For
+     *   example, the "extendee" of an extension declaration appears at the
+     *   beginning of the "extend" block and is shared by all extensions within
+     *   the block.
+     * - Just because a location's span is a subset of some other location's span
+     *   does not mean that it is a descendant.  For example, a "group" defines
+     *   both a type and a field in a single declaration.  Thus, the locations
+     *   corresponding to the type and field and their components will overlap.
+     * - Code which tries to interpret locations should probably be designed to
+     *   ignore those that it doesn't understand, as more types of locations could
+     *   be recorded in the future.
+     */
+    location: SourceCodeInfo_LocationAmino[];
 }
 /**
  * Encapsulates information about the original source file from which a
@@ -981,6 +1564,94 @@ export interface SourceCodeInfo_Location {
     trailingComments: string;
     leadingDetachedComments: string[];
 }
+export interface SourceCodeInfo_LocationAmino {
+    /**
+     * Identifies which part of the FileDescriptorProto was defined at this
+     * location.
+     *
+     * Each element is a field number or an index.  They form a path from
+     * the root FileDescriptorProto to the place where the definition.  For
+     * example, this path:
+     *   [ 4, 3, 2, 7, 1 ]
+     * refers to:
+     *   file.message_type(3)  // 4, 3
+     *       .field(7)         // 2, 7
+     *       .name()           // 1
+     * This is because FileDescriptorProto.message_type has field number 4:
+     *   repeated DescriptorProto message_type = 4;
+     * and DescriptorProto.field has field number 2:
+     *   repeated FieldDescriptorProto field = 2;
+     * and FieldDescriptorProto.name has field number 1:
+     *   optional string name = 1;
+     *
+     * Thus, the above path gives the location of a field name.  If we removed
+     * the last element:
+     *   [ 4, 3, 2, 7 ]
+     * this path refers to the whole field declaration (from the beginning
+     * of the label to the terminating semicolon).
+     */
+    path: number[];
+    /**
+     * Always has exactly three or four elements: start line, start column,
+     * end line (optional, otherwise assumed same as start line), end column.
+     * These are packed into a single field for efficiency.  Note that line
+     * and column numbers are zero-based -- typically you will want to add
+     * 1 to each before displaying to a user.
+     */
+    span: number[];
+    /**
+     * If this SourceCodeInfo represents a complete declaration, these are any
+     * comments appearing before and after the declaration which appear to be
+     * attached to the declaration.
+     *
+     * A series of line comments appearing on consecutive lines, with no other
+     * tokens appearing on those lines, will be treated as a single comment.
+     *
+     * leading_detached_comments will keep paragraphs of comments that appear
+     * before (but not connected to) the current element. Each paragraph,
+     * separated by empty lines, will be one comment element in the repeated
+     * field.
+     *
+     * Only the comment content is provided; comment markers (e.g. //) are
+     * stripped out.  For block comments, leading whitespace and an asterisk
+     * will be stripped from the beginning of each line other than the first.
+     * Newlines are included in the output.
+     *
+     * Examples:
+     *
+     *   optional int32 foo = 1;  // Comment attached to foo.
+     *   // Comment attached to bar.
+     *   optional int32 bar = 2;
+     *
+     *   optional string baz = 3;
+     *   // Comment attached to baz.
+     *   // Another line attached to baz.
+     *
+     *   // Comment attached to qux.
+     *   //
+     *   // Another line attached to qux.
+     *   optional double qux = 4;
+     *
+     *   // Detached comment for corge. This is not leading or trailing comments
+     *   // to qux or corge because there are blank lines separating it from
+     *   // both.
+     *
+     *   // Detached comment for corge paragraph 2.
+     *
+     *   optional string corge = 5;
+     *   /* Block comment attached
+     *    * to corge.  Leading asterisks
+     *    * will be removed. *\/
+     *   /* Block comment attached to
+     *    * grault. *\/
+     *   optional int32 grault = 6;
+     *
+     *   // ignored detached comments.
+     */
+    leading_comments: string;
+    trailing_comments: string;
+    leading_detached_comments: string[];
+}
 export interface SourceCodeInfo_LocationSDKType {
     path: number[];
     span: number[];
@@ -999,6 +1670,18 @@ export interface GeneratedCodeInfo {
      * of its generating .proto file.
      */
     annotation: GeneratedCodeInfo_Annotation[];
+}
+/**
+ * Describes the relationship between generated code and its original source
+ * file. A GeneratedCodeInfo message is associated with only one generated
+ * source file, but may contain references to different source .proto files.
+ */
+export interface GeneratedCodeInfoAmino {
+    /**
+     * An Annotation connects some span of text in generated code to an element
+     * of its generating .proto file.
+     */
+    annotation: GeneratedCodeInfo_AnnotationAmino[];
 }
 /**
  * Describes the relationship between generated code and its original source
@@ -1028,6 +1711,26 @@ export interface GeneratedCodeInfo_Annotation {
      */
     end: number;
 }
+export interface GeneratedCodeInfo_AnnotationAmino {
+    /**
+     * Identifies the element in the original source .proto file. This field
+     * is formatted the same as SourceCodeInfo.Location.path.
+     */
+    path: number[];
+    /** Identifies the filesystem path to the original source .proto. */
+    source_file: string;
+    /**
+     * Identifies the starting offset in bytes in the generated code
+     * that relates to the identified object.
+     */
+    begin: number;
+    /**
+     * Identifies the ending offset in bytes in the generated code that
+     * relates to the identified offset. The end offset should be one past
+     * the last relevant byte (so the length of the text = end - begin).
+     */
+    end: number;
+}
 export interface GeneratedCodeInfo_AnnotationSDKType {
     path: number[];
     source_file: string;
@@ -1040,6 +1743,8 @@ export declare const FileDescriptorSet: {
     fromJSON(object: any): FileDescriptorSet;
     toJSON(message: FileDescriptorSet): unknown;
     fromPartial(object: Partial<FileDescriptorSet>): FileDescriptorSet;
+    fromAmino(object: FileDescriptorSetAmino): FileDescriptorSet;
+    toAmino(message: FileDescriptorSet): FileDescriptorSetAmino;
 };
 export declare const FileDescriptorProto: {
     encode(message: FileDescriptorProto, writer?: _m0.Writer): _m0.Writer;
@@ -1047,6 +1752,8 @@ export declare const FileDescriptorProto: {
     fromJSON(object: any): FileDescriptorProto;
     toJSON(message: FileDescriptorProto): unknown;
     fromPartial(object: Partial<FileDescriptorProto>): FileDescriptorProto;
+    fromAmino(object: FileDescriptorProtoAmino): FileDescriptorProto;
+    toAmino(message: FileDescriptorProto): FileDescriptorProtoAmino;
 };
 export declare const DescriptorProto: {
     encode(message: DescriptorProto, writer?: _m0.Writer): _m0.Writer;
@@ -1054,6 +1761,8 @@ export declare const DescriptorProto: {
     fromJSON(object: any): DescriptorProto;
     toJSON(message: DescriptorProto): unknown;
     fromPartial(object: Partial<DescriptorProto>): DescriptorProto;
+    fromAmino(object: DescriptorProtoAmino): DescriptorProto;
+    toAmino(message: DescriptorProto): DescriptorProtoAmino;
 };
 export declare const DescriptorProto_ExtensionRange: {
     encode(message: DescriptorProto_ExtensionRange, writer?: _m0.Writer): _m0.Writer;
@@ -1061,6 +1770,8 @@ export declare const DescriptorProto_ExtensionRange: {
     fromJSON(object: any): DescriptorProto_ExtensionRange;
     toJSON(message: DescriptorProto_ExtensionRange): unknown;
     fromPartial(object: Partial<DescriptorProto_ExtensionRange>): DescriptorProto_ExtensionRange;
+    fromAmino(object: DescriptorProto_ExtensionRangeAmino): DescriptorProto_ExtensionRange;
+    toAmino(message: DescriptorProto_ExtensionRange): DescriptorProto_ExtensionRangeAmino;
 };
 export declare const DescriptorProto_ReservedRange: {
     encode(message: DescriptorProto_ReservedRange, writer?: _m0.Writer): _m0.Writer;
@@ -1068,6 +1779,8 @@ export declare const DescriptorProto_ReservedRange: {
     fromJSON(object: any): DescriptorProto_ReservedRange;
     toJSON(message: DescriptorProto_ReservedRange): unknown;
     fromPartial(object: Partial<DescriptorProto_ReservedRange>): DescriptorProto_ReservedRange;
+    fromAmino(object: DescriptorProto_ReservedRangeAmino): DescriptorProto_ReservedRange;
+    toAmino(message: DescriptorProto_ReservedRange): DescriptorProto_ReservedRangeAmino;
 };
 export declare const ExtensionRangeOptions: {
     encode(message: ExtensionRangeOptions, writer?: _m0.Writer): _m0.Writer;
@@ -1075,6 +1788,8 @@ export declare const ExtensionRangeOptions: {
     fromJSON(object: any): ExtensionRangeOptions;
     toJSON(message: ExtensionRangeOptions): unknown;
     fromPartial(object: Partial<ExtensionRangeOptions>): ExtensionRangeOptions;
+    fromAmino(object: ExtensionRangeOptionsAmino): ExtensionRangeOptions;
+    toAmino(message: ExtensionRangeOptions): ExtensionRangeOptionsAmino;
 };
 export declare const FieldDescriptorProto: {
     encode(message: FieldDescriptorProto, writer?: _m0.Writer): _m0.Writer;
@@ -1082,6 +1797,8 @@ export declare const FieldDescriptorProto: {
     fromJSON(object: any): FieldDescriptorProto;
     toJSON(message: FieldDescriptorProto): unknown;
     fromPartial(object: Partial<FieldDescriptorProto>): FieldDescriptorProto;
+    fromAmino(object: FieldDescriptorProtoAmino): FieldDescriptorProto;
+    toAmino(message: FieldDescriptorProto): FieldDescriptorProtoAmino;
 };
 export declare const OneofDescriptorProto: {
     encode(message: OneofDescriptorProto, writer?: _m0.Writer): _m0.Writer;
@@ -1089,6 +1806,8 @@ export declare const OneofDescriptorProto: {
     fromJSON(object: any): OneofDescriptorProto;
     toJSON(message: OneofDescriptorProto): unknown;
     fromPartial(object: Partial<OneofDescriptorProto>): OneofDescriptorProto;
+    fromAmino(object: OneofDescriptorProtoAmino): OneofDescriptorProto;
+    toAmino(message: OneofDescriptorProto): OneofDescriptorProtoAmino;
 };
 export declare const EnumDescriptorProto: {
     encode(message: EnumDescriptorProto, writer?: _m0.Writer): _m0.Writer;
@@ -1096,6 +1815,8 @@ export declare const EnumDescriptorProto: {
     fromJSON(object: any): EnumDescriptorProto;
     toJSON(message: EnumDescriptorProto): unknown;
     fromPartial(object: Partial<EnumDescriptorProto>): EnumDescriptorProto;
+    fromAmino(object: EnumDescriptorProtoAmino): EnumDescriptorProto;
+    toAmino(message: EnumDescriptorProto): EnumDescriptorProtoAmino;
 };
 export declare const EnumDescriptorProto_EnumReservedRange: {
     encode(message: EnumDescriptorProto_EnumReservedRange, writer?: _m0.Writer): _m0.Writer;
@@ -1103,6 +1824,8 @@ export declare const EnumDescriptorProto_EnumReservedRange: {
     fromJSON(object: any): EnumDescriptorProto_EnumReservedRange;
     toJSON(message: EnumDescriptorProto_EnumReservedRange): unknown;
     fromPartial(object: Partial<EnumDescriptorProto_EnumReservedRange>): EnumDescriptorProto_EnumReservedRange;
+    fromAmino(object: EnumDescriptorProto_EnumReservedRangeAmino): EnumDescriptorProto_EnumReservedRange;
+    toAmino(message: EnumDescriptorProto_EnumReservedRange): EnumDescriptorProto_EnumReservedRangeAmino;
 };
 export declare const EnumValueDescriptorProto: {
     encode(message: EnumValueDescriptorProto, writer?: _m0.Writer): _m0.Writer;
@@ -1110,6 +1833,8 @@ export declare const EnumValueDescriptorProto: {
     fromJSON(object: any): EnumValueDescriptorProto;
     toJSON(message: EnumValueDescriptorProto): unknown;
     fromPartial(object: Partial<EnumValueDescriptorProto>): EnumValueDescriptorProto;
+    fromAmino(object: EnumValueDescriptorProtoAmino): EnumValueDescriptorProto;
+    toAmino(message: EnumValueDescriptorProto): EnumValueDescriptorProtoAmino;
 };
 export declare const ServiceDescriptorProto: {
     encode(message: ServiceDescriptorProto, writer?: _m0.Writer): _m0.Writer;
@@ -1117,6 +1842,8 @@ export declare const ServiceDescriptorProto: {
     fromJSON(object: any): ServiceDescriptorProto;
     toJSON(message: ServiceDescriptorProto): unknown;
     fromPartial(object: Partial<ServiceDescriptorProto>): ServiceDescriptorProto;
+    fromAmino(object: ServiceDescriptorProtoAmino): ServiceDescriptorProto;
+    toAmino(message: ServiceDescriptorProto): ServiceDescriptorProtoAmino;
 };
 export declare const MethodDescriptorProto: {
     encode(message: MethodDescriptorProto, writer?: _m0.Writer): _m0.Writer;
@@ -1124,6 +1851,8 @@ export declare const MethodDescriptorProto: {
     fromJSON(object: any): MethodDescriptorProto;
     toJSON(message: MethodDescriptorProto): unknown;
     fromPartial(object: Partial<MethodDescriptorProto>): MethodDescriptorProto;
+    fromAmino(object: MethodDescriptorProtoAmino): MethodDescriptorProto;
+    toAmino(message: MethodDescriptorProto): MethodDescriptorProtoAmino;
 };
 export declare const FileOptions: {
     encode(message: FileOptions, writer?: _m0.Writer): _m0.Writer;
@@ -1131,6 +1860,8 @@ export declare const FileOptions: {
     fromJSON(object: any): FileOptions;
     toJSON(message: FileOptions): unknown;
     fromPartial(object: Partial<FileOptions>): FileOptions;
+    fromAmino(object: FileOptionsAmino): FileOptions;
+    toAmino(message: FileOptions): FileOptionsAmino;
 };
 export declare const MessageOptions: {
     encode(message: MessageOptions, writer?: _m0.Writer): _m0.Writer;
@@ -1138,6 +1869,8 @@ export declare const MessageOptions: {
     fromJSON(object: any): MessageOptions;
     toJSON(message: MessageOptions): unknown;
     fromPartial(object: Partial<MessageOptions>): MessageOptions;
+    fromAmino(object: MessageOptionsAmino): MessageOptions;
+    toAmino(message: MessageOptions): MessageOptionsAmino;
 };
 export declare const FieldOptions: {
     encode(message: FieldOptions, writer?: _m0.Writer): _m0.Writer;
@@ -1145,6 +1878,8 @@ export declare const FieldOptions: {
     fromJSON(object: any): FieldOptions;
     toJSON(message: FieldOptions): unknown;
     fromPartial(object: Partial<FieldOptions>): FieldOptions;
+    fromAmino(object: FieldOptionsAmino): FieldOptions;
+    toAmino(message: FieldOptions): FieldOptionsAmino;
 };
 export declare const OneofOptions: {
     encode(message: OneofOptions, writer?: _m0.Writer): _m0.Writer;
@@ -1152,6 +1887,8 @@ export declare const OneofOptions: {
     fromJSON(object: any): OneofOptions;
     toJSON(message: OneofOptions): unknown;
     fromPartial(object: Partial<OneofOptions>): OneofOptions;
+    fromAmino(object: OneofOptionsAmino): OneofOptions;
+    toAmino(message: OneofOptions): OneofOptionsAmino;
 };
 export declare const EnumOptions: {
     encode(message: EnumOptions, writer?: _m0.Writer): _m0.Writer;
@@ -1159,6 +1896,8 @@ export declare const EnumOptions: {
     fromJSON(object: any): EnumOptions;
     toJSON(message: EnumOptions): unknown;
     fromPartial(object: Partial<EnumOptions>): EnumOptions;
+    fromAmino(object: EnumOptionsAmino): EnumOptions;
+    toAmino(message: EnumOptions): EnumOptionsAmino;
 };
 export declare const EnumValueOptions: {
     encode(message: EnumValueOptions, writer?: _m0.Writer): _m0.Writer;
@@ -1166,6 +1905,8 @@ export declare const EnumValueOptions: {
     fromJSON(object: any): EnumValueOptions;
     toJSON(message: EnumValueOptions): unknown;
     fromPartial(object: Partial<EnumValueOptions>): EnumValueOptions;
+    fromAmino(object: EnumValueOptionsAmino): EnumValueOptions;
+    toAmino(message: EnumValueOptions): EnumValueOptionsAmino;
 };
 export declare const ServiceOptions: {
     encode(message: ServiceOptions, writer?: _m0.Writer): _m0.Writer;
@@ -1173,6 +1914,8 @@ export declare const ServiceOptions: {
     fromJSON(object: any): ServiceOptions;
     toJSON(message: ServiceOptions): unknown;
     fromPartial(object: Partial<ServiceOptions>): ServiceOptions;
+    fromAmino(object: ServiceOptionsAmino): ServiceOptions;
+    toAmino(message: ServiceOptions): ServiceOptionsAmino;
 };
 export declare const MethodOptions: {
     encode(message: MethodOptions, writer?: _m0.Writer): _m0.Writer;
@@ -1180,6 +1923,8 @@ export declare const MethodOptions: {
     fromJSON(object: any): MethodOptions;
     toJSON(message: MethodOptions): unknown;
     fromPartial(object: Partial<MethodOptions>): MethodOptions;
+    fromAmino(object: MethodOptionsAmino): MethodOptions;
+    toAmino(message: MethodOptions): MethodOptionsAmino;
 };
 export declare const UninterpretedOption: {
     encode(message: UninterpretedOption, writer?: _m0.Writer): _m0.Writer;
@@ -1187,6 +1932,8 @@ export declare const UninterpretedOption: {
     fromJSON(object: any): UninterpretedOption;
     toJSON(message: UninterpretedOption): unknown;
     fromPartial(object: Partial<UninterpretedOption>): UninterpretedOption;
+    fromAmino(object: UninterpretedOptionAmino): UninterpretedOption;
+    toAmino(message: UninterpretedOption): UninterpretedOptionAmino;
 };
 export declare const UninterpretedOption_NamePart: {
     encode(message: UninterpretedOption_NamePart, writer?: _m0.Writer): _m0.Writer;
@@ -1194,6 +1941,8 @@ export declare const UninterpretedOption_NamePart: {
     fromJSON(object: any): UninterpretedOption_NamePart;
     toJSON(message: UninterpretedOption_NamePart): unknown;
     fromPartial(object: Partial<UninterpretedOption_NamePart>): UninterpretedOption_NamePart;
+    fromAmino(object: UninterpretedOption_NamePartAmino): UninterpretedOption_NamePart;
+    toAmino(message: UninterpretedOption_NamePart): UninterpretedOption_NamePartAmino;
 };
 export declare const SourceCodeInfo: {
     encode(message: SourceCodeInfo, writer?: _m0.Writer): _m0.Writer;
@@ -1201,6 +1950,8 @@ export declare const SourceCodeInfo: {
     fromJSON(object: any): SourceCodeInfo;
     toJSON(message: SourceCodeInfo): unknown;
     fromPartial(object: Partial<SourceCodeInfo>): SourceCodeInfo;
+    fromAmino(object: SourceCodeInfoAmino): SourceCodeInfo;
+    toAmino(message: SourceCodeInfo): SourceCodeInfoAmino;
 };
 export declare const SourceCodeInfo_Location: {
     encode(message: SourceCodeInfo_Location, writer?: _m0.Writer): _m0.Writer;
@@ -1208,6 +1959,8 @@ export declare const SourceCodeInfo_Location: {
     fromJSON(object: any): SourceCodeInfo_Location;
     toJSON(message: SourceCodeInfo_Location): unknown;
     fromPartial(object: Partial<SourceCodeInfo_Location>): SourceCodeInfo_Location;
+    fromAmino(object: SourceCodeInfo_LocationAmino): SourceCodeInfo_Location;
+    toAmino(message: SourceCodeInfo_Location): SourceCodeInfo_LocationAmino;
 };
 export declare const GeneratedCodeInfo: {
     encode(message: GeneratedCodeInfo, writer?: _m0.Writer): _m0.Writer;
@@ -1215,6 +1968,8 @@ export declare const GeneratedCodeInfo: {
     fromJSON(object: any): GeneratedCodeInfo;
     toJSON(message: GeneratedCodeInfo): unknown;
     fromPartial(object: Partial<GeneratedCodeInfo>): GeneratedCodeInfo;
+    fromAmino(object: GeneratedCodeInfoAmino): GeneratedCodeInfo;
+    toAmino(message: GeneratedCodeInfo): GeneratedCodeInfoAmino;
 };
 export declare const GeneratedCodeInfo_Annotation: {
     encode(message: GeneratedCodeInfo_Annotation, writer?: _m0.Writer): _m0.Writer;
@@ -1222,4 +1977,6 @@ export declare const GeneratedCodeInfo_Annotation: {
     fromJSON(object: any): GeneratedCodeInfo_Annotation;
     toJSON(message: GeneratedCodeInfo_Annotation): unknown;
     fromPartial(object: Partial<GeneratedCodeInfo_Annotation>): GeneratedCodeInfo_Annotation;
+    fromAmino(object: GeneratedCodeInfo_AnnotationAmino): GeneratedCodeInfo_Annotation;
+    toAmino(message: GeneratedCodeInfo_Annotation): GeneratedCodeInfo_AnnotationAmino;
 };

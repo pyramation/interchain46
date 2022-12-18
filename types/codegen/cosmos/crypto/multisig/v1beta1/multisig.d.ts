@@ -12,6 +12,14 @@ export interface MultiSignature {
  * See cosmos.tx.v1betata1.ModeInfo.Multi for how to specify which signers
  * signed and with which modes.
  */
+export interface MultiSignatureAmino {
+    signatures: Uint8Array[];
+}
+/**
+ * MultiSignature wraps the signatures from a multisig.LegacyAminoPubKey.
+ * See cosmos.tx.v1betata1.ModeInfo.Multi for how to specify which signers
+ * signed and with which modes.
+ */
 export interface MultiSignatureSDKType {
     signatures: Uint8Array[];
 }
@@ -31,6 +39,16 @@ export interface CompactBitArray {
  * space after proto encoding.
  * This is not thread safe, and is not intended for concurrent usage.
  */
+export interface CompactBitArrayAmino {
+    extra_bits_stored: number;
+    elems: Uint8Array;
+}
+/**
+ * CompactBitArray is an implementation of a space efficient bit array.
+ * This is used to ensure that the encoded data takes up a minimal amount of
+ * space after proto encoding.
+ * This is not thread safe, and is not intended for concurrent usage.
+ */
 export interface CompactBitArraySDKType {
     extra_bits_stored: number;
     elems: Uint8Array;
@@ -41,6 +59,8 @@ export declare const MultiSignature: {
     fromJSON(object: any): MultiSignature;
     toJSON(message: MultiSignature): unknown;
     fromPartial(object: Partial<MultiSignature>): MultiSignature;
+    fromAmino(object: MultiSignatureAmino): MultiSignature;
+    toAmino(message: MultiSignature): MultiSignatureAmino;
 };
 export declare const CompactBitArray: {
     encode(message: CompactBitArray, writer?: _m0.Writer): _m0.Writer;
@@ -48,4 +68,6 @@ export declare const CompactBitArray: {
     fromJSON(object: any): CompactBitArray;
     toJSON(message: CompactBitArray): unknown;
     fromPartial(object: Partial<CompactBitArray>): CompactBitArray;
+    fromAmino(object: CompactBitArrayAmino): CompactBitArray;
+    toAmino(message: CompactBitArray): CompactBitArrayAmino;
 };

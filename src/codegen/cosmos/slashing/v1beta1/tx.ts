@@ -7,12 +7,20 @@ export interface MsgUnjail {
 }
 /** MsgUnjail defines the Msg/Unjail request type */
 
+export interface MsgUnjailAmino {
+  validator_addr: string;
+}
+/** MsgUnjail defines the Msg/Unjail request type */
+
 export interface MsgUnjailSDKType {
   validator_addr: string;
 }
 /** MsgUnjailResponse defines the Msg/Unjail response type */
 
 export interface MsgUnjailResponse {}
+/** MsgUnjailResponse defines the Msg/Unjail response type */
+
+export interface MsgUnjailResponseAmino {}
 /** MsgUnjailResponse defines the Msg/Unjail response type */
 
 export interface MsgUnjailResponseSDKType {}
@@ -70,6 +78,18 @@ export const MsgUnjail = {
     const message = createBaseMsgUnjail();
     message.validatorAddr = object.validatorAddr ?? "";
     return message;
+  },
+
+  fromAmino(object: MsgUnjailAmino): MsgUnjail {
+    return {
+      validatorAddr: object.validator_addr
+    };
+  },
+
+  toAmino(message: MsgUnjail): MsgUnjailAmino {
+    const obj: any = {};
+    obj.validator_addr = message.validatorAddr;
+    return obj;
   }
 
 };
@@ -113,6 +133,15 @@ export const MsgUnjailResponse = {
   fromPartial(_: Partial<MsgUnjailResponse>): MsgUnjailResponse {
     const message = createBaseMsgUnjailResponse();
     return message;
+  },
+
+  fromAmino(_: MsgUnjailResponseAmino): MsgUnjailResponse {
+    return {};
+  },
+
+  toAmino(_: MsgUnjailResponse): MsgUnjailResponseAmino {
+    const obj: any = {};
+    return obj;
   }
 
 };

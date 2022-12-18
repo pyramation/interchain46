@@ -1,9 +1,14 @@
-import { Coin, CoinSDKType } from "../../base/v1beta1/coin";
+import { Coin, CoinAmino, CoinSDKType } from "../../base/v1beta1/coin";
 import * as _m0 from "protobufjs/minimal";
 /** Params defines the parameters for the bank module. */
 export interface Params {
     sendEnabled: SendEnabled[];
     defaultSendEnabled: boolean;
+}
+/** Params defines the parameters for the bank module. */
+export interface ParamsAmino {
+    send_enabled: SendEnabledAmino[];
+    default_send_enabled: boolean;
 }
 /** Params defines the parameters for the bank module. */
 export interface ParamsSDKType {
@@ -22,6 +27,14 @@ export interface SendEnabled {
  * SendEnabled maps coin denom to a send_enabled status (whether a denom is
  * sendable).
  */
+export interface SendEnabledAmino {
+    denom: string;
+    enabled: boolean;
+}
+/**
+ * SendEnabled maps coin denom to a send_enabled status (whether a denom is
+ * sendable).
+ */
 export interface SendEnabledSDKType {
     denom: string;
     enabled: boolean;
@@ -32,6 +45,11 @@ export interface Input {
     coins: Coin[];
 }
 /** Input models transaction input. */
+export interface InputAmino {
+    address: string;
+    coins: CoinAmino[];
+}
+/** Input models transaction input. */
 export interface InputSDKType {
     address: string;
     coins: CoinSDKType[];
@@ -40,6 +58,11 @@ export interface InputSDKType {
 export interface Output {
     address: string;
     coins: Coin[];
+}
+/** Output models transaction outputs. */
+export interface OutputAmino {
+    address: string;
+    coins: CoinAmino[];
 }
 /** Output models transaction outputs. */
 export interface OutputSDKType {
@@ -53,6 +76,7 @@ export interface OutputSDKType {
  */
 /** @deprecated */
 export interface Supply {
+    $typeUrl?: string;
     total: Coin[];
 }
 /**
@@ -61,7 +85,17 @@ export interface Supply {
  * This message is deprecated now that supply is indexed by denom.
  */
 /** @deprecated */
+export interface SupplyAmino {
+    total: CoinAmino[];
+}
+/**
+ * Supply represents a struct that passively keeps track of the total supply
+ * amounts in the network.
+ * This message is deprecated now that supply is indexed by denom.
+ */
+/** @deprecated */
 export interface SupplySDKType {
+    $typeUrl?: string;
     total: CoinSDKType[];
 }
 /**
@@ -69,6 +103,24 @@ export interface SupplySDKType {
  * denomination unit of the basic token.
  */
 export interface DenomUnit {
+    /** denom represents the string name of the given denom unit (e.g uatom). */
+    denom: string;
+    /**
+     * exponent represents power of 10 exponent that one must
+     * raise the base_denom to in order to equal the given DenomUnit's denom
+     * 1 denom = 10^exponent base_denom
+     * (e.g. with a base_denom of uatom, one can create a DenomUnit of 'atom' with
+     * exponent = 6, thus: 1 atom = 10^6 uatom).
+     */
+    exponent: number;
+    /** aliases is a list of string aliases for the given denom */
+    aliases: string[];
+}
+/**
+ * DenomUnit represents a struct that describes a given
+ * denomination unit of the basic token.
+ */
+export interface DenomUnitAmino {
     /** denom represents the string name of the given denom unit (e.g uatom). */
     denom: string;
     /**
@@ -137,6 +189,48 @@ export interface Metadata {
  * Metadata represents a struct that describes
  * a basic token.
  */
+export interface MetadataAmino {
+    description: string;
+    /** denom_units represents the list of DenomUnit's for a given coin */
+    denom_units: DenomUnitAmino[];
+    /** base represents the base denom (should be the DenomUnit with exponent = 0). */
+    base: string;
+    /**
+     * display indicates the suggested denom that should be
+     * displayed in clients.
+     */
+    display: string;
+    /**
+     * name defines the name of the token (eg: Cosmos Atom)
+     *
+     * Since: cosmos-sdk 0.43
+     */
+    name: string;
+    /**
+     * symbol is the token symbol usually shown on exchanges (eg: ATOM). This can
+     * be the same as the display.
+     *
+     * Since: cosmos-sdk 0.43
+     */
+    symbol: string;
+    /**
+     * URI to a document (on or off-chain) that contains additional information. Optional.
+     *
+     * Since: cosmos-sdk 0.46
+     */
+    uri: string;
+    /**
+     * URIHash is a sha256 hash of a document pointed by URI. It's used to verify that
+     * the document didn't change. Optional.
+     *
+     * Since: cosmos-sdk 0.46
+     */
+    uri_hash: string;
+}
+/**
+ * Metadata represents a struct that describes
+ * a basic token.
+ */
 export interface MetadataSDKType {
     description: string;
     denom_units: DenomUnitSDKType[];
@@ -153,6 +247,8 @@ export declare const Params: {
     fromJSON(object: any): Params;
     toJSON(message: Params): unknown;
     fromPartial(object: Partial<Params>): Params;
+    fromAmino(object: ParamsAmino): Params;
+    toAmino(message: Params): ParamsAmino;
 };
 export declare const SendEnabled: {
     encode(message: SendEnabled, writer?: _m0.Writer): _m0.Writer;
@@ -160,6 +256,8 @@ export declare const SendEnabled: {
     fromJSON(object: any): SendEnabled;
     toJSON(message: SendEnabled): unknown;
     fromPartial(object: Partial<SendEnabled>): SendEnabled;
+    fromAmino(object: SendEnabledAmino): SendEnabled;
+    toAmino(message: SendEnabled): SendEnabledAmino;
 };
 export declare const Input: {
     encode(message: Input, writer?: _m0.Writer): _m0.Writer;
@@ -167,6 +265,8 @@ export declare const Input: {
     fromJSON(object: any): Input;
     toJSON(message: Input): unknown;
     fromPartial(object: Partial<Input>): Input;
+    fromAmino(object: InputAmino): Input;
+    toAmino(message: Input): InputAmino;
 };
 export declare const Output: {
     encode(message: Output, writer?: _m0.Writer): _m0.Writer;
@@ -174,6 +274,8 @@ export declare const Output: {
     fromJSON(object: any): Output;
     toJSON(message: Output): unknown;
     fromPartial(object: Partial<Output>): Output;
+    fromAmino(object: OutputAmino): Output;
+    toAmino(message: Output): OutputAmino;
 };
 export declare const Supply: {
     encode(message: Supply, writer?: _m0.Writer): _m0.Writer;
@@ -181,6 +283,8 @@ export declare const Supply: {
     fromJSON(object: any): Supply;
     toJSON(message: Supply): unknown;
     fromPartial(object: Partial<Supply>): Supply;
+    fromAmino(object: SupplyAmino): Supply;
+    toAmino(message: Supply): SupplyAmino;
 };
 export declare const DenomUnit: {
     encode(message: DenomUnit, writer?: _m0.Writer): _m0.Writer;
@@ -188,6 +292,8 @@ export declare const DenomUnit: {
     fromJSON(object: any): DenomUnit;
     toJSON(message: DenomUnit): unknown;
     fromPartial(object: Partial<DenomUnit>): DenomUnit;
+    fromAmino(object: DenomUnitAmino): DenomUnit;
+    toAmino(message: DenomUnit): DenomUnitAmino;
 };
 export declare const Metadata: {
     encode(message: Metadata, writer?: _m0.Writer): _m0.Writer;
@@ -195,4 +301,6 @@ export declare const Metadata: {
     fromJSON(object: any): Metadata;
     toJSON(message: Metadata): unknown;
     fromPartial(object: Partial<Metadata>): Metadata;
+    fromAmino(object: MetadataAmino): Metadata;
+    toAmino(message: Metadata): MetadataAmino;
 };

@@ -1,11 +1,17 @@
-import { Header, HeaderSDKType, Data, DataSDKType, Commit, CommitSDKType } from "./types";
-import { EvidenceList, EvidenceListSDKType } from "./evidence";
+import { Header, HeaderAmino, HeaderSDKType, Data, DataAmino, DataSDKType, Commit, CommitAmino, CommitSDKType } from "./types";
+import { EvidenceList, EvidenceListAmino, EvidenceListSDKType } from "./evidence";
 import * as _m0 from "protobufjs/minimal";
 export interface Block {
     header?: Header;
     data?: Data;
     evidence?: EvidenceList;
     lastCommit?: Commit;
+}
+export interface BlockAmino {
+    header?: HeaderAmino;
+    data?: DataAmino;
+    evidence?: EvidenceListAmino;
+    last_commit?: CommitAmino;
 }
 export interface BlockSDKType {
     header?: HeaderSDKType;
@@ -19,4 +25,6 @@ export declare const Block: {
     fromJSON(object: any): Block;
     toJSON(message: Block): unknown;
     fromPartial(object: Partial<Block>): Block;
+    fromAmino(object: BlockAmino): Block;
+    toAmino(message: Block): BlockAmino;
 };

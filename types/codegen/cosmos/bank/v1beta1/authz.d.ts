@@ -1,4 +1,4 @@
-import { Coin, CoinSDKType } from "../../base/v1beta1/coin";
+import { Coin, CoinAmino, CoinSDKType } from "../../base/v1beta1/coin";
 import * as _m0 from "protobufjs/minimal";
 /**
  * SendAuthorization allows the grantee to spend up to spend_limit coins from
@@ -7,6 +7,7 @@ import * as _m0 from "protobufjs/minimal";
  * Since: cosmos-sdk 0.43
  */
 export interface SendAuthorization {
+    $typeUrl?: string;
     spendLimit: Coin[];
 }
 /**
@@ -15,7 +16,17 @@ export interface SendAuthorization {
  *
  * Since: cosmos-sdk 0.43
  */
+export interface SendAuthorizationAmino {
+    spend_limit: CoinAmino[];
+}
+/**
+ * SendAuthorization allows the grantee to spend up to spend_limit coins from
+ * the granter's account.
+ *
+ * Since: cosmos-sdk 0.43
+ */
 export interface SendAuthorizationSDKType {
+    $typeUrl?: string;
     spend_limit: CoinSDKType[];
 }
 export declare const SendAuthorization: {
@@ -24,4 +35,6 @@ export declare const SendAuthorization: {
     fromJSON(object: any): SendAuthorization;
     toJSON(message: SendAuthorization): unknown;
     fromPartial(object: Partial<SendAuthorization>): SendAuthorization;
+    fromAmino(object: SendAuthorizationAmino): SendAuthorization;
+    toAmino(message: SendAuthorization): SendAuthorizationAmino;
 };

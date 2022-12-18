@@ -1,11 +1,20 @@
-import { PageRequest, PageRequestSDKType, PageResponse, PageResponseSDKType } from "../../base/query/v1beta1/pagination";
-import { Coin, CoinSDKType } from "../../base/v1beta1/coin";
-import { Params, ParamsSDKType, Metadata, MetadataSDKType } from "./bank";
+import { PageRequest, PageRequestAmino, PageRequestSDKType, PageResponse, PageResponseAmino, PageResponseSDKType } from "../../base/query/v1beta1/pagination";
+import { Coin, CoinAmino, CoinSDKType } from "../../base/v1beta1/coin";
+import { Params, ParamsAmino, ParamsSDKType, Metadata, MetadataAmino, MetadataSDKType } from "./bank";
 import * as _m0 from "protobufjs/minimal";
 import { isSet } from "../../../helpers";
 /** QueryBalanceRequest is the request type for the Query/Balance RPC method. */
 
 export interface QueryBalanceRequest {
+  /** address is the address to query balances for. */
+  address: string;
+  /** denom is the coin denom to query balances for. */
+
+  denom: string;
+}
+/** QueryBalanceRequest is the request type for the Query/Balance RPC method. */
+
+export interface QueryBalanceRequestAmino {
   /** address is the address to query balances for. */
   address: string;
   /** denom is the coin denom to query balances for. */
@@ -26,6 +35,12 @@ export interface QueryBalanceResponse {
 }
 /** QueryBalanceResponse is the response type for the Query/Balance RPC method. */
 
+export interface QueryBalanceResponseAmino {
+  /** balance is the balance of the coin. */
+  balance?: CoinAmino;
+}
+/** QueryBalanceResponse is the response type for the Query/Balance RPC method. */
+
 export interface QueryBalanceResponseSDKType {
   balance?: CoinSDKType;
 }
@@ -37,6 +52,15 @@ export interface QueryAllBalancesRequest {
   /** pagination defines an optional pagination for the request. */
 
   pagination?: PageRequest;
+}
+/** QueryBalanceRequest is the request type for the Query/AllBalances RPC method. */
+
+export interface QueryAllBalancesRequestAmino {
+  /** address is the address to query balances for. */
+  address: string;
+  /** pagination defines an optional pagination for the request. */
+
+  pagination?: PageRequestAmino;
 }
 /** QueryBalanceRequest is the request type for the Query/AllBalances RPC method. */
 
@@ -61,6 +85,18 @@ export interface QueryAllBalancesResponse {
  * method.
  */
 
+export interface QueryAllBalancesResponseAmino {
+  /** balances is the balances of all the coins. */
+  balances: CoinAmino[];
+  /** pagination defines the pagination in the response. */
+
+  pagination?: PageResponseAmino;
+}
+/**
+ * QueryAllBalancesResponse is the response type for the Query/AllBalances RPC
+ * method.
+ */
+
 export interface QueryAllBalancesResponseSDKType {
   balances: CoinSDKType[];
   pagination?: PageResponseSDKType;
@@ -78,6 +114,20 @@ export interface QuerySpendableBalancesRequest {
   /** pagination defines an optional pagination for the request. */
 
   pagination?: PageRequest;
+}
+/**
+ * QuerySpendableBalancesRequest defines the gRPC request structure for querying
+ * an account's spendable balances.
+ * 
+ * Since: cosmos-sdk 0.46
+ */
+
+export interface QuerySpendableBalancesRequestAmino {
+  /** address is the address to query spendable balances for. */
+  address: string;
+  /** pagination defines an optional pagination for the request. */
+
+  pagination?: PageRequestAmino;
 }
 /**
  * QuerySpendableBalancesRequest defines the gRPC request structure for querying
@@ -111,6 +161,20 @@ export interface QuerySpendableBalancesResponse {
  * Since: cosmos-sdk 0.46
  */
 
+export interface QuerySpendableBalancesResponseAmino {
+  /** balances is the spendable balances of all the coins. */
+  balances: CoinAmino[];
+  /** pagination defines the pagination in the response. */
+
+  pagination?: PageResponseAmino;
+}
+/**
+ * QuerySpendableBalancesResponse defines the gRPC response structure for querying
+ * an account's spendable balances.
+ * 
+ * Since: cosmos-sdk 0.46
+ */
+
 export interface QuerySpendableBalancesResponseSDKType {
   balances: CoinSDKType[];
   pagination?: PageResponseSDKType;
@@ -127,6 +191,19 @@ export interface QueryTotalSupplyRequest {
    * Since: cosmos-sdk 0.43
    */
   pagination?: PageRequest;
+}
+/**
+ * QueryTotalSupplyRequest is the request type for the Query/TotalSupply RPC
+ * method.
+ */
+
+export interface QueryTotalSupplyRequestAmino {
+  /**
+   * pagination defines an optional pagination for the request.
+   * 
+   * Since: cosmos-sdk 0.43
+   */
+  pagination?: PageRequestAmino;
 }
 /**
  * QueryTotalSupplyRequest is the request type for the Query/TotalSupply RPC
@@ -157,6 +234,22 @@ export interface QueryTotalSupplyResponse {
  * method
  */
 
+export interface QueryTotalSupplyResponseAmino {
+  /** supply is the supply of the coins */
+  supply: CoinAmino[];
+  /**
+   * pagination defines the pagination in the response.
+   * 
+   * Since: cosmos-sdk 0.43
+   */
+
+  pagination?: PageResponseAmino;
+}
+/**
+ * QueryTotalSupplyResponse is the response type for the Query/TotalSupply RPC
+ * method
+ */
+
 export interface QueryTotalSupplyResponseSDKType {
   supply: CoinSDKType[];
   pagination?: PageResponseSDKType;
@@ -164,6 +257,12 @@ export interface QueryTotalSupplyResponseSDKType {
 /** QuerySupplyOfRequest is the request type for the Query/SupplyOf RPC method. */
 
 export interface QuerySupplyOfRequest {
+  /** denom is the coin denom to query balances for. */
+  denom: string;
+}
+/** QuerySupplyOfRequest is the request type for the Query/SupplyOf RPC method. */
+
+export interface QuerySupplyOfRequestAmino {
   /** denom is the coin denom to query balances for. */
   denom: string;
 }
@@ -180,6 +279,12 @@ export interface QuerySupplyOfResponse {
 }
 /** QuerySupplyOfResponse is the response type for the Query/SupplyOf RPC method. */
 
+export interface QuerySupplyOfResponseAmino {
+  /** amount is the supply of the coin. */
+  amount?: CoinAmino;
+}
+/** QuerySupplyOfResponse is the response type for the Query/SupplyOf RPC method. */
+
 export interface QuerySupplyOfResponseSDKType {
   amount?: CoinSDKType;
 }
@@ -188,11 +293,19 @@ export interface QuerySupplyOfResponseSDKType {
 export interface QueryParamsRequest {}
 /** QueryParamsRequest defines the request type for querying x/bank parameters. */
 
+export interface QueryParamsRequestAmino {}
+/** QueryParamsRequest defines the request type for querying x/bank parameters. */
+
 export interface QueryParamsRequestSDKType {}
 /** QueryParamsResponse defines the response type for querying x/bank parameters. */
 
 export interface QueryParamsResponse {
   params?: Params;
+}
+/** QueryParamsResponse defines the response type for querying x/bank parameters. */
+
+export interface QueryParamsResponseAmino {
+  params?: ParamsAmino;
 }
 /** QueryParamsResponse defines the response type for querying x/bank parameters. */
 
@@ -204,6 +317,12 @@ export interface QueryParamsResponseSDKType {
 export interface QueryDenomsMetadataRequest {
   /** pagination defines an optional pagination for the request. */
   pagination?: PageRequest;
+}
+/** QueryDenomsMetadataRequest is the request type for the Query/DenomsMetadata RPC method. */
+
+export interface QueryDenomsMetadataRequestAmino {
+  /** pagination defines an optional pagination for the request. */
+  pagination?: PageRequestAmino;
 }
 /** QueryDenomsMetadataRequest is the request type for the Query/DenomsMetadata RPC method. */
 
@@ -227,6 +346,18 @@ export interface QueryDenomsMetadataResponse {
  * method.
  */
 
+export interface QueryDenomsMetadataResponseAmino {
+  /** metadata provides the client information for all the registered tokens. */
+  metadatas: MetadataAmino[];
+  /** pagination defines the pagination in the response. */
+
+  pagination?: PageResponseAmino;
+}
+/**
+ * QueryDenomsMetadataResponse is the response type for the Query/DenomsMetadata RPC
+ * method.
+ */
+
 export interface QueryDenomsMetadataResponseSDKType {
   metadatas: MetadataSDKType[];
   pagination?: PageResponseSDKType;
@@ -234,6 +365,12 @@ export interface QueryDenomsMetadataResponseSDKType {
 /** QueryDenomMetadataRequest is the request type for the Query/DenomMetadata RPC method. */
 
 export interface QueryDenomMetadataRequest {
+  /** denom is the coin denom to query the metadata for. */
+  denom: string;
+}
+/** QueryDenomMetadataRequest is the request type for the Query/DenomMetadata RPC method. */
+
+export interface QueryDenomMetadataRequestAmino {
   /** denom is the coin denom to query the metadata for. */
   denom: string;
 }
@@ -256,6 +393,15 @@ export interface QueryDenomMetadataResponse {
  * method.
  */
 
+export interface QueryDenomMetadataResponseAmino {
+  /** metadata describes and provides all the client information for the requested token. */
+  metadata?: MetadataAmino;
+}
+/**
+ * QueryDenomMetadataResponse is the response type for the Query/DenomMetadata RPC
+ * method.
+ */
+
 export interface QueryDenomMetadataResponseSDKType {
   metadata?: MetadataSDKType;
 }
@@ -271,6 +417,19 @@ export interface QueryDenomOwnersRequest {
   /** pagination defines an optional pagination for the request. */
 
   pagination?: PageRequest;
+}
+/**
+ * QueryDenomOwnersRequest defines the request type for the DenomOwners RPC query,
+ * which queries for a paginated set of all account holders of a particular
+ * denomination.
+ */
+
+export interface QueryDenomOwnersRequestAmino {
+  /** denom defines the coin denomination to query all account holders for. */
+  denom: string;
+  /** pagination defines an optional pagination for the request. */
+
+  pagination?: PageRequestAmino;
 }
 /**
  * QueryDenomOwnersRequest defines the request type for the DenomOwners RPC query,
@@ -305,6 +464,21 @@ export interface DenomOwner {
  * Since: cosmos-sdk 0.46
  */
 
+export interface DenomOwnerAmino {
+  /** address defines the address that owns a particular denomination. */
+  address: string;
+  /** balance is the balance of the denominated coin for an account. */
+
+  balance?: CoinAmino;
+}
+/**
+ * DenomOwner defines structure representing an account that owns or holds a
+ * particular denominated token. It contains the account address and account
+ * balance of the denominated token.
+ * 
+ * Since: cosmos-sdk 0.46
+ */
+
 export interface DenomOwnerSDKType {
   address: string;
   balance?: CoinSDKType;
@@ -320,6 +494,18 @@ export interface QueryDenomOwnersResponse {
   /** pagination defines the pagination in the response. */
 
   pagination?: PageResponse;
+}
+/**
+ * QueryDenomOwnersResponse defines the RPC response of a DenomOwners RPC query.
+ * 
+ * Since: cosmos-sdk 0.46
+ */
+
+export interface QueryDenomOwnersResponseAmino {
+  denom_owners: DenomOwnerAmino[];
+  /** pagination defines the pagination in the response. */
+
+  pagination?: PageResponseAmino;
 }
 /**
  * QueryDenomOwnersResponse defines the RPC response of a DenomOwners RPC query.
@@ -397,6 +583,20 @@ export const QueryBalanceRequest = {
     message.address = object.address ?? "";
     message.denom = object.denom ?? "";
     return message;
+  },
+
+  fromAmino(object: QueryBalanceRequestAmino): QueryBalanceRequest {
+    return {
+      address: object.address,
+      denom: object.denom
+    };
+  },
+
+  toAmino(message: QueryBalanceRequest): QueryBalanceRequestAmino {
+    const obj: any = {};
+    obj.address = message.address;
+    obj.denom = message.denom;
+    return obj;
   }
 
 };
@@ -454,6 +654,18 @@ export const QueryBalanceResponse = {
     const message = createBaseQueryBalanceResponse();
     message.balance = object.balance !== undefined && object.balance !== null ? Coin.fromPartial(object.balance) : undefined;
     return message;
+  },
+
+  fromAmino(object: QueryBalanceResponseAmino): QueryBalanceResponse {
+    return {
+      balance: object?.balance ? Coin.fromAmino(object.balance) : undefined
+    };
+  },
+
+  toAmino(message: QueryBalanceResponse): QueryBalanceResponseAmino {
+    const obj: any = {};
+    obj.balance = message.balance ? Coin.toAmino(message.balance) : undefined;
+    return obj;
   }
 
 };
@@ -523,6 +735,20 @@ export const QueryAllBalancesRequest = {
     message.address = object.address ?? "";
     message.pagination = object.pagination !== undefined && object.pagination !== null ? PageRequest.fromPartial(object.pagination) : undefined;
     return message;
+  },
+
+  fromAmino(object: QueryAllBalancesRequestAmino): QueryAllBalancesRequest {
+    return {
+      address: object.address,
+      pagination: object?.pagination ? PageRequest.fromAmino(object.pagination) : undefined
+    };
+  },
+
+  toAmino(message: QueryAllBalancesRequest): QueryAllBalancesRequestAmino {
+    const obj: any = {};
+    obj.address = message.address;
+    obj.pagination = message.pagination ? PageRequest.toAmino(message.pagination) : undefined;
+    return obj;
   }
 
 };
@@ -598,6 +824,26 @@ export const QueryAllBalancesResponse = {
     message.balances = object.balances?.map(e => Coin.fromPartial(e)) || [];
     message.pagination = object.pagination !== undefined && object.pagination !== null ? PageResponse.fromPartial(object.pagination) : undefined;
     return message;
+  },
+
+  fromAmino(object: QueryAllBalancesResponseAmino): QueryAllBalancesResponse {
+    return {
+      balances: Array.isArray(object?.balances) ? object.balances.map((e: any) => Coin.fromAmino(e)) : [],
+      pagination: object?.pagination ? PageResponse.fromAmino(object.pagination) : undefined
+    };
+  },
+
+  toAmino(message: QueryAllBalancesResponse): QueryAllBalancesResponseAmino {
+    const obj: any = {};
+
+    if (message.balances) {
+      obj.balances = message.balances.map(e => e ? Coin.toAmino(e) : undefined);
+    } else {
+      obj.balances = [];
+    }
+
+    obj.pagination = message.pagination ? PageResponse.toAmino(message.pagination) : undefined;
+    return obj;
   }
 
 };
@@ -667,6 +913,20 @@ export const QuerySpendableBalancesRequest = {
     message.address = object.address ?? "";
     message.pagination = object.pagination !== undefined && object.pagination !== null ? PageRequest.fromPartial(object.pagination) : undefined;
     return message;
+  },
+
+  fromAmino(object: QuerySpendableBalancesRequestAmino): QuerySpendableBalancesRequest {
+    return {
+      address: object.address,
+      pagination: object?.pagination ? PageRequest.fromAmino(object.pagination) : undefined
+    };
+  },
+
+  toAmino(message: QuerySpendableBalancesRequest): QuerySpendableBalancesRequestAmino {
+    const obj: any = {};
+    obj.address = message.address;
+    obj.pagination = message.pagination ? PageRequest.toAmino(message.pagination) : undefined;
+    return obj;
   }
 
 };
@@ -742,6 +1002,26 @@ export const QuerySpendableBalancesResponse = {
     message.balances = object.balances?.map(e => Coin.fromPartial(e)) || [];
     message.pagination = object.pagination !== undefined && object.pagination !== null ? PageResponse.fromPartial(object.pagination) : undefined;
     return message;
+  },
+
+  fromAmino(object: QuerySpendableBalancesResponseAmino): QuerySpendableBalancesResponse {
+    return {
+      balances: Array.isArray(object?.balances) ? object.balances.map((e: any) => Coin.fromAmino(e)) : [],
+      pagination: object?.pagination ? PageResponse.fromAmino(object.pagination) : undefined
+    };
+  },
+
+  toAmino(message: QuerySpendableBalancesResponse): QuerySpendableBalancesResponseAmino {
+    const obj: any = {};
+
+    if (message.balances) {
+      obj.balances = message.balances.map(e => e ? Coin.toAmino(e) : undefined);
+    } else {
+      obj.balances = [];
+    }
+
+    obj.pagination = message.pagination ? PageResponse.toAmino(message.pagination) : undefined;
+    return obj;
   }
 
 };
@@ -799,6 +1079,18 @@ export const QueryTotalSupplyRequest = {
     const message = createBaseQueryTotalSupplyRequest();
     message.pagination = object.pagination !== undefined && object.pagination !== null ? PageRequest.fromPartial(object.pagination) : undefined;
     return message;
+  },
+
+  fromAmino(object: QueryTotalSupplyRequestAmino): QueryTotalSupplyRequest {
+    return {
+      pagination: object?.pagination ? PageRequest.fromAmino(object.pagination) : undefined
+    };
+  },
+
+  toAmino(message: QueryTotalSupplyRequest): QueryTotalSupplyRequestAmino {
+    const obj: any = {};
+    obj.pagination = message.pagination ? PageRequest.toAmino(message.pagination) : undefined;
+    return obj;
   }
 
 };
@@ -874,6 +1166,26 @@ export const QueryTotalSupplyResponse = {
     message.supply = object.supply?.map(e => Coin.fromPartial(e)) || [];
     message.pagination = object.pagination !== undefined && object.pagination !== null ? PageResponse.fromPartial(object.pagination) : undefined;
     return message;
+  },
+
+  fromAmino(object: QueryTotalSupplyResponseAmino): QueryTotalSupplyResponse {
+    return {
+      supply: Array.isArray(object?.supply) ? object.supply.map((e: any) => Coin.fromAmino(e)) : [],
+      pagination: object?.pagination ? PageResponse.fromAmino(object.pagination) : undefined
+    };
+  },
+
+  toAmino(message: QueryTotalSupplyResponse): QueryTotalSupplyResponseAmino {
+    const obj: any = {};
+
+    if (message.supply) {
+      obj.supply = message.supply.map(e => e ? Coin.toAmino(e) : undefined);
+    } else {
+      obj.supply = [];
+    }
+
+    obj.pagination = message.pagination ? PageResponse.toAmino(message.pagination) : undefined;
+    return obj;
   }
 
 };
@@ -931,6 +1243,18 @@ export const QuerySupplyOfRequest = {
     const message = createBaseQuerySupplyOfRequest();
     message.denom = object.denom ?? "";
     return message;
+  },
+
+  fromAmino(object: QuerySupplyOfRequestAmino): QuerySupplyOfRequest {
+    return {
+      denom: object.denom
+    };
+  },
+
+  toAmino(message: QuerySupplyOfRequest): QuerySupplyOfRequestAmino {
+    const obj: any = {};
+    obj.denom = message.denom;
+    return obj;
   }
 
 };
@@ -988,6 +1312,18 @@ export const QuerySupplyOfResponse = {
     const message = createBaseQuerySupplyOfResponse();
     message.amount = object.amount !== undefined && object.amount !== null ? Coin.fromPartial(object.amount) : undefined;
     return message;
+  },
+
+  fromAmino(object: QuerySupplyOfResponseAmino): QuerySupplyOfResponse {
+    return {
+      amount: object?.amount ? Coin.fromAmino(object.amount) : undefined
+    };
+  },
+
+  toAmino(message: QuerySupplyOfResponse): QuerySupplyOfResponseAmino {
+    const obj: any = {};
+    obj.amount = message.amount ? Coin.toAmino(message.amount) : undefined;
+    return obj;
   }
 
 };
@@ -1031,6 +1367,15 @@ export const QueryParamsRequest = {
   fromPartial(_: Partial<QueryParamsRequest>): QueryParamsRequest {
     const message = createBaseQueryParamsRequest();
     return message;
+  },
+
+  fromAmino(_: QueryParamsRequestAmino): QueryParamsRequest {
+    return {};
+  },
+
+  toAmino(_: QueryParamsRequest): QueryParamsRequestAmino {
+    const obj: any = {};
+    return obj;
   }
 
 };
@@ -1088,6 +1433,18 @@ export const QueryParamsResponse = {
     const message = createBaseQueryParamsResponse();
     message.params = object.params !== undefined && object.params !== null ? Params.fromPartial(object.params) : undefined;
     return message;
+  },
+
+  fromAmino(object: QueryParamsResponseAmino): QueryParamsResponse {
+    return {
+      params: object?.params ? Params.fromAmino(object.params) : undefined
+    };
+  },
+
+  toAmino(message: QueryParamsResponse): QueryParamsResponseAmino {
+    const obj: any = {};
+    obj.params = message.params ? Params.toAmino(message.params) : undefined;
+    return obj;
   }
 
 };
@@ -1145,6 +1502,18 @@ export const QueryDenomsMetadataRequest = {
     const message = createBaseQueryDenomsMetadataRequest();
     message.pagination = object.pagination !== undefined && object.pagination !== null ? PageRequest.fromPartial(object.pagination) : undefined;
     return message;
+  },
+
+  fromAmino(object: QueryDenomsMetadataRequestAmino): QueryDenomsMetadataRequest {
+    return {
+      pagination: object?.pagination ? PageRequest.fromAmino(object.pagination) : undefined
+    };
+  },
+
+  toAmino(message: QueryDenomsMetadataRequest): QueryDenomsMetadataRequestAmino {
+    const obj: any = {};
+    obj.pagination = message.pagination ? PageRequest.toAmino(message.pagination) : undefined;
+    return obj;
   }
 
 };
@@ -1220,6 +1589,26 @@ export const QueryDenomsMetadataResponse = {
     message.metadatas = object.metadatas?.map(e => Metadata.fromPartial(e)) || [];
     message.pagination = object.pagination !== undefined && object.pagination !== null ? PageResponse.fromPartial(object.pagination) : undefined;
     return message;
+  },
+
+  fromAmino(object: QueryDenomsMetadataResponseAmino): QueryDenomsMetadataResponse {
+    return {
+      metadatas: Array.isArray(object?.metadatas) ? object.metadatas.map((e: any) => Metadata.fromAmino(e)) : [],
+      pagination: object?.pagination ? PageResponse.fromAmino(object.pagination) : undefined
+    };
+  },
+
+  toAmino(message: QueryDenomsMetadataResponse): QueryDenomsMetadataResponseAmino {
+    const obj: any = {};
+
+    if (message.metadatas) {
+      obj.metadatas = message.metadatas.map(e => e ? Metadata.toAmino(e) : undefined);
+    } else {
+      obj.metadatas = [];
+    }
+
+    obj.pagination = message.pagination ? PageResponse.toAmino(message.pagination) : undefined;
+    return obj;
   }
 
 };
@@ -1277,6 +1666,18 @@ export const QueryDenomMetadataRequest = {
     const message = createBaseQueryDenomMetadataRequest();
     message.denom = object.denom ?? "";
     return message;
+  },
+
+  fromAmino(object: QueryDenomMetadataRequestAmino): QueryDenomMetadataRequest {
+    return {
+      denom: object.denom
+    };
+  },
+
+  toAmino(message: QueryDenomMetadataRequest): QueryDenomMetadataRequestAmino {
+    const obj: any = {};
+    obj.denom = message.denom;
+    return obj;
   }
 
 };
@@ -1334,6 +1735,18 @@ export const QueryDenomMetadataResponse = {
     const message = createBaseQueryDenomMetadataResponse();
     message.metadata = object.metadata !== undefined && object.metadata !== null ? Metadata.fromPartial(object.metadata) : undefined;
     return message;
+  },
+
+  fromAmino(object: QueryDenomMetadataResponseAmino): QueryDenomMetadataResponse {
+    return {
+      metadata: object?.metadata ? Metadata.fromAmino(object.metadata) : undefined
+    };
+  },
+
+  toAmino(message: QueryDenomMetadataResponse): QueryDenomMetadataResponseAmino {
+    const obj: any = {};
+    obj.metadata = message.metadata ? Metadata.toAmino(message.metadata) : undefined;
+    return obj;
   }
 
 };
@@ -1403,6 +1816,20 @@ export const QueryDenomOwnersRequest = {
     message.denom = object.denom ?? "";
     message.pagination = object.pagination !== undefined && object.pagination !== null ? PageRequest.fromPartial(object.pagination) : undefined;
     return message;
+  },
+
+  fromAmino(object: QueryDenomOwnersRequestAmino): QueryDenomOwnersRequest {
+    return {
+      denom: object.denom,
+      pagination: object?.pagination ? PageRequest.fromAmino(object.pagination) : undefined
+    };
+  },
+
+  toAmino(message: QueryDenomOwnersRequest): QueryDenomOwnersRequestAmino {
+    const obj: any = {};
+    obj.denom = message.denom;
+    obj.pagination = message.pagination ? PageRequest.toAmino(message.pagination) : undefined;
+    return obj;
   }
 
 };
@@ -1472,6 +1899,20 @@ export const DenomOwner = {
     message.address = object.address ?? "";
     message.balance = object.balance !== undefined && object.balance !== null ? Coin.fromPartial(object.balance) : undefined;
     return message;
+  },
+
+  fromAmino(object: DenomOwnerAmino): DenomOwner {
+    return {
+      address: object.address,
+      balance: object?.balance ? Coin.fromAmino(object.balance) : undefined
+    };
+  },
+
+  toAmino(message: DenomOwner): DenomOwnerAmino {
+    const obj: any = {};
+    obj.address = message.address;
+    obj.balance = message.balance ? Coin.toAmino(message.balance) : undefined;
+    return obj;
   }
 
 };
@@ -1547,6 +1988,26 @@ export const QueryDenomOwnersResponse = {
     message.denomOwners = object.denomOwners?.map(e => DenomOwner.fromPartial(e)) || [];
     message.pagination = object.pagination !== undefined && object.pagination !== null ? PageResponse.fromPartial(object.pagination) : undefined;
     return message;
+  },
+
+  fromAmino(object: QueryDenomOwnersResponseAmino): QueryDenomOwnersResponse {
+    return {
+      denomOwners: Array.isArray(object?.denom_owners) ? object.denom_owners.map((e: any) => DenomOwner.fromAmino(e)) : [],
+      pagination: object?.pagination ? PageResponse.fromAmino(object.pagination) : undefined
+    };
+  },
+
+  toAmino(message: QueryDenomOwnersResponse): QueryDenomOwnersResponseAmino {
+    const obj: any = {};
+
+    if (message.denomOwners) {
+      obj.denom_owners = message.denomOwners.map(e => e ? DenomOwner.toAmino(e) : undefined);
+    } else {
+      obj.denom_owners = [];
+    }
+
+    obj.pagination = message.pagination ? PageResponse.toAmino(message.pagination) : undefined;
+    return obj;
   }
 
 };

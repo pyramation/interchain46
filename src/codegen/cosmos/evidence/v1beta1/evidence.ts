@@ -1,4 +1,4 @@
-import { Timestamp, TimestampSDKType } from "../../../google/protobuf/timestamp";
+import { Timestamp, TimestampAmino, TimestampSDKType } from "../../../google/protobuf/timestamp";
 import { Long, isSet, fromJsonTimestamp, fromTimestamp } from "../../../helpers";
 import * as _m0 from "protobufjs/minimal";
 /**
@@ -11,6 +11,17 @@ export interface Equivocation {
   time?: Timestamp;
   power: Long;
   consensusAddress: string;
+}
+/**
+ * Equivocation implements the Evidence interface and defines evidence of double
+ * signing misbehavior.
+ */
+
+export interface EquivocationAmino {
+  height: string;
+  time?: TimestampAmino;
+  power: string;
+  consensus_address: string;
 }
 /**
  * Equivocation implements the Evidence interface and defines evidence of double
@@ -113,6 +124,24 @@ export const Equivocation = {
     message.power = object.power !== undefined && object.power !== null ? Long.fromValue(object.power) : Long.ZERO;
     message.consensusAddress = object.consensusAddress ?? "";
     return message;
+  },
+
+  fromAmino(object: EquivocationAmino): Equivocation {
+    return {
+      height: Long.fromString(object.height),
+      time: object?.time ? Timestamp.fromAmino(object.time) : undefined,
+      power: Long.fromString(object.power),
+      consensusAddress: object.consensus_address
+    };
+  },
+
+  toAmino(message: Equivocation): EquivocationAmino {
+    const obj: any = {};
+    obj.height = message.height ? message.height.toString() : undefined;
+    obj.time = message.time ? Timestamp.toAmino(message.time) : undefined;
+    obj.power = message.power ? message.power.toString() : undefined;
+    obj.consensus_address = message.consensusAddress;
+    return obj;
   }
 
 };

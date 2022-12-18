@@ -1,4 +1,4 @@
-import { CapabilityOwners, CapabilityOwnersSDKType } from "./capability";
+import { CapabilityOwners, CapabilityOwnersAmino, CapabilityOwnersSDKType } from "./capability";
 import { Long } from "../../../helpers";
 import * as _m0 from "protobufjs/minimal";
 /** GenesisOwners defines the capability owners with their corresponding index. */
@@ -7,6 +7,13 @@ export interface GenesisOwners {
     index: Long;
     /** index_owners are the owners at the given index. */
     indexOwners?: CapabilityOwners;
+}
+/** GenesisOwners defines the capability owners with their corresponding index. */
+export interface GenesisOwnersAmino {
+    /** index is the index of the capability owner. */
+    index: string;
+    /** index_owners are the owners at the given index. */
+    index_owners?: CapabilityOwnersAmino;
 }
 /** GenesisOwners defines the capability owners with their corresponding index. */
 export interface GenesisOwnersSDKType {
@@ -24,6 +31,16 @@ export interface GenesisState {
     owners: GenesisOwners[];
 }
 /** GenesisState defines the capability module's genesis state. */
+export interface GenesisStateAmino {
+    /** index is the capability global index. */
+    index: string;
+    /**
+     * owners represents a map from index to owners of the capability index
+     * index key is string to allow amino marshalling.
+     */
+    owners: GenesisOwnersAmino[];
+}
+/** GenesisState defines the capability module's genesis state. */
 export interface GenesisStateSDKType {
     index: Long;
     owners: GenesisOwnersSDKType[];
@@ -34,6 +51,8 @@ export declare const GenesisOwners: {
     fromJSON(object: any): GenesisOwners;
     toJSON(message: GenesisOwners): unknown;
     fromPartial(object: Partial<GenesisOwners>): GenesisOwners;
+    fromAmino(object: GenesisOwnersAmino): GenesisOwners;
+    toAmino(message: GenesisOwners): GenesisOwnersAmino;
 };
 export declare const GenesisState: {
     encode(message: GenesisState, writer?: _m0.Writer): _m0.Writer;
@@ -41,4 +60,6 @@ export declare const GenesisState: {
     fromJSON(object: any): GenesisState;
     toJSON(message: GenesisState): unknown;
     fromPartial(object: Partial<GenesisState>): GenesisState;
+    fromAmino(object: GenesisStateAmino): GenesisState;
+    toAmino(message: GenesisState): GenesisStateAmino;
 };

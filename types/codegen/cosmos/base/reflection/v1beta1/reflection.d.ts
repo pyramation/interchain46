@@ -3,12 +3,20 @@ import * as _m0 from "protobufjs/minimal";
 export interface ListAllInterfacesRequest {
 }
 /** ListAllInterfacesRequest is the request type of the ListAllInterfaces RPC. */
+export interface ListAllInterfacesRequestAmino {
+}
+/** ListAllInterfacesRequest is the request type of the ListAllInterfaces RPC. */
 export interface ListAllInterfacesRequestSDKType {
 }
 /** ListAllInterfacesResponse is the response type of the ListAllInterfaces RPC. */
 export interface ListAllInterfacesResponse {
     /** interface_names is an array of all the registered interfaces. */
     interfaceNames: string[];
+}
+/** ListAllInterfacesResponse is the response type of the ListAllInterfaces RPC. */
+export interface ListAllInterfacesResponseAmino {
+    /** interface_names is an array of all the registered interfaces. */
+    interface_names: string[];
 }
 /** ListAllInterfacesResponse is the response type of the ListAllInterfaces RPC. */
 export interface ListAllInterfacesResponseSDKType {
@@ -21,6 +29,14 @@ export interface ListAllInterfacesResponseSDKType {
 export interface ListImplementationsRequest {
     /** interface_name defines the interface to query the implementations for. */
     interfaceName: string;
+}
+/**
+ * ListImplementationsRequest is the request type of the ListImplementations
+ * RPC.
+ */
+export interface ListImplementationsRequestAmino {
+    /** interface_name defines the interface to query the implementations for. */
+    interface_name: string;
 }
 /**
  * ListImplementationsRequest is the request type of the ListImplementations
@@ -40,6 +56,13 @@ export interface ListImplementationsResponse {
  * ListImplementationsResponse is the response type of the ListImplementations
  * RPC.
  */
+export interface ListImplementationsResponseAmino {
+    implementation_message_names: string[];
+}
+/**
+ * ListImplementationsResponse is the response type of the ListImplementations
+ * RPC.
+ */
 export interface ListImplementationsResponseSDKType {
     implementation_message_names: string[];
 }
@@ -49,6 +72,8 @@ export declare const ListAllInterfacesRequest: {
     fromJSON(_: any): ListAllInterfacesRequest;
     toJSON(_: ListAllInterfacesRequest): unknown;
     fromPartial(_: Partial<ListAllInterfacesRequest>): ListAllInterfacesRequest;
+    fromAmino(_: ListAllInterfacesRequestAmino): ListAllInterfacesRequest;
+    toAmino(_: ListAllInterfacesRequest): ListAllInterfacesRequestAmino;
 };
 export declare const ListAllInterfacesResponse: {
     encode(message: ListAllInterfacesResponse, writer?: _m0.Writer): _m0.Writer;
@@ -56,6 +81,8 @@ export declare const ListAllInterfacesResponse: {
     fromJSON(object: any): ListAllInterfacesResponse;
     toJSON(message: ListAllInterfacesResponse): unknown;
     fromPartial(object: Partial<ListAllInterfacesResponse>): ListAllInterfacesResponse;
+    fromAmino(object: ListAllInterfacesResponseAmino): ListAllInterfacesResponse;
+    toAmino(message: ListAllInterfacesResponse): ListAllInterfacesResponseAmino;
 };
 export declare const ListImplementationsRequest: {
     encode(message: ListImplementationsRequest, writer?: _m0.Writer): _m0.Writer;
@@ -63,6 +90,8 @@ export declare const ListImplementationsRequest: {
     fromJSON(object: any): ListImplementationsRequest;
     toJSON(message: ListImplementationsRequest): unknown;
     fromPartial(object: Partial<ListImplementationsRequest>): ListImplementationsRequest;
+    fromAmino(object: ListImplementationsRequestAmino): ListImplementationsRequest;
+    toAmino(message: ListImplementationsRequest): ListImplementationsRequestAmino;
 };
 export declare const ListImplementationsResponse: {
     encode(message: ListImplementationsResponse, writer?: _m0.Writer): _m0.Writer;
@@ -70,4 +99,6 @@ export declare const ListImplementationsResponse: {
     fromJSON(object: any): ListImplementationsResponse;
     toJSON(message: ListImplementationsResponse): unknown;
     fromPartial(object: Partial<ListImplementationsResponse>): ListImplementationsResponse;
+    fromAmino(object: ListImplementationsResponseAmino): ListImplementationsResponse;
+    toAmino(message: ListImplementationsResponse): ListImplementationsResponseAmino;
 };

@@ -1,4 +1,4 @@
-import { Coin, CoinSDKType } from "../../base/v1beta1/coin";
+import { Coin, CoinAmino, CoinSDKType } from "../../base/v1beta1/coin";
 import * as _m0 from "protobufjs/minimal";
 import { isSet } from "../../../helpers";
 /**
@@ -22,6 +22,7 @@ export enum AuthorizationType {
   UNRECOGNIZED = -1,
 }
 export const AuthorizationTypeSDKType = AuthorizationType;
+export const AuthorizationTypeAmino = AuthorizationType;
 export function authorizationTypeFromJSON(object: any): AuthorizationType {
   switch (object) {
     case 0:
@@ -72,10 +73,12 @@ export function authorizationTypeToJSON(object: AuthorizationType): string {
  */
 
 export interface StakeAuthorization {
+  $typeUrl?: string;
   /**
    * max_tokens specifies the maximum amount of tokens can be delegate to a validator. If it is
    * empty, there is no spend limit and any amount of coins can be delegated.
    */
+
   maxTokens?: Coin;
   /**
    * allow_list specifies list of validator addresses to whom grantee can delegate tokens on behalf of granter's
@@ -96,7 +99,33 @@ export interface StakeAuthorization {
  * Since: cosmos-sdk 0.43
  */
 
+export interface StakeAuthorizationAmino {
+  /**
+   * max_tokens specifies the maximum amount of tokens can be delegate to a validator. If it is
+   * empty, there is no spend limit and any amount of coins can be delegated.
+   */
+  max_tokens?: CoinAmino;
+  /**
+   * allow_list specifies list of validator addresses to whom grantee can delegate tokens on behalf of granter's
+   * account.
+   */
+
+  allow_list?: StakeAuthorization_ValidatorsAmino;
+  /** deny_list specifies list of validator addresses to whom grantee can not delegate tokens. */
+
+  deny_list?: StakeAuthorization_ValidatorsAmino;
+  /** authorization_type defines one of AuthorizationType. */
+
+  authorization_type: AuthorizationType;
+}
+/**
+ * StakeAuthorization defines authorization for delegate/undelegate/redelegate.
+ * 
+ * Since: cosmos-sdk 0.43
+ */
+
 export interface StakeAuthorizationSDKType {
+  $typeUrl?: string;
   max_tokens?: CoinSDKType;
   allow_list?: StakeAuthorization_ValidatorsSDKType;
   deny_list?: StakeAuthorization_ValidatorsSDKType;
@@ -109,12 +138,18 @@ export interface StakeAuthorization_Validators {
 }
 /** Validators defines list of validator addresses. */
 
+export interface StakeAuthorization_ValidatorsAmino {
+  address: string[];
+}
+/** Validators defines list of validator addresses. */
+
 export interface StakeAuthorization_ValidatorsSDKType {
   address: string[];
 }
 
 function createBaseStakeAuthorization(): StakeAuthorization {
   return {
+    $typeUrl: "/cosmos.staking.v1beta1.StakeAuthorization",
     maxTokens: undefined,
     allowList: undefined,
     denyList: undefined,
@@ -202,6 +237,24 @@ export const StakeAuthorization = {
     message.denyList = object.denyList !== undefined && object.denyList !== null ? StakeAuthorization_Validators.fromPartial(object.denyList) : undefined;
     message.authorizationType = object.authorizationType ?? 0;
     return message;
+  },
+
+  fromAmino(object: StakeAuthorizationAmino): StakeAuthorization {
+    return {
+      maxTokens: object?.max_tokens ? Coin.fromAmino(object.max_tokens) : undefined,
+      allowList: object?.allow_list ? StakeAuthorization_Validators.fromAmino(object.allow_list) : undefined,
+      denyList: object?.deny_list ? StakeAuthorization_Validators.fromAmino(object.deny_list) : undefined,
+      authorizationType: isSet(object.authorization_type) ? authorizationTypeFromJSON(object.authorization_type) : 0
+    };
+  },
+
+  toAmino(message: StakeAuthorization): StakeAuthorizationAmino {
+    const obj: any = {};
+    obj.max_tokens = message.maxTokens ? Coin.toAmino(message.maxTokens) : undefined;
+    obj.allow_list = message.allowList ? StakeAuthorization_Validators.toAmino(message.allowList) : undefined;
+    obj.deny_list = message.denyList ? StakeAuthorization_Validators.toAmino(message.denyList) : undefined;
+    message.authorizationType !== undefined && (obj.authorization_type = authorizationTypeToJSON(message.authorizationType));
+    return obj;
   }
 
 };
@@ -265,6 +318,24 @@ export const StakeAuthorization_Validators = {
     const message = createBaseStakeAuthorization_Validators();
     message.address = object.address?.map(e => e) || [];
     return message;
+  },
+
+  fromAmino(object: StakeAuthorization_ValidatorsAmino): StakeAuthorization_Validators {
+    return {
+      address: Array.isArray(object?.address) ? object.address.map((e: any) => e) : []
+    };
+  },
+
+  toAmino(message: StakeAuthorization_Validators): StakeAuthorization_ValidatorsAmino {
+    const obj: any = {};
+
+    if (message.address) {
+      obj.address = message.address.map(e => e);
+    } else {
+      obj.address = [];
+    }
+
+    return obj;
   }
 
 };

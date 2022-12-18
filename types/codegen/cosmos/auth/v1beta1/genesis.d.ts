@@ -1,5 +1,5 @@
-import { Params, ParamsSDKType } from "./auth";
-import { Any, AnySDKType } from "../../../google/protobuf/any";
+import { Params, ParamsAmino, ParamsSDKType } from "./auth";
+import { Any, AnyAmino, AnySDKType } from "../../../google/protobuf/any";
 import * as _m0 from "protobufjs/minimal";
 /** GenesisState defines the auth module's genesis state. */
 export interface GenesisState {
@@ -7,6 +7,13 @@ export interface GenesisState {
     params?: Params;
     /** accounts are the accounts present at genesis. */
     accounts: Any[];
+}
+/** GenesisState defines the auth module's genesis state. */
+export interface GenesisStateAmino {
+    /** params defines all the paramaters of the module. */
+    params?: ParamsAmino;
+    /** accounts are the accounts present at genesis. */
+    accounts: AnyAmino[];
 }
 /** GenesisState defines the auth module's genesis state. */
 export interface GenesisStateSDKType {
@@ -19,4 +26,6 @@ export declare const GenesisState: {
     fromJSON(object: any): GenesisState;
     toJSON(message: GenesisState): unknown;
     fromPartial(object: Partial<GenesisState>): GenesisState;
+    fromAmino(object: GenesisStateAmino): GenesisState;
+    toAmino(message: GenesisState): GenesisStateAmino;
 };

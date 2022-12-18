@@ -1,4 +1,4 @@
-import { Any, AnySDKType } from "../../../google/protobuf/any";
+import { Any, AnyAmino, AnySDKType } from "../../../google/protobuf/any";
 import * as _m0 from "protobufjs/minimal";
 import { isSet } from "../../../helpers";
 /**
@@ -10,6 +10,16 @@ import { isSet } from "../../../helpers";
 export interface LegacyAminoPubKey {
   threshold: number;
   publicKeys: Any[];
+}
+/**
+ * LegacyAminoPubKey specifies a public key type
+ * which nests multiple public keys and a threshold,
+ * it uses legacy amino address rules.
+ */
+
+export interface LegacyAminoPubKeyAmino {
+  threshold: number;
+  public_keys: AnyAmino[];
 }
 /**
  * LegacyAminoPubKey specifies a public key type
@@ -93,6 +103,26 @@ export const LegacyAminoPubKey = {
     message.threshold = object.threshold ?? 0;
     message.publicKeys = object.publicKeys?.map(e => Any.fromPartial(e)) || [];
     return message;
+  },
+
+  fromAmino(object: LegacyAminoPubKeyAmino): LegacyAminoPubKey {
+    return {
+      threshold: object.threshold,
+      publicKeys: Array.isArray(object?.public_keys) ? object.public_keys.map((e: any) => Any.fromAmino(e)) : []
+    };
+  },
+
+  toAmino(message: LegacyAminoPubKey): LegacyAminoPubKeyAmino {
+    const obj: any = {};
+    obj.threshold = message.threshold;
+
+    if (message.publicKeys) {
+      obj.public_keys = message.publicKeys.map(e => e ? Any.toAmino(e) : undefined);
+    } else {
+      obj.public_keys = [];
+    }
+
+    return obj;
   }
 
 };

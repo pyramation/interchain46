@@ -1,4 +1,4 @@
-import { CapabilityOwners, CapabilityOwnersSDKType } from "./capability";
+import { CapabilityOwners, CapabilityOwnersAmino, CapabilityOwnersSDKType } from "./capability";
 import { Long, isSet } from "../../../helpers";
 import * as _m0 from "protobufjs/minimal";
 /** GenesisOwners defines the capability owners with their corresponding index. */
@@ -9,6 +9,15 @@ export interface GenesisOwners {
   /** index_owners are the owners at the given index. */
 
   indexOwners?: CapabilityOwners;
+}
+/** GenesisOwners defines the capability owners with their corresponding index. */
+
+export interface GenesisOwnersAmino {
+  /** index is the index of the capability owner. */
+  index: string;
+  /** index_owners are the owners at the given index. */
+
+  index_owners?: CapabilityOwnersAmino;
 }
 /** GenesisOwners defines the capability owners with their corresponding index. */
 
@@ -27,6 +36,18 @@ export interface GenesisState {
    */
 
   owners: GenesisOwners[];
+}
+/** GenesisState defines the capability module's genesis state. */
+
+export interface GenesisStateAmino {
+  /** index is the capability global index. */
+  index: string;
+  /**
+   * owners represents a map from index to owners of the capability index
+   * index key is string to allow amino marshalling.
+   */
+
+  owners: GenesisOwnersAmino[];
 }
 /** GenesisState defines the capability module's genesis state. */
 
@@ -100,6 +121,20 @@ export const GenesisOwners = {
     message.index = object.index !== undefined && object.index !== null ? Long.fromValue(object.index) : Long.UZERO;
     message.indexOwners = object.indexOwners !== undefined && object.indexOwners !== null ? CapabilityOwners.fromPartial(object.indexOwners) : undefined;
     return message;
+  },
+
+  fromAmino(object: GenesisOwnersAmino): GenesisOwners {
+    return {
+      index: Long.fromString(object.index),
+      indexOwners: object?.index_owners ? CapabilityOwners.fromAmino(object.index_owners) : undefined
+    };
+  },
+
+  toAmino(message: GenesisOwners): GenesisOwnersAmino {
+    const obj: any = {};
+    obj.index = message.index ? message.index.toString() : undefined;
+    obj.index_owners = message.indexOwners ? CapabilityOwners.toAmino(message.indexOwners) : undefined;
+    return obj;
   }
 
 };
@@ -175,6 +210,26 @@ export const GenesisState = {
     message.index = object.index !== undefined && object.index !== null ? Long.fromValue(object.index) : Long.UZERO;
     message.owners = object.owners?.map(e => GenesisOwners.fromPartial(e)) || [];
     return message;
+  },
+
+  fromAmino(object: GenesisStateAmino): GenesisState {
+    return {
+      index: Long.fromString(object.index),
+      owners: Array.isArray(object?.owners) ? object.owners.map((e: any) => GenesisOwners.fromAmino(e)) : []
+    };
+  },
+
+  toAmino(message: GenesisState): GenesisStateAmino {
+    const obj: any = {};
+    obj.index = message.index ? message.index.toString() : undefined;
+
+    if (message.owners) {
+      obj.owners = message.owners.map(e => e ? GenesisOwners.toAmino(e) : undefined);
+    } else {
+      obj.owners = [];
+    }
+
+    return obj;
   }
 
 };

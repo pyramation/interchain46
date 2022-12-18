@@ -1,10 +1,13 @@
-import { PageRequest, PageRequestSDKType, PageResponse, PageResponseSDKType } from "../../base/query/v1beta1/pagination";
-import { Params, ParamsSDKType, ValidatorOutstandingRewards, ValidatorOutstandingRewardsSDKType, ValidatorAccumulatedCommission, ValidatorAccumulatedCommissionSDKType, ValidatorSlashEvent, ValidatorSlashEventSDKType, DelegationDelegatorReward, DelegationDelegatorRewardSDKType } from "./distribution";
-import { DecCoin, DecCoinSDKType } from "../../base/v1beta1/coin";
+import { PageRequest, PageRequestAmino, PageRequestSDKType, PageResponse, PageResponseAmino, PageResponseSDKType } from "../../base/query/v1beta1/pagination";
+import { Params, ParamsAmino, ParamsSDKType, ValidatorOutstandingRewards, ValidatorOutstandingRewardsAmino, ValidatorOutstandingRewardsSDKType, ValidatorAccumulatedCommission, ValidatorAccumulatedCommissionAmino, ValidatorAccumulatedCommissionSDKType, ValidatorSlashEvent, ValidatorSlashEventAmino, ValidatorSlashEventSDKType, DelegationDelegatorReward, DelegationDelegatorRewardAmino, DelegationDelegatorRewardSDKType } from "./distribution";
+import { DecCoin, DecCoinAmino, DecCoinSDKType } from "../../base/v1beta1/coin";
 import * as _m0 from "protobufjs/minimal";
 import { Long } from "../../../helpers";
 /** QueryParamsRequest is the request type for the Query/Params RPC method. */
 export interface QueryParamsRequest {
+}
+/** QueryParamsRequest is the request type for the Query/Params RPC method. */
+export interface QueryParamsRequestAmino {
 }
 /** QueryParamsRequest is the request type for the Query/Params RPC method. */
 export interface QueryParamsRequestSDKType {
@@ -13,6 +16,11 @@ export interface QueryParamsRequestSDKType {
 export interface QueryParamsResponse {
     /** params defines the parameters of the module. */
     params?: Params;
+}
+/** QueryParamsResponse is the response type for the Query/Params RPC method. */
+export interface QueryParamsResponseAmino {
+    /** params defines the parameters of the module. */
+    params?: ParamsAmino;
 }
 /** QueryParamsResponse is the response type for the Query/Params RPC method. */
 export interface QueryParamsResponseSDKType {
@@ -30,6 +38,14 @@ export interface QueryValidatorOutstandingRewardsRequest {
  * QueryValidatorOutstandingRewardsRequest is the request type for the
  * Query/ValidatorOutstandingRewards RPC method.
  */
+export interface QueryValidatorOutstandingRewardsRequestAmino {
+    /** validator_address defines the validator address to query for. */
+    validator_address: string;
+}
+/**
+ * QueryValidatorOutstandingRewardsRequest is the request type for the
+ * Query/ValidatorOutstandingRewards RPC method.
+ */
 export interface QueryValidatorOutstandingRewardsRequestSDKType {
     validator_address: string;
 }
@@ -39,6 +55,13 @@ export interface QueryValidatorOutstandingRewardsRequestSDKType {
  */
 export interface QueryValidatorOutstandingRewardsResponse {
     rewards?: ValidatorOutstandingRewards;
+}
+/**
+ * QueryValidatorOutstandingRewardsResponse is the response type for the
+ * Query/ValidatorOutstandingRewards RPC method.
+ */
+export interface QueryValidatorOutstandingRewardsResponseAmino {
+    rewards?: ValidatorOutstandingRewardsAmino;
 }
 /**
  * QueryValidatorOutstandingRewardsResponse is the response type for the
@@ -59,6 +82,14 @@ export interface QueryValidatorCommissionRequest {
  * QueryValidatorCommissionRequest is the request type for the
  * Query/ValidatorCommission RPC method
  */
+export interface QueryValidatorCommissionRequestAmino {
+    /** validator_address defines the validator address to query for. */
+    validator_address: string;
+}
+/**
+ * QueryValidatorCommissionRequest is the request type for the
+ * Query/ValidatorCommission RPC method
+ */
 export interface QueryValidatorCommissionRequestSDKType {
     validator_address: string;
 }
@@ -69,6 +100,14 @@ export interface QueryValidatorCommissionRequestSDKType {
 export interface QueryValidatorCommissionResponse {
     /** commission defines the commision the validator received. */
     commission?: ValidatorAccumulatedCommission;
+}
+/**
+ * QueryValidatorCommissionResponse is the response type for the
+ * Query/ValidatorCommission RPC method
+ */
+export interface QueryValidatorCommissionResponseAmino {
+    /** commission defines the commision the validator received. */
+    commission?: ValidatorAccumulatedCommissionAmino;
 }
 /**
  * QueryValidatorCommissionResponse is the response type for the
@@ -95,6 +134,20 @@ export interface QueryValidatorSlashesRequest {
  * QueryValidatorSlashesRequest is the request type for the
  * Query/ValidatorSlashes RPC method
  */
+export interface QueryValidatorSlashesRequestAmino {
+    /** validator_address defines the validator address to query for. */
+    validator_address: string;
+    /** starting_height defines the optional starting height to query the slashes. */
+    starting_height: string;
+    /** starting_height defines the optional ending height to query the slashes. */
+    ending_height: string;
+    /** pagination defines an optional pagination for the request. */
+    pagination?: PageRequestAmino;
+}
+/**
+ * QueryValidatorSlashesRequest is the request type for the
+ * Query/ValidatorSlashes RPC method
+ */
 export interface QueryValidatorSlashesRequestSDKType {
     validator_address: string;
     starting_height: Long;
@@ -110,6 +163,16 @@ export interface QueryValidatorSlashesResponse {
     slashes: ValidatorSlashEvent[];
     /** pagination defines the pagination in the response. */
     pagination?: PageResponse;
+}
+/**
+ * QueryValidatorSlashesResponse is the response type for the
+ * Query/ValidatorSlashes RPC method.
+ */
+export interface QueryValidatorSlashesResponseAmino {
+    /** slashes defines the slashes the validator received. */
+    slashes: ValidatorSlashEventAmino[];
+    /** pagination defines the pagination in the response. */
+    pagination?: PageResponseAmino;
 }
 /**
  * QueryValidatorSlashesResponse is the response type for the
@@ -133,6 +196,16 @@ export interface QueryDelegationRewardsRequest {
  * QueryDelegationRewardsRequest is the request type for the
  * Query/DelegationRewards RPC method.
  */
+export interface QueryDelegationRewardsRequestAmino {
+    /** delegator_address defines the delegator address to query for. */
+    delegator_address: string;
+    /** validator_address defines the validator address to query for. */
+    validator_address: string;
+}
+/**
+ * QueryDelegationRewardsRequest is the request type for the
+ * Query/DelegationRewards RPC method.
+ */
 export interface QueryDelegationRewardsRequestSDKType {
     delegator_address: string;
     validator_address: string;
@@ -149,6 +222,14 @@ export interface QueryDelegationRewardsResponse {
  * QueryDelegationRewardsResponse is the response type for the
  * Query/DelegationRewards RPC method.
  */
+export interface QueryDelegationRewardsResponseAmino {
+    /** rewards defines the rewards accrued by a delegation. */
+    rewards: DecCoinAmino[];
+}
+/**
+ * QueryDelegationRewardsResponse is the response type for the
+ * Query/DelegationRewards RPC method.
+ */
 export interface QueryDelegationRewardsResponseSDKType {
     rewards: DecCoinSDKType[];
 }
@@ -159,6 +240,14 @@ export interface QueryDelegationRewardsResponseSDKType {
 export interface QueryDelegationTotalRewardsRequest {
     /** delegator_address defines the delegator address to query for. */
     delegatorAddress: string;
+}
+/**
+ * QueryDelegationTotalRewardsRequest is the request type for the
+ * Query/DelegationTotalRewards RPC method.
+ */
+export interface QueryDelegationTotalRewardsRequestAmino {
+    /** delegator_address defines the delegator address to query for. */
+    delegator_address: string;
 }
 /**
  * QueryDelegationTotalRewardsRequest is the request type for the
@@ -181,6 +270,16 @@ export interface QueryDelegationTotalRewardsResponse {
  * QueryDelegationTotalRewardsResponse is the response type for the
  * Query/DelegationTotalRewards RPC method.
  */
+export interface QueryDelegationTotalRewardsResponseAmino {
+    /** rewards defines all the rewards accrued by a delegator. */
+    rewards: DelegationDelegatorRewardAmino[];
+    /** total defines the sum of all the rewards. */
+    total: DecCoinAmino[];
+}
+/**
+ * QueryDelegationTotalRewardsResponse is the response type for the
+ * Query/DelegationTotalRewards RPC method.
+ */
 export interface QueryDelegationTotalRewardsResponseSDKType {
     rewards: DelegationDelegatorRewardSDKType[];
     total: DecCoinSDKType[];
@@ -197,6 +296,14 @@ export interface QueryDelegatorValidatorsRequest {
  * QueryDelegatorValidatorsRequest is the request type for the
  * Query/DelegatorValidators RPC method.
  */
+export interface QueryDelegatorValidatorsRequestAmino {
+    /** delegator_address defines the delegator address to query for. */
+    delegator_address: string;
+}
+/**
+ * QueryDelegatorValidatorsRequest is the request type for the
+ * Query/DelegatorValidators RPC method.
+ */
 export interface QueryDelegatorValidatorsRequestSDKType {
     delegator_address: string;
 }
@@ -205,6 +312,14 @@ export interface QueryDelegatorValidatorsRequestSDKType {
  * Query/DelegatorValidators RPC method.
  */
 export interface QueryDelegatorValidatorsResponse {
+    /** validators defines the validators a delegator is delegating for. */
+    validators: string[];
+}
+/**
+ * QueryDelegatorValidatorsResponse is the response type for the
+ * Query/DelegatorValidators RPC method.
+ */
+export interface QueryDelegatorValidatorsResponseAmino {
     /** validators defines the validators a delegator is delegating for. */
     validators: string[];
 }
@@ -227,6 +342,14 @@ export interface QueryDelegatorWithdrawAddressRequest {
  * QueryDelegatorWithdrawAddressRequest is the request type for the
  * Query/DelegatorWithdrawAddress RPC method.
  */
+export interface QueryDelegatorWithdrawAddressRequestAmino {
+    /** delegator_address defines the delegator address to query for. */
+    delegator_address: string;
+}
+/**
+ * QueryDelegatorWithdrawAddressRequest is the request type for the
+ * Query/DelegatorWithdrawAddress RPC method.
+ */
 export interface QueryDelegatorWithdrawAddressRequestSDKType {
     delegator_address: string;
 }
@@ -242,6 +365,14 @@ export interface QueryDelegatorWithdrawAddressResponse {
  * QueryDelegatorWithdrawAddressResponse is the response type for the
  * Query/DelegatorWithdrawAddress RPC method.
  */
+export interface QueryDelegatorWithdrawAddressResponseAmino {
+    /** withdraw_address defines the delegator address to query for. */
+    withdraw_address: string;
+}
+/**
+ * QueryDelegatorWithdrawAddressResponse is the response type for the
+ * Query/DelegatorWithdrawAddress RPC method.
+ */
 export interface QueryDelegatorWithdrawAddressResponseSDKType {
     withdraw_address: string;
 }
@@ -250,6 +381,12 @@ export interface QueryDelegatorWithdrawAddressResponseSDKType {
  * method.
  */
 export interface QueryCommunityPoolRequest {
+}
+/**
+ * QueryCommunityPoolRequest is the request type for the Query/CommunityPool RPC
+ * method.
+ */
+export interface QueryCommunityPoolRequestAmino {
 }
 /**
  * QueryCommunityPoolRequest is the request type for the Query/CommunityPool RPC
@@ -269,6 +406,14 @@ export interface QueryCommunityPoolResponse {
  * QueryCommunityPoolResponse is the response type for the Query/CommunityPool
  * RPC method.
  */
+export interface QueryCommunityPoolResponseAmino {
+    /** pool defines community pool's coins. */
+    pool: DecCoinAmino[];
+}
+/**
+ * QueryCommunityPoolResponse is the response type for the Query/CommunityPool
+ * RPC method.
+ */
 export interface QueryCommunityPoolResponseSDKType {
     pool: DecCoinSDKType[];
 }
@@ -278,6 +423,8 @@ export declare const QueryParamsRequest: {
     fromJSON(_: any): QueryParamsRequest;
     toJSON(_: QueryParamsRequest): unknown;
     fromPartial(_: Partial<QueryParamsRequest>): QueryParamsRequest;
+    fromAmino(_: QueryParamsRequestAmino): QueryParamsRequest;
+    toAmino(_: QueryParamsRequest): QueryParamsRequestAmino;
 };
 export declare const QueryParamsResponse: {
     encode(message: QueryParamsResponse, writer?: _m0.Writer): _m0.Writer;
@@ -285,6 +432,8 @@ export declare const QueryParamsResponse: {
     fromJSON(object: any): QueryParamsResponse;
     toJSON(message: QueryParamsResponse): unknown;
     fromPartial(object: Partial<QueryParamsResponse>): QueryParamsResponse;
+    fromAmino(object: QueryParamsResponseAmino): QueryParamsResponse;
+    toAmino(message: QueryParamsResponse): QueryParamsResponseAmino;
 };
 export declare const QueryValidatorOutstandingRewardsRequest: {
     encode(message: QueryValidatorOutstandingRewardsRequest, writer?: _m0.Writer): _m0.Writer;
@@ -292,6 +441,8 @@ export declare const QueryValidatorOutstandingRewardsRequest: {
     fromJSON(object: any): QueryValidatorOutstandingRewardsRequest;
     toJSON(message: QueryValidatorOutstandingRewardsRequest): unknown;
     fromPartial(object: Partial<QueryValidatorOutstandingRewardsRequest>): QueryValidatorOutstandingRewardsRequest;
+    fromAmino(object: QueryValidatorOutstandingRewardsRequestAmino): QueryValidatorOutstandingRewardsRequest;
+    toAmino(message: QueryValidatorOutstandingRewardsRequest): QueryValidatorOutstandingRewardsRequestAmino;
 };
 export declare const QueryValidatorOutstandingRewardsResponse: {
     encode(message: QueryValidatorOutstandingRewardsResponse, writer?: _m0.Writer): _m0.Writer;
@@ -299,6 +450,8 @@ export declare const QueryValidatorOutstandingRewardsResponse: {
     fromJSON(object: any): QueryValidatorOutstandingRewardsResponse;
     toJSON(message: QueryValidatorOutstandingRewardsResponse): unknown;
     fromPartial(object: Partial<QueryValidatorOutstandingRewardsResponse>): QueryValidatorOutstandingRewardsResponse;
+    fromAmino(object: QueryValidatorOutstandingRewardsResponseAmino): QueryValidatorOutstandingRewardsResponse;
+    toAmino(message: QueryValidatorOutstandingRewardsResponse): QueryValidatorOutstandingRewardsResponseAmino;
 };
 export declare const QueryValidatorCommissionRequest: {
     encode(message: QueryValidatorCommissionRequest, writer?: _m0.Writer): _m0.Writer;
@@ -306,6 +459,8 @@ export declare const QueryValidatorCommissionRequest: {
     fromJSON(object: any): QueryValidatorCommissionRequest;
     toJSON(message: QueryValidatorCommissionRequest): unknown;
     fromPartial(object: Partial<QueryValidatorCommissionRequest>): QueryValidatorCommissionRequest;
+    fromAmino(object: QueryValidatorCommissionRequestAmino): QueryValidatorCommissionRequest;
+    toAmino(message: QueryValidatorCommissionRequest): QueryValidatorCommissionRequestAmino;
 };
 export declare const QueryValidatorCommissionResponse: {
     encode(message: QueryValidatorCommissionResponse, writer?: _m0.Writer): _m0.Writer;
@@ -313,6 +468,8 @@ export declare const QueryValidatorCommissionResponse: {
     fromJSON(object: any): QueryValidatorCommissionResponse;
     toJSON(message: QueryValidatorCommissionResponse): unknown;
     fromPartial(object: Partial<QueryValidatorCommissionResponse>): QueryValidatorCommissionResponse;
+    fromAmino(object: QueryValidatorCommissionResponseAmino): QueryValidatorCommissionResponse;
+    toAmino(message: QueryValidatorCommissionResponse): QueryValidatorCommissionResponseAmino;
 };
 export declare const QueryValidatorSlashesRequest: {
     encode(message: QueryValidatorSlashesRequest, writer?: _m0.Writer): _m0.Writer;
@@ -320,6 +477,8 @@ export declare const QueryValidatorSlashesRequest: {
     fromJSON(object: any): QueryValidatorSlashesRequest;
     toJSON(message: QueryValidatorSlashesRequest): unknown;
     fromPartial(object: Partial<QueryValidatorSlashesRequest>): QueryValidatorSlashesRequest;
+    fromAmino(object: QueryValidatorSlashesRequestAmino): QueryValidatorSlashesRequest;
+    toAmino(message: QueryValidatorSlashesRequest): QueryValidatorSlashesRequestAmino;
 };
 export declare const QueryValidatorSlashesResponse: {
     encode(message: QueryValidatorSlashesResponse, writer?: _m0.Writer): _m0.Writer;
@@ -327,6 +486,8 @@ export declare const QueryValidatorSlashesResponse: {
     fromJSON(object: any): QueryValidatorSlashesResponse;
     toJSON(message: QueryValidatorSlashesResponse): unknown;
     fromPartial(object: Partial<QueryValidatorSlashesResponse>): QueryValidatorSlashesResponse;
+    fromAmino(object: QueryValidatorSlashesResponseAmino): QueryValidatorSlashesResponse;
+    toAmino(message: QueryValidatorSlashesResponse): QueryValidatorSlashesResponseAmino;
 };
 export declare const QueryDelegationRewardsRequest: {
     encode(message: QueryDelegationRewardsRequest, writer?: _m0.Writer): _m0.Writer;
@@ -334,6 +495,8 @@ export declare const QueryDelegationRewardsRequest: {
     fromJSON(object: any): QueryDelegationRewardsRequest;
     toJSON(message: QueryDelegationRewardsRequest): unknown;
     fromPartial(object: Partial<QueryDelegationRewardsRequest>): QueryDelegationRewardsRequest;
+    fromAmino(object: QueryDelegationRewardsRequestAmino): QueryDelegationRewardsRequest;
+    toAmino(message: QueryDelegationRewardsRequest): QueryDelegationRewardsRequestAmino;
 };
 export declare const QueryDelegationRewardsResponse: {
     encode(message: QueryDelegationRewardsResponse, writer?: _m0.Writer): _m0.Writer;
@@ -341,6 +504,8 @@ export declare const QueryDelegationRewardsResponse: {
     fromJSON(object: any): QueryDelegationRewardsResponse;
     toJSON(message: QueryDelegationRewardsResponse): unknown;
     fromPartial(object: Partial<QueryDelegationRewardsResponse>): QueryDelegationRewardsResponse;
+    fromAmino(object: QueryDelegationRewardsResponseAmino): QueryDelegationRewardsResponse;
+    toAmino(message: QueryDelegationRewardsResponse): QueryDelegationRewardsResponseAmino;
 };
 export declare const QueryDelegationTotalRewardsRequest: {
     encode(message: QueryDelegationTotalRewardsRequest, writer?: _m0.Writer): _m0.Writer;
@@ -348,6 +513,8 @@ export declare const QueryDelegationTotalRewardsRequest: {
     fromJSON(object: any): QueryDelegationTotalRewardsRequest;
     toJSON(message: QueryDelegationTotalRewardsRequest): unknown;
     fromPartial(object: Partial<QueryDelegationTotalRewardsRequest>): QueryDelegationTotalRewardsRequest;
+    fromAmino(object: QueryDelegationTotalRewardsRequestAmino): QueryDelegationTotalRewardsRequest;
+    toAmino(message: QueryDelegationTotalRewardsRequest): QueryDelegationTotalRewardsRequestAmino;
 };
 export declare const QueryDelegationTotalRewardsResponse: {
     encode(message: QueryDelegationTotalRewardsResponse, writer?: _m0.Writer): _m0.Writer;
@@ -355,6 +522,8 @@ export declare const QueryDelegationTotalRewardsResponse: {
     fromJSON(object: any): QueryDelegationTotalRewardsResponse;
     toJSON(message: QueryDelegationTotalRewardsResponse): unknown;
     fromPartial(object: Partial<QueryDelegationTotalRewardsResponse>): QueryDelegationTotalRewardsResponse;
+    fromAmino(object: QueryDelegationTotalRewardsResponseAmino): QueryDelegationTotalRewardsResponse;
+    toAmino(message: QueryDelegationTotalRewardsResponse): QueryDelegationTotalRewardsResponseAmino;
 };
 export declare const QueryDelegatorValidatorsRequest: {
     encode(message: QueryDelegatorValidatorsRequest, writer?: _m0.Writer): _m0.Writer;
@@ -362,6 +531,8 @@ export declare const QueryDelegatorValidatorsRequest: {
     fromJSON(object: any): QueryDelegatorValidatorsRequest;
     toJSON(message: QueryDelegatorValidatorsRequest): unknown;
     fromPartial(object: Partial<QueryDelegatorValidatorsRequest>): QueryDelegatorValidatorsRequest;
+    fromAmino(object: QueryDelegatorValidatorsRequestAmino): QueryDelegatorValidatorsRequest;
+    toAmino(message: QueryDelegatorValidatorsRequest): QueryDelegatorValidatorsRequestAmino;
 };
 export declare const QueryDelegatorValidatorsResponse: {
     encode(message: QueryDelegatorValidatorsResponse, writer?: _m0.Writer): _m0.Writer;
@@ -369,6 +540,8 @@ export declare const QueryDelegatorValidatorsResponse: {
     fromJSON(object: any): QueryDelegatorValidatorsResponse;
     toJSON(message: QueryDelegatorValidatorsResponse): unknown;
     fromPartial(object: Partial<QueryDelegatorValidatorsResponse>): QueryDelegatorValidatorsResponse;
+    fromAmino(object: QueryDelegatorValidatorsResponseAmino): QueryDelegatorValidatorsResponse;
+    toAmino(message: QueryDelegatorValidatorsResponse): QueryDelegatorValidatorsResponseAmino;
 };
 export declare const QueryDelegatorWithdrawAddressRequest: {
     encode(message: QueryDelegatorWithdrawAddressRequest, writer?: _m0.Writer): _m0.Writer;
@@ -376,6 +549,8 @@ export declare const QueryDelegatorWithdrawAddressRequest: {
     fromJSON(object: any): QueryDelegatorWithdrawAddressRequest;
     toJSON(message: QueryDelegatorWithdrawAddressRequest): unknown;
     fromPartial(object: Partial<QueryDelegatorWithdrawAddressRequest>): QueryDelegatorWithdrawAddressRequest;
+    fromAmino(object: QueryDelegatorWithdrawAddressRequestAmino): QueryDelegatorWithdrawAddressRequest;
+    toAmino(message: QueryDelegatorWithdrawAddressRequest): QueryDelegatorWithdrawAddressRequestAmino;
 };
 export declare const QueryDelegatorWithdrawAddressResponse: {
     encode(message: QueryDelegatorWithdrawAddressResponse, writer?: _m0.Writer): _m0.Writer;
@@ -383,6 +558,8 @@ export declare const QueryDelegatorWithdrawAddressResponse: {
     fromJSON(object: any): QueryDelegatorWithdrawAddressResponse;
     toJSON(message: QueryDelegatorWithdrawAddressResponse): unknown;
     fromPartial(object: Partial<QueryDelegatorWithdrawAddressResponse>): QueryDelegatorWithdrawAddressResponse;
+    fromAmino(object: QueryDelegatorWithdrawAddressResponseAmino): QueryDelegatorWithdrawAddressResponse;
+    toAmino(message: QueryDelegatorWithdrawAddressResponse): QueryDelegatorWithdrawAddressResponseAmino;
 };
 export declare const QueryCommunityPoolRequest: {
     encode(_: QueryCommunityPoolRequest, writer?: _m0.Writer): _m0.Writer;
@@ -390,6 +567,8 @@ export declare const QueryCommunityPoolRequest: {
     fromJSON(_: any): QueryCommunityPoolRequest;
     toJSON(_: QueryCommunityPoolRequest): unknown;
     fromPartial(_: Partial<QueryCommunityPoolRequest>): QueryCommunityPoolRequest;
+    fromAmino(_: QueryCommunityPoolRequestAmino): QueryCommunityPoolRequest;
+    toAmino(_: QueryCommunityPoolRequest): QueryCommunityPoolRequestAmino;
 };
 export declare const QueryCommunityPoolResponse: {
     encode(message: QueryCommunityPoolResponse, writer?: _m0.Writer): _m0.Writer;
@@ -397,4 +576,6 @@ export declare const QueryCommunityPoolResponse: {
     fromJSON(object: any): QueryCommunityPoolResponse;
     toJSON(message: QueryCommunityPoolResponse): unknown;
     fromPartial(object: Partial<QueryCommunityPoolResponse>): QueryCommunityPoolResponse;
+    fromAmino(object: QueryCommunityPoolResponseAmino): QueryCommunityPoolResponse;
+    toAmino(message: QueryCommunityPoolResponse): QueryCommunityPoolResponseAmino;
 };

@@ -1,7 +1,7 @@
-import { Data, DataSDKType, Commit, CommitSDKType, BlockID, BlockIDSDKType } from "../../../../tendermint/types/types";
-import { EvidenceList, EvidenceListSDKType } from "../../../../tendermint/types/evidence";
-import { Consensus, ConsensusSDKType } from "../../../../tendermint/version/types";
-import { Timestamp, TimestampSDKType } from "../../../../google/protobuf/timestamp";
+import { Data, DataAmino, DataSDKType, Commit, CommitAmino, CommitSDKType, BlockID, BlockIDAmino, BlockIDSDKType } from "../../../../tendermint/types/types";
+import { EvidenceList, EvidenceListAmino, EvidenceListSDKType } from "../../../../tendermint/types/evidence";
+import { Consensus, ConsensusAmino, ConsensusSDKType } from "../../../../tendermint/version/types";
+import { Timestamp, TimestampAmino, TimestampSDKType } from "../../../../google/protobuf/timestamp";
 import * as _m0 from "protobufjs/minimal";
 import { Long } from "../../../../helpers";
 /**
@@ -13,6 +13,16 @@ export interface Block {
     data?: Data;
     evidence?: EvidenceList;
     lastCommit?: Commit;
+}
+/**
+ * Block is tendermint type Block, with the Header proposer address
+ * field converted to bech32 string.
+ */
+export interface BlockAmino {
+    header?: HeaderAmino;
+    data?: DataAmino;
+    evidence?: EvidenceListAmino;
+    last_commit?: CommitAmino;
 }
 /**
  * Block is tendermint type Block, with the Header proposer address
@@ -55,6 +65,36 @@ export interface Header {
     proposerAddress: string;
 }
 /** Header defines the structure of a Tendermint block header. */
+export interface HeaderAmino {
+    /** basic block info */
+    version?: ConsensusAmino;
+    chain_id: string;
+    height: string;
+    time?: TimestampAmino;
+    /** prev block info */
+    last_block_id?: BlockIDAmino;
+    /** hashes of block data */
+    last_commit_hash: Uint8Array;
+    data_hash: Uint8Array;
+    /** hashes from the app output from the prev block */
+    validators_hash: Uint8Array;
+    /** validators for the next block */
+    next_validators_hash: Uint8Array;
+    /** consensus params for current block */
+    consensus_hash: Uint8Array;
+    /** state after txs from the previous block */
+    app_hash: Uint8Array;
+    last_results_hash: Uint8Array;
+    /** consensus info */
+    evidence_hash: Uint8Array;
+    /**
+     * proposer_address is the original block proposer address, formatted as a Bech32 string.
+     * In Tendermint, this type is `bytes`, but in the SDK, we convert it to a Bech32 string
+     * for better UX.
+     */
+    proposer_address: string;
+}
+/** Header defines the structure of a Tendermint block header. */
 export interface HeaderSDKType {
     version?: ConsensusSDKType;
     chain_id: string;
@@ -77,6 +117,8 @@ export declare const Block: {
     fromJSON(object: any): Block;
     toJSON(message: Block): unknown;
     fromPartial(object: Partial<Block>): Block;
+    fromAmino(object: BlockAmino): Block;
+    toAmino(message: Block): BlockAmino;
 };
 export declare const Header: {
     encode(message: Header, writer?: _m0.Writer): _m0.Writer;
@@ -84,4 +126,6 @@ export declare const Header: {
     fromJSON(object: any): Header;
     toJSON(message: Header): unknown;
     fromPartial(object: Partial<Header>): Header;
+    fromAmino(object: HeaderAmino): Header;
+    toAmino(message: Header): HeaderAmino;
 };

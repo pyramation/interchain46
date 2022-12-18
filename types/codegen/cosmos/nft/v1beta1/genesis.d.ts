@@ -1,10 +1,16 @@
-import { Class, ClassSDKType, NFT, NFTSDKType } from "./nft";
+import { Class, ClassAmino, ClassSDKType, NFT, NFTAmino, NFTSDKType } from "./nft";
 import * as _m0 from "protobufjs/minimal";
 /** GenesisState defines the nft module's genesis state. */
 export interface GenesisState {
     /** class defines the class of the nft type. */
     classes: Class[];
     entries: Entry[];
+}
+/** GenesisState defines the nft module's genesis state. */
+export interface GenesisStateAmino {
+    /** class defines the class of the nft type. */
+    classes: ClassAmino[];
+    entries: EntryAmino[];
 }
 /** GenesisState defines the nft module's genesis state. */
 export interface GenesisStateSDKType {
@@ -19,6 +25,13 @@ export interface Entry {
     nfts: NFT[];
 }
 /** Entry Defines all nft owned by a person */
+export interface EntryAmino {
+    /** owner is the owner address of the following nft */
+    owner: string;
+    /** nfts is a group of nfts of the same owner */
+    nfts: NFTAmino[];
+}
+/** Entry Defines all nft owned by a person */
 export interface EntrySDKType {
     owner: string;
     nfts: NFTSDKType[];
@@ -29,6 +42,8 @@ export declare const GenesisState: {
     fromJSON(object: any): GenesisState;
     toJSON(message: GenesisState): unknown;
     fromPartial(object: Partial<GenesisState>): GenesisState;
+    fromAmino(object: GenesisStateAmino): GenesisState;
+    toAmino(message: GenesisState): GenesisStateAmino;
 };
 export declare const Entry: {
     encode(message: Entry, writer?: _m0.Writer): _m0.Writer;
@@ -36,4 +51,6 @@ export declare const Entry: {
     fromJSON(object: any): Entry;
     toJSON(message: Entry): unknown;
     fromPartial(object: Partial<Entry>): Entry;
+    fromAmino(object: EntryAmino): Entry;
+    toAmino(message: Entry): EntryAmino;
 };

@@ -1,5 +1,5 @@
-import { Coin, CoinSDKType } from "../../base/v1beta1/coin";
-import { Period, PeriodSDKType } from "./vesting";
+import { Coin, CoinAmino, CoinSDKType } from "../../base/v1beta1/coin";
+import { Period, PeriodAmino, PeriodSDKType } from "./vesting";
 import { Long } from "../../../helpers";
 import * as _m0 from "protobufjs/minimal";
 /**
@@ -17,6 +17,17 @@ export interface MsgCreateVestingAccount {
  * MsgCreateVestingAccount defines a message that enables creating a vesting
  * account.
  */
+export interface MsgCreateVestingAccountAmino {
+    from_address: string;
+    to_address: string;
+    amount: CoinAmino[];
+    end_time: string;
+    delayed: boolean;
+}
+/**
+ * MsgCreateVestingAccount defines a message that enables creating a vesting
+ * account.
+ */
 export interface MsgCreateVestingAccountSDKType {
     from_address: string;
     to_address: string;
@@ -26,6 +37,9 @@ export interface MsgCreateVestingAccountSDKType {
 }
 /** MsgCreateVestingAccountResponse defines the Msg/CreateVestingAccount response type. */
 export interface MsgCreateVestingAccountResponse {
+}
+/** MsgCreateVestingAccountResponse defines the Msg/CreateVestingAccount response type. */
+export interface MsgCreateVestingAccountResponseAmino {
 }
 /** MsgCreateVestingAccountResponse defines the Msg/CreateVestingAccount response type. */
 export interface MsgCreateVestingAccountResponseSDKType {
@@ -40,6 +54,17 @@ export interface MsgCreatePermanentLockedAccount {
     fromAddress: string;
     toAddress: string;
     amount: Coin[];
+}
+/**
+ * MsgCreatePermanentLockedAccount defines a message that enables creating a permanent
+ * locked account.
+ *
+ * Since: cosmos-sdk 0.46
+ */
+export interface MsgCreatePermanentLockedAccountAmino {
+    from_address: string;
+    to_address: string;
+    amount: CoinAmino[];
 }
 /**
  * MsgCreatePermanentLockedAccount defines a message that enables creating a permanent
@@ -64,6 +89,13 @@ export interface MsgCreatePermanentLockedAccountResponse {
  *
  * Since: cosmos-sdk 0.46
  */
+export interface MsgCreatePermanentLockedAccountResponseAmino {
+}
+/**
+ * MsgCreatePermanentLockedAccountResponse defines the Msg/CreatePermanentLockedAccount response type.
+ *
+ * Since: cosmos-sdk 0.46
+ */
 export interface MsgCreatePermanentLockedAccountResponseSDKType {
 }
 /**
@@ -77,6 +109,18 @@ export interface MsgCreatePeriodicVestingAccount {
     toAddress: string;
     startTime: Long;
     vestingPeriods: Period[];
+}
+/**
+ * MsgCreateVestingAccount defines a message that enables creating a vesting
+ * account.
+ *
+ * Since: cosmos-sdk 0.46
+ */
+export interface MsgCreatePeriodicVestingAccountAmino {
+    from_address: string;
+    to_address: string;
+    start_time: string;
+    vesting_periods: PeriodAmino[];
 }
 /**
  * MsgCreateVestingAccount defines a message that enables creating a vesting
@@ -104,6 +148,14 @@ export interface MsgCreatePeriodicVestingAccountResponse {
  *
  * Since: cosmos-sdk 0.46
  */
+export interface MsgCreatePeriodicVestingAccountResponseAmino {
+}
+/**
+ * MsgCreateVestingAccountResponse defines the Msg/CreatePeriodicVestingAccount
+ * response type.
+ *
+ * Since: cosmos-sdk 0.46
+ */
 export interface MsgCreatePeriodicVestingAccountResponseSDKType {
 }
 export declare const MsgCreateVestingAccount: {
@@ -112,6 +164,8 @@ export declare const MsgCreateVestingAccount: {
     fromJSON(object: any): MsgCreateVestingAccount;
     toJSON(message: MsgCreateVestingAccount): unknown;
     fromPartial(object: Partial<MsgCreateVestingAccount>): MsgCreateVestingAccount;
+    fromAmino(object: MsgCreateVestingAccountAmino): MsgCreateVestingAccount;
+    toAmino(message: MsgCreateVestingAccount): MsgCreateVestingAccountAmino;
 };
 export declare const MsgCreateVestingAccountResponse: {
     encode(_: MsgCreateVestingAccountResponse, writer?: _m0.Writer): _m0.Writer;
@@ -119,6 +173,8 @@ export declare const MsgCreateVestingAccountResponse: {
     fromJSON(_: any): MsgCreateVestingAccountResponse;
     toJSON(_: MsgCreateVestingAccountResponse): unknown;
     fromPartial(_: Partial<MsgCreateVestingAccountResponse>): MsgCreateVestingAccountResponse;
+    fromAmino(_: MsgCreateVestingAccountResponseAmino): MsgCreateVestingAccountResponse;
+    toAmino(_: MsgCreateVestingAccountResponse): MsgCreateVestingAccountResponseAmino;
 };
 export declare const MsgCreatePermanentLockedAccount: {
     encode(message: MsgCreatePermanentLockedAccount, writer?: _m0.Writer): _m0.Writer;
@@ -126,6 +182,8 @@ export declare const MsgCreatePermanentLockedAccount: {
     fromJSON(object: any): MsgCreatePermanentLockedAccount;
     toJSON(message: MsgCreatePermanentLockedAccount): unknown;
     fromPartial(object: Partial<MsgCreatePermanentLockedAccount>): MsgCreatePermanentLockedAccount;
+    fromAmino(object: MsgCreatePermanentLockedAccountAmino): MsgCreatePermanentLockedAccount;
+    toAmino(message: MsgCreatePermanentLockedAccount): MsgCreatePermanentLockedAccountAmino;
 };
 export declare const MsgCreatePermanentLockedAccountResponse: {
     encode(_: MsgCreatePermanentLockedAccountResponse, writer?: _m0.Writer): _m0.Writer;
@@ -133,6 +191,8 @@ export declare const MsgCreatePermanentLockedAccountResponse: {
     fromJSON(_: any): MsgCreatePermanentLockedAccountResponse;
     toJSON(_: MsgCreatePermanentLockedAccountResponse): unknown;
     fromPartial(_: Partial<MsgCreatePermanentLockedAccountResponse>): MsgCreatePermanentLockedAccountResponse;
+    fromAmino(_: MsgCreatePermanentLockedAccountResponseAmino): MsgCreatePermanentLockedAccountResponse;
+    toAmino(_: MsgCreatePermanentLockedAccountResponse): MsgCreatePermanentLockedAccountResponseAmino;
 };
 export declare const MsgCreatePeriodicVestingAccount: {
     encode(message: MsgCreatePeriodicVestingAccount, writer?: _m0.Writer): _m0.Writer;
@@ -140,6 +200,8 @@ export declare const MsgCreatePeriodicVestingAccount: {
     fromJSON(object: any): MsgCreatePeriodicVestingAccount;
     toJSON(message: MsgCreatePeriodicVestingAccount): unknown;
     fromPartial(object: Partial<MsgCreatePeriodicVestingAccount>): MsgCreatePeriodicVestingAccount;
+    fromAmino(object: MsgCreatePeriodicVestingAccountAmino): MsgCreatePeriodicVestingAccount;
+    toAmino(message: MsgCreatePeriodicVestingAccount): MsgCreatePeriodicVestingAccountAmino;
 };
 export declare const MsgCreatePeriodicVestingAccountResponse: {
     encode(_: MsgCreatePeriodicVestingAccountResponse, writer?: _m0.Writer): _m0.Writer;
@@ -147,4 +209,6 @@ export declare const MsgCreatePeriodicVestingAccountResponse: {
     fromJSON(_: any): MsgCreatePeriodicVestingAccountResponse;
     toJSON(_: MsgCreatePeriodicVestingAccountResponse): unknown;
     fromPartial(_: Partial<MsgCreatePeriodicVestingAccountResponse>): MsgCreatePeriodicVestingAccountResponse;
+    fromAmino(_: MsgCreatePeriodicVestingAccountResponseAmino): MsgCreatePeriodicVestingAccountResponse;
+    toAmino(_: MsgCreatePeriodicVestingAccountResponse): MsgCreatePeriodicVestingAccountResponseAmino;
 };

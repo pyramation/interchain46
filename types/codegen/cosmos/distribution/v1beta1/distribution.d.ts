@@ -1,4 +1,4 @@
-import { DecCoin, DecCoinSDKType, Coin, CoinSDKType } from "../../base/v1beta1/coin";
+import { DecCoin, DecCoinAmino, DecCoinSDKType, Coin, CoinAmino, CoinSDKType } from "../../base/v1beta1/coin";
 import * as _m0 from "protobufjs/minimal";
 import { Long } from "../../../helpers";
 /** Params defines the set of params for the distribution module. */
@@ -7,6 +7,13 @@ export interface Params {
     baseProposerReward: string;
     bonusProposerReward: string;
     withdrawAddrEnabled: boolean;
+}
+/** Params defines the set of params for the distribution module. */
+export interface ParamsAmino {
+    community_tax: string;
+    base_proposer_reward: string;
+    bonus_proposer_reward: string;
+    withdraw_addr_enabled: boolean;
 }
 /** Params defines the set of params for the distribution module. */
 export interface ParamsSDKType {
@@ -47,6 +54,24 @@ export interface ValidatorHistoricalRewards {
  *  read that record)
  *  + one per validator for the zeroeth period, set on initialization
  */
+export interface ValidatorHistoricalRewardsAmino {
+    cumulative_reward_ratio: DecCoinAmino[];
+    reference_count: number;
+}
+/**
+ * ValidatorHistoricalRewards represents historical rewards for a validator.
+ * Height is implicit within the store key.
+ * Cumulative reward ratio is the sum from the zeroeth period
+ * until this period of rewards / tokens, per the spec.
+ * The reference count indicates the number of objects
+ * which might need to reference this historical entry at any point.
+ * ReferenceCount =
+ *    number of outstanding delegations which ended the associated period (and
+ *    might need to read that record)
+ *  + number of slashes which ended the associated period (and might need to
+ *  read that record)
+ *  + one per validator for the zeroeth period, set on initialization
+ */
 export interface ValidatorHistoricalRewardsSDKType {
     cumulative_reward_ratio: DecCoinSDKType[];
     reference_count: number;
@@ -59,6 +84,15 @@ export interface ValidatorHistoricalRewardsSDKType {
 export interface ValidatorCurrentRewards {
     rewards: DecCoin[];
     period: Long;
+}
+/**
+ * ValidatorCurrentRewards represents current rewards and current
+ * period for a validator kept as a running counter and incremented
+ * each block as long as the validator's tokens remain constant.
+ */
+export interface ValidatorCurrentRewardsAmino {
+    rewards: DecCoinAmino[];
+    period: string;
 }
 /**
  * ValidatorCurrentRewards represents current rewards and current
@@ -80,6 +114,13 @@ export interface ValidatorAccumulatedCommission {
  * ValidatorAccumulatedCommission represents accumulated commission
  * for a validator kept as a running counter, can be withdrawn at any time.
  */
+export interface ValidatorAccumulatedCommissionAmino {
+    commission: DecCoinAmino[];
+}
+/**
+ * ValidatorAccumulatedCommission represents accumulated commission
+ * for a validator kept as a running counter, can be withdrawn at any time.
+ */
 export interface ValidatorAccumulatedCommissionSDKType {
     commission: DecCoinSDKType[];
 }
@@ -89,6 +130,13 @@ export interface ValidatorAccumulatedCommissionSDKType {
  */
 export interface ValidatorOutstandingRewards {
     rewards: DecCoin[];
+}
+/**
+ * ValidatorOutstandingRewards represents outstanding (un-withdrawn) rewards
+ * for a validator inexpensive to track, allows simple sanity checks.
+ */
+export interface ValidatorOutstandingRewardsAmino {
+    rewards: DecCoinAmino[];
 }
 /**
  * ValidatorOutstandingRewards represents outstanding (un-withdrawn) rewards
@@ -113,6 +161,16 @@ export interface ValidatorSlashEvent {
  * This is needed to calculate appropriate amount of staking tokens
  * for delegations which are withdrawn after a slash has occurred.
  */
+export interface ValidatorSlashEventAmino {
+    validator_period: string;
+    fraction: string;
+}
+/**
+ * ValidatorSlashEvent represents a validator slash event.
+ * Height is implicit within the store key.
+ * This is needed to calculate appropriate amount of staking tokens
+ * for delegations which are withdrawn after a slash has occurred.
+ */
 export interface ValidatorSlashEventSDKType {
     validator_period: Long;
     fraction: string;
@@ -122,12 +180,20 @@ export interface ValidatorSlashEvents {
     validatorSlashEvents: ValidatorSlashEvent[];
 }
 /** ValidatorSlashEvents is a collection of ValidatorSlashEvent messages. */
+export interface ValidatorSlashEventsAmino {
+    validator_slash_events: ValidatorSlashEventAmino[];
+}
+/** ValidatorSlashEvents is a collection of ValidatorSlashEvent messages. */
 export interface ValidatorSlashEventsSDKType {
     validator_slash_events: ValidatorSlashEventSDKType[];
 }
 /** FeePool is the global fee pool for distribution. */
 export interface FeePool {
     communityPool: DecCoin[];
+}
+/** FeePool is the global fee pool for distribution. */
+export interface FeePoolAmino {
+    community_pool: DecCoinAmino[];
 }
 /** FeePool is the global fee pool for distribution. */
 export interface FeePoolSDKType {
@@ -139,6 +205,7 @@ export interface FeePoolSDKType {
  * recipient account.
  */
 export interface CommunityPoolSpendProposal {
+    $typeUrl?: string;
     title: string;
     description: string;
     recipient: string;
@@ -149,7 +216,19 @@ export interface CommunityPoolSpendProposal {
  * together with how many coins are proposed to be spent, and to which
  * recipient account.
  */
+export interface CommunityPoolSpendProposalAmino {
+    title: string;
+    description: string;
+    recipient: string;
+    amount: CoinAmino[];
+}
+/**
+ * CommunityPoolSpendProposal details a proposal for use of community funds,
+ * together with how many coins are proposed to be spent, and to which
+ * recipient account.
+ */
 export interface CommunityPoolSpendProposalSDKType {
+    $typeUrl?: string;
     title: string;
     description: string;
     recipient: string;
@@ -176,6 +255,19 @@ export interface DelegatorStartingInfo {
  * the delegators within the validator may be left with less than a full token,
  * thus sdk.Dec is used.
  */
+export interface DelegatorStartingInfoAmino {
+    previous_period: string;
+    stake: string;
+    height: string;
+}
+/**
+ * DelegatorStartingInfo represents the starting info for a delegator reward
+ * period. It tracks the previous validator period, the delegation's amount of
+ * staking token, and the creation height (to check later on if any slashes have
+ * occurred). NOTE: Even though validators are slashed to whole staking tokens,
+ * the delegators within the validator may be left with less than a full token,
+ * thus sdk.Dec is used.
+ */
 export interface DelegatorStartingInfoSDKType {
     previous_period: Long;
     stake: string;
@@ -193,6 +285,14 @@ export interface DelegationDelegatorReward {
  * DelegationDelegatorReward represents the properties
  * of a delegator's delegation reward.
  */
+export interface DelegationDelegatorRewardAmino {
+    validator_address: string;
+    reward: DecCoinAmino[];
+}
+/**
+ * DelegationDelegatorReward represents the properties
+ * of a delegator's delegation reward.
+ */
 export interface DelegationDelegatorRewardSDKType {
     validator_address: string;
     reward: DecCoinSDKType[];
@@ -202,6 +302,18 @@ export interface DelegationDelegatorRewardSDKType {
  * with a deposit
  */
 export interface CommunityPoolSpendProposalWithDeposit {
+    $typeUrl?: string;
+    title: string;
+    description: string;
+    recipient: string;
+    amount: string;
+    deposit: string;
+}
+/**
+ * CommunityPoolSpendProposalWithDeposit defines a CommunityPoolSpendProposal
+ * with a deposit
+ */
+export interface CommunityPoolSpendProposalWithDepositAmino {
     title: string;
     description: string;
     recipient: string;
@@ -213,6 +325,7 @@ export interface CommunityPoolSpendProposalWithDeposit {
  * with a deposit
  */
 export interface CommunityPoolSpendProposalWithDepositSDKType {
+    $typeUrl?: string;
     title: string;
     description: string;
     recipient: string;
@@ -225,6 +338,8 @@ export declare const Params: {
     fromJSON(object: any): Params;
     toJSON(message: Params): unknown;
     fromPartial(object: Partial<Params>): Params;
+    fromAmino(object: ParamsAmino): Params;
+    toAmino(message: Params): ParamsAmino;
 };
 export declare const ValidatorHistoricalRewards: {
     encode(message: ValidatorHistoricalRewards, writer?: _m0.Writer): _m0.Writer;
@@ -232,6 +347,8 @@ export declare const ValidatorHistoricalRewards: {
     fromJSON(object: any): ValidatorHistoricalRewards;
     toJSON(message: ValidatorHistoricalRewards): unknown;
     fromPartial(object: Partial<ValidatorHistoricalRewards>): ValidatorHistoricalRewards;
+    fromAmino(object: ValidatorHistoricalRewardsAmino): ValidatorHistoricalRewards;
+    toAmino(message: ValidatorHistoricalRewards): ValidatorHistoricalRewardsAmino;
 };
 export declare const ValidatorCurrentRewards: {
     encode(message: ValidatorCurrentRewards, writer?: _m0.Writer): _m0.Writer;
@@ -239,6 +356,8 @@ export declare const ValidatorCurrentRewards: {
     fromJSON(object: any): ValidatorCurrentRewards;
     toJSON(message: ValidatorCurrentRewards): unknown;
     fromPartial(object: Partial<ValidatorCurrentRewards>): ValidatorCurrentRewards;
+    fromAmino(object: ValidatorCurrentRewardsAmino): ValidatorCurrentRewards;
+    toAmino(message: ValidatorCurrentRewards): ValidatorCurrentRewardsAmino;
 };
 export declare const ValidatorAccumulatedCommission: {
     encode(message: ValidatorAccumulatedCommission, writer?: _m0.Writer): _m0.Writer;
@@ -246,6 +365,8 @@ export declare const ValidatorAccumulatedCommission: {
     fromJSON(object: any): ValidatorAccumulatedCommission;
     toJSON(message: ValidatorAccumulatedCommission): unknown;
     fromPartial(object: Partial<ValidatorAccumulatedCommission>): ValidatorAccumulatedCommission;
+    fromAmino(object: ValidatorAccumulatedCommissionAmino): ValidatorAccumulatedCommission;
+    toAmino(message: ValidatorAccumulatedCommission): ValidatorAccumulatedCommissionAmino;
 };
 export declare const ValidatorOutstandingRewards: {
     encode(message: ValidatorOutstandingRewards, writer?: _m0.Writer): _m0.Writer;
@@ -253,6 +374,8 @@ export declare const ValidatorOutstandingRewards: {
     fromJSON(object: any): ValidatorOutstandingRewards;
     toJSON(message: ValidatorOutstandingRewards): unknown;
     fromPartial(object: Partial<ValidatorOutstandingRewards>): ValidatorOutstandingRewards;
+    fromAmino(object: ValidatorOutstandingRewardsAmino): ValidatorOutstandingRewards;
+    toAmino(message: ValidatorOutstandingRewards): ValidatorOutstandingRewardsAmino;
 };
 export declare const ValidatorSlashEvent: {
     encode(message: ValidatorSlashEvent, writer?: _m0.Writer): _m0.Writer;
@@ -260,6 +383,8 @@ export declare const ValidatorSlashEvent: {
     fromJSON(object: any): ValidatorSlashEvent;
     toJSON(message: ValidatorSlashEvent): unknown;
     fromPartial(object: Partial<ValidatorSlashEvent>): ValidatorSlashEvent;
+    fromAmino(object: ValidatorSlashEventAmino): ValidatorSlashEvent;
+    toAmino(message: ValidatorSlashEvent): ValidatorSlashEventAmino;
 };
 export declare const ValidatorSlashEvents: {
     encode(message: ValidatorSlashEvents, writer?: _m0.Writer): _m0.Writer;
@@ -267,6 +392,8 @@ export declare const ValidatorSlashEvents: {
     fromJSON(object: any): ValidatorSlashEvents;
     toJSON(message: ValidatorSlashEvents): unknown;
     fromPartial(object: Partial<ValidatorSlashEvents>): ValidatorSlashEvents;
+    fromAmino(object: ValidatorSlashEventsAmino): ValidatorSlashEvents;
+    toAmino(message: ValidatorSlashEvents): ValidatorSlashEventsAmino;
 };
 export declare const FeePool: {
     encode(message: FeePool, writer?: _m0.Writer): _m0.Writer;
@@ -274,6 +401,8 @@ export declare const FeePool: {
     fromJSON(object: any): FeePool;
     toJSON(message: FeePool): unknown;
     fromPartial(object: Partial<FeePool>): FeePool;
+    fromAmino(object: FeePoolAmino): FeePool;
+    toAmino(message: FeePool): FeePoolAmino;
 };
 export declare const CommunityPoolSpendProposal: {
     encode(message: CommunityPoolSpendProposal, writer?: _m0.Writer): _m0.Writer;
@@ -281,6 +410,8 @@ export declare const CommunityPoolSpendProposal: {
     fromJSON(object: any): CommunityPoolSpendProposal;
     toJSON(message: CommunityPoolSpendProposal): unknown;
     fromPartial(object: Partial<CommunityPoolSpendProposal>): CommunityPoolSpendProposal;
+    fromAmino(object: CommunityPoolSpendProposalAmino): CommunityPoolSpendProposal;
+    toAmino(message: CommunityPoolSpendProposal): CommunityPoolSpendProposalAmino;
 };
 export declare const DelegatorStartingInfo: {
     encode(message: DelegatorStartingInfo, writer?: _m0.Writer): _m0.Writer;
@@ -288,6 +419,8 @@ export declare const DelegatorStartingInfo: {
     fromJSON(object: any): DelegatorStartingInfo;
     toJSON(message: DelegatorStartingInfo): unknown;
     fromPartial(object: Partial<DelegatorStartingInfo>): DelegatorStartingInfo;
+    fromAmino(object: DelegatorStartingInfoAmino): DelegatorStartingInfo;
+    toAmino(message: DelegatorStartingInfo): DelegatorStartingInfoAmino;
 };
 export declare const DelegationDelegatorReward: {
     encode(message: DelegationDelegatorReward, writer?: _m0.Writer): _m0.Writer;
@@ -295,6 +428,8 @@ export declare const DelegationDelegatorReward: {
     fromJSON(object: any): DelegationDelegatorReward;
     toJSON(message: DelegationDelegatorReward): unknown;
     fromPartial(object: Partial<DelegationDelegatorReward>): DelegationDelegatorReward;
+    fromAmino(object: DelegationDelegatorRewardAmino): DelegationDelegatorReward;
+    toAmino(message: DelegationDelegatorReward): DelegationDelegatorRewardAmino;
 };
 export declare const CommunityPoolSpendProposalWithDeposit: {
     encode(message: CommunityPoolSpendProposalWithDeposit, writer?: _m0.Writer): _m0.Writer;
@@ -302,4 +437,6 @@ export declare const CommunityPoolSpendProposalWithDeposit: {
     fromJSON(object: any): CommunityPoolSpendProposalWithDeposit;
     toJSON(message: CommunityPoolSpendProposalWithDeposit): unknown;
     fromPartial(object: Partial<CommunityPoolSpendProposalWithDeposit>): CommunityPoolSpendProposalWithDeposit;
+    fromAmino(object: CommunityPoolSpendProposalWithDepositAmino): CommunityPoolSpendProposalWithDeposit;
+    toAmino(message: CommunityPoolSpendProposalWithDeposit): CommunityPoolSpendProposalWithDepositAmino;
 };

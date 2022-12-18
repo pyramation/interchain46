@@ -14,6 +14,18 @@ export interface EventGrant {
 }
 /** EventGrant is emitted on Msg/Grant */
 
+export interface EventGrantAmino {
+  /** Msg type URL for which an autorization is granted */
+  msg_type_url: string;
+  /** Granter account address */
+
+  granter: string;
+  /** Grantee account address */
+
+  grantee: string;
+}
+/** EventGrant is emitted on Msg/Grant */
+
 export interface EventGrantSDKType {
   msg_type_url: string;
   granter: string;
@@ -24,6 +36,18 @@ export interface EventGrantSDKType {
 export interface EventRevoke {
   /** Msg type URL for which an autorization is revoked */
   msgTypeUrl: string;
+  /** Granter account address */
+
+  granter: string;
+  /** Grantee account address */
+
+  grantee: string;
+}
+/** EventRevoke is emitted on Msg/Revoke */
+
+export interface EventRevokeAmino {
+  /** Msg type URL for which an autorization is revoked */
+  msg_type_url: string;
   /** Granter account address */
 
   granter: string;
@@ -116,6 +140,22 @@ export const EventGrant = {
     message.granter = object.granter ?? "";
     message.grantee = object.grantee ?? "";
     return message;
+  },
+
+  fromAmino(object: EventGrantAmino): EventGrant {
+    return {
+      msgTypeUrl: object.msg_type_url,
+      granter: object.granter,
+      grantee: object.grantee
+    };
+  },
+
+  toAmino(message: EventGrant): EventGrantAmino {
+    const obj: any = {};
+    obj.msg_type_url = message.msgTypeUrl;
+    obj.granter = message.granter;
+    obj.grantee = message.grantee;
+    return obj;
   }
 
 };
@@ -197,6 +237,22 @@ export const EventRevoke = {
     message.granter = object.granter ?? "";
     message.grantee = object.grantee ?? "";
     return message;
+  },
+
+  fromAmino(object: EventRevokeAmino): EventRevoke {
+    return {
+      msgTypeUrl: object.msg_type_url,
+      granter: object.granter,
+      grantee: object.grantee
+    };
+  },
+
+  toAmino(message: EventRevoke): EventRevokeAmino {
+    const obj: any = {};
+    obj.msg_type_url = message.msgTypeUrl;
+    obj.granter = message.granter;
+    obj.grantee = message.grantee;
+    return obj;
   }
 
 };

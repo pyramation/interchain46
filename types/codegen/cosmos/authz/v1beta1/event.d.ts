@@ -9,6 +9,15 @@ export interface EventGrant {
     grantee: string;
 }
 /** EventGrant is emitted on Msg/Grant */
+export interface EventGrantAmino {
+    /** Msg type URL for which an autorization is granted */
+    msg_type_url: string;
+    /** Granter account address */
+    granter: string;
+    /** Grantee account address */
+    grantee: string;
+}
+/** EventGrant is emitted on Msg/Grant */
 export interface EventGrantSDKType {
     msg_type_url: string;
     granter: string;
@@ -18,6 +27,15 @@ export interface EventGrantSDKType {
 export interface EventRevoke {
     /** Msg type URL for which an autorization is revoked */
     msgTypeUrl: string;
+    /** Granter account address */
+    granter: string;
+    /** Grantee account address */
+    grantee: string;
+}
+/** EventRevoke is emitted on Msg/Revoke */
+export interface EventRevokeAmino {
+    /** Msg type URL for which an autorization is revoked */
+    msg_type_url: string;
     /** Granter account address */
     granter: string;
     /** Grantee account address */
@@ -35,6 +53,8 @@ export declare const EventGrant: {
     fromJSON(object: any): EventGrant;
     toJSON(message: EventGrant): unknown;
     fromPartial(object: Partial<EventGrant>): EventGrant;
+    fromAmino(object: EventGrantAmino): EventGrant;
+    toAmino(message: EventGrant): EventGrantAmino;
 };
 export declare const EventRevoke: {
     encode(message: EventRevoke, writer?: _m0.Writer): _m0.Writer;
@@ -42,4 +62,6 @@ export declare const EventRevoke: {
     fromJSON(object: any): EventRevoke;
     toJSON(message: EventRevoke): unknown;
     fromPartial(object: Partial<EventRevoke>): EventRevoke;
+    fromAmino(object: EventRevokeAmino): EventRevoke;
+    toAmino(message: EventRevoke): EventRevokeAmino;
 };

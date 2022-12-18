@@ -5,11 +5,19 @@ import { isSet } from "../../../../helpers";
 export interface ConfigRequest {}
 /** ConfigRequest defines the request structure for the Config gRPC query. */
 
+export interface ConfigRequestAmino {}
+/** ConfigRequest defines the request structure for the Config gRPC query. */
+
 export interface ConfigRequestSDKType {}
 /** ConfigResponse defines the response structure for the Config gRPC query. */
 
 export interface ConfigResponse {
   minimumGasPrice: string;
+}
+/** ConfigResponse defines the response structure for the Config gRPC query. */
+
+export interface ConfigResponseAmino {
+  minimum_gas_price: string;
 }
 /** ConfigResponse defines the response structure for the Config gRPC query. */
 
@@ -56,6 +64,15 @@ export const ConfigRequest = {
   fromPartial(_: Partial<ConfigRequest>): ConfigRequest {
     const message = createBaseConfigRequest();
     return message;
+  },
+
+  fromAmino(_: ConfigRequestAmino): ConfigRequest {
+    return {};
+  },
+
+  toAmino(_: ConfigRequest): ConfigRequestAmino {
+    const obj: any = {};
+    return obj;
   }
 
 };
@@ -113,6 +130,18 @@ export const ConfigResponse = {
     const message = createBaseConfigResponse();
     message.minimumGasPrice = object.minimumGasPrice ?? "";
     return message;
+  },
+
+  fromAmino(object: ConfigResponseAmino): ConfigResponse {
+    return {
+      minimumGasPrice: object.minimum_gas_price
+    };
+  },
+
+  toAmino(message: ConfigResponse): ConfigResponseAmino {
+    const obj: any = {};
+    obj.minimum_gas_price = message.minimumGasPrice;
+    return obj;
   }
 
 };

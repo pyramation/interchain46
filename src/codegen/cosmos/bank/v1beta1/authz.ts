@@ -1,4 +1,4 @@
-import { Coin, CoinSDKType } from "../../base/v1beta1/coin";
+import { Coin, CoinAmino, CoinSDKType } from "../../base/v1beta1/coin";
 import * as _m0 from "protobufjs/minimal";
 /**
  * SendAuthorization allows the grantee to spend up to spend_limit coins from
@@ -8,6 +8,7 @@ import * as _m0 from "protobufjs/minimal";
  */
 
 export interface SendAuthorization {
+  $typeUrl?: string;
   spendLimit: Coin[];
 }
 /**
@@ -17,12 +18,24 @@ export interface SendAuthorization {
  * Since: cosmos-sdk 0.43
  */
 
+export interface SendAuthorizationAmino {
+  spend_limit: CoinAmino[];
+}
+/**
+ * SendAuthorization allows the grantee to spend up to spend_limit coins from
+ * the granter's account.
+ * 
+ * Since: cosmos-sdk 0.43
+ */
+
 export interface SendAuthorizationSDKType {
+  $typeUrl?: string;
   spend_limit: CoinSDKType[];
 }
 
 function createBaseSendAuthorization(): SendAuthorization {
   return {
+    $typeUrl: "/cosmos.bank.v1beta1.SendAuthorization",
     spendLimit: []
   };
 }
@@ -80,6 +93,24 @@ export const SendAuthorization = {
     const message = createBaseSendAuthorization();
     message.spendLimit = object.spendLimit?.map(e => Coin.fromPartial(e)) || [];
     return message;
+  },
+
+  fromAmino(object: SendAuthorizationAmino): SendAuthorization {
+    return {
+      spendLimit: Array.isArray(object?.spend_limit) ? object.spend_limit.map((e: any) => Coin.fromAmino(e)) : []
+    };
+  },
+
+  toAmino(message: SendAuthorization): SendAuthorizationAmino {
+    const obj: any = {};
+
+    if (message.spendLimit) {
+      obj.spend_limit = message.spendLimit.map(e => e ? Coin.toAmino(e) : undefined);
+    } else {
+      obj.spend_limit = [];
+    }
+
+    return obj;
   }
 
 };

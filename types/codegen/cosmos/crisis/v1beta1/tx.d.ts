@@ -6,6 +6,12 @@ export interface MsgVerifyInvariant {
     invariantRoute: string;
 }
 /** MsgVerifyInvariant represents a message to verify a particular invariance. */
+export interface MsgVerifyInvariantAmino {
+    sender: string;
+    invariant_module_name: string;
+    invariant_route: string;
+}
+/** MsgVerifyInvariant represents a message to verify a particular invariance. */
 export interface MsgVerifyInvariantSDKType {
     sender: string;
     invariant_module_name: string;
@@ -13,6 +19,9 @@ export interface MsgVerifyInvariantSDKType {
 }
 /** MsgVerifyInvariantResponse defines the Msg/VerifyInvariant response type. */
 export interface MsgVerifyInvariantResponse {
+}
+/** MsgVerifyInvariantResponse defines the Msg/VerifyInvariant response type. */
+export interface MsgVerifyInvariantResponseAmino {
 }
 /** MsgVerifyInvariantResponse defines the Msg/VerifyInvariant response type. */
 export interface MsgVerifyInvariantResponseSDKType {
@@ -23,6 +32,8 @@ export declare const MsgVerifyInvariant: {
     fromJSON(object: any): MsgVerifyInvariant;
     toJSON(message: MsgVerifyInvariant): unknown;
     fromPartial(object: Partial<MsgVerifyInvariant>): MsgVerifyInvariant;
+    fromAmino(object: MsgVerifyInvariantAmino): MsgVerifyInvariant;
+    toAmino(message: MsgVerifyInvariant): MsgVerifyInvariantAmino;
 };
 export declare const MsgVerifyInvariantResponse: {
     encode(_: MsgVerifyInvariantResponse, writer?: _m0.Writer): _m0.Writer;
@@ -30,4 +41,6 @@ export declare const MsgVerifyInvariantResponse: {
     fromJSON(_: any): MsgVerifyInvariantResponse;
     toJSON(_: MsgVerifyInvariantResponse): unknown;
     fromPartial(_: Partial<MsgVerifyInvariantResponse>): MsgVerifyInvariantResponse;
+    fromAmino(_: MsgVerifyInvariantResponseAmino): MsgVerifyInvariantResponse;
+    toAmino(_: MsgVerifyInvariantResponse): MsgVerifyInvariantResponseAmino;
 };

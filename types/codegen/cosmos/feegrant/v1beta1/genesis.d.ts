@@ -1,8 +1,12 @@
-import { Grant, GrantSDKType } from "./feegrant";
+import { Grant, GrantAmino, GrantSDKType } from "./feegrant";
 import * as _m0 from "protobufjs/minimal";
 /** GenesisState contains a set of fee allowances, persisted from the store */
 export interface GenesisState {
     allowances: Grant[];
+}
+/** GenesisState contains a set of fee allowances, persisted from the store */
+export interface GenesisStateAmino {
+    allowances: GrantAmino[];
 }
 /** GenesisState contains a set of fee allowances, persisted from the store */
 export interface GenesisStateSDKType {
@@ -14,4 +18,6 @@ export declare const GenesisState: {
     fromJSON(object: any): GenesisState;
     toJSON(message: GenesisState): unknown;
     fromPartial(object: Partial<GenesisState>): GenesisState;
+    fromAmino(object: GenesisStateAmino): GenesisState;
+    toAmino(message: GenesisState): GenesisStateAmino;
 };

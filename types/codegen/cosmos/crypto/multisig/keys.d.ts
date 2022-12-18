@@ -1,4 +1,4 @@
-import { Any, AnySDKType } from "../../../google/protobuf/any";
+import { Any, AnyAmino, AnySDKType } from "../../../google/protobuf/any";
 import * as _m0 from "protobufjs/minimal";
 /**
  * LegacyAminoPubKey specifies a public key type
@@ -8,6 +8,15 @@ import * as _m0 from "protobufjs/minimal";
 export interface LegacyAminoPubKey {
     threshold: number;
     publicKeys: Any[];
+}
+/**
+ * LegacyAminoPubKey specifies a public key type
+ * which nests multiple public keys and a threshold,
+ * it uses legacy amino address rules.
+ */
+export interface LegacyAminoPubKeyAmino {
+    threshold: number;
+    public_keys: AnyAmino[];
 }
 /**
  * LegacyAminoPubKey specifies a public key type
@@ -24,4 +33,6 @@ export declare const LegacyAminoPubKey: {
     fromJSON(object: any): LegacyAminoPubKey;
     toJSON(message: LegacyAminoPubKey): unknown;
     fromPartial(object: Partial<LegacyAminoPubKey>): LegacyAminoPubKey;
+    fromAmino(object: LegacyAminoPubKeyAmino): LegacyAminoPubKey;
+    toAmino(message: LegacyAminoPubKey): LegacyAminoPubKeyAmino;
 };

@@ -1,4 +1,4 @@
-import { Timestamp, TimestampSDKType } from "../../../google/protobuf/timestamp";
+import { Timestamp, TimestampAmino, TimestampSDKType } from "../../../google/protobuf/timestamp";
 import { Long } from "../../../helpers";
 import * as _m0 from "protobufjs/minimal";
 /**
@@ -10,6 +10,16 @@ export interface Equivocation {
     time?: Timestamp;
     power: Long;
     consensusAddress: string;
+}
+/**
+ * Equivocation implements the Evidence interface and defines evidence of double
+ * signing misbehavior.
+ */
+export interface EquivocationAmino {
+    height: string;
+    time?: TimestampAmino;
+    power: string;
+    consensus_address: string;
 }
 /**
  * Equivocation implements the Evidence interface and defines evidence of double
@@ -27,4 +37,6 @@ export declare const Equivocation: {
     fromJSON(object: any): Equivocation;
     toJSON(message: Equivocation): unknown;
     fromPartial(object: Partial<Equivocation>): Equivocation;
+    fromAmino(object: EquivocationAmino): Equivocation;
+    toAmino(message: Equivocation): EquivocationAmino;
 };

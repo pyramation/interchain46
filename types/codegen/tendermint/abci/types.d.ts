@@ -1,8 +1,8 @@
-import { Timestamp, TimestampSDKType } from "../../google/protobuf/timestamp";
-import { Header, HeaderSDKType } from "../types/types";
-import { ProofOps, ProofOpsSDKType } from "../crypto/proof";
-import { EvidenceParams, EvidenceParamsSDKType, ValidatorParams, ValidatorParamsSDKType, VersionParams, VersionParamsSDKType } from "../types/params";
-import { PublicKey, PublicKeySDKType } from "../crypto/keys";
+import { Timestamp, TimestampAmino, TimestampSDKType } from "../../google/protobuf/timestamp";
+import { Header, HeaderAmino, HeaderSDKType } from "../types/types";
+import { ProofOps, ProofOpsAmino, ProofOpsSDKType } from "../crypto/proof";
+import { EvidenceParams, EvidenceParamsAmino, EvidenceParamsSDKType, ValidatorParams, ValidatorParamsAmino, ValidatorParamsSDKType, VersionParams, VersionParamsAmino, VersionParamsSDKType } from "../types/params";
+import { PublicKey, PublicKeyAmino, PublicKeySDKType } from "../crypto/keys";
 import * as _m0 from "protobufjs/minimal";
 import { Long } from "../../helpers";
 export declare enum CheckTxType {
@@ -11,6 +11,7 @@ export declare enum CheckTxType {
     UNRECOGNIZED = -1
 }
 export declare const CheckTxTypeSDKType: typeof CheckTxType;
+export declare const CheckTxTypeAmino: typeof CheckTxType;
 export declare function checkTxTypeFromJSON(object: any): CheckTxType;
 export declare function checkTxTypeToJSON(object: CheckTxType): string;
 export declare enum ResponseOfferSnapshot_Result {
@@ -29,6 +30,7 @@ export declare enum ResponseOfferSnapshot_Result {
     UNRECOGNIZED = -1
 }
 export declare const ResponseOfferSnapshot_ResultSDKType: typeof ResponseOfferSnapshot_Result;
+export declare const ResponseOfferSnapshot_ResultAmino: typeof ResponseOfferSnapshot_Result;
 export declare function responseOfferSnapshot_ResultFromJSON(object: any): ResponseOfferSnapshot_Result;
 export declare function responseOfferSnapshot_ResultToJSON(object: ResponseOfferSnapshot_Result): string;
 export declare enum ResponseApplySnapshotChunk_Result {
@@ -47,6 +49,7 @@ export declare enum ResponseApplySnapshotChunk_Result {
     UNRECOGNIZED = -1
 }
 export declare const ResponseApplySnapshotChunk_ResultSDKType: typeof ResponseApplySnapshotChunk_Result;
+export declare const ResponseApplySnapshotChunk_ResultAmino: typeof ResponseApplySnapshotChunk_Result;
 export declare function responseApplySnapshotChunk_ResultFromJSON(object: any): ResponseApplySnapshotChunk_Result;
 export declare function responseApplySnapshotChunk_ResultToJSON(object: ResponseApplySnapshotChunk_Result): string;
 export declare enum EvidenceType {
@@ -56,6 +59,7 @@ export declare enum EvidenceType {
     UNRECOGNIZED = -1
 }
 export declare const EvidenceTypeSDKType: typeof EvidenceType;
+export declare const EvidenceTypeAmino: typeof EvidenceType;
 export declare function evidenceTypeFromJSON(object: any): EvidenceType;
 export declare function evidenceTypeToJSON(object: EvidenceType): string;
 export interface Request {
@@ -74,6 +78,23 @@ export interface Request {
     offerSnapshot?: RequestOfferSnapshot;
     loadSnapshotChunk?: RequestLoadSnapshotChunk;
     applySnapshotChunk?: RequestApplySnapshotChunk;
+}
+export interface RequestAmino {
+    echo?: RequestEchoAmino;
+    flush?: RequestFlushAmino;
+    info?: RequestInfoAmino;
+    set_option?: RequestSetOptionAmino;
+    init_chain?: RequestInitChainAmino;
+    query?: RequestQueryAmino;
+    begin_block?: RequestBeginBlockAmino;
+    check_tx?: RequestCheckTxAmino;
+    deliver_tx?: RequestDeliverTxAmino;
+    end_block?: RequestEndBlockAmino;
+    commit?: RequestCommitAmino;
+    list_snapshots?: RequestListSnapshotsAmino;
+    offer_snapshot?: RequestOfferSnapshotAmino;
+    load_snapshot_chunk?: RequestLoadSnapshotChunkAmino;
+    apply_snapshot_chunk?: RequestApplySnapshotChunkAmino;
 }
 export interface RequestSDKType {
     echo?: RequestEchoSDKType;
@@ -95,10 +116,15 @@ export interface RequestSDKType {
 export interface RequestEcho {
     message: string;
 }
+export interface RequestEchoAmino {
+    message: string;
+}
 export interface RequestEchoSDKType {
     message: string;
 }
 export interface RequestFlush {
+}
+export interface RequestFlushAmino {
 }
 export interface RequestFlushSDKType {
 }
@@ -107,6 +133,11 @@ export interface RequestInfo {
     blockVersion: Long;
     p2pVersion: Long;
 }
+export interface RequestInfoAmino {
+    version: string;
+    block_version: string;
+    p2p_version: string;
+}
 export interface RequestInfoSDKType {
     version: string;
     block_version: Long;
@@ -114,6 +145,11 @@ export interface RequestInfoSDKType {
 }
 /** nondeterministic */
 export interface RequestSetOption {
+    key: string;
+    value: string;
+}
+/** nondeterministic */
+export interface RequestSetOptionAmino {
     key: string;
     value: string;
 }
@@ -130,6 +166,14 @@ export interface RequestInitChain {
     appStateBytes: Uint8Array;
     initialHeight: Long;
 }
+export interface RequestInitChainAmino {
+    time?: TimestampAmino;
+    chain_id: string;
+    consensus_params?: ConsensusParamsAmino;
+    validators: ValidatorUpdateAmino[];
+    app_state_bytes: Uint8Array;
+    initial_height: string;
+}
 export interface RequestInitChainSDKType {
     time?: TimestampSDKType;
     chain_id: string;
@@ -144,6 +188,12 @@ export interface RequestQuery {
     height: Long;
     prove: boolean;
 }
+export interface RequestQueryAmino {
+    data: Uint8Array;
+    path: string;
+    height: string;
+    prove: boolean;
+}
 export interface RequestQuerySDKType {
     data: Uint8Array;
     path: string;
@@ -156,6 +206,12 @@ export interface RequestBeginBlock {
     lastCommitInfo?: LastCommitInfo;
     byzantineValidators: Evidence[];
 }
+export interface RequestBeginBlockAmino {
+    hash: Uint8Array;
+    header?: HeaderAmino;
+    last_commit_info?: LastCommitInfoAmino;
+    byzantine_validators: EvidenceAmino[];
+}
 export interface RequestBeginBlockSDKType {
     hash: Uint8Array;
     header?: HeaderSDKType;
@@ -166,11 +222,18 @@ export interface RequestCheckTx {
     tx: Uint8Array;
     type: CheckTxType;
 }
+export interface RequestCheckTxAmino {
+    tx: Uint8Array;
+    type: CheckTxType;
+}
 export interface RequestCheckTxSDKType {
     tx: Uint8Array;
     type: CheckTxType;
 }
 export interface RequestDeliverTx {
+    tx: Uint8Array;
+}
+export interface RequestDeliverTxAmino {
     tx: Uint8Array;
 }
 export interface RequestDeliverTxSDKType {
@@ -179,15 +242,23 @@ export interface RequestDeliverTxSDKType {
 export interface RequestEndBlock {
     height: Long;
 }
+export interface RequestEndBlockAmino {
+    height: string;
+}
 export interface RequestEndBlockSDKType {
     height: Long;
 }
 export interface RequestCommit {
 }
+export interface RequestCommitAmino {
+}
 export interface RequestCommitSDKType {
 }
 /** lists available snapshots */
 export interface RequestListSnapshots {
+}
+/** lists available snapshots */
+export interface RequestListSnapshotsAmino {
 }
 /** lists available snapshots */
 export interface RequestListSnapshotsSDKType {
@@ -198,6 +269,13 @@ export interface RequestOfferSnapshot {
     snapshot?: Snapshot;
     /** light client-verified app hash for snapshot height */
     appHash: Uint8Array;
+}
+/** offers a snapshot to the application */
+export interface RequestOfferSnapshotAmino {
+    /** snapshot offered by peers */
+    snapshot?: SnapshotAmino;
+    /** light client-verified app hash for snapshot height */
+    app_hash: Uint8Array;
 }
 /** offers a snapshot to the application */
 export interface RequestOfferSnapshotSDKType {
@@ -211,6 +289,12 @@ export interface RequestLoadSnapshotChunk {
     chunk: number;
 }
 /** loads a snapshot chunk */
+export interface RequestLoadSnapshotChunkAmino {
+    height: string;
+    format: number;
+    chunk: number;
+}
+/** loads a snapshot chunk */
 export interface RequestLoadSnapshotChunkSDKType {
     height: Long;
     format: number;
@@ -218,6 +302,12 @@ export interface RequestLoadSnapshotChunkSDKType {
 }
 /** Applies a snapshot chunk */
 export interface RequestApplySnapshotChunk {
+    index: number;
+    chunk: Uint8Array;
+    sender: string;
+}
+/** Applies a snapshot chunk */
+export interface RequestApplySnapshotChunkAmino {
     index: number;
     chunk: Uint8Array;
     sender: string;
@@ -246,6 +336,24 @@ export interface Response {
     loadSnapshotChunk?: ResponseLoadSnapshotChunk;
     applySnapshotChunk?: ResponseApplySnapshotChunk;
 }
+export interface ResponseAmino {
+    exception?: ResponseExceptionAmino;
+    echo?: ResponseEchoAmino;
+    flush?: ResponseFlushAmino;
+    info?: ResponseInfoAmino;
+    set_option?: ResponseSetOptionAmino;
+    init_chain?: ResponseInitChainAmino;
+    query?: ResponseQueryAmino;
+    begin_block?: ResponseBeginBlockAmino;
+    check_tx?: ResponseCheckTxAmino;
+    deliver_tx?: ResponseDeliverTxAmino;
+    end_block?: ResponseEndBlockAmino;
+    commit?: ResponseCommitAmino;
+    list_snapshots?: ResponseListSnapshotsAmino;
+    offer_snapshot?: ResponseOfferSnapshotAmino;
+    load_snapshot_chunk?: ResponseLoadSnapshotChunkAmino;
+    apply_snapshot_chunk?: ResponseApplySnapshotChunkAmino;
+}
 export interface ResponseSDKType {
     exception?: ResponseExceptionSDKType;
     echo?: ResponseEchoSDKType;
@@ -269,16 +377,25 @@ export interface ResponseException {
     error: string;
 }
 /** nondeterministic */
+export interface ResponseExceptionAmino {
+    error: string;
+}
+/** nondeterministic */
 export interface ResponseExceptionSDKType {
     error: string;
 }
 export interface ResponseEcho {
     message: string;
 }
+export interface ResponseEchoAmino {
+    message: string;
+}
 export interface ResponseEchoSDKType {
     message: string;
 }
 export interface ResponseFlush {
+}
+export interface ResponseFlushAmino {
 }
 export interface ResponseFlushSDKType {
 }
@@ -288,6 +405,13 @@ export interface ResponseInfo {
     appVersion: Long;
     lastBlockHeight: Long;
     lastBlockAppHash: Uint8Array;
+}
+export interface ResponseInfoAmino {
+    data: string;
+    version: string;
+    app_version: string;
+    last_block_height: string;
+    last_block_app_hash: Uint8Array;
 }
 export interface ResponseInfoSDKType {
     data: string;
@@ -304,6 +428,13 @@ export interface ResponseSetOption {
     info: string;
 }
 /** nondeterministic */
+export interface ResponseSetOptionAmino {
+    code: number;
+    /** bytes data = 2; */
+    log: string;
+    info: string;
+}
+/** nondeterministic */
 export interface ResponseSetOptionSDKType {
     code: number;
     log: string;
@@ -313,6 +444,11 @@ export interface ResponseInitChain {
     consensusParams?: ConsensusParams;
     validators: ValidatorUpdate[];
     appHash: Uint8Array;
+}
+export interface ResponseInitChainAmino {
+    consensus_params?: ConsensusParamsAmino;
+    validators: ValidatorUpdateAmino[];
+    app_hash: Uint8Array;
 }
 export interface ResponseInitChainSDKType {
     consensus_params?: ConsensusParamsSDKType;
@@ -332,6 +468,19 @@ export interface ResponseQuery {
     height: Long;
     codespace: string;
 }
+export interface ResponseQueryAmino {
+    code: number;
+    /** bytes data = 2; // use "value" instead. */
+    log: string;
+    /** nondeterministic */
+    info: string;
+    index: string;
+    key: Uint8Array;
+    value: Uint8Array;
+    proof_ops?: ProofOpsAmino;
+    height: string;
+    codespace: string;
+}
 export interface ResponseQuerySDKType {
     code: number;
     log: string;
@@ -345,6 +494,9 @@ export interface ResponseQuerySDKType {
 }
 export interface ResponseBeginBlock {
     events: Event[];
+}
+export interface ResponseBeginBlockAmino {
+    events: EventAmino[];
 }
 export interface ResponseBeginBlockSDKType {
     events: EventSDKType[];
@@ -367,6 +519,25 @@ export interface ResponseCheckTx {
      * ABCI applictions creating a ResponseCheckTX should not set mempool_error.
      */
     mempoolError: string;
+}
+export interface ResponseCheckTxAmino {
+    code: number;
+    data: Uint8Array;
+    /** nondeterministic */
+    log: string;
+    /** nondeterministic */
+    info: string;
+    gas_wanted: string;
+    gas_used: string;
+    events: EventAmino[];
+    codespace: string;
+    sender: string;
+    priority: string;
+    /**
+     * mempool_error is set by Tendermint.
+     * ABCI applictions creating a ResponseCheckTX should not set mempool_error.
+     */
+    mempool_error: string;
 }
 export interface ResponseCheckTxSDKType {
     code: number;
@@ -393,6 +564,18 @@ export interface ResponseDeliverTx {
     events: Event[];
     codespace: string;
 }
+export interface ResponseDeliverTxAmino {
+    code: number;
+    data: Uint8Array;
+    /** nondeterministic */
+    log: string;
+    /** nondeterministic */
+    info: string;
+    gas_wanted: string;
+    gas_used: string;
+    events: EventAmino[];
+    codespace: string;
+}
 export interface ResponseDeliverTxSDKType {
     code: number;
     data: Uint8Array;
@@ -408,6 +591,11 @@ export interface ResponseEndBlock {
     consensusParamUpdates?: ConsensusParams;
     events: Event[];
 }
+export interface ResponseEndBlockAmino {
+    validator_updates: ValidatorUpdateAmino[];
+    consensus_param_updates?: ConsensusParamsAmino;
+    events: EventAmino[];
+}
 export interface ResponseEndBlockSDKType {
     validator_updates: ValidatorUpdateSDKType[];
     consensus_param_updates?: ConsensusParamsSDKType;
@@ -418,6 +606,11 @@ export interface ResponseCommit {
     data: Uint8Array;
     retainHeight: Long;
 }
+export interface ResponseCommitAmino {
+    /** reserve 1 */
+    data: Uint8Array;
+    retain_height: string;
+}
 export interface ResponseCommitSDKType {
     data: Uint8Array;
     retain_height: Long;
@@ -425,16 +618,25 @@ export interface ResponseCommitSDKType {
 export interface ResponseListSnapshots {
     snapshots: Snapshot[];
 }
+export interface ResponseListSnapshotsAmino {
+    snapshots: SnapshotAmino[];
+}
 export interface ResponseListSnapshotsSDKType {
     snapshots: SnapshotSDKType[];
 }
 export interface ResponseOfferSnapshot {
     result: ResponseOfferSnapshot_Result;
 }
+export interface ResponseOfferSnapshotAmino {
+    result: ResponseOfferSnapshot_Result;
+}
 export interface ResponseOfferSnapshotSDKType {
     result: ResponseOfferSnapshot_Result;
 }
 export interface ResponseLoadSnapshotChunk {
+    chunk: Uint8Array;
+}
+export interface ResponseLoadSnapshotChunkAmino {
     chunk: Uint8Array;
 }
 export interface ResponseLoadSnapshotChunkSDKType {
@@ -446,6 +648,13 @@ export interface ResponseApplySnapshotChunk {
     refetchChunks: number[];
     /** Chunk senders to reject and ban */
     rejectSenders: string[];
+}
+export interface ResponseApplySnapshotChunkAmino {
+    result: ResponseApplySnapshotChunk_Result;
+    /** Chunks to refetch and reapply */
+    refetch_chunks: number[];
+    /** Chunk senders to reject and ban */
+    reject_senders: string[];
 }
 export interface ResponseApplySnapshotChunkSDKType {
     result: ResponseApplySnapshotChunk_Result;
@@ -466,6 +675,16 @@ export interface ConsensusParams {
  * ConsensusParams contains all consensus-relevant parameters
  * that can be adjusted by the abci app
  */
+export interface ConsensusParamsAmino {
+    block?: BlockParamsAmino;
+    evidence?: EvidenceParamsAmino;
+    validator?: ValidatorParamsAmino;
+    version?: VersionParamsAmino;
+}
+/**
+ * ConsensusParams contains all consensus-relevant parameters
+ * that can be adjusted by the abci app
+ */
 export interface ConsensusParamsSDKType {
     block?: BlockParamsSDKType;
     evidence?: EvidenceParamsSDKType;
@@ -480,6 +699,13 @@ export interface BlockParams {
     maxGas: Long;
 }
 /** BlockParams contains limits on the block size. */
+export interface BlockParamsAmino {
+    /** Note: must be greater than 0 */
+    max_bytes: string;
+    /** Note: must be greater or equal to -1 */
+    max_gas: string;
+}
+/** BlockParams contains limits on the block size. */
 export interface BlockParamsSDKType {
     max_bytes: Long;
     max_gas: Long;
@@ -487,6 +713,10 @@ export interface BlockParamsSDKType {
 export interface LastCommitInfo {
     round: number;
     votes: VoteInfo[];
+}
+export interface LastCommitInfoAmino {
+    round: number;
+    votes: VoteInfoAmino[];
 }
 export interface LastCommitInfoSDKType {
     round: number;
@@ -506,12 +736,28 @@ export interface Event {
  * ResponseBeginBlock, ResponseEndBlock, ResponseCheckTx and ResponseDeliverTx.
  * Later, transactions may be queried using these events.
  */
+export interface EventAmino {
+    type: string;
+    attributes: EventAttributeAmino[];
+}
+/**
+ * Event allows application developers to attach additional information to
+ * ResponseBeginBlock, ResponseEndBlock, ResponseCheckTx and ResponseDeliverTx.
+ * Later, transactions may be queried using these events.
+ */
 export interface EventSDKType {
     type: string;
     attributes: EventAttributeSDKType[];
 }
 /** EventAttribute is a single key-value pair, associated with an event. */
 export interface EventAttribute {
+    key: Uint8Array;
+    value: Uint8Array;
+    /** nondeterministic */
+    index: boolean;
+}
+/** EventAttribute is a single key-value pair, associated with an event. */
+export interface EventAttributeAmino {
     key: Uint8Array;
     value: Uint8Array;
     /** nondeterministic */
@@ -539,6 +785,17 @@ export interface TxResult {
  *
  * One usage is indexing transaction results.
  */
+export interface TxResultAmino {
+    height: string;
+    index: number;
+    tx: Uint8Array;
+    result?: ResponseDeliverTxAmino;
+}
+/**
+ * TxResult contains results of executing the transaction.
+ *
+ * One usage is indexing transaction results.
+ */
 export interface TxResultSDKType {
     height: Long;
     index: number;
@@ -556,6 +813,16 @@ export interface Validator {
     power: Long;
 }
 /** Validator */
+export interface ValidatorAmino {
+    /**
+     * The first 20 bytes of SHA256(public key)
+     * PubKey pub_key = 2 [(gogoproto.nullable)=false];
+     */
+    address: Uint8Array;
+    /** The voting power */
+    power: string;
+}
+/** Validator */
 export interface ValidatorSDKType {
     address: Uint8Array;
     power: Long;
@@ -566,6 +833,11 @@ export interface ValidatorUpdate {
     power: Long;
 }
 /** ValidatorUpdate */
+export interface ValidatorUpdateAmino {
+    pub_key?: PublicKeyAmino;
+    power: string;
+}
+/** ValidatorUpdate */
 export interface ValidatorUpdateSDKType {
     pub_key?: PublicKeySDKType;
     power: Long;
@@ -574,6 +846,11 @@ export interface ValidatorUpdateSDKType {
 export interface VoteInfo {
     validator?: Validator;
     signedLastBlock: boolean;
+}
+/** VoteInfo */
+export interface VoteInfoAmino {
+    validator?: ValidatorAmino;
+    signed_last_block: boolean;
 }
 /** VoteInfo */
 export interface VoteInfoSDKType {
@@ -595,6 +872,21 @@ export interface Evidence {
      */
     totalVotingPower: Long;
 }
+export interface EvidenceAmino {
+    type: EvidenceType;
+    /** The offending validator */
+    validator?: ValidatorAmino;
+    /** The height when the offense occurred */
+    height: string;
+    /** The corresponding time where the offense occurred */
+    time?: TimestampAmino;
+    /**
+     * Total voting power of the validator set in case the ABCI application does
+     * not store historical validators.
+     * https://github.com/tendermint/tendermint/issues/4581
+     */
+    total_voting_power: string;
+}
 export interface EvidenceSDKType {
     type: EvidenceType;
     validator?: ValidatorSDKType;
@@ -605,6 +897,18 @@ export interface EvidenceSDKType {
 export interface Snapshot {
     /** The height at which the snapshot was taken */
     height: Long;
+    /** The application-specific snapshot format */
+    format: number;
+    /** Number of chunks in the snapshot */
+    chunks: number;
+    /** Arbitrary snapshot hash, equal only if identical */
+    hash: Uint8Array;
+    /** Arbitrary application metadata */
+    metadata: Uint8Array;
+}
+export interface SnapshotAmino {
+    /** The height at which the snapshot was taken */
+    height: string;
     /** The application-specific snapshot format */
     format: number;
     /** Number of chunks in the snapshot */
@@ -627,6 +931,8 @@ export declare const Request: {
     fromJSON(object: any): Request;
     toJSON(message: Request): unknown;
     fromPartial(object: Partial<Request>): Request;
+    fromAmino(object: RequestAmino): Request;
+    toAmino(message: Request): RequestAmino;
 };
 export declare const RequestEcho: {
     encode(message: RequestEcho, writer?: _m0.Writer): _m0.Writer;
@@ -634,6 +940,8 @@ export declare const RequestEcho: {
     fromJSON(object: any): RequestEcho;
     toJSON(message: RequestEcho): unknown;
     fromPartial(object: Partial<RequestEcho>): RequestEcho;
+    fromAmino(object: RequestEchoAmino): RequestEcho;
+    toAmino(message: RequestEcho): RequestEchoAmino;
 };
 export declare const RequestFlush: {
     encode(_: RequestFlush, writer?: _m0.Writer): _m0.Writer;
@@ -641,6 +949,8 @@ export declare const RequestFlush: {
     fromJSON(_: any): RequestFlush;
     toJSON(_: RequestFlush): unknown;
     fromPartial(_: Partial<RequestFlush>): RequestFlush;
+    fromAmino(_: RequestFlushAmino): RequestFlush;
+    toAmino(_: RequestFlush): RequestFlushAmino;
 };
 export declare const RequestInfo: {
     encode(message: RequestInfo, writer?: _m0.Writer): _m0.Writer;
@@ -648,6 +958,8 @@ export declare const RequestInfo: {
     fromJSON(object: any): RequestInfo;
     toJSON(message: RequestInfo): unknown;
     fromPartial(object: Partial<RequestInfo>): RequestInfo;
+    fromAmino(object: RequestInfoAmino): RequestInfo;
+    toAmino(message: RequestInfo): RequestInfoAmino;
 };
 export declare const RequestSetOption: {
     encode(message: RequestSetOption, writer?: _m0.Writer): _m0.Writer;
@@ -655,6 +967,8 @@ export declare const RequestSetOption: {
     fromJSON(object: any): RequestSetOption;
     toJSON(message: RequestSetOption): unknown;
     fromPartial(object: Partial<RequestSetOption>): RequestSetOption;
+    fromAmino(object: RequestSetOptionAmino): RequestSetOption;
+    toAmino(message: RequestSetOption): RequestSetOptionAmino;
 };
 export declare const RequestInitChain: {
     encode(message: RequestInitChain, writer?: _m0.Writer): _m0.Writer;
@@ -662,6 +976,8 @@ export declare const RequestInitChain: {
     fromJSON(object: any): RequestInitChain;
     toJSON(message: RequestInitChain): unknown;
     fromPartial(object: Partial<RequestInitChain>): RequestInitChain;
+    fromAmino(object: RequestInitChainAmino): RequestInitChain;
+    toAmino(message: RequestInitChain): RequestInitChainAmino;
 };
 export declare const RequestQuery: {
     encode(message: RequestQuery, writer?: _m0.Writer): _m0.Writer;
@@ -669,6 +985,8 @@ export declare const RequestQuery: {
     fromJSON(object: any): RequestQuery;
     toJSON(message: RequestQuery): unknown;
     fromPartial(object: Partial<RequestQuery>): RequestQuery;
+    fromAmino(object: RequestQueryAmino): RequestQuery;
+    toAmino(message: RequestQuery): RequestQueryAmino;
 };
 export declare const RequestBeginBlock: {
     encode(message: RequestBeginBlock, writer?: _m0.Writer): _m0.Writer;
@@ -676,6 +994,8 @@ export declare const RequestBeginBlock: {
     fromJSON(object: any): RequestBeginBlock;
     toJSON(message: RequestBeginBlock): unknown;
     fromPartial(object: Partial<RequestBeginBlock>): RequestBeginBlock;
+    fromAmino(object: RequestBeginBlockAmino): RequestBeginBlock;
+    toAmino(message: RequestBeginBlock): RequestBeginBlockAmino;
 };
 export declare const RequestCheckTx: {
     encode(message: RequestCheckTx, writer?: _m0.Writer): _m0.Writer;
@@ -683,6 +1003,8 @@ export declare const RequestCheckTx: {
     fromJSON(object: any): RequestCheckTx;
     toJSON(message: RequestCheckTx): unknown;
     fromPartial(object: Partial<RequestCheckTx>): RequestCheckTx;
+    fromAmino(object: RequestCheckTxAmino): RequestCheckTx;
+    toAmino(message: RequestCheckTx): RequestCheckTxAmino;
 };
 export declare const RequestDeliverTx: {
     encode(message: RequestDeliverTx, writer?: _m0.Writer): _m0.Writer;
@@ -690,6 +1012,8 @@ export declare const RequestDeliverTx: {
     fromJSON(object: any): RequestDeliverTx;
     toJSON(message: RequestDeliverTx): unknown;
     fromPartial(object: Partial<RequestDeliverTx>): RequestDeliverTx;
+    fromAmino(object: RequestDeliverTxAmino): RequestDeliverTx;
+    toAmino(message: RequestDeliverTx): RequestDeliverTxAmino;
 };
 export declare const RequestEndBlock: {
     encode(message: RequestEndBlock, writer?: _m0.Writer): _m0.Writer;
@@ -697,6 +1021,8 @@ export declare const RequestEndBlock: {
     fromJSON(object: any): RequestEndBlock;
     toJSON(message: RequestEndBlock): unknown;
     fromPartial(object: Partial<RequestEndBlock>): RequestEndBlock;
+    fromAmino(object: RequestEndBlockAmino): RequestEndBlock;
+    toAmino(message: RequestEndBlock): RequestEndBlockAmino;
 };
 export declare const RequestCommit: {
     encode(_: RequestCommit, writer?: _m0.Writer): _m0.Writer;
@@ -704,6 +1030,8 @@ export declare const RequestCommit: {
     fromJSON(_: any): RequestCommit;
     toJSON(_: RequestCommit): unknown;
     fromPartial(_: Partial<RequestCommit>): RequestCommit;
+    fromAmino(_: RequestCommitAmino): RequestCommit;
+    toAmino(_: RequestCommit): RequestCommitAmino;
 };
 export declare const RequestListSnapshots: {
     encode(_: RequestListSnapshots, writer?: _m0.Writer): _m0.Writer;
@@ -711,6 +1039,8 @@ export declare const RequestListSnapshots: {
     fromJSON(_: any): RequestListSnapshots;
     toJSON(_: RequestListSnapshots): unknown;
     fromPartial(_: Partial<RequestListSnapshots>): RequestListSnapshots;
+    fromAmino(_: RequestListSnapshotsAmino): RequestListSnapshots;
+    toAmino(_: RequestListSnapshots): RequestListSnapshotsAmino;
 };
 export declare const RequestOfferSnapshot: {
     encode(message: RequestOfferSnapshot, writer?: _m0.Writer): _m0.Writer;
@@ -718,6 +1048,8 @@ export declare const RequestOfferSnapshot: {
     fromJSON(object: any): RequestOfferSnapshot;
     toJSON(message: RequestOfferSnapshot): unknown;
     fromPartial(object: Partial<RequestOfferSnapshot>): RequestOfferSnapshot;
+    fromAmino(object: RequestOfferSnapshotAmino): RequestOfferSnapshot;
+    toAmino(message: RequestOfferSnapshot): RequestOfferSnapshotAmino;
 };
 export declare const RequestLoadSnapshotChunk: {
     encode(message: RequestLoadSnapshotChunk, writer?: _m0.Writer): _m0.Writer;
@@ -725,6 +1057,8 @@ export declare const RequestLoadSnapshotChunk: {
     fromJSON(object: any): RequestLoadSnapshotChunk;
     toJSON(message: RequestLoadSnapshotChunk): unknown;
     fromPartial(object: Partial<RequestLoadSnapshotChunk>): RequestLoadSnapshotChunk;
+    fromAmino(object: RequestLoadSnapshotChunkAmino): RequestLoadSnapshotChunk;
+    toAmino(message: RequestLoadSnapshotChunk): RequestLoadSnapshotChunkAmino;
 };
 export declare const RequestApplySnapshotChunk: {
     encode(message: RequestApplySnapshotChunk, writer?: _m0.Writer): _m0.Writer;
@@ -732,6 +1066,8 @@ export declare const RequestApplySnapshotChunk: {
     fromJSON(object: any): RequestApplySnapshotChunk;
     toJSON(message: RequestApplySnapshotChunk): unknown;
     fromPartial(object: Partial<RequestApplySnapshotChunk>): RequestApplySnapshotChunk;
+    fromAmino(object: RequestApplySnapshotChunkAmino): RequestApplySnapshotChunk;
+    toAmino(message: RequestApplySnapshotChunk): RequestApplySnapshotChunkAmino;
 };
 export declare const Response: {
     encode(message: Response, writer?: _m0.Writer): _m0.Writer;
@@ -739,6 +1075,8 @@ export declare const Response: {
     fromJSON(object: any): Response;
     toJSON(message: Response): unknown;
     fromPartial(object: Partial<Response>): Response;
+    fromAmino(object: ResponseAmino): Response;
+    toAmino(message: Response): ResponseAmino;
 };
 export declare const ResponseException: {
     encode(message: ResponseException, writer?: _m0.Writer): _m0.Writer;
@@ -746,6 +1084,8 @@ export declare const ResponseException: {
     fromJSON(object: any): ResponseException;
     toJSON(message: ResponseException): unknown;
     fromPartial(object: Partial<ResponseException>): ResponseException;
+    fromAmino(object: ResponseExceptionAmino): ResponseException;
+    toAmino(message: ResponseException): ResponseExceptionAmino;
 };
 export declare const ResponseEcho: {
     encode(message: ResponseEcho, writer?: _m0.Writer): _m0.Writer;
@@ -753,6 +1093,8 @@ export declare const ResponseEcho: {
     fromJSON(object: any): ResponseEcho;
     toJSON(message: ResponseEcho): unknown;
     fromPartial(object: Partial<ResponseEcho>): ResponseEcho;
+    fromAmino(object: ResponseEchoAmino): ResponseEcho;
+    toAmino(message: ResponseEcho): ResponseEchoAmino;
 };
 export declare const ResponseFlush: {
     encode(_: ResponseFlush, writer?: _m0.Writer): _m0.Writer;
@@ -760,6 +1102,8 @@ export declare const ResponseFlush: {
     fromJSON(_: any): ResponseFlush;
     toJSON(_: ResponseFlush): unknown;
     fromPartial(_: Partial<ResponseFlush>): ResponseFlush;
+    fromAmino(_: ResponseFlushAmino): ResponseFlush;
+    toAmino(_: ResponseFlush): ResponseFlushAmino;
 };
 export declare const ResponseInfo: {
     encode(message: ResponseInfo, writer?: _m0.Writer): _m0.Writer;
@@ -767,6 +1111,8 @@ export declare const ResponseInfo: {
     fromJSON(object: any): ResponseInfo;
     toJSON(message: ResponseInfo): unknown;
     fromPartial(object: Partial<ResponseInfo>): ResponseInfo;
+    fromAmino(object: ResponseInfoAmino): ResponseInfo;
+    toAmino(message: ResponseInfo): ResponseInfoAmino;
 };
 export declare const ResponseSetOption: {
     encode(message: ResponseSetOption, writer?: _m0.Writer): _m0.Writer;
@@ -774,6 +1120,8 @@ export declare const ResponseSetOption: {
     fromJSON(object: any): ResponseSetOption;
     toJSON(message: ResponseSetOption): unknown;
     fromPartial(object: Partial<ResponseSetOption>): ResponseSetOption;
+    fromAmino(object: ResponseSetOptionAmino): ResponseSetOption;
+    toAmino(message: ResponseSetOption): ResponseSetOptionAmino;
 };
 export declare const ResponseInitChain: {
     encode(message: ResponseInitChain, writer?: _m0.Writer): _m0.Writer;
@@ -781,6 +1129,8 @@ export declare const ResponseInitChain: {
     fromJSON(object: any): ResponseInitChain;
     toJSON(message: ResponseInitChain): unknown;
     fromPartial(object: Partial<ResponseInitChain>): ResponseInitChain;
+    fromAmino(object: ResponseInitChainAmino): ResponseInitChain;
+    toAmino(message: ResponseInitChain): ResponseInitChainAmino;
 };
 export declare const ResponseQuery: {
     encode(message: ResponseQuery, writer?: _m0.Writer): _m0.Writer;
@@ -788,6 +1138,8 @@ export declare const ResponseQuery: {
     fromJSON(object: any): ResponseQuery;
     toJSON(message: ResponseQuery): unknown;
     fromPartial(object: Partial<ResponseQuery>): ResponseQuery;
+    fromAmino(object: ResponseQueryAmino): ResponseQuery;
+    toAmino(message: ResponseQuery): ResponseQueryAmino;
 };
 export declare const ResponseBeginBlock: {
     encode(message: ResponseBeginBlock, writer?: _m0.Writer): _m0.Writer;
@@ -795,6 +1147,8 @@ export declare const ResponseBeginBlock: {
     fromJSON(object: any): ResponseBeginBlock;
     toJSON(message: ResponseBeginBlock): unknown;
     fromPartial(object: Partial<ResponseBeginBlock>): ResponseBeginBlock;
+    fromAmino(object: ResponseBeginBlockAmino): ResponseBeginBlock;
+    toAmino(message: ResponseBeginBlock): ResponseBeginBlockAmino;
 };
 export declare const ResponseCheckTx: {
     encode(message: ResponseCheckTx, writer?: _m0.Writer): _m0.Writer;
@@ -802,6 +1156,8 @@ export declare const ResponseCheckTx: {
     fromJSON(object: any): ResponseCheckTx;
     toJSON(message: ResponseCheckTx): unknown;
     fromPartial(object: Partial<ResponseCheckTx>): ResponseCheckTx;
+    fromAmino(object: ResponseCheckTxAmino): ResponseCheckTx;
+    toAmino(message: ResponseCheckTx): ResponseCheckTxAmino;
 };
 export declare const ResponseDeliverTx: {
     encode(message: ResponseDeliverTx, writer?: _m0.Writer): _m0.Writer;
@@ -809,6 +1165,8 @@ export declare const ResponseDeliverTx: {
     fromJSON(object: any): ResponseDeliverTx;
     toJSON(message: ResponseDeliverTx): unknown;
     fromPartial(object: Partial<ResponseDeliverTx>): ResponseDeliverTx;
+    fromAmino(object: ResponseDeliverTxAmino): ResponseDeliverTx;
+    toAmino(message: ResponseDeliverTx): ResponseDeliverTxAmino;
 };
 export declare const ResponseEndBlock: {
     encode(message: ResponseEndBlock, writer?: _m0.Writer): _m0.Writer;
@@ -816,6 +1174,8 @@ export declare const ResponseEndBlock: {
     fromJSON(object: any): ResponseEndBlock;
     toJSON(message: ResponseEndBlock): unknown;
     fromPartial(object: Partial<ResponseEndBlock>): ResponseEndBlock;
+    fromAmino(object: ResponseEndBlockAmino): ResponseEndBlock;
+    toAmino(message: ResponseEndBlock): ResponseEndBlockAmino;
 };
 export declare const ResponseCommit: {
     encode(message: ResponseCommit, writer?: _m0.Writer): _m0.Writer;
@@ -823,6 +1183,8 @@ export declare const ResponseCommit: {
     fromJSON(object: any): ResponseCommit;
     toJSON(message: ResponseCommit): unknown;
     fromPartial(object: Partial<ResponseCommit>): ResponseCommit;
+    fromAmino(object: ResponseCommitAmino): ResponseCommit;
+    toAmino(message: ResponseCommit): ResponseCommitAmino;
 };
 export declare const ResponseListSnapshots: {
     encode(message: ResponseListSnapshots, writer?: _m0.Writer): _m0.Writer;
@@ -830,6 +1192,8 @@ export declare const ResponseListSnapshots: {
     fromJSON(object: any): ResponseListSnapshots;
     toJSON(message: ResponseListSnapshots): unknown;
     fromPartial(object: Partial<ResponseListSnapshots>): ResponseListSnapshots;
+    fromAmino(object: ResponseListSnapshotsAmino): ResponseListSnapshots;
+    toAmino(message: ResponseListSnapshots): ResponseListSnapshotsAmino;
 };
 export declare const ResponseOfferSnapshot: {
     encode(message: ResponseOfferSnapshot, writer?: _m0.Writer): _m0.Writer;
@@ -837,6 +1201,8 @@ export declare const ResponseOfferSnapshot: {
     fromJSON(object: any): ResponseOfferSnapshot;
     toJSON(message: ResponseOfferSnapshot): unknown;
     fromPartial(object: Partial<ResponseOfferSnapshot>): ResponseOfferSnapshot;
+    fromAmino(object: ResponseOfferSnapshotAmino): ResponseOfferSnapshot;
+    toAmino(message: ResponseOfferSnapshot): ResponseOfferSnapshotAmino;
 };
 export declare const ResponseLoadSnapshotChunk: {
     encode(message: ResponseLoadSnapshotChunk, writer?: _m0.Writer): _m0.Writer;
@@ -844,6 +1210,8 @@ export declare const ResponseLoadSnapshotChunk: {
     fromJSON(object: any): ResponseLoadSnapshotChunk;
     toJSON(message: ResponseLoadSnapshotChunk): unknown;
     fromPartial(object: Partial<ResponseLoadSnapshotChunk>): ResponseLoadSnapshotChunk;
+    fromAmino(object: ResponseLoadSnapshotChunkAmino): ResponseLoadSnapshotChunk;
+    toAmino(message: ResponseLoadSnapshotChunk): ResponseLoadSnapshotChunkAmino;
 };
 export declare const ResponseApplySnapshotChunk: {
     encode(message: ResponseApplySnapshotChunk, writer?: _m0.Writer): _m0.Writer;
@@ -851,6 +1219,8 @@ export declare const ResponseApplySnapshotChunk: {
     fromJSON(object: any): ResponseApplySnapshotChunk;
     toJSON(message: ResponseApplySnapshotChunk): unknown;
     fromPartial(object: Partial<ResponseApplySnapshotChunk>): ResponseApplySnapshotChunk;
+    fromAmino(object: ResponseApplySnapshotChunkAmino): ResponseApplySnapshotChunk;
+    toAmino(message: ResponseApplySnapshotChunk): ResponseApplySnapshotChunkAmino;
 };
 export declare const ConsensusParams: {
     encode(message: ConsensusParams, writer?: _m0.Writer): _m0.Writer;
@@ -858,6 +1228,8 @@ export declare const ConsensusParams: {
     fromJSON(object: any): ConsensusParams;
     toJSON(message: ConsensusParams): unknown;
     fromPartial(object: Partial<ConsensusParams>): ConsensusParams;
+    fromAmino(object: ConsensusParamsAmino): ConsensusParams;
+    toAmino(message: ConsensusParams): ConsensusParamsAmino;
 };
 export declare const BlockParams: {
     encode(message: BlockParams, writer?: _m0.Writer): _m0.Writer;
@@ -865,6 +1237,8 @@ export declare const BlockParams: {
     fromJSON(object: any): BlockParams;
     toJSON(message: BlockParams): unknown;
     fromPartial(object: Partial<BlockParams>): BlockParams;
+    fromAmino(object: BlockParamsAmino): BlockParams;
+    toAmino(message: BlockParams): BlockParamsAmino;
 };
 export declare const LastCommitInfo: {
     encode(message: LastCommitInfo, writer?: _m0.Writer): _m0.Writer;
@@ -872,6 +1246,8 @@ export declare const LastCommitInfo: {
     fromJSON(object: any): LastCommitInfo;
     toJSON(message: LastCommitInfo): unknown;
     fromPartial(object: Partial<LastCommitInfo>): LastCommitInfo;
+    fromAmino(object: LastCommitInfoAmino): LastCommitInfo;
+    toAmino(message: LastCommitInfo): LastCommitInfoAmino;
 };
 export declare const Event: {
     encode(message: Event, writer?: _m0.Writer): _m0.Writer;
@@ -879,6 +1255,8 @@ export declare const Event: {
     fromJSON(object: any): Event;
     toJSON(message: Event): unknown;
     fromPartial(object: Partial<Event>): Event;
+    fromAmino(object: EventAmino): Event;
+    toAmino(message: Event): EventAmino;
 };
 export declare const EventAttribute: {
     encode(message: EventAttribute, writer?: _m0.Writer): _m0.Writer;
@@ -886,6 +1264,8 @@ export declare const EventAttribute: {
     fromJSON(object: any): EventAttribute;
     toJSON(message: EventAttribute): unknown;
     fromPartial(object: Partial<EventAttribute>): EventAttribute;
+    fromAmino(object: EventAttributeAmino): EventAttribute;
+    toAmino(message: EventAttribute): EventAttributeAmino;
 };
 export declare const TxResult: {
     encode(message: TxResult, writer?: _m0.Writer): _m0.Writer;
@@ -893,6 +1273,8 @@ export declare const TxResult: {
     fromJSON(object: any): TxResult;
     toJSON(message: TxResult): unknown;
     fromPartial(object: Partial<TxResult>): TxResult;
+    fromAmino(object: TxResultAmino): TxResult;
+    toAmino(message: TxResult): TxResultAmino;
 };
 export declare const Validator: {
     encode(message: Validator, writer?: _m0.Writer): _m0.Writer;
@@ -900,6 +1282,8 @@ export declare const Validator: {
     fromJSON(object: any): Validator;
     toJSON(message: Validator): unknown;
     fromPartial(object: Partial<Validator>): Validator;
+    fromAmino(object: ValidatorAmino): Validator;
+    toAmino(message: Validator): ValidatorAmino;
 };
 export declare const ValidatorUpdate: {
     encode(message: ValidatorUpdate, writer?: _m0.Writer): _m0.Writer;
@@ -907,6 +1291,8 @@ export declare const ValidatorUpdate: {
     fromJSON(object: any): ValidatorUpdate;
     toJSON(message: ValidatorUpdate): unknown;
     fromPartial(object: Partial<ValidatorUpdate>): ValidatorUpdate;
+    fromAmino(object: ValidatorUpdateAmino): ValidatorUpdate;
+    toAmino(message: ValidatorUpdate): ValidatorUpdateAmino;
 };
 export declare const VoteInfo: {
     encode(message: VoteInfo, writer?: _m0.Writer): _m0.Writer;
@@ -914,6 +1300,8 @@ export declare const VoteInfo: {
     fromJSON(object: any): VoteInfo;
     toJSON(message: VoteInfo): unknown;
     fromPartial(object: Partial<VoteInfo>): VoteInfo;
+    fromAmino(object: VoteInfoAmino): VoteInfo;
+    toAmino(message: VoteInfo): VoteInfoAmino;
 };
 export declare const Evidence: {
     encode(message: Evidence, writer?: _m0.Writer): _m0.Writer;
@@ -921,6 +1309,8 @@ export declare const Evidence: {
     fromJSON(object: any): Evidence;
     toJSON(message: Evidence): unknown;
     fromPartial(object: Partial<Evidence>): Evidence;
+    fromAmino(object: EvidenceAmino): Evidence;
+    toAmino(message: Evidence): EvidenceAmino;
 };
 export declare const Snapshot: {
     encode(message: Snapshot, writer?: _m0.Writer): _m0.Writer;
@@ -928,4 +1318,6 @@ export declare const Snapshot: {
     fromJSON(object: any): Snapshot;
     toJSON(message: Snapshot): unknown;
     fromPartial(object: Partial<Snapshot>): Snapshot;
+    fromAmino(object: SnapshotAmino): Snapshot;
+    toAmino(message: Snapshot): SnapshotAmino;
 };

@@ -1,4 +1,4 @@
-import { Params, ParamsSDKType, ValidatorSigningInfo, ValidatorSigningInfoSDKType } from "./slashing";
+import { Params, ParamsAmino, ParamsSDKType, ValidatorSigningInfo, ValidatorSigningInfoAmino, ValidatorSigningInfoSDKType } from "./slashing";
 import * as _m0 from "protobufjs/minimal";
 import { Long } from "../../../helpers";
 /** GenesisState defines the slashing module's genesis state. */
@@ -17,6 +17,21 @@ export interface GenesisState {
     missedBlocks: ValidatorMissedBlocks[];
 }
 /** GenesisState defines the slashing module's genesis state. */
+export interface GenesisStateAmino {
+    /** params defines all the paramaters of related to deposit. */
+    params?: ParamsAmino;
+    /**
+     * signing_infos represents a map between validator addresses and their
+     * signing infos.
+     */
+    signing_infos: SigningInfoAmino[];
+    /**
+     * missed_blocks represents a map between validator addresses and their
+     * missed blocks.
+     */
+    missed_blocks: ValidatorMissedBlocksAmino[];
+}
+/** GenesisState defines the slashing module's genesis state. */
 export interface GenesisStateSDKType {
     params?: ParamsSDKType;
     signing_infos: SigningInfoSDKType[];
@@ -28,6 +43,13 @@ export interface SigningInfo {
     address: string;
     /** validator_signing_info represents the signing info of this validator. */
     validatorSigningInfo?: ValidatorSigningInfo;
+}
+/** SigningInfo stores validator signing info of corresponding address. */
+export interface SigningInfoAmino {
+    /** address is the validator address. */
+    address: string;
+    /** validator_signing_info represents the signing info of this validator. */
+    validator_signing_info?: ValidatorSigningInfoAmino;
 }
 /** SigningInfo stores validator signing info of corresponding address. */
 export interface SigningInfoSDKType {
@@ -48,6 +70,16 @@ export interface ValidatorMissedBlocks {
  * ValidatorMissedBlocks contains array of missed blocks of corresponding
  * address.
  */
+export interface ValidatorMissedBlocksAmino {
+    /** address is the validator address. */
+    address: string;
+    /** missed_blocks is an array of missed blocks by the validator. */
+    missed_blocks: MissedBlockAmino[];
+}
+/**
+ * ValidatorMissedBlocks contains array of missed blocks of corresponding
+ * address.
+ */
 export interface ValidatorMissedBlocksSDKType {
     address: string;
     missed_blocks: MissedBlockSDKType[];
@@ -56,6 +88,13 @@ export interface ValidatorMissedBlocksSDKType {
 export interface MissedBlock {
     /** index is the height at which the block was missed. */
     index: Long;
+    /** missed is the missed status. */
+    missed: boolean;
+}
+/** MissedBlock contains height and missed status as boolean. */
+export interface MissedBlockAmino {
+    /** index is the height at which the block was missed. */
+    index: string;
     /** missed is the missed status. */
     missed: boolean;
 }
@@ -70,6 +109,8 @@ export declare const GenesisState: {
     fromJSON(object: any): GenesisState;
     toJSON(message: GenesisState): unknown;
     fromPartial(object: Partial<GenesisState>): GenesisState;
+    fromAmino(object: GenesisStateAmino): GenesisState;
+    toAmino(message: GenesisState): GenesisStateAmino;
 };
 export declare const SigningInfo: {
     encode(message: SigningInfo, writer?: _m0.Writer): _m0.Writer;
@@ -77,6 +118,8 @@ export declare const SigningInfo: {
     fromJSON(object: any): SigningInfo;
     toJSON(message: SigningInfo): unknown;
     fromPartial(object: Partial<SigningInfo>): SigningInfo;
+    fromAmino(object: SigningInfoAmino): SigningInfo;
+    toAmino(message: SigningInfo): SigningInfoAmino;
 };
 export declare const ValidatorMissedBlocks: {
     encode(message: ValidatorMissedBlocks, writer?: _m0.Writer): _m0.Writer;
@@ -84,6 +127,8 @@ export declare const ValidatorMissedBlocks: {
     fromJSON(object: any): ValidatorMissedBlocks;
     toJSON(message: ValidatorMissedBlocks): unknown;
     fromPartial(object: Partial<ValidatorMissedBlocks>): ValidatorMissedBlocks;
+    fromAmino(object: ValidatorMissedBlocksAmino): ValidatorMissedBlocks;
+    toAmino(message: ValidatorMissedBlocks): ValidatorMissedBlocksAmino;
 };
 export declare const MissedBlock: {
     encode(message: MissedBlock, writer?: _m0.Writer): _m0.Writer;
@@ -91,4 +136,6 @@ export declare const MissedBlock: {
     fromJSON(object: any): MissedBlock;
     toJSON(message: MissedBlock): unknown;
     fromPartial(object: Partial<MissedBlock>): MissedBlock;
+    fromAmino(object: MissedBlockAmino): MissedBlock;
+    toAmino(message: MissedBlock): MissedBlockAmino;
 };

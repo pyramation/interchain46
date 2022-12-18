@@ -1,4 +1,4 @@
-import { Params, ParamsSDKType, Validator, ValidatorSDKType, Delegation, DelegationSDKType, UnbondingDelegation, UnbondingDelegationSDKType, Redelegation, RedelegationSDKType } from "./staking";
+import { Params, ParamsAmino, ParamsSDKType, Validator, ValidatorAmino, ValidatorSDKType, Delegation, DelegationAmino, DelegationSDKType, UnbondingDelegation, UnbondingDelegationAmino, UnbondingDelegationSDKType, Redelegation, RedelegationAmino, RedelegationSDKType } from "./staking";
 import * as _m0 from "protobufjs/minimal";
 import { isSet, bytesFromBase64, base64FromBytes, Long } from "../../../helpers";
 /** GenesisState defines the staking module's genesis state. */
@@ -34,6 +34,37 @@ export interface GenesisState {
 }
 /** GenesisState defines the staking module's genesis state. */
 
+export interface GenesisStateAmino {
+  /** params defines all the paramaters of related to deposit. */
+  params?: ParamsAmino;
+  /**
+   * last_total_power tracks the total amounts of bonded tokens recorded during
+   * the previous end block.
+   */
+
+  last_total_power: Uint8Array;
+  /**
+   * last_validator_powers is a special index that provides a historical list
+   * of the last-block's bonded validators.
+   */
+
+  last_validator_powers: LastValidatorPowerAmino[];
+  /** delegations defines the validator set at genesis. */
+
+  validators: ValidatorAmino[];
+  /** delegations defines the delegations active at genesis. */
+
+  delegations: DelegationAmino[];
+  /** unbonding_delegations defines the unbonding delegations active at genesis. */
+
+  unbonding_delegations: UnbondingDelegationAmino[];
+  /** redelegations defines the redelegations active at genesis. */
+
+  redelegations: RedelegationAmino[];
+  exported: boolean;
+}
+/** GenesisState defines the staking module's genesis state. */
+
 export interface GenesisStateSDKType {
   params?: ParamsSDKType;
   last_total_power: Uint8Array;
@@ -52,6 +83,15 @@ export interface LastValidatorPower {
   /** power defines the power of the validator. */
 
   power: Long;
+}
+/** LastValidatorPower required for validator set update logic. */
+
+export interface LastValidatorPowerAmino {
+  /** address is the address of the validator. */
+  address: string;
+  /** power defines the power of the validator. */
+
+  power: string;
 }
 /** LastValidatorPower required for validator set update logic. */
 
@@ -223,6 +263,58 @@ export const GenesisState = {
     message.redelegations = object.redelegations?.map(e => Redelegation.fromPartial(e)) || [];
     message.exported = object.exported ?? false;
     return message;
+  },
+
+  fromAmino(object: GenesisStateAmino): GenesisState {
+    return {
+      params: object?.params ? Params.fromAmino(object.params) : undefined,
+      lastTotalPower: object.last_total_power,
+      lastValidatorPowers: Array.isArray(object?.last_validator_powers) ? object.last_validator_powers.map((e: any) => LastValidatorPower.fromAmino(e)) : [],
+      validators: Array.isArray(object?.validators) ? object.validators.map((e: any) => Validator.fromAmino(e)) : [],
+      delegations: Array.isArray(object?.delegations) ? object.delegations.map((e: any) => Delegation.fromAmino(e)) : [],
+      unbondingDelegations: Array.isArray(object?.unbonding_delegations) ? object.unbonding_delegations.map((e: any) => UnbondingDelegation.fromAmino(e)) : [],
+      redelegations: Array.isArray(object?.redelegations) ? object.redelegations.map((e: any) => Redelegation.fromAmino(e)) : [],
+      exported: object.exported
+    };
+  },
+
+  toAmino(message: GenesisState): GenesisStateAmino {
+    const obj: any = {};
+    obj.params = message.params ? Params.toAmino(message.params) : undefined;
+    obj.last_total_power = message.lastTotalPower;
+
+    if (message.lastValidatorPowers) {
+      obj.last_validator_powers = message.lastValidatorPowers.map(e => e ? LastValidatorPower.toAmino(e) : undefined);
+    } else {
+      obj.last_validator_powers = [];
+    }
+
+    if (message.validators) {
+      obj.validators = message.validators.map(e => e ? Validator.toAmino(e) : undefined);
+    } else {
+      obj.validators = [];
+    }
+
+    if (message.delegations) {
+      obj.delegations = message.delegations.map(e => e ? Delegation.toAmino(e) : undefined);
+    } else {
+      obj.delegations = [];
+    }
+
+    if (message.unbondingDelegations) {
+      obj.unbonding_delegations = message.unbondingDelegations.map(e => e ? UnbondingDelegation.toAmino(e) : undefined);
+    } else {
+      obj.unbonding_delegations = [];
+    }
+
+    if (message.redelegations) {
+      obj.redelegations = message.redelegations.map(e => e ? Redelegation.toAmino(e) : undefined);
+    } else {
+      obj.redelegations = [];
+    }
+
+    obj.exported = message.exported;
+    return obj;
   }
 
 };
@@ -292,6 +384,20 @@ export const LastValidatorPower = {
     message.address = object.address ?? "";
     message.power = object.power !== undefined && object.power !== null ? Long.fromValue(object.power) : Long.ZERO;
     return message;
+  },
+
+  fromAmino(object: LastValidatorPowerAmino): LastValidatorPower {
+    return {
+      address: object.address,
+      power: Long.fromString(object.power)
+    };
+  },
+
+  toAmino(message: LastValidatorPower): LastValidatorPowerAmino {
+    const obj: any = {};
+    obj.address = message.address;
+    obj.power = message.power ? message.power.toString() : undefined;
+    return obj;
   }
 
 };

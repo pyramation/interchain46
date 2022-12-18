@@ -1,5 +1,5 @@
-import { PageRequest, PageRequestSDKType, PageResponse, PageResponseSDKType } from "../../base/query/v1beta1/pagination";
-import { Params, ParamsSDKType, ValidatorSigningInfo, ValidatorSigningInfoSDKType } from "./slashing";
+import { PageRequest, PageRequestAmino, PageRequestSDKType, PageResponse, PageResponseAmino, PageResponseSDKType } from "../../base/query/v1beta1/pagination";
+import { Params, ParamsAmino, ParamsSDKType, ValidatorSigningInfo, ValidatorSigningInfoAmino, ValidatorSigningInfoSDKType } from "./slashing";
 import * as _m0 from "protobufjs/minimal";
 import { isSet } from "../../../helpers";
 /** QueryParamsRequest is the request type for the Query/Params RPC method */
@@ -7,11 +7,19 @@ import { isSet } from "../../../helpers";
 export interface QueryParamsRequest {}
 /** QueryParamsRequest is the request type for the Query/Params RPC method */
 
+export interface QueryParamsRequestAmino {}
+/** QueryParamsRequest is the request type for the Query/Params RPC method */
+
 export interface QueryParamsRequestSDKType {}
 /** QueryParamsResponse is the response type for the Query/Params RPC method */
 
 export interface QueryParamsResponse {
   params?: Params;
+}
+/** QueryParamsResponse is the response type for the Query/Params RPC method */
+
+export interface QueryParamsResponseAmino {
+  params?: ParamsAmino;
 }
 /** QueryParamsResponse is the response type for the Query/Params RPC method */
 
@@ -26,6 +34,15 @@ export interface QueryParamsResponseSDKType {
 export interface QuerySigningInfoRequest {
   /** cons_address is the address to query signing info of */
   consAddress: string;
+}
+/**
+ * QuerySigningInfoRequest is the request type for the Query/SigningInfo RPC
+ * method
+ */
+
+export interface QuerySigningInfoRequestAmino {
+  /** cons_address is the address to query signing info of */
+  cons_address: string;
 }
 /**
  * QuerySigningInfoRequest is the request type for the Query/SigningInfo RPC
@@ -49,6 +66,15 @@ export interface QuerySigningInfoResponse {
  * method
  */
 
+export interface QuerySigningInfoResponseAmino {
+  /** val_signing_info is the signing info of requested val cons address */
+  val_signing_info?: ValidatorSigningInfoAmino;
+}
+/**
+ * QuerySigningInfoResponse is the response type for the Query/SigningInfo RPC
+ * method
+ */
+
 export interface QuerySigningInfoResponseSDKType {
   val_signing_info?: ValidatorSigningInfoSDKType;
 }
@@ -59,6 +85,14 @@ export interface QuerySigningInfoResponseSDKType {
 
 export interface QuerySigningInfosRequest {
   pagination?: PageRequest;
+}
+/**
+ * QuerySigningInfosRequest is the request type for the Query/SigningInfos RPC
+ * method
+ */
+
+export interface QuerySigningInfosRequestAmino {
+  pagination?: PageRequestAmino;
 }
 /**
  * QuerySigningInfosRequest is the request type for the Query/SigningInfos RPC
@@ -77,6 +111,16 @@ export interface QuerySigningInfosResponse {
   /** info is the signing info of all validators */
   info: ValidatorSigningInfo[];
   pagination?: PageResponse;
+}
+/**
+ * QuerySigningInfosResponse is the response type for the Query/SigningInfos RPC
+ * method
+ */
+
+export interface QuerySigningInfosResponseAmino {
+  /** info is the signing info of all validators */
+  info: ValidatorSigningInfoAmino[];
+  pagination?: PageResponseAmino;
 }
 /**
  * QuerySigningInfosResponse is the response type for the Query/SigningInfos RPC
@@ -127,6 +171,15 @@ export const QueryParamsRequest = {
   fromPartial(_: Partial<QueryParamsRequest>): QueryParamsRequest {
     const message = createBaseQueryParamsRequest();
     return message;
+  },
+
+  fromAmino(_: QueryParamsRequestAmino): QueryParamsRequest {
+    return {};
+  },
+
+  toAmino(_: QueryParamsRequest): QueryParamsRequestAmino {
+    const obj: any = {};
+    return obj;
   }
 
 };
@@ -184,6 +237,18 @@ export const QueryParamsResponse = {
     const message = createBaseQueryParamsResponse();
     message.params = object.params !== undefined && object.params !== null ? Params.fromPartial(object.params) : undefined;
     return message;
+  },
+
+  fromAmino(object: QueryParamsResponseAmino): QueryParamsResponse {
+    return {
+      params: object?.params ? Params.fromAmino(object.params) : undefined
+    };
+  },
+
+  toAmino(message: QueryParamsResponse): QueryParamsResponseAmino {
+    const obj: any = {};
+    obj.params = message.params ? Params.toAmino(message.params) : undefined;
+    return obj;
   }
 
 };
@@ -241,6 +306,18 @@ export const QuerySigningInfoRequest = {
     const message = createBaseQuerySigningInfoRequest();
     message.consAddress = object.consAddress ?? "";
     return message;
+  },
+
+  fromAmino(object: QuerySigningInfoRequestAmino): QuerySigningInfoRequest {
+    return {
+      consAddress: object.cons_address
+    };
+  },
+
+  toAmino(message: QuerySigningInfoRequest): QuerySigningInfoRequestAmino {
+    const obj: any = {};
+    obj.cons_address = message.consAddress;
+    return obj;
   }
 
 };
@@ -298,6 +375,18 @@ export const QuerySigningInfoResponse = {
     const message = createBaseQuerySigningInfoResponse();
     message.valSigningInfo = object.valSigningInfo !== undefined && object.valSigningInfo !== null ? ValidatorSigningInfo.fromPartial(object.valSigningInfo) : undefined;
     return message;
+  },
+
+  fromAmino(object: QuerySigningInfoResponseAmino): QuerySigningInfoResponse {
+    return {
+      valSigningInfo: object?.val_signing_info ? ValidatorSigningInfo.fromAmino(object.val_signing_info) : undefined
+    };
+  },
+
+  toAmino(message: QuerySigningInfoResponse): QuerySigningInfoResponseAmino {
+    const obj: any = {};
+    obj.val_signing_info = message.valSigningInfo ? ValidatorSigningInfo.toAmino(message.valSigningInfo) : undefined;
+    return obj;
   }
 
 };
@@ -355,6 +444,18 @@ export const QuerySigningInfosRequest = {
     const message = createBaseQuerySigningInfosRequest();
     message.pagination = object.pagination !== undefined && object.pagination !== null ? PageRequest.fromPartial(object.pagination) : undefined;
     return message;
+  },
+
+  fromAmino(object: QuerySigningInfosRequestAmino): QuerySigningInfosRequest {
+    return {
+      pagination: object?.pagination ? PageRequest.fromAmino(object.pagination) : undefined
+    };
+  },
+
+  toAmino(message: QuerySigningInfosRequest): QuerySigningInfosRequestAmino {
+    const obj: any = {};
+    obj.pagination = message.pagination ? PageRequest.toAmino(message.pagination) : undefined;
+    return obj;
   }
 
 };
@@ -430,6 +531,26 @@ export const QuerySigningInfosResponse = {
     message.info = object.info?.map(e => ValidatorSigningInfo.fromPartial(e)) || [];
     message.pagination = object.pagination !== undefined && object.pagination !== null ? PageResponse.fromPartial(object.pagination) : undefined;
     return message;
+  },
+
+  fromAmino(object: QuerySigningInfosResponseAmino): QuerySigningInfosResponse {
+    return {
+      info: Array.isArray(object?.info) ? object.info.map((e: any) => ValidatorSigningInfo.fromAmino(e)) : [],
+      pagination: object?.pagination ? PageResponse.fromAmino(object.pagination) : undefined
+    };
+  },
+
+  toAmino(message: QuerySigningInfosResponse): QuerySigningInfosResponseAmino {
+    const obj: any = {};
+
+    if (message.info) {
+      obj.info = message.info.map(e => e ? ValidatorSigningInfo.toAmino(e) : undefined);
+    } else {
+      obj.info = [];
+    }
+
+    obj.pagination = message.pagination ? PageResponse.toAmino(message.pagination) : undefined;
+    return obj;
   }
 
 };
