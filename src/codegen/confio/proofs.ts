@@ -1178,10 +1178,10 @@ export const LeafOp = {
 
   toAmino(message: LeafOp): LeafOpAmino {
     const obj: any = {};
-    message.hash !== undefined && (obj.hash = hashOpToJSON(message.hash));
-    message.prehashKey !== undefined && (obj.prehash_key = hashOpToJSON(message.prehashKey));
-    message.prehashValue !== undefined && (obj.prehash_value = hashOpToJSON(message.prehashValue));
-    message.length !== undefined && (obj.length = lengthOpToJSON(message.length));
+    obj.hash = message.hash;
+    obj.prehash_key = message.prehashKey;
+    obj.prehash_value = message.prehashValue;
+    obj.length = message.length;
     obj.prefix = message.prefix;
     return obj;
   }
@@ -1277,7 +1277,7 @@ export const InnerOp = {
 
   toAmino(message: InnerOp): InnerOpAmino {
     const obj: any = {};
-    message.hash !== undefined && (obj.hash = hashOpToJSON(message.hash));
+    obj.hash = message.hash;
     obj.prefix = message.prefix;
     obj.suffix = message.suffix;
     return obj;
@@ -1554,7 +1554,7 @@ export const InnerSpec = {
     obj.min_prefix_length = message.minPrefixLength;
     obj.max_prefix_length = message.maxPrefixLength;
     obj.empty_child = message.emptyChild;
-    message.hash !== undefined && (obj.hash = hashOpToJSON(message.hash));
+    obj.hash = message.hash;
     return obj;
   }
 

@@ -368,7 +368,7 @@ export const ModuleSchemaDescriptor_FileEntry = {
     const obj: any = {};
     obj.id = message.id;
     obj.proto_file_name = message.protoFileName;
-    message.storageType !== undefined && (obj.storage_type = storageTypeToJSON(message.storageType));
+    obj.storage_type = message.storageType;
     return obj;
   }
 

@@ -600,7 +600,7 @@ export const SignatureDescriptor_Data_Single = {
 
   toAmino(message: SignatureDescriptor_Data_Single): SignatureDescriptor_Data_SingleAmino {
     const obj: any = {};
-    message.mode !== undefined && (obj.mode = signModeToJSON(message.mode));
+    obj.mode = message.mode;
     obj.signature = message.signature;
     return obj;
   }

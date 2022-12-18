@@ -435,7 +435,7 @@ export const MsgVote = {
     const obj: any = {};
     obj.proposal_id = message.proposalId ? message.proposalId.toString() : undefined;
     obj.voter = message.voter;
-    message.option !== undefined && (obj.option = voteOptionToJSON(message.option));
+    obj.option = message.option;
     return obj;
   }
 
