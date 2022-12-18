@@ -48,7 +48,7 @@ message Plan {
 // proposals, see MsgSoftwareUpgrade.
 message SoftwareUpgradeProposal {
   option deprecated                          = true;
-  option (cosmos_proto.implements_interface) = "cosmos.gov.v1beta1.Content";
+  option (cosmos_proto.implements_interface) = "Content";
   option (gogoproto.equal)                   = true;
   option (gogoproto.goproto_stringer)        = false;
 
@@ -63,7 +63,7 @@ message SoftwareUpgradeProposal {
 // proposals, see MsgCancelUpgrade.
 message CancelSoftwareUpgradeProposal {
   option deprecated                          = true;
-  option (cosmos_proto.implements_interface) = "cosmos.gov.v1beta1.Content";
+  option (cosmos_proto.implements_interface) = "Content";
   option (gogoproto.equal)                   = true;
   option (gogoproto.goproto_stringer)        = false;
 
