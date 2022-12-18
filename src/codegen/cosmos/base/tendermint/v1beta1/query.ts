@@ -6,8 +6,8 @@ import { BlockSDKType as Block1SDKType } from "../../../../tendermint/types/bloc
 import { Block as Block2 } from "./types";
 import { BlockSDKType as Block2SDKType } from "./types";
 import { DefaultNodeInfo, DefaultNodeInfoSDKType } from "../../../../tendermint/p2p/types";
-import * as _m0 from "protobufjs/minimal";
 import { Long, isSet, bytesFromBase64, base64FromBytes } from "../../../../helpers";
+import * as _m0 from "protobufjs/minimal";
 /**
  * GetValidatorSetByHeightRequest is the request type for the
  * Query/GetValidatorSetByHeight RPC method.
@@ -26,8 +26,6 @@ export interface GetValidatorSetByHeightRequest {
 
 export interface GetValidatorSetByHeightRequestSDKType {
   height: Long;
-  /** pagination defines an pagination for the request. */
-
   pagination?: PageRequestSDKType;
 }
 /**
@@ -50,8 +48,6 @@ export interface GetValidatorSetByHeightResponse {
 export interface GetValidatorSetByHeightResponseSDKType {
   block_height: Long;
   validators: ValidatorSDKType[];
-  /** pagination defines an pagination for the response. */
-
   pagination?: PageResponseSDKType;
 }
 /**
@@ -69,7 +65,6 @@ export interface GetLatestValidatorSetRequest {
  */
 
 export interface GetLatestValidatorSetRequestSDKType {
-  /** pagination defines an pagination for the request. */
   pagination?: PageRequestSDKType;
 }
 /**
@@ -92,8 +87,6 @@ export interface GetLatestValidatorSetResponse {
 export interface GetLatestValidatorSetResponseSDKType {
   block_height: Long;
   validators: ValidatorSDKType[];
-  /** pagination defines an pagination for the response. */
-
   pagination?: PageResponseSDKType;
 }
 /** Validator is the type for the validator-set. */
@@ -149,11 +142,7 @@ export interface GetBlockByHeightResponse {
 
 export interface GetBlockByHeightResponseSDKType {
   block_id?: BlockIDSDKType;
-  /** Deprecated: please use `sdk_block` instead */
-
   block?: Block1SDKType;
-  /** Since: cosmos-sdk 0.47 */
-
   sdk_block?: Block2SDKType;
 }
 /**
@@ -189,11 +178,7 @@ export interface GetLatestBlockResponse {
 
 export interface GetLatestBlockResponseSDKType {
   block_id?: BlockIDSDKType;
-  /** Deprecated: please use `sdk_block` instead */
-
   block?: Block1SDKType;
-  /** Since: cosmos-sdk 0.47 */
-
   sdk_block?: Block2SDKType;
 }
 /** GetSyncingRequest is the request type for the Query/GetSyncing RPC method. */
@@ -260,8 +245,6 @@ export interface VersionInfoSDKType {
   build_tags: string;
   go_version: string;
   build_deps: ModuleSDKType[];
-  /** Since: cosmos-sdk 0.43 */
-
   cosmos_sdk_version: string;
 }
 /** Module is the type for VersionInfo */
@@ -279,13 +262,8 @@ export interface Module {
 /** Module is the type for VersionInfo */
 
 export interface ModuleSDKType {
-  /** module path */
   path: string;
-  /** module version */
-
   version: string;
-  /** checksum */
-
   sum: string;
 }
 /** ABCIQueryRequest defines the request structure for the ABCIQuery gRPC query. */
@@ -337,11 +315,7 @@ export interface ABCIQueryResponse {
 
 export interface ABCIQueryResponseSDKType {
   code: number;
-  /** nondeterministic */
-
   log: string;
-  /** nondeterministic */
-
   info: string;
   index: Long;
   key: Uint8Array;

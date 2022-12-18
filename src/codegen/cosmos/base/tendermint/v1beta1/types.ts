@@ -68,40 +68,19 @@ export interface Header {
 /** Header defines the structure of a Tendermint block header. */
 
 export interface HeaderSDKType {
-  /** basic block info */
   version?: ConsensusSDKType;
   chain_id: string;
   height: Long;
   time?: TimestampSDKType;
-  /** prev block info */
-
   last_block_id?: BlockIDSDKType;
-  /** hashes of block data */
-
   last_commit_hash: Uint8Array;
   data_hash: Uint8Array;
-  /** hashes from the app output from the prev block */
-
   validators_hash: Uint8Array;
-  /** validators for the next block */
-
   next_validators_hash: Uint8Array;
-  /** consensus params for current block */
-
   consensus_hash: Uint8Array;
-  /** state after txs from the previous block */
-
   app_hash: Uint8Array;
   last_results_hash: Uint8Array;
-  /** consensus info */
-
   evidence_hash: Uint8Array;
-  /**
-   * proposer_address is the original block proposer address, formatted as a Bech32 string.
-   * In Tendermint, this type is `bytes`, but in the SDK, we convert it to a Bech32 string
-   * for better UX.
-   */
-
   proposer_address: string;
 }
 

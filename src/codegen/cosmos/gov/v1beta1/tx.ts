@@ -1,6 +1,6 @@
 import { Any, AnySDKType } from "../../../google/protobuf/any";
 import { Coin, CoinSDKType } from "../../base/v1beta1/coin";
-import { VoteOption, VoteOptionSDKType, WeightedVoteOption, WeightedVoteOptionSDKType, voteOptionFromJSON, voteOptionToJSON } from "./gov";
+import { VoteOption, WeightedVoteOption, WeightedVoteOptionSDKType, voteOptionFromJSON, voteOptionToJSON } from "./gov";
 import * as _m0 from "protobufjs/minimal";
 import { isSet, Long } from "../../../helpers";
 /**
@@ -45,7 +45,7 @@ export interface MsgVote {
 export interface MsgVoteSDKType {
   proposal_id: Long;
   voter: string;
-  option: VoteOptionSDKType;
+  option: VoteOption;
 }
 /** MsgVoteResponse defines the Msg/Vote response type. */
 
