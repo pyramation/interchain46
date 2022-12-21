@@ -1,0 +1,85 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`fromAmino 1`] = `
+{
+  "admin": "address",
+  "decision_policy": {
+    "type": "cosmos-sdk/PercentageDecisionPolicy",
+    "value": {
+      "percentage": "0.5",
+      "windows": {
+        "min_execution_period": "100000000000",
+        "voting_period": "100000000000",
+      },
+    },
+  },
+  "group_metadata": "https://some.ipfs.w3s.link/group_metadata.json",
+  "group_policy_as_admin": true,
+  "group_policy_metadata": "https://some.ipfs.w3s.link/group_metadata.json",
+  "members": [
+    {
+      "address": "address",
+      "metadata": "First user",
+      "weight": "10",
+    },
+  ],
+}
+`;
+
+exports[`fromAmino 2`] = `
+{
+  "admin": "address",
+  "decisionPolicy": {
+    "$typeUrl": "/google.protobuf.Any",
+    "typeUrl": "/cosmos.group.v1.PercentageDecisionPolicy",
+    "value": {
+      "data": [
+        10,
+        3,
+        48,
+        46,
+        53,
+        18,
+        0,
+      ],
+      "type": "Buffer",
+    },
+  },
+  "groupMetadata": "https://some.ipfs.w3s.link/group_metadata.json",
+  "groupPolicyAsAdmin": true,
+  "groupPolicyMetadata": "https://some.ipfs.w3s.link/group_metadata.json",
+  "members": [
+    {
+      "address": "address",
+      "metadata": "First user",
+      "weight": "10",
+    },
+  ],
+}
+`;
+
+exports[`toAmino 1`] = `
+{
+  "admin": "address",
+  "decision_policy": {
+    "type": "cosmos-sdk/PercentageDecisionPolicy",
+    "value": {
+      "percentage": "0.5",
+      "windows": {
+        "min_execution_period": "100000000000",
+        "voting_period": "100000000000",
+      },
+    },
+  },
+  "group_metadata": "https://some.ipfs.w3s.link/group_metadata.json",
+  "group_policy_as_admin": true,
+  "group_policy_metadata": "https://some.ipfs.w3s.link/group_metadata.json",
+  "members": [
+    {
+      "address": "address",
+      "metadata": "First user",
+      "weight": "10",
+    },
+  ],
+}
+`;

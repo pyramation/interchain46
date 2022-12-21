@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`works 1`] = `
+{
+  "typeUrl": "/cosmos.group.v1.MsgCreateGroupWithPolicy",
+  "value": {
+    "admin": "address",
+    "decisionPolicy": {
+      "typeUrl": "/cosmos.group.v1.PercentageDecisionPolicy",
+      "value": {
+        "data": [
+          10,
+          3,
+          48,
+          46,
+          53,
+          18,
+          8,
+          10,
+          2,
+          8,
+          100,
+          18,
+          2,
+          8,
+          100,
+        ],
+        "type": "Buffer",
+      },
+    },
+    "groupMetadata": "https://some.ipfs.w3s.link/group_metadata.json",
+    "groupPolicyAsAdmin": true,
+    "groupPolicyMetadata": "https://some.ipfs.w3s.link/group_metadata.json",
+    "members": [
+      {
+        "address": "address",
+        "metadata": "First user",
+        "weight": "10",
+      },
+    ],
+  },
+}
+`;
