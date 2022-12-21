@@ -1,6 +1,20 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`fromAmino 1`] = `
+exports[`emulate orig 1`] = `
+{
+  "percentage": undefined,
+  "windows": undefined,
+}
+`;
+
+exports[`emulate orig 2`] = `
+{
+  "percentage": undefined,
+  "windows": undefined,
+}
+`;
+
+exports[`fromAmino 1 1`] = `
 {
   "admin": "address",
   "decision_policy": {
@@ -26,7 +40,7 @@ exports[`fromAmino 1`] = `
 }
 `;
 
-exports[`fromAmino 2`] = `
+exports[`orig 1`] = `
 {
   "admin": "address",
   "decisionPolicy": {

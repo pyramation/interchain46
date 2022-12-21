@@ -41,11 +41,41 @@ it('toAmino', () => {
     const amino = MsgCreateGroupWithPolicy.toAmino(msg.value);
     expect(amino).toMatchSnapshot();
 });
-it('fromAmino', () => {
-    const amino = MsgCreateGroupWithPolicy.toAmino(msg.value)
-    expect(amino).toMatchSnapshot();
-    const orig = MsgCreateGroupWithPolicy.fromAmino(amino);
-    expect(orig).toMatchSnapshot();
-    const amino2 = MsgCreateGroupWithPolicy.toAmino(orig);
-    expect(amino2).toEqual(amino);
+
+interface Intf {
+    amino: any;
+    orig: any;
+    amino2: any;
+}
+const obj: Intf = {
+    //
+};
+
+it('fromAmino 1', () => {
+    obj.amino = MsgCreateGroupWithPolicy.toAmino(msg.value)
+    expect(obj.amino).toMatchSnapshot();
+});
+it('emulate orig', () => {
+    console.log(obj.amino.decision_policy)
+    const subtlediff = PercentageDecisionPolicy.fromAmino(obj.amino.decision_policy);
+    console.log(subtlediff);
+    expect(subtlediff).toMatchSnapshot();
+
+    const subtlediff2 = PercentageDecisionPolicy.fromAmino(obj.amino.decision_policy);
+    expect(subtlediff2).toMatchSnapshot();
+    console.log(subtlediff2);
+    // obj.orig = MsgCreateGroupWithPolicy.fromAmino(obj.amino);
+    // expect(obj.orig).toMatchSnapshot();
+});
+it('orig', () => {
+    obj.orig = MsgCreateGroupWithPolicy.fromAmino(obj.amino);
+    expect(obj.orig).toMatchSnapshot();
+});
+it('final', () => {
+    obj.amino2 = MsgCreateGroupWithPolicy.toAmino(obj.orig);
+    expect(obj.amino2).toEqual(obj.amino);
+});
+
+describe('PercentageDecisionPolicy', () => {
+    //
 });
