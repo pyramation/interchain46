@@ -53,10 +53,9 @@ const obj: Intf = {
 };
 
 it('fromAmino 1', () => {
-    obj.amino = MsgCreateGroupWithPolicy.toAmino(msg.value)
+    const amino = obj.amino = MsgCreateGroupWithPolicy.toAmino(msg.value)
     expect(obj.amino).toMatchSnapshot();
-});
-it('emulate orig', () => {
+
     expect(obj.amino.decision_policy).toMatchSnapshot();
     const subtlediff = PercentageDecisionPolicy.fromAmino(obj.amino.decision_policy.value);
     expect(subtlediff).toMatchSnapshot();
@@ -68,16 +67,14 @@ it('emulate orig', () => {
     expect(simple1).toMatchSnapshot();
     const simple2 = PercentageDecisionPolicy.toAmino(simple1);
     expect(simple2).toMatchSnapshot();
-});
-it('orig', () => {
-    obj.orig = MsgCreateGroupWithPolicy.fromAmino(obj.amino);
-    expect(obj.orig).toMatchSnapshot();
-});
-it('final', () => {
-    obj.amino2 = MsgCreateGroupWithPolicy.toAmino(obj.orig);
-    expect(obj.amino2).toEqual(obj.amino);
-});
 
-describe('PercentageDecisionPolicy', () => {
-    //
+    const origAttempt = obj.orig = MsgCreateGroupWithPolicy.fromAmino(obj.amino);
+    expect(obj.orig).toMatchSnapshot();
+
+    console.log({ origAttempt })
+
+    const aminoFromOrig = obj.amino2 = MsgCreateGroupWithPolicy.toAmino(obj.orig);
+    console.log(JSON.stringify({ aminoFromOrig }, null, 2))
+    console.log(JSON.stringify({ amino }, null, 2))
+    expect(obj.amino2).toEqual(obj.amino);
 });
