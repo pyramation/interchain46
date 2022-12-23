@@ -1,6 +1,7 @@
 import { cosmos } from '../src';
 import Long from 'long';
-import { MsgCreateGroupWithPolicy } from '../src/codegen/cosmos/group/v1/tx';
+import { MsgCreateGroupWithPolicy, DecisionPolicy_FromAmino } from '../src/codegen/cosmos/group/v1/tx';
+import { DecisionPolicy_ToAmino } from '../src/codegen/cosmos/group/v1/types';
 
 const { createGroupPolicy, createGroupWithPolicy } =
     cosmos.group.v1.MessageComposer.withTypeUrl;
