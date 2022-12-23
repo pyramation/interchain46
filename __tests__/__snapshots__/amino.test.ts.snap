@@ -2,8 +2,14 @@
 
 exports[`emulate orig 1`] = `
 {
-  "percentage": undefined,
-  "windows": undefined,
+  "type": "cosmos-sdk/PercentageDecisionPolicy",
+  "value": {
+    "percentage": "0.5",
+    "windows": {
+      "min_execution_period": "100000000000",
+      "voting_period": "100000000000",
+    },
+  },
 }
 `;
 
