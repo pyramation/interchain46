@@ -57,10 +57,16 @@ it('fromAmino 1', () => {
     expect(obj.amino).toMatchSnapshot();
 });
 it('emulate orig', () => {
-    console.log(obj.amino.decision_policy)
-    const subtlediff = PercentageDecisionPolicy.fromAmino(obj.amino.decision_policy);
-    console.log(subtlediff);
+    // console.log(obj.amino.decision_policy)
+
+    expect(obj.amino.decision_policy).toMatchSnapshot();
+    const subtlediff = PercentageDecisionPolicy.fromAmino(obj.amino.decision_policy.value);
     expect(subtlediff).toMatchSnapshot();
+    const encodedVersion = DecisionPolicy_FromAmino(obj.amino.decision_policy);
+    expect({ encodedVersion }).toMatchSnapshot();
+    const decodedVersion = DecisionPolicy_ToAmino(encodedVersion);
+    // console.log({ decodedVersion })
+    expect({ decodedVersion }).toMatchSnapshot();
 
     const subtlediff2 = PercentageDecisionPolicy.fromAmino(obj.amino.decision_policy);
     expect(subtlediff2).toMatchSnapshot();
