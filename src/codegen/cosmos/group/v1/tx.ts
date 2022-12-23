@@ -138,13 +138,13 @@ export interface MsgUpdateGroupMembersSDKType {
 }
 /** MsgUpdateGroupMembersResponse is the Msg/UpdateGroupMembers response type. */
 
-export interface MsgUpdateGroupMembersResponse {}
+export interface MsgUpdateGroupMembersResponse { }
 /** MsgUpdateGroupMembersResponse is the Msg/UpdateGroupMembers response type. */
 
-export interface MsgUpdateGroupMembersResponseAmino {}
+export interface MsgUpdateGroupMembersResponseAmino { }
 /** MsgUpdateGroupMembersResponse is the Msg/UpdateGroupMembers response type. */
 
-export interface MsgUpdateGroupMembersResponseSDKType {}
+export interface MsgUpdateGroupMembersResponseSDKType { }
 /** MsgUpdateGroupAdmin is the Msg/UpdateGroupAdmin request type. */
 
 export interface MsgUpdateGroupAdmin {
@@ -178,13 +178,13 @@ export interface MsgUpdateGroupAdminSDKType {
 }
 /** MsgUpdateGroupAdminResponse is the Msg/UpdateGroupAdmin response type. */
 
-export interface MsgUpdateGroupAdminResponse {}
+export interface MsgUpdateGroupAdminResponse { }
 /** MsgUpdateGroupAdminResponse is the Msg/UpdateGroupAdmin response type. */
 
-export interface MsgUpdateGroupAdminResponseAmino {}
+export interface MsgUpdateGroupAdminResponseAmino { }
 /** MsgUpdateGroupAdminResponse is the Msg/UpdateGroupAdmin response type. */
 
-export interface MsgUpdateGroupAdminResponseSDKType {}
+export interface MsgUpdateGroupAdminResponseSDKType { }
 /** MsgUpdateGroupMetadata is the Msg/UpdateGroupMetadata request type. */
 
 export interface MsgUpdateGroupMetadata {
@@ -218,13 +218,13 @@ export interface MsgUpdateGroupMetadataSDKType {
 }
 /** MsgUpdateGroupMetadataResponse is the Msg/UpdateGroupMetadata response type. */
 
-export interface MsgUpdateGroupMetadataResponse {}
+export interface MsgUpdateGroupMetadataResponse { }
 /** MsgUpdateGroupMetadataResponse is the Msg/UpdateGroupMetadata response type. */
 
-export interface MsgUpdateGroupMetadataResponseAmino {}
+export interface MsgUpdateGroupMetadataResponseAmino { }
 /** MsgUpdateGroupMetadataResponse is the Msg/UpdateGroupMetadata response type. */
 
-export interface MsgUpdateGroupMetadataResponseSDKType {}
+export interface MsgUpdateGroupMetadataResponseSDKType { }
 /** MsgCreateGroupPolicy is the Msg/CreateGroupPolicy request type. */
 
 export interface MsgCreateGroupPolicy {
@@ -313,13 +313,13 @@ export interface MsgUpdateGroupPolicyAdminSDKType {
 }
 /** MsgUpdateGroupPolicyAdminResponse is the Msg/UpdateGroupPolicyAdmin response type. */
 
-export interface MsgUpdateGroupPolicyAdminResponse {}
+export interface MsgUpdateGroupPolicyAdminResponse { }
 /** MsgUpdateGroupPolicyAdminResponse is the Msg/UpdateGroupPolicyAdmin response type. */
 
-export interface MsgUpdateGroupPolicyAdminResponseAmino {}
+export interface MsgUpdateGroupPolicyAdminResponseAmino { }
 /** MsgUpdateGroupPolicyAdminResponse is the Msg/UpdateGroupPolicyAdmin response type. */
 
-export interface MsgUpdateGroupPolicyAdminResponseSDKType {}
+export interface MsgUpdateGroupPolicyAdminResponseSDKType { }
 /** MsgCreateGroupWithPolicy is the Msg/CreateGroupWithPolicy request type. */
 
 export interface MsgCreateGroupWithPolicy {
@@ -435,13 +435,13 @@ export interface MsgUpdateGroupPolicyDecisionPolicySDKType {
 }
 /** MsgUpdateGroupPolicyDecisionPolicyResponse is the Msg/UpdateGroupPolicyDecisionPolicy response type. */
 
-export interface MsgUpdateGroupPolicyDecisionPolicyResponse {}
+export interface MsgUpdateGroupPolicyDecisionPolicyResponse { }
 /** MsgUpdateGroupPolicyDecisionPolicyResponse is the Msg/UpdateGroupPolicyDecisionPolicy response type. */
 
-export interface MsgUpdateGroupPolicyDecisionPolicyResponseAmino {}
+export interface MsgUpdateGroupPolicyDecisionPolicyResponseAmino { }
 /** MsgUpdateGroupPolicyDecisionPolicyResponse is the Msg/UpdateGroupPolicyDecisionPolicy response type. */
 
-export interface MsgUpdateGroupPolicyDecisionPolicyResponseSDKType {}
+export interface MsgUpdateGroupPolicyDecisionPolicyResponseSDKType { }
 /** MsgUpdateGroupPolicyMetadata is the Msg/UpdateGroupPolicyMetadata request type. */
 
 export interface MsgUpdateGroupPolicyMetadata {
@@ -475,13 +475,13 @@ export interface MsgUpdateGroupPolicyMetadataSDKType {
 }
 /** MsgUpdateGroupPolicyMetadataResponse is the Msg/UpdateGroupPolicyMetadata response type. */
 
-export interface MsgUpdateGroupPolicyMetadataResponse {}
+export interface MsgUpdateGroupPolicyMetadataResponse { }
 /** MsgUpdateGroupPolicyMetadataResponse is the Msg/UpdateGroupPolicyMetadata response type. */
 
-export interface MsgUpdateGroupPolicyMetadataResponseAmino {}
+export interface MsgUpdateGroupPolicyMetadataResponseAmino { }
 /** MsgUpdateGroupPolicyMetadataResponse is the Msg/UpdateGroupPolicyMetadata response type. */
 
-export interface MsgUpdateGroupPolicyMetadataResponseSDKType {}
+export interface MsgUpdateGroupPolicyMetadataResponseSDKType { }
 /** MsgSubmitProposal is the Msg/SubmitProposal request type. */
 
 export interface MsgSubmitProposal {
@@ -584,13 +584,13 @@ export interface MsgWithdrawProposalSDKType {
 }
 /** MsgWithdrawProposalResponse is the Msg/WithdrawProposal response type. */
 
-export interface MsgWithdrawProposalResponse {}
+export interface MsgWithdrawProposalResponse { }
 /** MsgWithdrawProposalResponse is the Msg/WithdrawProposal response type. */
 
-export interface MsgWithdrawProposalResponseAmino {}
+export interface MsgWithdrawProposalResponseAmino { }
 /** MsgWithdrawProposalResponse is the Msg/WithdrawProposal response type. */
 
-export interface MsgWithdrawProposalResponseSDKType {}
+export interface MsgWithdrawProposalResponseSDKType { }
 /** MsgVote is the Msg/Vote request type. */
 
 export interface MsgVote {
@@ -644,13 +644,13 @@ export interface MsgVoteSDKType {
 }
 /** MsgVoteResponse is the Msg/Vote response type. */
 
-export interface MsgVoteResponse {}
+export interface MsgVoteResponse { }
 /** MsgVoteResponse is the Msg/Vote response type. */
 
-export interface MsgVoteResponseAmino {}
+export interface MsgVoteResponseAmino { }
 /** MsgVoteResponse is the Msg/Vote response type. */
 
-export interface MsgVoteResponseSDKType {}
+export interface MsgVoteResponseSDKType { }
 /** MsgExec is the Msg/Exec request type. */
 
 export interface MsgExec {
@@ -718,13 +718,13 @@ export interface MsgLeaveGroupSDKType {
 }
 /** MsgLeaveGroupResponse is the Msg/LeaveGroup response type. */
 
-export interface MsgLeaveGroupResponse {}
+export interface MsgLeaveGroupResponse { }
 /** MsgLeaveGroupResponse is the Msg/LeaveGroup response type. */
 
-export interface MsgLeaveGroupResponseAmino {}
+export interface MsgLeaveGroupResponseAmino { }
 /** MsgLeaveGroupResponse is the Msg/LeaveGroup response type. */
 
-export interface MsgLeaveGroupResponseSDKType {}
+export interface MsgLeaveGroupResponseSDKType { }
 
 function createBaseMsgCreateGroup(): MsgCreateGroup {
   return {
@@ -1837,6 +1837,8 @@ export const MsgCreateGroupWithPolicy = {
     obj.group_metadata = message.groupMetadata;
     obj.group_policy_metadata = message.groupPolicyMetadata;
     obj.group_policy_as_admin = message.groupPolicyAsAdmin;
+
+
     obj.decision_policy = message.decisionPolicy ? DecisionPolicy_ToAmino((message.decisionPolicy as Any)) : undefined;
     return obj;
   }
