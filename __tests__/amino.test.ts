@@ -68,9 +68,12 @@ it('emulate orig', () => {
     // console.log({ decodedVersion })
     expect({ decodedVersion }).toMatchSnapshot();
 
-    const subtlediff2 = PercentageDecisionPolicy.fromAmino(obj.amino.decision_policy);
-    expect(subtlediff2).toMatchSnapshot();
-    console.log(subtlediff2);
+    const simple1 = PercentageDecisionPolicy.fromAmino(obj.amino.decision_policy.value);
+    expect(simple1).toMatchSnapshot();
+    console.log(simple1);
+    const simple2 = PercentageDecisionPolicy.toAmino(simple1);
+    expect(simple2).toMatchSnapshot();
+    // console.log(simple2);
     // obj.orig = MsgCreateGroupWithPolicy.fromAmino(obj.amino);
     // expect(obj.orig).toMatchSnapshot();
 });
