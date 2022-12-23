@@ -15,8 +15,95 @@ exports[`emulate orig 1`] = `
 
 exports[`emulate orig 2`] = `
 {
-  "percentage": undefined,
-  "windows": undefined,
+  "percentage": "0.5",
+  "windows": {
+    "minExecutionPeriod": {
+      "nanos": 0,
+      "seconds": Long {
+        "high": 0,
+        "low": 100,
+        "unsigned": false,
+      },
+    },
+    "votingPeriod": {
+      "nanos": 0,
+      "seconds": Long {
+        "high": 0,
+        "low": 100,
+        "unsigned": false,
+      },
+    },
+  },
+}
+`;
+
+exports[`emulate orig 3`] = `
+{
+  "encodedVersion": {
+    "$typeUrl": "/google.protobuf.Any",
+    "typeUrl": "/cosmos.group.v1.PercentageDecisionPolicy",
+    "value": {
+      "data": [
+        10,
+        3,
+        48,
+        46,
+        53,
+        18,
+        0,
+      ],
+      "type": "Buffer",
+    },
+  },
+}
+`;
+
+exports[`emulate orig 4`] = `
+{
+  "decodedVersion": {
+    "type": "cosmos-sdk/PercentageDecisionPolicy",
+    "value": {
+      "percentage": "0.5",
+      "windows": {
+        "min_execution_period": undefined,
+        "voting_period": undefined,
+      },
+    },
+  },
+}
+`;
+
+exports[`emulate orig 5`] = `
+{
+  "percentage": "0.5",
+  "windows": {
+    "minExecutionPeriod": {
+      "nanos": 0,
+      "seconds": Long {
+        "high": 0,
+        "low": 100,
+        "unsigned": false,
+      },
+    },
+    "votingPeriod": {
+      "nanos": 0,
+      "seconds": Long {
+        "high": 0,
+        "low": 100,
+        "unsigned": false,
+      },
+    },
+  },
+}
+`;
+
+exports[`emulate orig 6`] = `
+{
+  "percentage": "0.5",
+  "windows": {
+    "min_execution_period": "100000000000",
+    "voting_period": "100000000000",
+  },
 }
 `;
 
