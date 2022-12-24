@@ -15,6 +15,10 @@ export interface Block {
   evidence?: EvidenceList;
   lastCommit?: Commit;
 }
+export interface BlockProtoType {
+  typeUrl: "/cosmos.base.tendermint.v1beta1.Block";
+  value: Uint8Array;
+}
 /**
  * Block is tendermint type Block, with the Header proposer address
  * field converted to bech32 string.
@@ -25,6 +29,10 @@ export interface BlockAmino {
   data?: DataAmino;
   evidence?: EvidenceListAmino;
   last_commit?: CommitAmino;
+}
+export interface BlockAminoType {
+  type: "cosmos-sdk/Block";
+  value: BlockAmino;
 }
 /**
  * Block is tendermint type Block, with the Header proposer address
@@ -76,6 +84,10 @@ export interface Header {
 
   proposerAddress: string;
 }
+export interface HeaderProtoType {
+  typeUrl: "/cosmos.base.tendermint.v1beta1.Header";
+  value: Uint8Array;
+}
 /** Header defines the structure of a Tendermint block header. */
 
 export interface HeaderAmino {
@@ -114,6 +126,10 @@ export interface HeaderAmino {
    */
 
   proposer_address: string;
+}
+export interface HeaderAminoType {
+  type: "cosmos-sdk/Header";
+  value: HeaderAmino;
 }
 /** Header defines the structure of a Tendermint block header. */
 
