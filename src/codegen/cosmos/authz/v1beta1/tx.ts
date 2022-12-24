@@ -1,9 +1,9 @@
-import { Grant, GrantSDKType, GenericAuthorization } from "./authz";
-import { Any, AnySDKType } from "../../../google/protobuf/any";
+import { Grant, GrantAmino, GrantSDKType, GenericAuthorization } from "./authz";
+import { Any, AnyAmino, AnySDKType } from "../../../google/protobuf/any";
 import { SendAuthorization } from "../../bank/v1beta1/authz";
 import { StakeAuthorization } from "../../staking/v1beta1/authz";
 import * as _m0 from "protobufjs/minimal";
-import { isSet, bytesFromBase64, base64FromBytes } from "../../../helpers";
+import { isSet, bytesFromBase64, base64FromBytes, DeepPartial } from "../../../helpers";
 /**
  * MsgGrant is a request type for Grant method. It declares authorization to the grantee
  * on behalf of the granter with the provided expiration time.
@@ -13,6 +13,24 @@ export interface MsgGrant {
   granter: string;
   grantee: string;
   grant?: Grant;
+}
+export interface MsgGrantProtoType {
+  typeUrl: "/cosmos.authz.v1beta1.MsgGrant";
+  value: Uint8Array;
+}
+/**
+ * MsgGrant is a request type for Grant method. It declares authorization to the grantee
+ * on behalf of the granter with the provided expiration time.
+ */
+
+export interface MsgGrantAmino {
+  granter: string;
+  grantee: string;
+  grant?: GrantAmino;
+}
+export interface MsgGrantAminoType {
+  type: "cosmos-sdk/MsgGrant";
+  value: MsgGrantAmino;
 }
 /**
  * MsgGrant is a request type for Grant method. It declares authorization to the grantee
@@ -28,6 +46,19 @@ export interface MsgGrantSDKType {
 
 export interface MsgExecResponse {
   results: Uint8Array[];
+}
+export interface MsgExecResponseProtoType {
+  typeUrl: "/cosmos.authz.v1beta1.MsgExecResponse";
+  value: Uint8Array;
+}
+/** MsgExecResponse defines the Msg/MsgExecResponse response type. */
+
+export interface MsgExecResponseAmino {
+  results: Uint8Array[];
+}
+export interface MsgExecResponseAminoType {
+  type: "cosmos-sdk/MsgExecResponse";
+  value: MsgExecResponseAmino;
 }
 /** MsgExecResponse defines the Msg/MsgExecResponse response type. */
 
@@ -50,6 +81,30 @@ export interface MsgExec {
 
   msgs: (GenericAuthorization & SendAuthorization & StakeAuthorization & Any)[] | Any[];
 }
+export interface MsgExecProtoType {
+  typeUrl: "/cosmos.authz.v1beta1.MsgExec";
+  value: Uint8Array;
+}
+/**
+ * MsgExec attempts to execute the provided messages using
+ * authorizations granted to the grantee. Each message should have only
+ * one signer corresponding to the granter of the authorization.
+ */
+
+export interface MsgExecAmino {
+  grantee: string;
+  /**
+   * Authorization Msg requests to execute. Each msg must implement Authorization interface
+   * The x/authz will try to find a grant matching (msg.signers[0], grantee, MsgTypeURL(msg))
+   * triple and validate it.
+   */
+
+  msgs: AnyAmino[];
+}
+export interface MsgExecAminoType {
+  type: "cosmos-sdk/MsgExec";
+  value: MsgExecAmino;
+}
 /**
  * MsgExec attempts to execute the provided messages using
  * authorizations granted to the grantee. Each message should have only
@@ -63,6 +118,17 @@ export interface MsgExecSDKType {
 /** MsgGrantResponse defines the Msg/MsgGrant response type. */
 
 export interface MsgGrantResponse {}
+export interface MsgGrantResponseProtoType {
+  typeUrl: "/cosmos.authz.v1beta1.MsgGrantResponse";
+  value: Uint8Array;
+}
+/** MsgGrantResponse defines the Msg/MsgGrant response type. */
+
+export interface MsgGrantResponseAmino {}
+export interface MsgGrantResponseAminoType {
+  type: "cosmos-sdk/MsgGrantResponse";
+  value: MsgGrantResponseAmino;
+}
 /** MsgGrantResponse defines the Msg/MsgGrant response type. */
 
 export interface MsgGrantResponseSDKType {}
@@ -75,6 +141,24 @@ export interface MsgRevoke {
   granter: string;
   grantee: string;
   msgTypeUrl: string;
+}
+export interface MsgRevokeProtoType {
+  typeUrl: "/cosmos.authz.v1beta1.MsgRevoke";
+  value: Uint8Array;
+}
+/**
+ * MsgRevoke revokes any authorization with the provided sdk.Msg type on the
+ * granter's account with that has been granted to the grantee.
+ */
+
+export interface MsgRevokeAmino {
+  granter: string;
+  grantee: string;
+  msg_type_url: string;
+}
+export interface MsgRevokeAminoType {
+  type: "cosmos-sdk/MsgRevoke";
+  value: MsgRevokeAmino;
 }
 /**
  * MsgRevoke revokes any authorization with the provided sdk.Msg type on the
@@ -89,6 +173,17 @@ export interface MsgRevokeSDKType {
 /** MsgRevokeResponse defines the Msg/MsgRevokeResponse response type. */
 
 export interface MsgRevokeResponse {}
+export interface MsgRevokeResponseProtoType {
+  typeUrl: "/cosmos.authz.v1beta1.MsgRevokeResponse";
+  value: Uint8Array;
+}
+/** MsgRevokeResponse defines the Msg/MsgRevokeResponse response type. */
+
+export interface MsgRevokeResponseAmino {}
+export interface MsgRevokeResponseAminoType {
+  type: "cosmos-sdk/MsgRevokeResponse";
+  value: MsgRevokeResponseAmino;
+}
 /** MsgRevokeResponse defines the Msg/MsgRevokeResponse response type. */
 
 export interface MsgRevokeResponseSDKType {}
@@ -170,6 +265,22 @@ export const MsgGrant = {
     message.grantee = object.grantee ?? "";
     message.grant = object.grant !== undefined && object.grant !== null ? Grant.fromPartial(object.grant) : undefined;
     return message;
+  },
+
+  fromAmino(object: MsgGrantAmino): MsgGrant {
+    return {
+      granter: object.granter,
+      grantee: object.grantee,
+      grant: object?.grant ? Grant.fromAmino(object.grant) : undefined
+    };
+  },
+
+  toAmino(message: MsgGrant): MsgGrantAmino {
+    const obj: any = {};
+    obj.granter = message.granter;
+    obj.grantee = message.grantee;
+    obj.grant = message.grant ? Grant.toAmino(message.grant) : undefined;
+    return obj;
   }
 
 };
@@ -233,6 +344,24 @@ export const MsgExecResponse = {
     const message = createBaseMsgExecResponse();
     message.results = object.results?.map(e => e) || [];
     return message;
+  },
+
+  fromAmino(object: MsgExecResponseAmino): MsgExecResponse {
+    return {
+      results: Array.isArray(object?.results) ? object.results.map((e: any) => e) : []
+    };
+  },
+
+  toAmino(message: MsgExecResponse): MsgExecResponseAmino {
+    const obj: any = {};
+
+    if (message.results) {
+      obj.results = message.results.map(e => e);
+    } else {
+      obj.results = [];
+    }
+
+    return obj;
   }
 
 };
@@ -251,7 +380,7 @@ export const MsgExec = {
     }
 
     for (const v of message.msgs) {
-      Any.encode(v!, writer.uint32(18).fork()).ldelim();
+      Any.encode((v! as Any), writer.uint32(18).fork()).ldelim();
     }
 
     return writer;
@@ -271,7 +400,7 @@ export const MsgExec = {
           break;
 
         case 2:
-          message.msgs.push(Any.decode(reader, reader.uint32()));
+          message.msgs.push((Authorization_InterfaceDecoder(reader) as Any));
           break;
 
         default:
@@ -308,6 +437,26 @@ export const MsgExec = {
     message.grantee = object.grantee ?? "";
     message.msgs = object.msgs?.map(e => Any.fromPartial(e)) || [];
     return message;
+  },
+
+  fromAmino(object: MsgExecAmino): MsgExec {
+    return {
+      grantee: object.grantee,
+      msgs: Array.isArray(object?.msgs) ? object.msgs.map((e: any) => Authorization_FromAmino(e)) : []
+    };
+  },
+
+  toAmino(message: MsgExec): MsgExecAmino {
+    const obj: any = {};
+    obj.grantee = message.grantee;
+
+    if (message.msgs) {
+      obj.msgs = message.msgs.map(e => e ? Authorization_ToAmino((e as Any)) : undefined);
+    } else {
+      obj.msgs = [];
+    }
+
+    return obj;
   }
 
 };
@@ -351,6 +500,15 @@ export const MsgGrantResponse = {
   fromPartial(_: Partial<MsgGrantResponse>): MsgGrantResponse {
     const message = createBaseMsgGrantResponse();
     return message;
+  },
+
+  fromAmino(_: MsgGrantResponseAmino): MsgGrantResponse {
+    return {};
+  },
+
+  toAmino(_: MsgGrantResponse): MsgGrantResponseAmino {
+    const obj: any = {};
+    return obj;
   }
 
 };
@@ -432,6 +590,22 @@ export const MsgRevoke = {
     message.grantee = object.grantee ?? "";
     message.msgTypeUrl = object.msgTypeUrl ?? "";
     return message;
+  },
+
+  fromAmino(object: MsgRevokeAmino): MsgRevoke {
+    return {
+      granter: object.granter,
+      grantee: object.grantee,
+      msgTypeUrl: object.msg_type_url
+    };
+  },
+
+  toAmino(message: MsgRevoke): MsgRevokeAmino {
+    const obj: any = {};
+    obj.granter = message.granter;
+    obj.grantee = message.grantee;
+    obj.msg_type_url = message.msgTypeUrl;
+    return obj;
   }
 
 };
@@ -475,6 +649,15 @@ export const MsgRevokeResponse = {
   fromPartial(_: Partial<MsgRevokeResponse>): MsgRevokeResponse {
     const message = createBaseMsgRevokeResponse();
     return message;
+  },
+
+  fromAmino(_: MsgRevokeResponseAmino): MsgRevokeResponse {
+    return {};
+  },
+
+  toAmino(_: MsgRevokeResponse): MsgRevokeResponseAmino {
+    const obj: any = {};
+    return obj;
   }
 
 };
@@ -494,5 +677,53 @@ export const Authorization_InterfaceDecoder = (input: _m0.Reader | Uint8Array): 
 
     default:
       return data;
+  }
+};
+export const Authorization_FromAmino = (content: AnyAmino) => {
+  switch (content.type) {
+    case "cosmos-sdk/GenericAuthorization":
+      return Any.fromPartial({
+        typeUrl: "/cosmos.authz.v1beta1.GenericAuthorization",
+        value: GenericAuthorization.encode(GenericAuthorization.fromPartial((content.value as DeepPartial<GenericAuthorization>))).finish()
+      });
+
+    case "cosmos-sdk/SendAuthorization":
+      return Any.fromPartial({
+        typeUrl: "/cosmos.bank.v1beta1.SendAuthorization",
+        value: SendAuthorization.encode(SendAuthorization.fromPartial((content.value as DeepPartial<SendAuthorization>))).finish()
+      });
+
+    case "cosmos-sdk/StakeAuthorization":
+      return Any.fromPartial({
+        typeUrl: "/cosmos.staking.v1beta1.StakeAuthorization",
+        value: StakeAuthorization.encode(StakeAuthorization.fromPartial((content.value as DeepPartial<StakeAuthorization>))).finish()
+      });
+
+    default:
+      return Any.fromAmino(content);
+  }
+};
+export const Authorization_ToAmino = (content: Any) => {
+  switch (content.typeUrl) {
+    case "/cosmos.authz.v1beta1.GenericAuthorization":
+      return {
+        type: "cosmos-sdk/GenericAuthorization",
+        value: GenericAuthorization.toAmino(GenericAuthorization.decode(content.value))
+      };
+
+    case "/cosmos.bank.v1beta1.SendAuthorization":
+      return {
+        type: "cosmos-sdk/SendAuthorization",
+        value: SendAuthorization.toAmino(SendAuthorization.decode(content.value))
+      };
+
+    case "/cosmos.staking.v1beta1.StakeAuthorization":
+      return {
+        type: "cosmos-sdk/StakeAuthorization",
+        value: StakeAuthorization.toAmino(StakeAuthorization.decode(content.value))
+      };
+
+    default:
+      return Any.toAmino(content);
   }
 };
