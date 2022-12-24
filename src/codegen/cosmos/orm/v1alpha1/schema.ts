@@ -49,7 +49,6 @@ export enum StorageType {
   UNRECOGNIZED = -1,
 }
 export const StorageTypeSDKType = StorageType;
-export const StorageTypeAmino = StorageType;
 export function storageTypeFromJSON(object: any): StorageType {
   switch (object) {
     case 0:
@@ -111,25 +110,6 @@ export interface ModuleSchemaDescriptor {
 
   prefix: Uint8Array;
 }
-export interface ModuleSchemaDescriptorProtoType {
-  typeUrl: "/cosmos.orm.v1alpha1.ModuleSchemaDescriptor";
-  value: Uint8Array;
-}
-/** ModuleSchemaDescriptor describe's a module's ORM schema. */
-
-export interface ModuleSchemaDescriptorAmino {
-  schema_file: ModuleSchemaDescriptor_FileEntryAmino[];
-  /**
-   * prefix is an optional prefix that precedes all keys in this module's
-   * store.
-   */
-
-  prefix: Uint8Array;
-}
-export interface ModuleSchemaDescriptorAminoType {
-  type: "cosmos-sdk/ModuleSchemaDescriptor";
-  value: ModuleSchemaDescriptorAmino;
-}
 /** ModuleSchemaDescriptor describe's a module's ORM schema. */
 
 export interface ModuleSchemaDescriptorSDKType {
@@ -158,37 +138,6 @@ export interface ModuleSchemaDescriptor_FileEntry {
    */
 
   storageType: StorageType;
-}
-export interface ModuleSchemaDescriptor_FileEntryProtoType {
-  typeUrl: "/cosmos.orm.v1alpha1.FileEntry";
-  value: Uint8Array;
-}
-/** FileEntry describes an ORM file used in a module. */
-
-export interface ModuleSchemaDescriptor_FileEntryAmino {
-  /**
-   * id is a prefix that will be varint encoded and prepended to all the
-   * table keys specified in the file's tables.
-   */
-  id: number;
-  /**
-   * proto_file_name is the name of a file .proto in that contains
-   * table definitions. The .proto file must be in a package that the
-   * module has referenced using cosmos.app.v1.ModuleDescriptor.use_package.
-   */
-
-  proto_file_name: string;
-  /**
-   * storage_type optionally indicates the type of storage this file's
-   * tables should used. If it is left unspecified, the default KV-storage
-   * of the app will be used.
-   */
-
-  storage_type: StorageType;
-}
-export interface ModuleSchemaDescriptor_FileEntryAminoType {
-  type: "cosmos-sdk/FileEntry";
-  value: ModuleSchemaDescriptor_FileEntryAmino;
 }
 /** FileEntry describes an ORM file used in a module. */
 
@@ -269,26 +218,6 @@ export const ModuleSchemaDescriptor = {
     message.schemaFile = object.schemaFile?.map(e => ModuleSchemaDescriptor_FileEntry.fromPartial(e)) || [];
     message.prefix = object.prefix ?? new Uint8Array();
     return message;
-  },
-
-  fromAmino(object: ModuleSchemaDescriptorAmino): ModuleSchemaDescriptor {
-    return {
-      schemaFile: Array.isArray(object?.schema_file) ? object.schema_file.map((e: any) => ModuleSchemaDescriptor_FileEntry.fromAmino(e)) : [],
-      prefix: object.prefix
-    };
-  },
-
-  toAmino(message: ModuleSchemaDescriptor): ModuleSchemaDescriptorAmino {
-    const obj: any = {};
-
-    if (message.schemaFile) {
-      obj.schema_file = message.schemaFile.map(e => e ? ModuleSchemaDescriptor_FileEntry.toAmino(e) : undefined);
-    } else {
-      obj.schema_file = [];
-    }
-
-    obj.prefix = message.prefix;
-    return obj;
   }
 
 };
@@ -370,22 +299,6 @@ export const ModuleSchemaDescriptor_FileEntry = {
     message.protoFileName = object.protoFileName ?? "";
     message.storageType = object.storageType ?? 0;
     return message;
-  },
-
-  fromAmino(object: ModuleSchemaDescriptor_FileEntryAmino): ModuleSchemaDescriptor_FileEntry {
-    return {
-      id: object.id,
-      protoFileName: object.proto_file_name,
-      storageType: isSet(object.storage_type) ? storageTypeFromJSON(object.storage_type) : 0
-    };
-  },
-
-  toAmino(message: ModuleSchemaDescriptor_FileEntry): ModuleSchemaDescriptor_FileEntryAmino {
-    const obj: any = {};
-    obj.id = message.id;
-    obj.proto_file_name = message.protoFileName;
-    obj.storage_type = message.storageType;
-    return obj;
   }
 
 };
