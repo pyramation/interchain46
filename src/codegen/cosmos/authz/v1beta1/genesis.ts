@@ -1,22 +1,9 @@
-import { GrantAuthorization, GrantAuthorizationAmino, GrantAuthorizationSDKType } from "./authz";
+import { GrantAuthorization, GrantAuthorizationSDKType } from "./authz";
 import * as _m0 from "protobufjs/minimal";
 /** GenesisState defines the authz module's genesis state. */
 
 export interface GenesisState {
   authorization: GrantAuthorization[];
-}
-export interface GenesisStateProtoType {
-  typeUrl: "/cosmos.authz.v1beta1.GenesisState";
-  value: Uint8Array;
-}
-/** GenesisState defines the authz module's genesis state. */
-
-export interface GenesisStateAmino {
-  authorization: GrantAuthorizationAmino[];
-}
-export interface GenesisStateAminoType {
-  type: "cosmos-sdk/GenesisState";
-  value: GenesisStateAmino;
 }
 /** GenesisState defines the authz module's genesis state. */
 
@@ -83,24 +70,6 @@ export const GenesisState = {
     const message = createBaseGenesisState();
     message.authorization = object.authorization?.map(e => GrantAuthorization.fromPartial(e)) || [];
     return message;
-  },
-
-  fromAmino(object: GenesisStateAmino): GenesisState {
-    return {
-      authorization: Array.isArray(object?.authorization) ? object.authorization.map((e: any) => GrantAuthorization.fromAmino(e)) : []
-    };
-  },
-
-  toAmino(message: GenesisState): GenesisStateAmino {
-    const obj: any = {};
-
-    if (message.authorization) {
-      obj.authorization = message.authorization.map(e => e ? GrantAuthorization.toAmino(e) : undefined);
-    } else {
-      obj.authorization = [];
-    }
-
-    return obj;
   }
 
 };
