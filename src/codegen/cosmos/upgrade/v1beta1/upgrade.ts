@@ -1,5 +1,5 @@
-import { Timestamp, TimestampSDKType } from "../../../google/protobuf/timestamp";
-import { Any, AnySDKType } from "../../../google/protobuf/any";
+import { Timestamp, TimestampAmino, TimestampSDKType } from "../../../google/protobuf/timestamp";
+import { Any, AnyAmino, AnySDKType } from "../../../google/protobuf/any";
 import { Long, isSet, fromJsonTimestamp, fromTimestamp } from "../../../helpers";
 import * as _m0 from "protobufjs/minimal";
 /** Plan specifies information about a planned upgrade and when it should occur. */
@@ -46,6 +46,58 @@ export interface Plan {
 
   upgradedClientState?: Any;
 }
+export interface PlanProtoType {
+  typeUrl: "/cosmos.upgrade.v1beta1.Plan";
+  value: Uint8Array;
+}
+/** Plan specifies information about a planned upgrade and when it should occur. */
+
+export interface PlanAmino {
+  /**
+   * Sets the name for the upgrade. This name will be used by the upgraded
+   * version of the software to apply any special "on-upgrade" commands during
+   * the first BeginBlock method after the upgrade is applied. It is also used
+   * to detect whether a software version can handle a given upgrade. If no
+   * upgrade handler with this name has been set in the software, it will be
+   * assumed that the software is out-of-date when the upgrade Time or Height is
+   * reached and the software will exit.
+   */
+  name: string;
+  /**
+   * Deprecated: Time based upgrades have been deprecated. Time based upgrade logic
+   * has been removed from the SDK.
+   * If this field is not empty, an error will be thrown.
+   */
+
+  /** @deprecated */
+
+  time?: TimestampAmino;
+  /**
+   * The height at which the upgrade must be performed.
+   * Only used if Time is not set.
+   */
+
+  height: string;
+  /**
+   * Any application specific upgrade info to be included on-chain
+   * such as a git commit that validators could automatically upgrade to
+   */
+
+  info: string;
+  /**
+   * Deprecated: UpgradedClientState field has been deprecated. IBC upgrade logic has been
+   * moved to the IBC module in the sub module 02-client.
+   * If this field is not empty, an error will be thrown.
+   */
+
+  /** @deprecated */
+
+  upgraded_client_state?: AnyAmino;
+}
+export interface PlanAminoType {
+  type: "cosmos-sdk/Plan";
+  value: PlanAmino;
+}
 /** Plan specifies information about a planned upgrade and when it should occur. */
 
 export interface PlanSDKType {
@@ -73,6 +125,28 @@ export interface SoftwareUpgradeProposal {
   title: string;
   description: string;
   plan?: Plan;
+}
+export interface SoftwareUpgradeProposalProtoType {
+  typeUrl: "/cosmos.upgrade.v1beta1.SoftwareUpgradeProposal";
+  value: Uint8Array;
+}
+/**
+ * SoftwareUpgradeProposal is a gov Content type for initiating a software
+ * upgrade.
+ * Deprecated: This legacy proposal is deprecated in favor of Msg-based gov
+ * proposals, see MsgSoftwareUpgrade.
+ */
+
+/** @deprecated */
+
+export interface SoftwareUpgradeProposalAmino {
+  title: string;
+  description: string;
+  plan?: PlanAmino;
+}
+export interface SoftwareUpgradeProposalAminoType {
+  type: "cosmos-sdk/SoftwareUpgradeProposal";
+  value: SoftwareUpgradeProposalAmino;
 }
 /**
  * SoftwareUpgradeProposal is a gov Content type for initiating a software
@@ -103,6 +177,27 @@ export interface CancelSoftwareUpgradeProposal {
   title: string;
   description: string;
 }
+export interface CancelSoftwareUpgradeProposalProtoType {
+  typeUrl: "/cosmos.upgrade.v1beta1.CancelSoftwareUpgradeProposal";
+  value: Uint8Array;
+}
+/**
+ * CancelSoftwareUpgradeProposal is a gov Content type for cancelling a software
+ * upgrade.
+ * Deprecated: This legacy proposal is deprecated in favor of Msg-based gov
+ * proposals, see MsgCancelUpgrade.
+ */
+
+/** @deprecated */
+
+export interface CancelSoftwareUpgradeProposalAmino {
+  title: string;
+  description: string;
+}
+export interface CancelSoftwareUpgradeProposalAminoType {
+  type: "cosmos-sdk/CancelSoftwareUpgradeProposal";
+  value: CancelSoftwareUpgradeProposalAmino;
+}
 /**
  * CancelSoftwareUpgradeProposal is a gov Content type for cancelling a software
  * upgrade.
@@ -129,6 +224,27 @@ export interface ModuleVersion {
   /** consensus version of the app module */
 
   version: Long;
+}
+export interface ModuleVersionProtoType {
+  typeUrl: "/cosmos.upgrade.v1beta1.ModuleVersion";
+  value: Uint8Array;
+}
+/**
+ * ModuleVersion specifies a module and its consensus version.
+ * 
+ * Since: cosmos-sdk 0.43
+ */
+
+export interface ModuleVersionAmino {
+  /** name of the app module */
+  name: string;
+  /** consensus version of the app module */
+
+  version: string;
+}
+export interface ModuleVersionAminoType {
+  type: "cosmos-sdk/ModuleVersion";
+  value: ModuleVersionAmino;
 }
 /**
  * ModuleVersion specifies a module and its consensus version.
@@ -242,6 +358,26 @@ export const Plan = {
     message.info = object.info ?? "";
     message.upgradedClientState = object.upgradedClientState !== undefined && object.upgradedClientState !== null ? Any.fromPartial(object.upgradedClientState) : undefined;
     return message;
+  },
+
+  fromAmino(object: PlanAmino): Plan {
+    return {
+      name: object.name,
+      time: object?.time ? Timestamp.fromAmino(object.time) : undefined,
+      height: Long.fromString(object.height),
+      info: object.info,
+      upgradedClientState: object?.upgraded_client_state ? Any.fromAmino(object.upgraded_client_state) : undefined
+    };
+  },
+
+  toAmino(message: Plan): PlanAmino {
+    const obj: any = {};
+    obj.name = message.name;
+    obj.time = message.time ? Timestamp.toAmino(message.time) : undefined;
+    obj.height = message.height ? message.height.toString() : undefined;
+    obj.info = message.info;
+    obj.upgraded_client_state = message.upgradedClientState ? Any.toAmino(message.upgradedClientState) : undefined;
+    return obj;
   }
 
 };
@@ -324,6 +460,22 @@ export const SoftwareUpgradeProposal = {
     message.description = object.description ?? "";
     message.plan = object.plan !== undefined && object.plan !== null ? Plan.fromPartial(object.plan) : undefined;
     return message;
+  },
+
+  fromAmino(object: SoftwareUpgradeProposalAmino): SoftwareUpgradeProposal {
+    return {
+      title: object.title,
+      description: object.description,
+      plan: object?.plan ? Plan.fromAmino(object.plan) : undefined
+    };
+  },
+
+  toAmino(message: SoftwareUpgradeProposal): SoftwareUpgradeProposalAmino {
+    const obj: any = {};
+    obj.title = message.title;
+    obj.description = message.description;
+    obj.plan = message.plan ? Plan.toAmino(message.plan) : undefined;
+    return obj;
   }
 
 };
@@ -394,6 +546,20 @@ export const CancelSoftwareUpgradeProposal = {
     message.title = object.title ?? "";
     message.description = object.description ?? "";
     return message;
+  },
+
+  fromAmino(object: CancelSoftwareUpgradeProposalAmino): CancelSoftwareUpgradeProposal {
+    return {
+      title: object.title,
+      description: object.description
+    };
+  },
+
+  toAmino(message: CancelSoftwareUpgradeProposal): CancelSoftwareUpgradeProposalAmino {
+    const obj: any = {};
+    obj.title = message.title;
+    obj.description = message.description;
+    return obj;
   }
 
 };
@@ -463,6 +629,20 @@ export const ModuleVersion = {
     message.name = object.name ?? "";
     message.version = object.version !== undefined && object.version !== null ? Long.fromValue(object.version) : Long.UZERO;
     return message;
+  },
+
+  fromAmino(object: ModuleVersionAmino): ModuleVersion {
+    return {
+      name: object.name,
+      version: Long.fromString(object.version)
+    };
+  },
+
+  toAmino(message: ModuleVersion): ModuleVersionAmino {
+    const obj: any = {};
+    obj.name = message.name;
+    obj.version = message.version ? message.version.toString() : undefined;
+    return obj;
   }
 
 };
