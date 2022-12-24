@@ -119,6 +119,10 @@ export interface Any {
 
   value: Uint8Array;
 }
+export interface AnyProtoType {
+  typeUrl: "/google.protobuf.Any";
+  value: Uint8Array;
+}
 /**
  * `Any` contains an arbitrary serialized protocol buffer message along with a
  * URL that describes the type of the serialized message.
@@ -235,6 +239,10 @@ export interface AnyAmino {
   /** Must be a valid serialized protocol buffer of the above specified type. */
 
   value: Uint8Array;
+}
+export interface AnyAminoType {
+  type: "/google.protobuf.Any";
+  value: AnyAmino;
 }
 /**
  * `Any` contains an arbitrary serialized protocol buffer message along with a
