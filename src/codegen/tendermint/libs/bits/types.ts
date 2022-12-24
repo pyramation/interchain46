@@ -4,6 +4,18 @@ export interface BitArray {
   bits: Long;
   elems: Long[];
 }
+export interface BitArrayProtoType {
+  typeUrl: "/tendermint.libs.bits.BitArray";
+  value: Uint8Array;
+}
+export interface BitArrayAmino {
+  bits: string;
+  elems: string[];
+}
+export interface BitArrayAminoType {
+  type: "/tendermint.libs.bits.BitArray";
+  value: BitArrayAmino;
+}
 export interface BitArraySDKType {
   bits: Long;
   elems: Long[];
@@ -92,6 +104,26 @@ export const BitArray = {
     message.bits = object.bits !== undefined && object.bits !== null ? Long.fromValue(object.bits) : Long.ZERO;
     message.elems = object.elems?.map(e => Long.fromValue(e)) || [];
     return message;
+  },
+
+  fromAmino(object: BitArrayAmino): BitArray {
+    return {
+      bits: Long.fromString(object.bits),
+      elems: Array.isArray(object?.elems) ? object.elems.map((e: any) => e) : []
+    };
+  },
+
+  toAmino(message: BitArray): BitArrayAmino {
+    const obj: any = {};
+    obj.bits = message.bits ? message.bits.toString() : undefined;
+
+    if (message.elems) {
+      obj.elems = message.elems.map(e => e);
+    } else {
+      obj.elems = [];
+    }
+
+    return obj;
   }
 
 };
