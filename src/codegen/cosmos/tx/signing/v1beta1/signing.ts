@@ -129,11 +129,19 @@ export interface SignatureDescriptors {
   /** signatures are the signature descriptors */
   signatures: SignatureDescriptor[];
 }
+export interface SignatureDescriptorsProtoType {
+  typeUrl: "/cosmos.tx.signing.v1beta1.SignatureDescriptors";
+  value: Uint8Array;
+}
 /** SignatureDescriptors wraps multiple SignatureDescriptor's. */
 
 export interface SignatureDescriptorsAmino {
   /** signatures are the signature descriptors */
   signatures: SignatureDescriptorAmino[];
+}
+export interface SignatureDescriptorsAminoType {
+  type: "cosmos-sdk/SignatureDescriptors";
+  value: SignatureDescriptorsAmino;
 }
 /** SignatureDescriptors wraps multiple SignatureDescriptor's. */
 
@@ -159,6 +167,10 @@ export interface SignatureDescriptor {
 
   sequence: Long;
 }
+export interface SignatureDescriptorProtoType {
+  typeUrl: "/cosmos.tx.signing.v1beta1.SignatureDescriptor";
+  value: Uint8Array;
+}
 /**
  * SignatureDescriptor is a convenience type which represents the full data for
  * a signature including the public key of the signer, signing modes and the
@@ -177,6 +189,10 @@ export interface SignatureDescriptorAmino {
    */
 
   sequence: string;
+}
+export interface SignatureDescriptorAminoType {
+  type: "cosmos-sdk/SignatureDescriptor";
+  value: SignatureDescriptorAmino;
 }
 /**
  * SignatureDescriptor is a convenience type which represents the full data for
@@ -199,6 +215,10 @@ export interface SignatureDescriptor_Data {
 
   multi?: SignatureDescriptor_Data_Multi;
 }
+export interface SignatureDescriptor_DataProtoType {
+  typeUrl: "/cosmos.tx.signing.v1beta1.Data";
+  value: Uint8Array;
+}
 /** Data represents signature data */
 
 export interface SignatureDescriptor_DataAmino {
@@ -207,6 +227,10 @@ export interface SignatureDescriptor_DataAmino {
   /** multi represents a multisig signer */
 
   multi?: SignatureDescriptor_Data_MultiAmino;
+}
+export interface SignatureDescriptor_DataAminoType {
+  type: "cosmos-sdk/Data";
+  value: SignatureDescriptor_DataAmino;
 }
 /** Data represents signature data */
 
@@ -223,6 +247,10 @@ export interface SignatureDescriptor_Data_Single {
 
   signature: Uint8Array;
 }
+export interface SignatureDescriptor_Data_SingleProtoType {
+  typeUrl: "/cosmos.tx.signing.v1beta1.Single";
+  value: Uint8Array;
+}
 /** Single is the signature data for a single signer */
 
 export interface SignatureDescriptor_Data_SingleAmino {
@@ -231,6 +259,10 @@ export interface SignatureDescriptor_Data_SingleAmino {
   /** signature is the raw signature bytes */
 
   signature: Uint8Array;
+}
+export interface SignatureDescriptor_Data_SingleAminoType {
+  type: "cosmos-sdk/Single";
+  value: SignatureDescriptor_Data_SingleAmino;
 }
 /** Single is the signature data for a single signer */
 
@@ -247,6 +279,10 @@ export interface SignatureDescriptor_Data_Multi {
 
   signatures: SignatureDescriptor_Data[];
 }
+export interface SignatureDescriptor_Data_MultiProtoType {
+  typeUrl: "/cosmos.tx.signing.v1beta1.Multi";
+  value: Uint8Array;
+}
 /** Multi is the signature data for a multisig public key */
 
 export interface SignatureDescriptor_Data_MultiAmino {
@@ -255,6 +291,10 @@ export interface SignatureDescriptor_Data_MultiAmino {
   /** signatures is the signatures of the multi-signature */
 
   signatures: SignatureDescriptor_DataAmino[];
+}
+export interface SignatureDescriptor_Data_MultiAminoType {
+  type: "cosmos-sdk/Multi";
+  value: SignatureDescriptor_Data_MultiAmino;
 }
 /** Multi is the signature data for a multisig public key */
 
