@@ -12,6 +12,27 @@ import * as _m0 from "protobufjs/minimal";
  */
 
 export interface Empty {}
+export interface EmptyProtoType {
+  typeUrl: "/google.protobuf.Empty";
+  value: Uint8Array;
+}
+/**
+ * A generic empty message that you can re-use to avoid defining duplicated
+ * empty messages in your APIs. A typical example is to use it as the request
+ * or the response type of an API method. For instance:
+ * 
+ *     service Foo {
+ *       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);
+ *     }
+ * 
+ * The JSON representation for `Empty` is empty JSON object `{}`.
+ */
+
+export interface EmptyAmino {}
+export interface EmptyAminoType {
+  type: "/google.protobuf.Empty";
+  value: EmptyAmino;
+}
 /**
  * A generic empty message that you can re-use to avoid defining duplicated
  * empty messages in your APIs. A typical example is to use it as the request
@@ -65,6 +86,15 @@ export const Empty = {
   fromPartial(_: Partial<Empty>): Empty {
     const message = createBaseEmpty();
     return message;
+  },
+
+  fromAmino(_: EmptyAmino): Empty {
+    return {};
+  },
+
+  toAmino(_: Empty): EmptyAmino {
+    const obj: any = {};
+    return obj;
   }
 
 };
