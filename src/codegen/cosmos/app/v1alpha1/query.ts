@@ -1,20 +1,9 @@
-import { Config, ConfigAmino, ConfigSDKType } from "./config";
+import { Config, ConfigSDKType } from "./config";
 import * as _m0 from "protobufjs/minimal";
 import { isSet } from "../../../helpers";
 /** QueryConfigRequest is the Query/Config request type. */
 
 export interface QueryConfigRequest {}
-export interface QueryConfigRequestProtoType {
-  typeUrl: "/cosmos.app.v1alpha1.QueryConfigRequest";
-  value: Uint8Array;
-}
-/** QueryConfigRequest is the Query/Config request type. */
-
-export interface QueryConfigRequestAmino {}
-export interface QueryConfigRequestAminoType {
-  type: "cosmos-sdk/QueryConfigRequest";
-  value: QueryConfigRequestAmino;
-}
 /** QueryConfigRequest is the Query/Config request type. */
 
 export interface QueryConfigRequestSDKType {}
@@ -23,20 +12,6 @@ export interface QueryConfigRequestSDKType {}
 export interface QueryConfigResponse {
   /** config is the current app config. */
   config?: Config;
-}
-export interface QueryConfigResponseProtoType {
-  typeUrl: "/cosmos.app.v1alpha1.QueryConfigResponse";
-  value: Uint8Array;
-}
-/** QueryConfigRequest is the Query/Config response type. */
-
-export interface QueryConfigResponseAmino {
-  /** config is the current app config. */
-  config?: ConfigAmino;
-}
-export interface QueryConfigResponseAminoType {
-  type: "cosmos-sdk/QueryConfigResponse";
-  value: QueryConfigResponseAmino;
 }
 /** QueryConfigRequest is the Query/Config response type. */
 
@@ -83,15 +58,6 @@ export const QueryConfigRequest = {
   fromPartial(_: Partial<QueryConfigRequest>): QueryConfigRequest {
     const message = createBaseQueryConfigRequest();
     return message;
-  },
-
-  fromAmino(_: QueryConfigRequestAmino): QueryConfigRequest {
-    return {};
-  },
-
-  toAmino(_: QueryConfigRequest): QueryConfigRequestAmino {
-    const obj: any = {};
-    return obj;
   }
 
 };
@@ -149,18 +115,6 @@ export const QueryConfigResponse = {
     const message = createBaseQueryConfigResponse();
     message.config = object.config !== undefined && object.config !== null ? Config.fromPartial(object.config) : undefined;
     return message;
-  },
-
-  fromAmino(object: QueryConfigResponseAmino): QueryConfigResponse {
-    return {
-      config: object?.config ? Config.fromAmino(object.config) : undefined
-    };
-  },
-
-  toAmino(message: QueryConfigResponse): QueryConfigResponseAmino {
-    const obj: any = {};
-    obj.config = message.config ? Config.toAmino(message.config) : undefined;
-    return obj;
   }
 
 };
