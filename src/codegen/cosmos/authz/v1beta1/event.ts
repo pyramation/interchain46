@@ -12,26 +12,6 @@ export interface EventGrant {
 
   grantee: string;
 }
-export interface EventGrantProtoType {
-  typeUrl: "/cosmos.authz.v1beta1.EventGrant";
-  value: Uint8Array;
-}
-/** EventGrant is emitted on Msg/Grant */
-
-export interface EventGrantAmino {
-  /** Msg type URL for which an autorization is granted */
-  msg_type_url: string;
-  /** Granter account address */
-
-  granter: string;
-  /** Grantee account address */
-
-  grantee: string;
-}
-export interface EventGrantAminoType {
-  type: "cosmos-sdk/EventGrant";
-  value: EventGrantAmino;
-}
 /** EventGrant is emitted on Msg/Grant */
 
 export interface EventGrantSDKType {
@@ -50,26 +30,6 @@ export interface EventRevoke {
   /** Grantee account address */
 
   grantee: string;
-}
-export interface EventRevokeProtoType {
-  typeUrl: "/cosmos.authz.v1beta1.EventRevoke";
-  value: Uint8Array;
-}
-/** EventRevoke is emitted on Msg/Revoke */
-
-export interface EventRevokeAmino {
-  /** Msg type URL for which an autorization is revoked */
-  msg_type_url: string;
-  /** Granter account address */
-
-  granter: string;
-  /** Grantee account address */
-
-  grantee: string;
-}
-export interface EventRevokeAminoType {
-  type: "cosmos-sdk/EventRevoke";
-  value: EventRevokeAmino;
 }
 /** EventRevoke is emitted on Msg/Revoke */
 
@@ -156,22 +116,6 @@ export const EventGrant = {
     message.granter = object.granter ?? "";
     message.grantee = object.grantee ?? "";
     return message;
-  },
-
-  fromAmino(object: EventGrantAmino): EventGrant {
-    return {
-      msgTypeUrl: object.msg_type_url,
-      granter: object.granter,
-      grantee: object.grantee
-    };
-  },
-
-  toAmino(message: EventGrant): EventGrantAmino {
-    const obj: any = {};
-    obj.msg_type_url = message.msgTypeUrl;
-    obj.granter = message.granter;
-    obj.grantee = message.grantee;
-    return obj;
   }
 
 };
@@ -253,22 +197,6 @@ export const EventRevoke = {
     message.granter = object.granter ?? "";
     message.grantee = object.grantee ?? "";
     return message;
-  },
-
-  fromAmino(object: EventRevokeAmino): EventRevoke {
-    return {
-      msgTypeUrl: object.msg_type_url,
-      granter: object.granter,
-      grantee: object.grantee
-    };
-  },
-
-  toAmino(message: EventRevoke): EventRevokeAmino {
-    const obj: any = {};
-    obj.msg_type_url = message.msgTypeUrl;
-    obj.granter = message.granter;
-    obj.grantee = message.grantee;
-    return obj;
   }
 
 };
