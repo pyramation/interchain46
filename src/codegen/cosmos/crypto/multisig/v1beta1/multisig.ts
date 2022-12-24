@@ -9,6 +9,23 @@ import { bytesFromBase64, base64FromBytes, isSet } from "../../../../helpers";
 export interface MultiSignature {
   signatures: Uint8Array[];
 }
+export interface MultiSignatureProtoType {
+  typeUrl: "/cosmos.crypto.multisig.v1beta1.MultiSignature";
+  value: Uint8Array;
+}
+/**
+ * MultiSignature wraps the signatures from a multisig.LegacyAminoPubKey.
+ * See cosmos.tx.v1betata1.ModeInfo.Multi for how to specify which signers
+ * signed and with which modes.
+ */
+
+export interface MultiSignatureAmino {
+  signatures: Uint8Array[];
+}
+export interface MultiSignatureAminoType {
+  type: "cosmos-sdk/MultiSignature";
+  value: MultiSignatureAmino;
+}
 /**
  * MultiSignature wraps the signatures from a multisig.LegacyAminoPubKey.
  * See cosmos.tx.v1betata1.ModeInfo.Multi for how to specify which signers
@@ -28,6 +45,25 @@ export interface MultiSignatureSDKType {
 export interface CompactBitArray {
   extraBitsStored: number;
   elems: Uint8Array;
+}
+export interface CompactBitArrayProtoType {
+  typeUrl: "/cosmos.crypto.multisig.v1beta1.CompactBitArray";
+  value: Uint8Array;
+}
+/**
+ * CompactBitArray is an implementation of a space efficient bit array.
+ * This is used to ensure that the encoded data takes up a minimal amount of
+ * space after proto encoding.
+ * This is not thread safe, and is not intended for concurrent usage.
+ */
+
+export interface CompactBitArrayAmino {
+  extra_bits_stored: number;
+  elems: Uint8Array;
+}
+export interface CompactBitArrayAminoType {
+  type: "cosmos-sdk/CompactBitArray";
+  value: CompactBitArrayAmino;
 }
 /**
  * CompactBitArray is an implementation of a space efficient bit array.
@@ -100,6 +136,24 @@ export const MultiSignature = {
     const message = createBaseMultiSignature();
     message.signatures = object.signatures?.map(e => e) || [];
     return message;
+  },
+
+  fromAmino(object: MultiSignatureAmino): MultiSignature {
+    return {
+      signatures: Array.isArray(object?.signatures) ? object.signatures.map((e: any) => e) : []
+    };
+  },
+
+  toAmino(message: MultiSignature): MultiSignatureAmino {
+    const obj: any = {};
+
+    if (message.signatures) {
+      obj.signatures = message.signatures.map(e => e);
+    } else {
+      obj.signatures = [];
+    }
+
+    return obj;
   }
 
 };
@@ -169,6 +223,20 @@ export const CompactBitArray = {
     message.extraBitsStored = object.extraBitsStored ?? 0;
     message.elems = object.elems ?? new Uint8Array();
     return message;
+  },
+
+  fromAmino(object: CompactBitArrayAmino): CompactBitArray {
+    return {
+      extraBitsStored: object.extra_bits_stored,
+      elems: object.elems
+    };
+  },
+
+  toAmino(message: CompactBitArray): CompactBitArrayAmino {
+    const obj: any = {};
+    obj.extra_bits_stored = message.extraBitsStored;
+    obj.elems = message.elems;
+    return obj;
   }
 
 };
