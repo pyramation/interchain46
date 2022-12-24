@@ -14,6 +14,10 @@ export interface MsgGrant {
   grantee: string;
   grant?: Grant;
 }
+export interface MsgGrantProtoType {
+  typeUrl: "/cosmos.authz.v1beta1.MsgGrant";
+  value: Uint8Array;
+}
 /**
  * MsgGrant is a request type for Grant method. It declares authorization to the grantee
  * on behalf of the granter with the provided expiration time.
@@ -23,6 +27,10 @@ export interface MsgGrantAmino {
   granter: string;
   grantee: string;
   grant?: GrantAmino;
+}
+export interface MsgGrantAminoType {
+  type: "cosmos-sdk/MsgGrant";
+  value: MsgGrantAmino;
 }
 /**
  * MsgGrant is a request type for Grant method. It declares authorization to the grantee
@@ -39,10 +47,18 @@ export interface MsgGrantSDKType {
 export interface MsgExecResponse {
   results: Uint8Array[];
 }
+export interface MsgExecResponseProtoType {
+  typeUrl: "/cosmos.authz.v1beta1.MsgExecResponse";
+  value: Uint8Array;
+}
 /** MsgExecResponse defines the Msg/MsgExecResponse response type. */
 
 export interface MsgExecResponseAmino {
   results: Uint8Array[];
+}
+export interface MsgExecResponseAminoType {
+  type: "cosmos-sdk/MsgExecResponse";
+  value: MsgExecResponseAmino;
 }
 /** MsgExecResponse defines the Msg/MsgExecResponse response type. */
 
@@ -65,6 +81,10 @@ export interface MsgExec {
 
   msgs: (GenericAuthorization & SendAuthorization & StakeAuthorization & Any)[] | Any[];
 }
+export interface MsgExecProtoType {
+  typeUrl: "/cosmos.authz.v1beta1.MsgExec";
+  value: Uint8Array;
+}
 /**
  * MsgExec attempts to execute the provided messages using
  * authorizations granted to the grantee. Each message should have only
@@ -81,6 +101,10 @@ export interface MsgExecAmino {
 
   msgs: AnyAmino[];
 }
+export interface MsgExecAminoType {
+  type: "cosmos-sdk/MsgExec";
+  value: MsgExecAmino;
+}
 /**
  * MsgExec attempts to execute the provided messages using
  * authorizations granted to the grantee. Each message should have only
@@ -94,9 +118,17 @@ export interface MsgExecSDKType {
 /** MsgGrantResponse defines the Msg/MsgGrant response type. */
 
 export interface MsgGrantResponse {}
+export interface MsgGrantResponseProtoType {
+  typeUrl: "/cosmos.authz.v1beta1.MsgGrantResponse";
+  value: Uint8Array;
+}
 /** MsgGrantResponse defines the Msg/MsgGrant response type. */
 
 export interface MsgGrantResponseAmino {}
+export interface MsgGrantResponseAminoType {
+  type: "cosmos-sdk/MsgGrantResponse";
+  value: MsgGrantResponseAmino;
+}
 /** MsgGrantResponse defines the Msg/MsgGrant response type. */
 
 export interface MsgGrantResponseSDKType {}
@@ -110,6 +142,10 @@ export interface MsgRevoke {
   grantee: string;
   msgTypeUrl: string;
 }
+export interface MsgRevokeProtoType {
+  typeUrl: "/cosmos.authz.v1beta1.MsgRevoke";
+  value: Uint8Array;
+}
 /**
  * MsgRevoke revokes any authorization with the provided sdk.Msg type on the
  * granter's account with that has been granted to the grantee.
@@ -119,6 +155,10 @@ export interface MsgRevokeAmino {
   granter: string;
   grantee: string;
   msg_type_url: string;
+}
+export interface MsgRevokeAminoType {
+  type: "cosmos-sdk/MsgRevoke";
+  value: MsgRevokeAmino;
 }
 /**
  * MsgRevoke revokes any authorization with the provided sdk.Msg type on the
@@ -133,9 +173,17 @@ export interface MsgRevokeSDKType {
 /** MsgRevokeResponse defines the Msg/MsgRevokeResponse response type. */
 
 export interface MsgRevokeResponse {}
+export interface MsgRevokeResponseProtoType {
+  typeUrl: "/cosmos.authz.v1beta1.MsgRevokeResponse";
+  value: Uint8Array;
+}
 /** MsgRevokeResponse defines the Msg/MsgRevokeResponse response type. */
 
 export interface MsgRevokeResponseAmino {}
+export interface MsgRevokeResponseAminoType {
+  type: "cosmos-sdk/MsgRevokeResponse";
+  value: MsgRevokeResponseAmino;
+}
 /** MsgRevokeResponse defines the Msg/MsgRevokeResponse response type. */
 
 export interface MsgRevokeResponseSDKType {}

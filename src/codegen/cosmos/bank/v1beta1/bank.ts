@@ -7,11 +7,19 @@ export interface Params {
   sendEnabled: SendEnabled[];
   defaultSendEnabled: boolean;
 }
+export interface ParamsProtoType {
+  typeUrl: "/cosmos.bank.v1beta1.Params";
+  value: Uint8Array;
+}
 /** Params defines the parameters for the bank module. */
 
 export interface ParamsAmino {
   send_enabled: SendEnabledAmino[];
   default_send_enabled: boolean;
+}
+export interface ParamsAminoType {
+  type: "cosmos-sdk/Params";
+  value: ParamsAmino;
 }
 /** Params defines the parameters for the bank module. */
 
@@ -28,6 +36,10 @@ export interface SendEnabled {
   denom: string;
   enabled: boolean;
 }
+export interface SendEnabledProtoType {
+  typeUrl: "/cosmos.bank.v1beta1.SendEnabled";
+  value: Uint8Array;
+}
 /**
  * SendEnabled maps coin denom to a send_enabled status (whether a denom is
  * sendable).
@@ -36,6 +48,10 @@ export interface SendEnabled {
 export interface SendEnabledAmino {
   denom: string;
   enabled: boolean;
+}
+export interface SendEnabledAminoType {
+  type: "cosmos-sdk/SendEnabled";
+  value: SendEnabledAmino;
 }
 /**
  * SendEnabled maps coin denom to a send_enabled status (whether a denom is
@@ -52,11 +68,19 @@ export interface Input {
   address: string;
   coins: Coin[];
 }
+export interface InputProtoType {
+  typeUrl: "/cosmos.bank.v1beta1.Input";
+  value: Uint8Array;
+}
 /** Input models transaction input. */
 
 export interface InputAmino {
   address: string;
   coins: CoinAmino[];
+}
+export interface InputAminoType {
+  type: "cosmos-sdk/Input";
+  value: InputAmino;
 }
 /** Input models transaction input. */
 
@@ -70,11 +94,19 @@ export interface Output {
   address: string;
   coins: Coin[];
 }
+export interface OutputProtoType {
+  typeUrl: "/cosmos.bank.v1beta1.Output";
+  value: Uint8Array;
+}
 /** Output models transaction outputs. */
 
 export interface OutputAmino {
   address: string;
   coins: CoinAmino[];
+}
+export interface OutputAminoType {
+  type: "cosmos-sdk/Output";
+  value: OutputAmino;
 }
 /** Output models transaction outputs. */
 
@@ -94,6 +126,10 @@ export interface Supply {
   $typeUrl?: string;
   total: Coin[];
 }
+export interface SupplyProtoType {
+  typeUrl: "/cosmos.bank.v1beta1.Supply";
+  value: Uint8Array;
+}
 /**
  * Supply represents a struct that passively keeps track of the total supply
  * amounts in the network.
@@ -104,6 +140,10 @@ export interface Supply {
 
 export interface SupplyAmino {
   total: CoinAmino[];
+}
+export interface SupplyAminoType {
+  type: "cosmos-sdk/Supply";
+  value: SupplyAmino;
 }
 /**
  * Supply represents a struct that passively keeps track of the total supply
@@ -138,6 +178,10 @@ export interface DenomUnit {
 
   aliases: string[];
 }
+export interface DenomUnitProtoType {
+  typeUrl: "/cosmos.bank.v1beta1.DenomUnit";
+  value: Uint8Array;
+}
 /**
  * DenomUnit represents a struct that describes a given
  * denomination unit of the basic token.
@@ -158,6 +202,10 @@ export interface DenomUnitAmino {
   /** aliases is a list of string aliases for the given denom */
 
   aliases: string[];
+}
+export interface DenomUnitAminoType {
+  type: "cosmos-sdk/DenomUnit";
+  value: DenomUnitAmino;
 }
 /**
  * DenomUnit represents a struct that describes a given
@@ -219,6 +267,10 @@ export interface Metadata {
 
   uriHash: string;
 }
+export interface MetadataProtoType {
+  typeUrl: "/cosmos.bank.v1beta1.Metadata";
+  value: Uint8Array;
+}
 /**
  * Metadata represents a struct that describes
  * a basic token.
@@ -268,6 +320,10 @@ export interface MetadataAmino {
    */
 
   uri_hash: string;
+}
+export interface MetadataAminoType {
+  type: "cosmos-sdk/Metadata";
+  value: MetadataAmino;
 }
 /**
  * Metadata represents a struct that describes

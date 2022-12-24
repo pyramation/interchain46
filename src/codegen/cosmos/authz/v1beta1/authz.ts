@@ -15,6 +15,10 @@ export interface GenericAuthorization {
 
   msg: string;
 }
+export interface GenericAuthorizationProtoType {
+  typeUrl: "/cosmos.authz.v1beta1.GenericAuthorization";
+  value: Uint8Array;
+}
 /**
  * GenericAuthorization gives the grantee unrestricted permissions to execute
  * the provided method on behalf of the granter's account.
@@ -23,6 +27,10 @@ export interface GenericAuthorization {
 export interface GenericAuthorizationAmino {
   /** Msg, identified by it's type URL, to grant unrestricted permissions to execute */
   msg: string;
+}
+export interface GenericAuthorizationAminoType {
+  type: "cosmos-sdk/GenericAuthorization";
+  value: GenericAuthorizationAmino;
 }
 /**
  * GenericAuthorization gives the grantee unrestricted permissions to execute
@@ -48,6 +56,10 @@ export interface Grant {
 
   expiration?: Timestamp;
 }
+export interface GrantProtoType {
+  typeUrl: "/cosmos.authz.v1beta1.Grant";
+  value: Uint8Array;
+}
 /**
  * Grant gives permissions to execute
  * the provide method with expiration time.
@@ -62,6 +74,10 @@ export interface GrantAmino {
    */
 
   expiration?: TimestampAmino;
+}
+export interface GrantAminoType {
+  type: "cosmos-sdk/Grant";
+  value: GrantAmino;
 }
 /**
  * Grant gives permissions to execute
@@ -83,6 +99,10 @@ export interface GrantAuthorization {
   authorization?: (GenericAuthorization & SendAuthorization & StakeAuthorization & Any) | undefined;
   expiration?: Timestamp;
 }
+export interface GrantAuthorizationProtoType {
+  typeUrl: "/cosmos.authz.v1beta1.GrantAuthorization";
+  value: Uint8Array;
+}
 /**
  * GrantAuthorization extends a grant with both the addresses of the grantee and granter.
  * It is used in genesis.proto and query.proto
@@ -93,6 +113,10 @@ export interface GrantAuthorizationAmino {
   grantee: string;
   authorization?: AnyAmino;
   expiration?: TimestampAmino;
+}
+export interface GrantAuthorizationAminoType {
+  type: "cosmos-sdk/GrantAuthorization";
+  value: GrantAuthorizationAmino;
 }
 /**
  * GrantAuthorization extends a grant with both the addresses of the grantee and granter.
@@ -111,11 +135,19 @@ export interface GrantQueueItem {
   /** msg_type_urls contains the list of TypeURL of a sdk.Msg. */
   msgTypeUrls: string[];
 }
+export interface GrantQueueItemProtoType {
+  typeUrl: "/cosmos.authz.v1beta1.GrantQueueItem";
+  value: Uint8Array;
+}
 /** GrantQueueItem contains the list of TypeURL of a sdk.Msg. */
 
 export interface GrantQueueItemAmino {
   /** msg_type_urls contains the list of TypeURL of a sdk.Msg. */
   msg_type_urls: string[];
+}
+export interface GrantQueueItemAminoType {
+  type: "cosmos-sdk/GrantQueueItem";
+  value: GrantQueueItemAmino;
 }
 /** GrantQueueItem contains the list of TypeURL of a sdk.Msg. */
 

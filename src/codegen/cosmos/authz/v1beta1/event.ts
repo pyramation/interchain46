@@ -12,6 +12,10 @@ export interface EventGrant {
 
   grantee: string;
 }
+export interface EventGrantProtoType {
+  typeUrl: "/cosmos.authz.v1beta1.EventGrant";
+  value: Uint8Array;
+}
 /** EventGrant is emitted on Msg/Grant */
 
 export interface EventGrantAmino {
@@ -23,6 +27,10 @@ export interface EventGrantAmino {
   /** Grantee account address */
 
   grantee: string;
+}
+export interface EventGrantAminoType {
+  type: "cosmos-sdk/EventGrant";
+  value: EventGrantAmino;
 }
 /** EventGrant is emitted on Msg/Grant */
 
@@ -43,6 +51,10 @@ export interface EventRevoke {
 
   grantee: string;
 }
+export interface EventRevokeProtoType {
+  typeUrl: "/cosmos.authz.v1beta1.EventRevoke";
+  value: Uint8Array;
+}
 /** EventRevoke is emitted on Msg/Revoke */
 
 export interface EventRevokeAmino {
@@ -54,6 +66,10 @@ export interface EventRevokeAmino {
   /** Grantee account address */
 
   grantee: string;
+}
+export interface EventRevokeAminoType {
+  type: "cosmos-sdk/EventRevoke";
+  value: EventRevokeAmino;
 }
 /** EventRevoke is emitted on Msg/Revoke */
 

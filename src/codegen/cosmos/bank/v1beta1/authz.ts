@@ -11,6 +11,10 @@ export interface SendAuthorization {
   $typeUrl?: string;
   spendLimit: Coin[];
 }
+export interface SendAuthorizationProtoType {
+  typeUrl: "/cosmos.bank.v1beta1.SendAuthorization";
+  value: Uint8Array;
+}
 /**
  * SendAuthorization allows the grantee to spend up to spend_limit coins from
  * the granter's account.
@@ -20,6 +24,10 @@ export interface SendAuthorization {
 
 export interface SendAuthorizationAmino {
   spend_limit: CoinAmino[];
+}
+export interface SendAuthorizationAminoType {
+  type: "cosmos-sdk/SendAuthorization";
+  value: SendAuthorizationAmino;
 }
 /**
  * SendAuthorization allows the grantee to spend up to spend_limit coins from
