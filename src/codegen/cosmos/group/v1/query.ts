@@ -1,5 +1,5 @@
-import { PageRequest, PageRequestSDKType, PageResponse, PageResponseSDKType } from "../../base/query/v1beta1/pagination";
-import { GroupInfo, GroupInfoSDKType, GroupPolicyInfo, GroupPolicyInfoSDKType, GroupMember, GroupMemberSDKType, Proposal, ProposalSDKType, Vote, VoteSDKType, TallyResult, TallyResultSDKType } from "./types";
+import { PageRequest, PageRequestAmino, PageRequestSDKType, PageResponse, PageResponseAmino, PageResponseSDKType } from "../../base/query/v1beta1/pagination";
+import { GroupInfo, GroupInfoAmino, GroupInfoSDKType, GroupPolicyInfo, GroupPolicyInfoAmino, GroupPolicyInfoSDKType, GroupMember, GroupMemberAmino, GroupMemberSDKType, Proposal, ProposalAmino, ProposalSDKType, Vote, VoteAmino, VoteSDKType, TallyResult, TallyResultAmino, TallyResultSDKType } from "./types";
 import { Long, isSet } from "../../../helpers";
 import * as _m0 from "protobufjs/minimal";
 /** QueryGroupInfoRequest is the Query/GroupInfo request type. */
@@ -7,6 +7,20 @@ import * as _m0 from "protobufjs/minimal";
 export interface QueryGroupInfoRequest {
   /** group_id is the unique ID of the group. */
   groupId: Long;
+}
+export interface QueryGroupInfoRequestProtoType {
+  typeUrl: "/cosmos.group.v1.QueryGroupInfoRequest";
+  value: Uint8Array;
+}
+/** QueryGroupInfoRequest is the Query/GroupInfo request type. */
+
+export interface QueryGroupInfoRequestAmino {
+  /** group_id is the unique ID of the group. */
+  group_id: string;
+}
+export interface QueryGroupInfoRequestAminoType {
+  type: "cosmos-sdk/QueryGroupInfoRequest";
+  value: QueryGroupInfoRequestAmino;
 }
 /** QueryGroupInfoRequest is the Query/GroupInfo request type. */
 
@@ -19,6 +33,20 @@ export interface QueryGroupInfoResponse {
   /** info is the GroupInfo for the group. */
   info?: GroupInfo;
 }
+export interface QueryGroupInfoResponseProtoType {
+  typeUrl: "/cosmos.group.v1.QueryGroupInfoResponse";
+  value: Uint8Array;
+}
+/** QueryGroupInfoResponse is the Query/GroupInfo response type. */
+
+export interface QueryGroupInfoResponseAmino {
+  /** info is the GroupInfo for the group. */
+  info?: GroupInfoAmino;
+}
+export interface QueryGroupInfoResponseAminoType {
+  type: "cosmos-sdk/QueryGroupInfoResponse";
+  value: QueryGroupInfoResponseAmino;
+}
 /** QueryGroupInfoResponse is the Query/GroupInfo response type. */
 
 export interface QueryGroupInfoResponseSDKType {
@@ -30,6 +58,20 @@ export interface QueryGroupPolicyInfoRequest {
   /** address is the account address of the group policy. */
   address: string;
 }
+export interface QueryGroupPolicyInfoRequestProtoType {
+  typeUrl: "/cosmos.group.v1.QueryGroupPolicyInfoRequest";
+  value: Uint8Array;
+}
+/** QueryGroupPolicyInfoRequest is the Query/GroupPolicyInfo request type. */
+
+export interface QueryGroupPolicyInfoRequestAmino {
+  /** address is the account address of the group policy. */
+  address: string;
+}
+export interface QueryGroupPolicyInfoRequestAminoType {
+  type: "cosmos-sdk/QueryGroupPolicyInfoRequest";
+  value: QueryGroupPolicyInfoRequestAmino;
+}
 /** QueryGroupPolicyInfoRequest is the Query/GroupPolicyInfo request type. */
 
 export interface QueryGroupPolicyInfoRequestSDKType {
@@ -40,6 +82,20 @@ export interface QueryGroupPolicyInfoRequestSDKType {
 export interface QueryGroupPolicyInfoResponse {
   /** info is the GroupPolicyInfo for the group policy. */
   info?: GroupPolicyInfo;
+}
+export interface QueryGroupPolicyInfoResponseProtoType {
+  typeUrl: "/cosmos.group.v1.QueryGroupPolicyInfoResponse";
+  value: Uint8Array;
+}
+/** QueryGroupPolicyInfoResponse is the Query/GroupPolicyInfo response type. */
+
+export interface QueryGroupPolicyInfoResponseAmino {
+  /** info is the GroupPolicyInfo for the group policy. */
+  info?: GroupPolicyInfoAmino;
+}
+export interface QueryGroupPolicyInfoResponseAminoType {
+  type: "cosmos-sdk/QueryGroupPolicyInfoResponse";
+  value: QueryGroupPolicyInfoResponseAmino;
 }
 /** QueryGroupPolicyInfoResponse is the Query/GroupPolicyInfo response type. */
 
@@ -54,6 +110,23 @@ export interface QueryGroupMembersRequest {
   /** pagination defines an optional pagination for the request. */
 
   pagination?: PageRequest;
+}
+export interface QueryGroupMembersRequestProtoType {
+  typeUrl: "/cosmos.group.v1.QueryGroupMembersRequest";
+  value: Uint8Array;
+}
+/** QueryGroupMembersRequest is the Query/GroupMembers request type. */
+
+export interface QueryGroupMembersRequestAmino {
+  /** group_id is the unique ID of the group. */
+  group_id: string;
+  /** pagination defines an optional pagination for the request. */
+
+  pagination?: PageRequestAmino;
+}
+export interface QueryGroupMembersRequestAminoType {
+  type: "cosmos-sdk/QueryGroupMembersRequest";
+  value: QueryGroupMembersRequestAmino;
 }
 /** QueryGroupMembersRequest is the Query/GroupMembers request type. */
 
@@ -70,6 +143,23 @@ export interface QueryGroupMembersResponse {
 
   pagination?: PageResponse;
 }
+export interface QueryGroupMembersResponseProtoType {
+  typeUrl: "/cosmos.group.v1.QueryGroupMembersResponse";
+  value: Uint8Array;
+}
+/** QueryGroupMembersResponse is the Query/GroupMembersResponse response type. */
+
+export interface QueryGroupMembersResponseAmino {
+  /** members are the members of the group with given group_id. */
+  members: GroupMemberAmino[];
+  /** pagination defines the pagination in the response. */
+
+  pagination?: PageResponseAmino;
+}
+export interface QueryGroupMembersResponseAminoType {
+  type: "cosmos-sdk/QueryGroupMembersResponse";
+  value: QueryGroupMembersResponseAmino;
+}
 /** QueryGroupMembersResponse is the Query/GroupMembersResponse response type. */
 
 export interface QueryGroupMembersResponseSDKType {
@@ -84,6 +174,23 @@ export interface QueryGroupsByAdminRequest {
   /** pagination defines an optional pagination for the request. */
 
   pagination?: PageRequest;
+}
+export interface QueryGroupsByAdminRequestProtoType {
+  typeUrl: "/cosmos.group.v1.QueryGroupsByAdminRequest";
+  value: Uint8Array;
+}
+/** QueryGroupsByAdminRequest is the Query/GroupsByAdmin request type. */
+
+export interface QueryGroupsByAdminRequestAmino {
+  /** admin is the account address of a group's admin. */
+  admin: string;
+  /** pagination defines an optional pagination for the request. */
+
+  pagination?: PageRequestAmino;
+}
+export interface QueryGroupsByAdminRequestAminoType {
+  type: "cosmos-sdk/QueryGroupsByAdminRequest";
+  value: QueryGroupsByAdminRequestAmino;
 }
 /** QueryGroupsByAdminRequest is the Query/GroupsByAdmin request type. */
 
@@ -100,6 +207,23 @@ export interface QueryGroupsByAdminResponse {
 
   pagination?: PageResponse;
 }
+export interface QueryGroupsByAdminResponseProtoType {
+  typeUrl: "/cosmos.group.v1.QueryGroupsByAdminResponse";
+  value: Uint8Array;
+}
+/** QueryGroupsByAdminResponse is the Query/GroupsByAdminResponse response type. */
+
+export interface QueryGroupsByAdminResponseAmino {
+  /** groups are the groups info with the provided admin. */
+  groups: GroupInfoAmino[];
+  /** pagination defines the pagination in the response. */
+
+  pagination?: PageResponseAmino;
+}
+export interface QueryGroupsByAdminResponseAminoType {
+  type: "cosmos-sdk/QueryGroupsByAdminResponse";
+  value: QueryGroupsByAdminResponseAmino;
+}
 /** QueryGroupsByAdminResponse is the Query/GroupsByAdminResponse response type. */
 
 export interface QueryGroupsByAdminResponseSDKType {
@@ -114,6 +238,23 @@ export interface QueryGroupPoliciesByGroupRequest {
   /** pagination defines an optional pagination for the request. */
 
   pagination?: PageRequest;
+}
+export interface QueryGroupPoliciesByGroupRequestProtoType {
+  typeUrl: "/cosmos.group.v1.QueryGroupPoliciesByGroupRequest";
+  value: Uint8Array;
+}
+/** QueryGroupPoliciesByGroupRequest is the Query/GroupPoliciesByGroup request type. */
+
+export interface QueryGroupPoliciesByGroupRequestAmino {
+  /** group_id is the unique ID of the group policy's group. */
+  group_id: string;
+  /** pagination defines an optional pagination for the request. */
+
+  pagination?: PageRequestAmino;
+}
+export interface QueryGroupPoliciesByGroupRequestAminoType {
+  type: "cosmos-sdk/QueryGroupPoliciesByGroupRequest";
+  value: QueryGroupPoliciesByGroupRequestAmino;
 }
 /** QueryGroupPoliciesByGroupRequest is the Query/GroupPoliciesByGroup request type. */
 
@@ -130,6 +271,23 @@ export interface QueryGroupPoliciesByGroupResponse {
 
   pagination?: PageResponse;
 }
+export interface QueryGroupPoliciesByGroupResponseProtoType {
+  typeUrl: "/cosmos.group.v1.QueryGroupPoliciesByGroupResponse";
+  value: Uint8Array;
+}
+/** QueryGroupPoliciesByGroupResponse is the Query/GroupPoliciesByGroup response type. */
+
+export interface QueryGroupPoliciesByGroupResponseAmino {
+  /** group_policies are the group policies info associated with the provided group. */
+  group_policies: GroupPolicyInfoAmino[];
+  /** pagination defines the pagination in the response. */
+
+  pagination?: PageResponseAmino;
+}
+export interface QueryGroupPoliciesByGroupResponseAminoType {
+  type: "cosmos-sdk/QueryGroupPoliciesByGroupResponse";
+  value: QueryGroupPoliciesByGroupResponseAmino;
+}
 /** QueryGroupPoliciesByGroupResponse is the Query/GroupPoliciesByGroup response type. */
 
 export interface QueryGroupPoliciesByGroupResponseSDKType {
@@ -144,6 +302,23 @@ export interface QueryGroupPoliciesByAdminRequest {
   /** pagination defines an optional pagination for the request. */
 
   pagination?: PageRequest;
+}
+export interface QueryGroupPoliciesByAdminRequestProtoType {
+  typeUrl: "/cosmos.group.v1.QueryGroupPoliciesByAdminRequest";
+  value: Uint8Array;
+}
+/** QueryGroupPoliciesByAdminRequest is the Query/GroupPoliciesByAdmin request type. */
+
+export interface QueryGroupPoliciesByAdminRequestAmino {
+  /** admin is the admin address of the group policy. */
+  admin: string;
+  /** pagination defines an optional pagination for the request. */
+
+  pagination?: PageRequestAmino;
+}
+export interface QueryGroupPoliciesByAdminRequestAminoType {
+  type: "cosmos-sdk/QueryGroupPoliciesByAdminRequest";
+  value: QueryGroupPoliciesByAdminRequestAmino;
 }
 /** QueryGroupPoliciesByAdminRequest is the Query/GroupPoliciesByAdmin request type. */
 
@@ -160,6 +335,23 @@ export interface QueryGroupPoliciesByAdminResponse {
 
   pagination?: PageResponse;
 }
+export interface QueryGroupPoliciesByAdminResponseProtoType {
+  typeUrl: "/cosmos.group.v1.QueryGroupPoliciesByAdminResponse";
+  value: Uint8Array;
+}
+/** QueryGroupPoliciesByAdminResponse is the Query/GroupPoliciesByAdmin response type. */
+
+export interface QueryGroupPoliciesByAdminResponseAmino {
+  /** group_policies are the group policies info with provided admin. */
+  group_policies: GroupPolicyInfoAmino[];
+  /** pagination defines the pagination in the response. */
+
+  pagination?: PageResponseAmino;
+}
+export interface QueryGroupPoliciesByAdminResponseAminoType {
+  type: "cosmos-sdk/QueryGroupPoliciesByAdminResponse";
+  value: QueryGroupPoliciesByAdminResponseAmino;
+}
 /** QueryGroupPoliciesByAdminResponse is the Query/GroupPoliciesByAdmin response type. */
 
 export interface QueryGroupPoliciesByAdminResponseSDKType {
@@ -172,6 +364,20 @@ export interface QueryProposalRequest {
   /** proposal_id is the unique ID of a proposal. */
   proposalId: Long;
 }
+export interface QueryProposalRequestProtoType {
+  typeUrl: "/cosmos.group.v1.QueryProposalRequest";
+  value: Uint8Array;
+}
+/** QueryProposalRequest is the Query/Proposal request type. */
+
+export interface QueryProposalRequestAmino {
+  /** proposal_id is the unique ID of a proposal. */
+  proposal_id: string;
+}
+export interface QueryProposalRequestAminoType {
+  type: "cosmos-sdk/QueryProposalRequest";
+  value: QueryProposalRequestAmino;
+}
 /** QueryProposalRequest is the Query/Proposal request type. */
 
 export interface QueryProposalRequestSDKType {
@@ -182,6 +388,20 @@ export interface QueryProposalRequestSDKType {
 export interface QueryProposalResponse {
   /** proposal is the proposal info. */
   proposal?: Proposal;
+}
+export interface QueryProposalResponseProtoType {
+  typeUrl: "/cosmos.group.v1.QueryProposalResponse";
+  value: Uint8Array;
+}
+/** QueryProposalResponse is the Query/Proposal response type. */
+
+export interface QueryProposalResponseAmino {
+  /** proposal is the proposal info. */
+  proposal?: ProposalAmino;
+}
+export interface QueryProposalResponseAminoType {
+  type: "cosmos-sdk/QueryProposalResponse";
+  value: QueryProposalResponseAmino;
 }
 /** QueryProposalResponse is the Query/Proposal response type. */
 
@@ -196,6 +416,23 @@ export interface QueryProposalsByGroupPolicyRequest {
   /** pagination defines an optional pagination for the request. */
 
   pagination?: PageRequest;
+}
+export interface QueryProposalsByGroupPolicyRequestProtoType {
+  typeUrl: "/cosmos.group.v1.QueryProposalsByGroupPolicyRequest";
+  value: Uint8Array;
+}
+/** QueryProposalsByGroupPolicyRequest is the Query/ProposalByGroupPolicy request type. */
+
+export interface QueryProposalsByGroupPolicyRequestAmino {
+  /** address is the account address of the group policy related to proposals. */
+  address: string;
+  /** pagination defines an optional pagination for the request. */
+
+  pagination?: PageRequestAmino;
+}
+export interface QueryProposalsByGroupPolicyRequestAminoType {
+  type: "cosmos-sdk/QueryProposalsByGroupPolicyRequest";
+  value: QueryProposalsByGroupPolicyRequestAmino;
 }
 /** QueryProposalsByGroupPolicyRequest is the Query/ProposalByGroupPolicy request type. */
 
@@ -212,6 +449,23 @@ export interface QueryProposalsByGroupPolicyResponse {
 
   pagination?: PageResponse;
 }
+export interface QueryProposalsByGroupPolicyResponseProtoType {
+  typeUrl: "/cosmos.group.v1.QueryProposalsByGroupPolicyResponse";
+  value: Uint8Array;
+}
+/** QueryProposalsByGroupPolicyResponse is the Query/ProposalByGroupPolicy response type. */
+
+export interface QueryProposalsByGroupPolicyResponseAmino {
+  /** proposals are the proposals with given group policy. */
+  proposals: ProposalAmino[];
+  /** pagination defines the pagination in the response. */
+
+  pagination?: PageResponseAmino;
+}
+export interface QueryProposalsByGroupPolicyResponseAminoType {
+  type: "cosmos-sdk/QueryProposalsByGroupPolicyResponse";
+  value: QueryProposalsByGroupPolicyResponseAmino;
+}
 /** QueryProposalsByGroupPolicyResponse is the Query/ProposalByGroupPolicy response type. */
 
 export interface QueryProposalsByGroupPolicyResponseSDKType {
@@ -227,6 +481,23 @@ export interface QueryVoteByProposalVoterRequest {
 
   voter: string;
 }
+export interface QueryVoteByProposalVoterRequestProtoType {
+  typeUrl: "/cosmos.group.v1.QueryVoteByProposalVoterRequest";
+  value: Uint8Array;
+}
+/** QueryVoteByProposalVoterRequest is the Query/VoteByProposalVoter request type. */
+
+export interface QueryVoteByProposalVoterRequestAmino {
+  /** proposal_id is the unique ID of a proposal. */
+  proposal_id: string;
+  /** voter is a proposal voter account address. */
+
+  voter: string;
+}
+export interface QueryVoteByProposalVoterRequestAminoType {
+  type: "cosmos-sdk/QueryVoteByProposalVoterRequest";
+  value: QueryVoteByProposalVoterRequestAmino;
+}
 /** QueryVoteByProposalVoterRequest is the Query/VoteByProposalVoter request type. */
 
 export interface QueryVoteByProposalVoterRequestSDKType {
@@ -238,6 +509,20 @@ export interface QueryVoteByProposalVoterRequestSDKType {
 export interface QueryVoteByProposalVoterResponse {
   /** vote is the vote with given proposal_id and voter. */
   vote?: Vote;
+}
+export interface QueryVoteByProposalVoterResponseProtoType {
+  typeUrl: "/cosmos.group.v1.QueryVoteByProposalVoterResponse";
+  value: Uint8Array;
+}
+/** QueryVoteByProposalVoterResponse is the Query/VoteByProposalVoter response type. */
+
+export interface QueryVoteByProposalVoterResponseAmino {
+  /** vote is the vote with given proposal_id and voter. */
+  vote?: VoteAmino;
+}
+export interface QueryVoteByProposalVoterResponseAminoType {
+  type: "cosmos-sdk/QueryVoteByProposalVoterResponse";
+  value: QueryVoteByProposalVoterResponseAmino;
 }
 /** QueryVoteByProposalVoterResponse is the Query/VoteByProposalVoter response type. */
 
@@ -252,6 +537,23 @@ export interface QueryVotesByProposalRequest {
   /** pagination defines an optional pagination for the request. */
 
   pagination?: PageRequest;
+}
+export interface QueryVotesByProposalRequestProtoType {
+  typeUrl: "/cosmos.group.v1.QueryVotesByProposalRequest";
+  value: Uint8Array;
+}
+/** QueryVotesByProposalRequest is the Query/VotesByProposal request type. */
+
+export interface QueryVotesByProposalRequestAmino {
+  /** proposal_id is the unique ID of a proposal. */
+  proposal_id: string;
+  /** pagination defines an optional pagination for the request. */
+
+  pagination?: PageRequestAmino;
+}
+export interface QueryVotesByProposalRequestAminoType {
+  type: "cosmos-sdk/QueryVotesByProposalRequest";
+  value: QueryVotesByProposalRequestAmino;
 }
 /** QueryVotesByProposalRequest is the Query/VotesByProposal request type. */
 
@@ -268,6 +570,23 @@ export interface QueryVotesByProposalResponse {
 
   pagination?: PageResponse;
 }
+export interface QueryVotesByProposalResponseProtoType {
+  typeUrl: "/cosmos.group.v1.QueryVotesByProposalResponse";
+  value: Uint8Array;
+}
+/** QueryVotesByProposalResponse is the Query/VotesByProposal response type. */
+
+export interface QueryVotesByProposalResponseAmino {
+  /** votes are the list of votes for given proposal_id. */
+  votes: VoteAmino[];
+  /** pagination defines the pagination in the response. */
+
+  pagination?: PageResponseAmino;
+}
+export interface QueryVotesByProposalResponseAminoType {
+  type: "cosmos-sdk/QueryVotesByProposalResponse";
+  value: QueryVotesByProposalResponseAmino;
+}
 /** QueryVotesByProposalResponse is the Query/VotesByProposal response type. */
 
 export interface QueryVotesByProposalResponseSDKType {
@@ -282,6 +601,23 @@ export interface QueryVotesByVoterRequest {
   /** pagination defines an optional pagination for the request. */
 
   pagination?: PageRequest;
+}
+export interface QueryVotesByVoterRequestProtoType {
+  typeUrl: "/cosmos.group.v1.QueryVotesByVoterRequest";
+  value: Uint8Array;
+}
+/** QueryVotesByVoterRequest is the Query/VotesByVoter request type. */
+
+export interface QueryVotesByVoterRequestAmino {
+  /** voter is a proposal voter account address. */
+  voter: string;
+  /** pagination defines an optional pagination for the request. */
+
+  pagination?: PageRequestAmino;
+}
+export interface QueryVotesByVoterRequestAminoType {
+  type: "cosmos-sdk/QueryVotesByVoterRequest";
+  value: QueryVotesByVoterRequestAmino;
 }
 /** QueryVotesByVoterRequest is the Query/VotesByVoter request type. */
 
@@ -298,6 +634,23 @@ export interface QueryVotesByVoterResponse {
 
   pagination?: PageResponse;
 }
+export interface QueryVotesByVoterResponseProtoType {
+  typeUrl: "/cosmos.group.v1.QueryVotesByVoterResponse";
+  value: Uint8Array;
+}
+/** QueryVotesByVoterResponse is the Query/VotesByVoter response type. */
+
+export interface QueryVotesByVoterResponseAmino {
+  /** votes are the list of votes by given voter. */
+  votes: VoteAmino[];
+  /** pagination defines the pagination in the response. */
+
+  pagination?: PageResponseAmino;
+}
+export interface QueryVotesByVoterResponseAminoType {
+  type: "cosmos-sdk/QueryVotesByVoterResponse";
+  value: QueryVotesByVoterResponseAmino;
+}
 /** QueryVotesByVoterResponse is the Query/VotesByVoter response type. */
 
 export interface QueryVotesByVoterResponseSDKType {
@@ -312,6 +665,23 @@ export interface QueryGroupsByMemberRequest {
   /** pagination defines an optional pagination for the request. */
 
   pagination?: PageRequest;
+}
+export interface QueryGroupsByMemberRequestProtoType {
+  typeUrl: "/cosmos.group.v1.QueryGroupsByMemberRequest";
+  value: Uint8Array;
+}
+/** QueryGroupsByMemberRequest is the Query/GroupsByMember request type. */
+
+export interface QueryGroupsByMemberRequestAmino {
+  /** address is the group member address. */
+  address: string;
+  /** pagination defines an optional pagination for the request. */
+
+  pagination?: PageRequestAmino;
+}
+export interface QueryGroupsByMemberRequestAminoType {
+  type: "cosmos-sdk/QueryGroupsByMemberRequest";
+  value: QueryGroupsByMemberRequestAmino;
 }
 /** QueryGroupsByMemberRequest is the Query/GroupsByMember request type. */
 
@@ -328,6 +698,23 @@ export interface QueryGroupsByMemberResponse {
 
   pagination?: PageResponse;
 }
+export interface QueryGroupsByMemberResponseProtoType {
+  typeUrl: "/cosmos.group.v1.QueryGroupsByMemberResponse";
+  value: Uint8Array;
+}
+/** QueryGroupsByMemberResponse is the Query/GroupsByMember response type. */
+
+export interface QueryGroupsByMemberResponseAmino {
+  /** groups are the groups info with the provided group member. */
+  groups: GroupInfoAmino[];
+  /** pagination defines the pagination in the response. */
+
+  pagination?: PageResponseAmino;
+}
+export interface QueryGroupsByMemberResponseAminoType {
+  type: "cosmos-sdk/QueryGroupsByMemberResponse";
+  value: QueryGroupsByMemberResponseAmino;
+}
 /** QueryGroupsByMemberResponse is the Query/GroupsByMember response type. */
 
 export interface QueryGroupsByMemberResponseSDKType {
@@ -340,6 +727,20 @@ export interface QueryTallyResultRequest {
   /** proposal_id is the unique id of a proposal. */
   proposalId: Long;
 }
+export interface QueryTallyResultRequestProtoType {
+  typeUrl: "/cosmos.group.v1.QueryTallyResultRequest";
+  value: Uint8Array;
+}
+/** QueryTallyResultRequest is the Query/TallyResult request type. */
+
+export interface QueryTallyResultRequestAmino {
+  /** proposal_id is the unique id of a proposal. */
+  proposal_id: string;
+}
+export interface QueryTallyResultRequestAminoType {
+  type: "cosmos-sdk/QueryTallyResultRequest";
+  value: QueryTallyResultRequestAmino;
+}
 /** QueryTallyResultRequest is the Query/TallyResult request type. */
 
 export interface QueryTallyResultRequestSDKType {
@@ -350,6 +751,20 @@ export interface QueryTallyResultRequestSDKType {
 export interface QueryTallyResultResponse {
   /** tally defines the requested tally. */
   tally?: TallyResult;
+}
+export interface QueryTallyResultResponseProtoType {
+  typeUrl: "/cosmos.group.v1.QueryTallyResultResponse";
+  value: Uint8Array;
+}
+/** QueryTallyResultResponse is the Query/TallyResult response type. */
+
+export interface QueryTallyResultResponseAmino {
+  /** tally defines the requested tally. */
+  tally?: TallyResultAmino;
+}
+export interface QueryTallyResultResponseAminoType {
+  type: "cosmos-sdk/QueryTallyResultResponse";
+  value: QueryTallyResultResponseAmino;
 }
 /** QueryTallyResultResponse is the Query/TallyResult response type. */
 
@@ -410,6 +825,18 @@ export const QueryGroupInfoRequest = {
     const message = createBaseQueryGroupInfoRequest();
     message.groupId = object.groupId !== undefined && object.groupId !== null ? Long.fromValue(object.groupId) : Long.UZERO;
     return message;
+  },
+
+  fromAmino(object: QueryGroupInfoRequestAmino): QueryGroupInfoRequest {
+    return {
+      groupId: Long.fromString(object.group_id)
+    };
+  },
+
+  toAmino(message: QueryGroupInfoRequest): QueryGroupInfoRequestAmino {
+    const obj: any = {};
+    obj.group_id = message.groupId ? message.groupId.toString() : undefined;
+    return obj;
   }
 
 };
@@ -467,6 +894,18 @@ export const QueryGroupInfoResponse = {
     const message = createBaseQueryGroupInfoResponse();
     message.info = object.info !== undefined && object.info !== null ? GroupInfo.fromPartial(object.info) : undefined;
     return message;
+  },
+
+  fromAmino(object: QueryGroupInfoResponseAmino): QueryGroupInfoResponse {
+    return {
+      info: object?.info ? GroupInfo.fromAmino(object.info) : undefined
+    };
+  },
+
+  toAmino(message: QueryGroupInfoResponse): QueryGroupInfoResponseAmino {
+    const obj: any = {};
+    obj.info = message.info ? GroupInfo.toAmino(message.info) : undefined;
+    return obj;
   }
 
 };
@@ -524,6 +963,18 @@ export const QueryGroupPolicyInfoRequest = {
     const message = createBaseQueryGroupPolicyInfoRequest();
     message.address = object.address ?? "";
     return message;
+  },
+
+  fromAmino(object: QueryGroupPolicyInfoRequestAmino): QueryGroupPolicyInfoRequest {
+    return {
+      address: object.address
+    };
+  },
+
+  toAmino(message: QueryGroupPolicyInfoRequest): QueryGroupPolicyInfoRequestAmino {
+    const obj: any = {};
+    obj.address = message.address;
+    return obj;
   }
 
 };
@@ -581,6 +1032,18 @@ export const QueryGroupPolicyInfoResponse = {
     const message = createBaseQueryGroupPolicyInfoResponse();
     message.info = object.info !== undefined && object.info !== null ? GroupPolicyInfo.fromPartial(object.info) : undefined;
     return message;
+  },
+
+  fromAmino(object: QueryGroupPolicyInfoResponseAmino): QueryGroupPolicyInfoResponse {
+    return {
+      info: object?.info ? GroupPolicyInfo.fromAmino(object.info) : undefined
+    };
+  },
+
+  toAmino(message: QueryGroupPolicyInfoResponse): QueryGroupPolicyInfoResponseAmino {
+    const obj: any = {};
+    obj.info = message.info ? GroupPolicyInfo.toAmino(message.info) : undefined;
+    return obj;
   }
 
 };
@@ -650,6 +1113,20 @@ export const QueryGroupMembersRequest = {
     message.groupId = object.groupId !== undefined && object.groupId !== null ? Long.fromValue(object.groupId) : Long.UZERO;
     message.pagination = object.pagination !== undefined && object.pagination !== null ? PageRequest.fromPartial(object.pagination) : undefined;
     return message;
+  },
+
+  fromAmino(object: QueryGroupMembersRequestAmino): QueryGroupMembersRequest {
+    return {
+      groupId: Long.fromString(object.group_id),
+      pagination: object?.pagination ? PageRequest.fromAmino(object.pagination) : undefined
+    };
+  },
+
+  toAmino(message: QueryGroupMembersRequest): QueryGroupMembersRequestAmino {
+    const obj: any = {};
+    obj.group_id = message.groupId ? message.groupId.toString() : undefined;
+    obj.pagination = message.pagination ? PageRequest.toAmino(message.pagination) : undefined;
+    return obj;
   }
 
 };
@@ -725,6 +1202,26 @@ export const QueryGroupMembersResponse = {
     message.members = object.members?.map(e => GroupMember.fromPartial(e)) || [];
     message.pagination = object.pagination !== undefined && object.pagination !== null ? PageResponse.fromPartial(object.pagination) : undefined;
     return message;
+  },
+
+  fromAmino(object: QueryGroupMembersResponseAmino): QueryGroupMembersResponse {
+    return {
+      members: Array.isArray(object?.members) ? object.members.map((e: any) => GroupMember.fromAmino(e)) : [],
+      pagination: object?.pagination ? PageResponse.fromAmino(object.pagination) : undefined
+    };
+  },
+
+  toAmino(message: QueryGroupMembersResponse): QueryGroupMembersResponseAmino {
+    const obj: any = {};
+
+    if (message.members) {
+      obj.members = message.members.map(e => e ? GroupMember.toAmino(e) : undefined);
+    } else {
+      obj.members = [];
+    }
+
+    obj.pagination = message.pagination ? PageResponse.toAmino(message.pagination) : undefined;
+    return obj;
   }
 
 };
@@ -794,6 +1291,20 @@ export const QueryGroupsByAdminRequest = {
     message.admin = object.admin ?? "";
     message.pagination = object.pagination !== undefined && object.pagination !== null ? PageRequest.fromPartial(object.pagination) : undefined;
     return message;
+  },
+
+  fromAmino(object: QueryGroupsByAdminRequestAmino): QueryGroupsByAdminRequest {
+    return {
+      admin: object.admin,
+      pagination: object?.pagination ? PageRequest.fromAmino(object.pagination) : undefined
+    };
+  },
+
+  toAmino(message: QueryGroupsByAdminRequest): QueryGroupsByAdminRequestAmino {
+    const obj: any = {};
+    obj.admin = message.admin;
+    obj.pagination = message.pagination ? PageRequest.toAmino(message.pagination) : undefined;
+    return obj;
   }
 
 };
@@ -869,6 +1380,26 @@ export const QueryGroupsByAdminResponse = {
     message.groups = object.groups?.map(e => GroupInfo.fromPartial(e)) || [];
     message.pagination = object.pagination !== undefined && object.pagination !== null ? PageResponse.fromPartial(object.pagination) : undefined;
     return message;
+  },
+
+  fromAmino(object: QueryGroupsByAdminResponseAmino): QueryGroupsByAdminResponse {
+    return {
+      groups: Array.isArray(object?.groups) ? object.groups.map((e: any) => GroupInfo.fromAmino(e)) : [],
+      pagination: object?.pagination ? PageResponse.fromAmino(object.pagination) : undefined
+    };
+  },
+
+  toAmino(message: QueryGroupsByAdminResponse): QueryGroupsByAdminResponseAmino {
+    const obj: any = {};
+
+    if (message.groups) {
+      obj.groups = message.groups.map(e => e ? GroupInfo.toAmino(e) : undefined);
+    } else {
+      obj.groups = [];
+    }
+
+    obj.pagination = message.pagination ? PageResponse.toAmino(message.pagination) : undefined;
+    return obj;
   }
 
 };
@@ -938,6 +1469,20 @@ export const QueryGroupPoliciesByGroupRequest = {
     message.groupId = object.groupId !== undefined && object.groupId !== null ? Long.fromValue(object.groupId) : Long.UZERO;
     message.pagination = object.pagination !== undefined && object.pagination !== null ? PageRequest.fromPartial(object.pagination) : undefined;
     return message;
+  },
+
+  fromAmino(object: QueryGroupPoliciesByGroupRequestAmino): QueryGroupPoliciesByGroupRequest {
+    return {
+      groupId: Long.fromString(object.group_id),
+      pagination: object?.pagination ? PageRequest.fromAmino(object.pagination) : undefined
+    };
+  },
+
+  toAmino(message: QueryGroupPoliciesByGroupRequest): QueryGroupPoliciesByGroupRequestAmino {
+    const obj: any = {};
+    obj.group_id = message.groupId ? message.groupId.toString() : undefined;
+    obj.pagination = message.pagination ? PageRequest.toAmino(message.pagination) : undefined;
+    return obj;
   }
 
 };
@@ -1013,6 +1558,26 @@ export const QueryGroupPoliciesByGroupResponse = {
     message.groupPolicies = object.groupPolicies?.map(e => GroupPolicyInfo.fromPartial(e)) || [];
     message.pagination = object.pagination !== undefined && object.pagination !== null ? PageResponse.fromPartial(object.pagination) : undefined;
     return message;
+  },
+
+  fromAmino(object: QueryGroupPoliciesByGroupResponseAmino): QueryGroupPoliciesByGroupResponse {
+    return {
+      groupPolicies: Array.isArray(object?.group_policies) ? object.group_policies.map((e: any) => GroupPolicyInfo.fromAmino(e)) : [],
+      pagination: object?.pagination ? PageResponse.fromAmino(object.pagination) : undefined
+    };
+  },
+
+  toAmino(message: QueryGroupPoliciesByGroupResponse): QueryGroupPoliciesByGroupResponseAmino {
+    const obj: any = {};
+
+    if (message.groupPolicies) {
+      obj.group_policies = message.groupPolicies.map(e => e ? GroupPolicyInfo.toAmino(e) : undefined);
+    } else {
+      obj.group_policies = [];
+    }
+
+    obj.pagination = message.pagination ? PageResponse.toAmino(message.pagination) : undefined;
+    return obj;
   }
 
 };
@@ -1082,6 +1647,20 @@ export const QueryGroupPoliciesByAdminRequest = {
     message.admin = object.admin ?? "";
     message.pagination = object.pagination !== undefined && object.pagination !== null ? PageRequest.fromPartial(object.pagination) : undefined;
     return message;
+  },
+
+  fromAmino(object: QueryGroupPoliciesByAdminRequestAmino): QueryGroupPoliciesByAdminRequest {
+    return {
+      admin: object.admin,
+      pagination: object?.pagination ? PageRequest.fromAmino(object.pagination) : undefined
+    };
+  },
+
+  toAmino(message: QueryGroupPoliciesByAdminRequest): QueryGroupPoliciesByAdminRequestAmino {
+    const obj: any = {};
+    obj.admin = message.admin;
+    obj.pagination = message.pagination ? PageRequest.toAmino(message.pagination) : undefined;
+    return obj;
   }
 
 };
@@ -1157,6 +1736,26 @@ export const QueryGroupPoliciesByAdminResponse = {
     message.groupPolicies = object.groupPolicies?.map(e => GroupPolicyInfo.fromPartial(e)) || [];
     message.pagination = object.pagination !== undefined && object.pagination !== null ? PageResponse.fromPartial(object.pagination) : undefined;
     return message;
+  },
+
+  fromAmino(object: QueryGroupPoliciesByAdminResponseAmino): QueryGroupPoliciesByAdminResponse {
+    return {
+      groupPolicies: Array.isArray(object?.group_policies) ? object.group_policies.map((e: any) => GroupPolicyInfo.fromAmino(e)) : [],
+      pagination: object?.pagination ? PageResponse.fromAmino(object.pagination) : undefined
+    };
+  },
+
+  toAmino(message: QueryGroupPoliciesByAdminResponse): QueryGroupPoliciesByAdminResponseAmino {
+    const obj: any = {};
+
+    if (message.groupPolicies) {
+      obj.group_policies = message.groupPolicies.map(e => e ? GroupPolicyInfo.toAmino(e) : undefined);
+    } else {
+      obj.group_policies = [];
+    }
+
+    obj.pagination = message.pagination ? PageResponse.toAmino(message.pagination) : undefined;
+    return obj;
   }
 
 };
@@ -1214,6 +1813,18 @@ export const QueryProposalRequest = {
     const message = createBaseQueryProposalRequest();
     message.proposalId = object.proposalId !== undefined && object.proposalId !== null ? Long.fromValue(object.proposalId) : Long.UZERO;
     return message;
+  },
+
+  fromAmino(object: QueryProposalRequestAmino): QueryProposalRequest {
+    return {
+      proposalId: Long.fromString(object.proposal_id)
+    };
+  },
+
+  toAmino(message: QueryProposalRequest): QueryProposalRequestAmino {
+    const obj: any = {};
+    obj.proposal_id = message.proposalId ? message.proposalId.toString() : undefined;
+    return obj;
   }
 
 };
@@ -1271,6 +1882,18 @@ export const QueryProposalResponse = {
     const message = createBaseQueryProposalResponse();
     message.proposal = object.proposal !== undefined && object.proposal !== null ? Proposal.fromPartial(object.proposal) : undefined;
     return message;
+  },
+
+  fromAmino(object: QueryProposalResponseAmino): QueryProposalResponse {
+    return {
+      proposal: object?.proposal ? Proposal.fromAmino(object.proposal) : undefined
+    };
+  },
+
+  toAmino(message: QueryProposalResponse): QueryProposalResponseAmino {
+    const obj: any = {};
+    obj.proposal = message.proposal ? Proposal.toAmino(message.proposal) : undefined;
+    return obj;
   }
 
 };
@@ -1340,6 +1963,20 @@ export const QueryProposalsByGroupPolicyRequest = {
     message.address = object.address ?? "";
     message.pagination = object.pagination !== undefined && object.pagination !== null ? PageRequest.fromPartial(object.pagination) : undefined;
     return message;
+  },
+
+  fromAmino(object: QueryProposalsByGroupPolicyRequestAmino): QueryProposalsByGroupPolicyRequest {
+    return {
+      address: object.address,
+      pagination: object?.pagination ? PageRequest.fromAmino(object.pagination) : undefined
+    };
+  },
+
+  toAmino(message: QueryProposalsByGroupPolicyRequest): QueryProposalsByGroupPolicyRequestAmino {
+    const obj: any = {};
+    obj.address = message.address;
+    obj.pagination = message.pagination ? PageRequest.toAmino(message.pagination) : undefined;
+    return obj;
   }
 
 };
@@ -1415,6 +2052,26 @@ export const QueryProposalsByGroupPolicyResponse = {
     message.proposals = object.proposals?.map(e => Proposal.fromPartial(e)) || [];
     message.pagination = object.pagination !== undefined && object.pagination !== null ? PageResponse.fromPartial(object.pagination) : undefined;
     return message;
+  },
+
+  fromAmino(object: QueryProposalsByGroupPolicyResponseAmino): QueryProposalsByGroupPolicyResponse {
+    return {
+      proposals: Array.isArray(object?.proposals) ? object.proposals.map((e: any) => Proposal.fromAmino(e)) : [],
+      pagination: object?.pagination ? PageResponse.fromAmino(object.pagination) : undefined
+    };
+  },
+
+  toAmino(message: QueryProposalsByGroupPolicyResponse): QueryProposalsByGroupPolicyResponseAmino {
+    const obj: any = {};
+
+    if (message.proposals) {
+      obj.proposals = message.proposals.map(e => e ? Proposal.toAmino(e) : undefined);
+    } else {
+      obj.proposals = [];
+    }
+
+    obj.pagination = message.pagination ? PageResponse.toAmino(message.pagination) : undefined;
+    return obj;
   }
 
 };
@@ -1484,6 +2141,20 @@ export const QueryVoteByProposalVoterRequest = {
     message.proposalId = object.proposalId !== undefined && object.proposalId !== null ? Long.fromValue(object.proposalId) : Long.UZERO;
     message.voter = object.voter ?? "";
     return message;
+  },
+
+  fromAmino(object: QueryVoteByProposalVoterRequestAmino): QueryVoteByProposalVoterRequest {
+    return {
+      proposalId: Long.fromString(object.proposal_id),
+      voter: object.voter
+    };
+  },
+
+  toAmino(message: QueryVoteByProposalVoterRequest): QueryVoteByProposalVoterRequestAmino {
+    const obj: any = {};
+    obj.proposal_id = message.proposalId ? message.proposalId.toString() : undefined;
+    obj.voter = message.voter;
+    return obj;
   }
 
 };
@@ -1541,6 +2212,18 @@ export const QueryVoteByProposalVoterResponse = {
     const message = createBaseQueryVoteByProposalVoterResponse();
     message.vote = object.vote !== undefined && object.vote !== null ? Vote.fromPartial(object.vote) : undefined;
     return message;
+  },
+
+  fromAmino(object: QueryVoteByProposalVoterResponseAmino): QueryVoteByProposalVoterResponse {
+    return {
+      vote: object?.vote ? Vote.fromAmino(object.vote) : undefined
+    };
+  },
+
+  toAmino(message: QueryVoteByProposalVoterResponse): QueryVoteByProposalVoterResponseAmino {
+    const obj: any = {};
+    obj.vote = message.vote ? Vote.toAmino(message.vote) : undefined;
+    return obj;
   }
 
 };
@@ -1610,6 +2293,20 @@ export const QueryVotesByProposalRequest = {
     message.proposalId = object.proposalId !== undefined && object.proposalId !== null ? Long.fromValue(object.proposalId) : Long.UZERO;
     message.pagination = object.pagination !== undefined && object.pagination !== null ? PageRequest.fromPartial(object.pagination) : undefined;
     return message;
+  },
+
+  fromAmino(object: QueryVotesByProposalRequestAmino): QueryVotesByProposalRequest {
+    return {
+      proposalId: Long.fromString(object.proposal_id),
+      pagination: object?.pagination ? PageRequest.fromAmino(object.pagination) : undefined
+    };
+  },
+
+  toAmino(message: QueryVotesByProposalRequest): QueryVotesByProposalRequestAmino {
+    const obj: any = {};
+    obj.proposal_id = message.proposalId ? message.proposalId.toString() : undefined;
+    obj.pagination = message.pagination ? PageRequest.toAmino(message.pagination) : undefined;
+    return obj;
   }
 
 };
@@ -1685,6 +2382,26 @@ export const QueryVotesByProposalResponse = {
     message.votes = object.votes?.map(e => Vote.fromPartial(e)) || [];
     message.pagination = object.pagination !== undefined && object.pagination !== null ? PageResponse.fromPartial(object.pagination) : undefined;
     return message;
+  },
+
+  fromAmino(object: QueryVotesByProposalResponseAmino): QueryVotesByProposalResponse {
+    return {
+      votes: Array.isArray(object?.votes) ? object.votes.map((e: any) => Vote.fromAmino(e)) : [],
+      pagination: object?.pagination ? PageResponse.fromAmino(object.pagination) : undefined
+    };
+  },
+
+  toAmino(message: QueryVotesByProposalResponse): QueryVotesByProposalResponseAmino {
+    const obj: any = {};
+
+    if (message.votes) {
+      obj.votes = message.votes.map(e => e ? Vote.toAmino(e) : undefined);
+    } else {
+      obj.votes = [];
+    }
+
+    obj.pagination = message.pagination ? PageResponse.toAmino(message.pagination) : undefined;
+    return obj;
   }
 
 };
@@ -1754,6 +2471,20 @@ export const QueryVotesByVoterRequest = {
     message.voter = object.voter ?? "";
     message.pagination = object.pagination !== undefined && object.pagination !== null ? PageRequest.fromPartial(object.pagination) : undefined;
     return message;
+  },
+
+  fromAmino(object: QueryVotesByVoterRequestAmino): QueryVotesByVoterRequest {
+    return {
+      voter: object.voter,
+      pagination: object?.pagination ? PageRequest.fromAmino(object.pagination) : undefined
+    };
+  },
+
+  toAmino(message: QueryVotesByVoterRequest): QueryVotesByVoterRequestAmino {
+    const obj: any = {};
+    obj.voter = message.voter;
+    obj.pagination = message.pagination ? PageRequest.toAmino(message.pagination) : undefined;
+    return obj;
   }
 
 };
@@ -1829,6 +2560,26 @@ export const QueryVotesByVoterResponse = {
     message.votes = object.votes?.map(e => Vote.fromPartial(e)) || [];
     message.pagination = object.pagination !== undefined && object.pagination !== null ? PageResponse.fromPartial(object.pagination) : undefined;
     return message;
+  },
+
+  fromAmino(object: QueryVotesByVoterResponseAmino): QueryVotesByVoterResponse {
+    return {
+      votes: Array.isArray(object?.votes) ? object.votes.map((e: any) => Vote.fromAmino(e)) : [],
+      pagination: object?.pagination ? PageResponse.fromAmino(object.pagination) : undefined
+    };
+  },
+
+  toAmino(message: QueryVotesByVoterResponse): QueryVotesByVoterResponseAmino {
+    const obj: any = {};
+
+    if (message.votes) {
+      obj.votes = message.votes.map(e => e ? Vote.toAmino(e) : undefined);
+    } else {
+      obj.votes = [];
+    }
+
+    obj.pagination = message.pagination ? PageResponse.toAmino(message.pagination) : undefined;
+    return obj;
   }
 
 };
@@ -1898,6 +2649,20 @@ export const QueryGroupsByMemberRequest = {
     message.address = object.address ?? "";
     message.pagination = object.pagination !== undefined && object.pagination !== null ? PageRequest.fromPartial(object.pagination) : undefined;
     return message;
+  },
+
+  fromAmino(object: QueryGroupsByMemberRequestAmino): QueryGroupsByMemberRequest {
+    return {
+      address: object.address,
+      pagination: object?.pagination ? PageRequest.fromAmino(object.pagination) : undefined
+    };
+  },
+
+  toAmino(message: QueryGroupsByMemberRequest): QueryGroupsByMemberRequestAmino {
+    const obj: any = {};
+    obj.address = message.address;
+    obj.pagination = message.pagination ? PageRequest.toAmino(message.pagination) : undefined;
+    return obj;
   }
 
 };
@@ -1973,6 +2738,26 @@ export const QueryGroupsByMemberResponse = {
     message.groups = object.groups?.map(e => GroupInfo.fromPartial(e)) || [];
     message.pagination = object.pagination !== undefined && object.pagination !== null ? PageResponse.fromPartial(object.pagination) : undefined;
     return message;
+  },
+
+  fromAmino(object: QueryGroupsByMemberResponseAmino): QueryGroupsByMemberResponse {
+    return {
+      groups: Array.isArray(object?.groups) ? object.groups.map((e: any) => GroupInfo.fromAmino(e)) : [],
+      pagination: object?.pagination ? PageResponse.fromAmino(object.pagination) : undefined
+    };
+  },
+
+  toAmino(message: QueryGroupsByMemberResponse): QueryGroupsByMemberResponseAmino {
+    const obj: any = {};
+
+    if (message.groups) {
+      obj.groups = message.groups.map(e => e ? GroupInfo.toAmino(e) : undefined);
+    } else {
+      obj.groups = [];
+    }
+
+    obj.pagination = message.pagination ? PageResponse.toAmino(message.pagination) : undefined;
+    return obj;
   }
 
 };
@@ -2030,6 +2815,18 @@ export const QueryTallyResultRequest = {
     const message = createBaseQueryTallyResultRequest();
     message.proposalId = object.proposalId !== undefined && object.proposalId !== null ? Long.fromValue(object.proposalId) : Long.UZERO;
     return message;
+  },
+
+  fromAmino(object: QueryTallyResultRequestAmino): QueryTallyResultRequest {
+    return {
+      proposalId: Long.fromString(object.proposal_id)
+    };
+  },
+
+  toAmino(message: QueryTallyResultRequest): QueryTallyResultRequestAmino {
+    const obj: any = {};
+    obj.proposal_id = message.proposalId ? message.proposalId.toString() : undefined;
+    return obj;
   }
 
 };
@@ -2087,6 +2884,18 @@ export const QueryTallyResultResponse = {
     const message = createBaseQueryTallyResultResponse();
     message.tally = object.tally !== undefined && object.tally !== null ? TallyResult.fromPartial(object.tally) : undefined;
     return message;
+  },
+
+  fromAmino(object: QueryTallyResultResponseAmino): QueryTallyResultResponse {
+    return {
+      tally: object?.tally ? TallyResult.fromAmino(object.tally) : undefined
+    };
+  },
+
+  toAmino(message: QueryTallyResultResponse): QueryTallyResultResponseAmino {
+    const obj: any = {};
+    obj.tally = message.tally ? TallyResult.toAmino(message.tally) : undefined;
+    return obj;
   }
 
 };
