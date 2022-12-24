@@ -3,6 +3,17 @@ import { isSet } from "../../../../helpers";
 /** ConfigRequest defines the request structure for the Config gRPC query. */
 
 export interface ConfigRequest {}
+export interface ConfigRequestProtoType {
+  typeUrl: "/cosmos.base.node.v1beta1.ConfigRequest";
+  value: Uint8Array;
+}
+/** ConfigRequest defines the request structure for the Config gRPC query. */
+
+export interface ConfigRequestAmino {}
+export interface ConfigRequestAminoType {
+  type: "cosmos-sdk/ConfigRequest";
+  value: ConfigRequestAmino;
+}
 /** ConfigRequest defines the request structure for the Config gRPC query. */
 
 export interface ConfigRequestSDKType {}
@@ -10,6 +21,19 @@ export interface ConfigRequestSDKType {}
 
 export interface ConfigResponse {
   minimumGasPrice: string;
+}
+export interface ConfigResponseProtoType {
+  typeUrl: "/cosmos.base.node.v1beta1.ConfigResponse";
+  value: Uint8Array;
+}
+/** ConfigResponse defines the response structure for the Config gRPC query. */
+
+export interface ConfigResponseAmino {
+  minimum_gas_price: string;
+}
+export interface ConfigResponseAminoType {
+  type: "cosmos-sdk/ConfigResponse";
+  value: ConfigResponseAmino;
 }
 /** ConfigResponse defines the response structure for the Config gRPC query. */
 
@@ -56,6 +80,15 @@ export const ConfigRequest = {
   fromPartial(_: Partial<ConfigRequest>): ConfigRequest {
     const message = createBaseConfigRequest();
     return message;
+  },
+
+  fromAmino(_: ConfigRequestAmino): ConfigRequest {
+    return {};
+  },
+
+  toAmino(_: ConfigRequest): ConfigRequestAmino {
+    const obj: any = {};
+    return obj;
   }
 
 };
@@ -113,6 +146,18 @@ export const ConfigResponse = {
     const message = createBaseConfigResponse();
     message.minimumGasPrice = object.minimumGasPrice ?? "";
     return message;
+  },
+
+  fromAmino(object: ConfigResponseAmino): ConfigResponse {
+    return {
+      minimumGasPrice: object.minimum_gas_price
+    };
+  },
+
+  toAmino(message: ConfigResponse): ConfigResponseAmino {
+    const obj: any = {};
+    obj.minimum_gas_price = message.minimumGasPrice;
+    return obj;
   }
 
 };
