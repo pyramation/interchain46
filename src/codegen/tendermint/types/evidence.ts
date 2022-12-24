@@ -7,9 +7,17 @@ export interface Evidence {
   duplicateVoteEvidence?: DuplicateVoteEvidence;
   lightClientAttackEvidence?: LightClientAttackEvidence;
 }
+export interface EvidenceProtoType {
+  typeUrl: "/tendermint.types.Evidence";
+  value: Uint8Array;
+}
 export interface EvidenceAmino {
   duplicate_vote_evidence?: DuplicateVoteEvidenceAmino;
   light_client_attack_evidence?: LightClientAttackEvidenceAmino;
+}
+export interface EvidenceAminoType {
+  type: "/tendermint.types.Evidence";
+  value: EvidenceAmino;
 }
 export interface EvidenceSDKType {
   duplicate_vote_evidence?: DuplicateVoteEvidenceSDKType;
@@ -24,6 +32,10 @@ export interface DuplicateVoteEvidence {
   validatorPower: Long;
   timestamp?: Timestamp;
 }
+export interface DuplicateVoteEvidenceProtoType {
+  typeUrl: "/tendermint.types.DuplicateVoteEvidence";
+  value: Uint8Array;
+}
 /** DuplicateVoteEvidence contains evidence of a validator signed two conflicting votes. */
 
 export interface DuplicateVoteEvidenceAmino {
@@ -32,6 +44,10 @@ export interface DuplicateVoteEvidenceAmino {
   total_voting_power: string;
   validator_power: string;
   timestamp?: TimestampAmino;
+}
+export interface DuplicateVoteEvidenceAminoType {
+  type: "/tendermint.types.DuplicateVoteEvidence";
+  value: DuplicateVoteEvidenceAmino;
 }
 /** DuplicateVoteEvidence contains evidence of a validator signed two conflicting votes. */
 
@@ -51,6 +67,10 @@ export interface LightClientAttackEvidence {
   totalVotingPower: Long;
   timestamp?: Timestamp;
 }
+export interface LightClientAttackEvidenceProtoType {
+  typeUrl: "/tendermint.types.LightClientAttackEvidence";
+  value: Uint8Array;
+}
 /** LightClientAttackEvidence contains evidence of a set of validators attempting to mislead a light client. */
 
 export interface LightClientAttackEvidenceAmino {
@@ -59,6 +79,10 @@ export interface LightClientAttackEvidenceAmino {
   byzantine_validators: ValidatorAmino[];
   total_voting_power: string;
   timestamp?: TimestampAmino;
+}
+export interface LightClientAttackEvidenceAminoType {
+  type: "/tendermint.types.LightClientAttackEvidence";
+  value: LightClientAttackEvidenceAmino;
 }
 /** LightClientAttackEvidence contains evidence of a set of validators attempting to mislead a light client. */
 
@@ -72,8 +96,16 @@ export interface LightClientAttackEvidenceSDKType {
 export interface EvidenceList {
   evidence: Evidence[];
 }
+export interface EvidenceListProtoType {
+  typeUrl: "/tendermint.types.EvidenceList";
+  value: Uint8Array;
+}
 export interface EvidenceListAmino {
   evidence: EvidenceAmino[];
+}
+export interface EvidenceListAminoType {
+  type: "/tendermint.types.EvidenceList";
+  value: EvidenceListAmino;
 }
 export interface EvidenceListSDKType {
   evidence: EvidenceSDKType[];
