@@ -29,43 +29,6 @@ export interface ModuleDescriptor {
 
   canMigrateFrom: MigrateFromInfo[];
 }
-export interface ModuleDescriptorProtoType {
-  typeUrl: "/cosmos.app.v1alpha1.ModuleDescriptor";
-  value: Uint8Array;
-}
-/** ModuleDescriptor describes an app module. */
-
-export interface ModuleDescriptorAmino {
-  /**
-   * go_import names the package that should be imported by an app to load the
-   * module in the runtime module registry. It is required to make debugging
-   * of configuration errors easier for users.
-   */
-  go_import: string;
-  /**
-   * use_package refers to a protobuf package that this module
-   * uses and exposes to the world. In an app, only one module should "use"
-   * or own a single protobuf package. It is assumed that the module uses
-   * all of the .proto files in a single package.
-   */
-
-  use_package: PackageReferenceAmino[];
-  /**
-   * can_migrate_from defines which module versions this module can migrate
-   * state from. The framework will check that one module version is able to
-   * migrate from a previous module version before attempting to update its
-   * config. It is assumed that modules can transitively migrate from earlier
-   * versions. For instance if v3 declares it can migrate from v2, and v2
-   * declares it can migrate from v1, the framework knows how to migrate
-   * from v1 to v3, assuming all 3 module versions are registered at runtime.
-   */
-
-  can_migrate_from: MigrateFromInfoAmino[];
-}
-export interface ModuleDescriptorAminoType {
-  type: "cosmos-sdk/ModuleDescriptor";
-  value: ModuleDescriptorAmino;
-}
 /** ModuleDescriptor describes an app module. */
 
 export interface ModuleDescriptorSDKType {
@@ -118,59 +81,6 @@ export interface PackageReference {
 
   revision: number;
 }
-export interface PackageReferenceProtoType {
-  typeUrl: "/cosmos.app.v1alpha1.PackageReference";
-  value: Uint8Array;
-}
-/** PackageReference is a reference to a protobuf package used by a module. */
-
-export interface PackageReferenceAmino {
-  /** name is the fully-qualified name of the package. */
-  name: string;
-  /**
-   * revision is the optional revision of the package that is being used.
-   * Protobuf packages used in Cosmos should generally have a major version
-   * as the last part of the package name, ex. foo.bar.baz.v1.
-   * The revision of a package can be thought of as the minor version of a
-   * package which has additional backwards compatible definitions that weren't
-   * present in a previous version.
-   * 
-   * A package should indicate its revision with a source code comment
-   * above the package declaration in one of its files containing the
-   * text "Revision N" where N is an integer revision. All packages start
-   * at revision 0 the first time they are released in a module.
-   * 
-   * When a new version of a module is released and items are added to existing
-   * .proto files, these definitions should contain comments of the form
-   * "Since Revision N" where N is an integer revision.
-   * 
-   * When the module runtime starts up, it will check the pinned proto
-   * image and panic if there are runtime protobuf definitions that are not
-   * in the pinned descriptor which do not have
-   * a "Since Revision N" comment or have a "Since Revision N" comment where
-   * N is <= to the revision specified here. This indicates that the protobuf
-   * files have been updated, but the pinned file descriptor hasn't.
-   * 
-   * If there are items in the pinned file descriptor with a revision
-   * greater than the value indicated here, this will also cause a panic
-   * as it may mean that the pinned descriptor for a legacy module has been
-   * improperly updated or that there is some other versioning discrepancy.
-   * Runtime protobuf definitions will also be checked for compatibility
-   * with pinned file descriptors to make sure there are no incompatible changes.
-   * 
-   * This behavior ensures that:
-   * * pinned proto images are up-to-date
-   * * protobuf files are carefully annotated with revision comments which
-   *   are important good client UX
-   * * protobuf files are changed in backwards and forwards compatible ways
-   */
-
-  revision: number;
-}
-export interface PackageReferenceAminoType {
-  type: "cosmos-sdk/PackageReference";
-  value: PackageReferenceAmino;
-}
 /** PackageReference is a reference to a protobuf package used by a module. */
 
 export interface PackageReferenceSDKType {
@@ -188,26 +98,6 @@ export interface MigrateFromInfo {
    * for the previous module version, ex: "cosmos.group.module.v1.Module".
    */
   module: string;
-}
-export interface MigrateFromInfoProtoType {
-  typeUrl: "/cosmos.app.v1alpha1.MigrateFromInfo";
-  value: Uint8Array;
-}
-/**
- * MigrateFromInfo is information on a module version that a newer module
- * can migrate from.
- */
-
-export interface MigrateFromInfoAmino {
-  /**
-   * module is the fully-qualified protobuf name of the module config object
-   * for the previous module version, ex: "cosmos.group.module.v1.Module".
-   */
-  module: string;
-}
-export interface MigrateFromInfoAminoType {
-  type: "cosmos-sdk/MigrateFromInfo";
-  value: MigrateFromInfoAmino;
 }
 /**
  * MigrateFromInfo is information on a module version that a newer module
@@ -306,33 +196,6 @@ export const ModuleDescriptor = {
     message.usePackage = object.usePackage?.map(e => PackageReference.fromPartial(e)) || [];
     message.canMigrateFrom = object.canMigrateFrom?.map(e => MigrateFromInfo.fromPartial(e)) || [];
     return message;
-  },
-
-  fromAmino(object: ModuleDescriptorAmino): ModuleDescriptor {
-    return {
-      goImport: object.go_import,
-      usePackage: Array.isArray(object?.use_package) ? object.use_package.map((e: any) => PackageReference.fromAmino(e)) : [],
-      canMigrateFrom: Array.isArray(object?.can_migrate_from) ? object.can_migrate_from.map((e: any) => MigrateFromInfo.fromAmino(e)) : []
-    };
-  },
-
-  toAmino(message: ModuleDescriptor): ModuleDescriptorAmino {
-    const obj: any = {};
-    obj.go_import = message.goImport;
-
-    if (message.usePackage) {
-      obj.use_package = message.usePackage.map(e => e ? PackageReference.toAmino(e) : undefined);
-    } else {
-      obj.use_package = [];
-    }
-
-    if (message.canMigrateFrom) {
-      obj.can_migrate_from = message.canMigrateFrom.map(e => e ? MigrateFromInfo.toAmino(e) : undefined);
-    } else {
-      obj.can_migrate_from = [];
-    }
-
-    return obj;
   }
 
 };
@@ -402,20 +265,6 @@ export const PackageReference = {
     message.name = object.name ?? "";
     message.revision = object.revision ?? 0;
     return message;
-  },
-
-  fromAmino(object: PackageReferenceAmino): PackageReference {
-    return {
-      name: object.name,
-      revision: object.revision
-    };
-  },
-
-  toAmino(message: PackageReference): PackageReferenceAmino {
-    const obj: any = {};
-    obj.name = message.name;
-    obj.revision = message.revision;
-    return obj;
   }
 
 };
@@ -473,18 +322,6 @@ export const MigrateFromInfo = {
     const message = createBaseMigrateFromInfo();
     message.module = object.module ?? "";
     return message;
-  },
-
-  fromAmino(object: MigrateFromInfoAmino): MigrateFromInfo {
-    return {
-      module: object.module
-    };
-  },
-
-  toAmino(message: MigrateFromInfo): MigrateFromInfoAmino {
-    const obj: any = {};
-    obj.module = message.module;
-    return obj;
   }
 
 };
