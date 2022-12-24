@@ -3,17 +3,6 @@ import { isSet } from "../../../../helpers";
 /** ListAllInterfacesRequest is the request type of the ListAllInterfaces RPC. */
 
 export interface ListAllInterfacesRequest {}
-export interface ListAllInterfacesRequestProtoType {
-  typeUrl: "/cosmos.base.reflection.v1beta1.ListAllInterfacesRequest";
-  value: Uint8Array;
-}
-/** ListAllInterfacesRequest is the request type of the ListAllInterfaces RPC. */
-
-export interface ListAllInterfacesRequestAmino {}
-export interface ListAllInterfacesRequestAminoType {
-  type: "cosmos-sdk/ListAllInterfacesRequest";
-  value: ListAllInterfacesRequestAmino;
-}
 /** ListAllInterfacesRequest is the request type of the ListAllInterfaces RPC. */
 
 export interface ListAllInterfacesRequestSDKType {}
@@ -22,20 +11,6 @@ export interface ListAllInterfacesRequestSDKType {}
 export interface ListAllInterfacesResponse {
   /** interface_names is an array of all the registered interfaces. */
   interfaceNames: string[];
-}
-export interface ListAllInterfacesResponseProtoType {
-  typeUrl: "/cosmos.base.reflection.v1beta1.ListAllInterfacesResponse";
-  value: Uint8Array;
-}
-/** ListAllInterfacesResponse is the response type of the ListAllInterfaces RPC. */
-
-export interface ListAllInterfacesResponseAmino {
-  /** interface_names is an array of all the registered interfaces. */
-  interface_names: string[];
-}
-export interface ListAllInterfacesResponseAminoType {
-  type: "cosmos-sdk/ListAllInterfacesResponse";
-  value: ListAllInterfacesResponseAmino;
 }
 /** ListAllInterfacesResponse is the response type of the ListAllInterfaces RPC. */
 
@@ -50,23 +25,6 @@ export interface ListAllInterfacesResponseSDKType {
 export interface ListImplementationsRequest {
   /** interface_name defines the interface to query the implementations for. */
   interfaceName: string;
-}
-export interface ListImplementationsRequestProtoType {
-  typeUrl: "/cosmos.base.reflection.v1beta1.ListImplementationsRequest";
-  value: Uint8Array;
-}
-/**
- * ListImplementationsRequest is the request type of the ListImplementations
- * RPC.
- */
-
-export interface ListImplementationsRequestAmino {
-  /** interface_name defines the interface to query the implementations for. */
-  interface_name: string;
-}
-export interface ListImplementationsRequestAminoType {
-  type: "cosmos-sdk/ListImplementationsRequest";
-  value: ListImplementationsRequestAmino;
 }
 /**
  * ListImplementationsRequest is the request type of the ListImplementations
@@ -83,22 +41,6 @@ export interface ListImplementationsRequestSDKType {
 
 export interface ListImplementationsResponse {
   implementationMessageNames: string[];
-}
-export interface ListImplementationsResponseProtoType {
-  typeUrl: "/cosmos.base.reflection.v1beta1.ListImplementationsResponse";
-  value: Uint8Array;
-}
-/**
- * ListImplementationsResponse is the response type of the ListImplementations
- * RPC.
- */
-
-export interface ListImplementationsResponseAmino {
-  implementation_message_names: string[];
-}
-export interface ListImplementationsResponseAminoType {
-  type: "cosmos-sdk/ListImplementationsResponse";
-  value: ListImplementationsResponseAmino;
 }
 /**
  * ListImplementationsResponse is the response type of the ListImplementations
@@ -148,15 +90,6 @@ export const ListAllInterfacesRequest = {
   fromPartial(_: Partial<ListAllInterfacesRequest>): ListAllInterfacesRequest {
     const message = createBaseListAllInterfacesRequest();
     return message;
-  },
-
-  fromAmino(_: ListAllInterfacesRequestAmino): ListAllInterfacesRequest {
-    return {};
-  },
-
-  toAmino(_: ListAllInterfacesRequest): ListAllInterfacesRequestAmino {
-    const obj: any = {};
-    return obj;
   }
 
 };
@@ -220,24 +153,6 @@ export const ListAllInterfacesResponse = {
     const message = createBaseListAllInterfacesResponse();
     message.interfaceNames = object.interfaceNames?.map(e => e) || [];
     return message;
-  },
-
-  fromAmino(object: ListAllInterfacesResponseAmino): ListAllInterfacesResponse {
-    return {
-      interfaceNames: Array.isArray(object?.interface_names) ? object.interface_names.map((e: any) => e) : []
-    };
-  },
-
-  toAmino(message: ListAllInterfacesResponse): ListAllInterfacesResponseAmino {
-    const obj: any = {};
-
-    if (message.interfaceNames) {
-      obj.interface_names = message.interfaceNames.map(e => e);
-    } else {
-      obj.interface_names = [];
-    }
-
-    return obj;
   }
 
 };
@@ -295,18 +210,6 @@ export const ListImplementationsRequest = {
     const message = createBaseListImplementationsRequest();
     message.interfaceName = object.interfaceName ?? "";
     return message;
-  },
-
-  fromAmino(object: ListImplementationsRequestAmino): ListImplementationsRequest {
-    return {
-      interfaceName: object.interface_name
-    };
-  },
-
-  toAmino(message: ListImplementationsRequest): ListImplementationsRequestAmino {
-    const obj: any = {};
-    obj.interface_name = message.interfaceName;
-    return obj;
   }
 
 };
@@ -370,24 +273,6 @@ export const ListImplementationsResponse = {
     const message = createBaseListImplementationsResponse();
     message.implementationMessageNames = object.implementationMessageNames?.map(e => e) || [];
     return message;
-  },
-
-  fromAmino(object: ListImplementationsResponseAmino): ListImplementationsResponse {
-    return {
-      implementationMessageNames: Array.isArray(object?.implementation_message_names) ? object.implementation_message_names.map((e: any) => e) : []
-    };
-  },
-
-  toAmino(message: ListImplementationsResponse): ListImplementationsResponseAmino {
-    const obj: any = {};
-
-    if (message.implementationMessageNames) {
-      obj.implementation_message_names = message.implementationMessageNames.map(e => e);
-    } else {
-      obj.implementation_message_names = [];
-    }
-
-    return obj;
   }
 
 };
