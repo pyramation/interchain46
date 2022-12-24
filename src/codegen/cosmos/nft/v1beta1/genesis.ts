@@ -8,12 +8,20 @@ export interface GenesisState {
   classes: Class[];
   entries: Entry[];
 }
+export interface GenesisStateProtoType {
+  typeUrl: "/cosmos.nft.v1beta1.GenesisState";
+  value: Uint8Array;
+}
 /** GenesisState defines the nft module's genesis state. */
 
 export interface GenesisStateAmino {
   /** class defines the class of the nft type. */
   classes: ClassAmino[];
   entries: EntryAmino[];
+}
+export interface GenesisStateAminoType {
+  type: "cosmos-sdk/GenesisState";
+  value: GenesisStateAmino;
 }
 /** GenesisState defines the nft module's genesis state. */
 
@@ -30,6 +38,10 @@ export interface Entry {
 
   nfts: NFT[];
 }
+export interface EntryProtoType {
+  typeUrl: "/cosmos.nft.v1beta1.Entry";
+  value: Uint8Array;
+}
 /** Entry Defines all nft owned by a person */
 
 export interface EntryAmino {
@@ -38,6 +50,10 @@ export interface EntryAmino {
   /** nfts is a group of nfts of the same owner */
 
   nfts: NFTAmino[];
+}
+export interface EntryAminoType {
+  type: "cosmos-sdk/Entry";
+  value: EntryAmino;
 }
 /** Entry Defines all nft owned by a person */
 
