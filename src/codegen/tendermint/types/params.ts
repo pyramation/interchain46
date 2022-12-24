@@ -12,6 +12,10 @@ export interface ConsensusParams {
   validator?: ValidatorParams;
   version?: VersionParams;
 }
+export interface ConsensusParamsProtoType {
+  typeUrl: "/tendermint.types.ConsensusParams";
+  value: Uint8Array;
+}
 /**
  * ConsensusParams contains consensus critical parameters that determine the
  * validity of blocks.
@@ -22,6 +26,10 @@ export interface ConsensusParamsAmino {
   evidence?: EvidenceParamsAmino;
   validator?: ValidatorParamsAmino;
   version?: VersionParamsAmino;
+}
+export interface ConsensusParamsAminoType {
+  type: "/tendermint.types.ConsensusParams";
+  value: ConsensusParamsAmino;
 }
 /**
  * ConsensusParams contains consensus critical parameters that determine the
@@ -57,6 +65,10 @@ export interface BlockParams {
 
   timeIotaMs: Long;
 }
+export interface BlockParamsProtoType {
+  typeUrl: "/tendermint.types.BlockParams";
+  value: Uint8Array;
+}
 /** BlockParams contains limits on the block size. */
 
 export interface BlockParamsAmino {
@@ -79,6 +91,10 @@ export interface BlockParamsAmino {
    */
 
   time_iota_ms: string;
+}
+export interface BlockParamsAminoType {
+  type: "/tendermint.types.BlockParams";
+  value: BlockParamsAmino;
 }
 /** BlockParams contains limits on the block size. */
 
@@ -114,6 +130,10 @@ export interface EvidenceParams {
 
   maxBytes: Long;
 }
+export interface EvidenceParamsProtoType {
+  typeUrl: "/tendermint.types.EvidenceParams";
+  value: Uint8Array;
+}
 /** EvidenceParams determine how we handle evidence of malfeasance. */
 
 export interface EvidenceParamsAmino {
@@ -141,6 +161,10 @@ export interface EvidenceParamsAmino {
 
   max_bytes: string;
 }
+export interface EvidenceParamsAminoType {
+  type: "/tendermint.types.EvidenceParams";
+  value: EvidenceParamsAmino;
+}
 /** EvidenceParams determine how we handle evidence of malfeasance. */
 
 export interface EvidenceParamsSDKType {
@@ -156,6 +180,10 @@ export interface EvidenceParamsSDKType {
 export interface ValidatorParams {
   pubKeyTypes: string[];
 }
+export interface ValidatorParamsProtoType {
+  typeUrl: "/tendermint.types.ValidatorParams";
+  value: Uint8Array;
+}
 /**
  * ValidatorParams restrict the public key types validators can use.
  * NOTE: uses ABCI pubkey naming, not Amino names.
@@ -163,6 +191,10 @@ export interface ValidatorParams {
 
 export interface ValidatorParamsAmino {
   pub_key_types: string[];
+}
+export interface ValidatorParamsAminoType {
+  type: "/tendermint.types.ValidatorParams";
+  value: ValidatorParamsAmino;
 }
 /**
  * ValidatorParams restrict the public key types validators can use.
@@ -177,10 +209,18 @@ export interface ValidatorParamsSDKType {
 export interface VersionParams {
   appVersion: Long;
 }
+export interface VersionParamsProtoType {
+  typeUrl: "/tendermint.types.VersionParams";
+  value: Uint8Array;
+}
 /** VersionParams contains the ABCI application version. */
 
 export interface VersionParamsAmino {
   app_version: string;
+}
+export interface VersionParamsAminoType {
+  type: "/tendermint.types.VersionParams";
+  value: VersionParamsAmino;
 }
 /** VersionParams contains the ABCI application version. */
 
@@ -197,6 +237,10 @@ export interface HashedParams {
   blockMaxBytes: Long;
   blockMaxGas: Long;
 }
+export interface HashedParamsProtoType {
+  typeUrl: "/tendermint.types.HashedParams";
+  value: Uint8Array;
+}
 /**
  * HashedParams is a subset of ConsensusParams.
  * 
@@ -206,6 +250,10 @@ export interface HashedParams {
 export interface HashedParamsAmino {
   block_max_bytes: string;
   block_max_gas: string;
+}
+export interface HashedParamsAminoType {
+  type: "/tendermint.types.HashedParams";
+  value: HashedParamsAmino;
 }
 /**
  * HashedParams is a subset of ConsensusParams.
