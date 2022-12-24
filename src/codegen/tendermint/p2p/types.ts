@@ -5,19 +5,6 @@ export interface NetAddress {
   ip: string;
   port: number;
 }
-export interface NetAddressProtoType {
-  typeUrl: "/tendermint.p2p.NetAddress";
-  value: Uint8Array;
-}
-export interface NetAddressAmino {
-  id: string;
-  ip: string;
-  port: number;
-}
-export interface NetAddressAminoType {
-  type: "/tendermint.p2p.NetAddress";
-  value: NetAddressAmino;
-}
 export interface NetAddressSDKType {
   id: string;
   ip: string;
@@ -27,19 +14,6 @@ export interface ProtocolVersion {
   p2p: Long;
   block: Long;
   app: Long;
-}
-export interface ProtocolVersionProtoType {
-  typeUrl: "/tendermint.p2p.ProtocolVersion";
-  value: Uint8Array;
-}
-export interface ProtocolVersionAmino {
-  p2p: string;
-  block: string;
-  app: string;
-}
-export interface ProtocolVersionAminoType {
-  type: "/tendermint.p2p.ProtocolVersion";
-  value: ProtocolVersionAmino;
 }
 export interface ProtocolVersionSDKType {
   p2p: Long;
@@ -56,24 +30,6 @@ export interface DefaultNodeInfo {
   moniker: string;
   other?: DefaultNodeInfoOther;
 }
-export interface DefaultNodeInfoProtoType {
-  typeUrl: "/tendermint.p2p.DefaultNodeInfo";
-  value: Uint8Array;
-}
-export interface DefaultNodeInfoAmino {
-  protocol_version?: ProtocolVersionAmino;
-  default_node_id: string;
-  listen_addr: string;
-  network: string;
-  version: string;
-  channels: Uint8Array;
-  moniker: string;
-  other?: DefaultNodeInfoOtherAmino;
-}
-export interface DefaultNodeInfoAminoType {
-  type: "/tendermint.p2p.DefaultNodeInfo";
-  value: DefaultNodeInfoAmino;
-}
 export interface DefaultNodeInfoSDKType {
   protocol_version?: ProtocolVersionSDKType;
   default_node_id: string;
@@ -87,18 +43,6 @@ export interface DefaultNodeInfoSDKType {
 export interface DefaultNodeInfoOther {
   txIndex: string;
   rpcAddress: string;
-}
-export interface DefaultNodeInfoOtherProtoType {
-  typeUrl: "/tendermint.p2p.DefaultNodeInfoOther";
-  value: Uint8Array;
-}
-export interface DefaultNodeInfoOtherAmino {
-  tx_index: string;
-  rpc_address: string;
-}
-export interface DefaultNodeInfoOtherAminoType {
-  type: "/tendermint.p2p.DefaultNodeInfoOther";
-  value: DefaultNodeInfoOtherAmino;
 }
 export interface DefaultNodeInfoOtherSDKType {
   tx_index: string;
@@ -182,22 +126,6 @@ export const NetAddress = {
     message.ip = object.ip ?? "";
     message.port = object.port ?? 0;
     return message;
-  },
-
-  fromAmino(object: NetAddressAmino): NetAddress {
-    return {
-      id: object.id,
-      ip: object.ip,
-      port: object.port
-    };
-  },
-
-  toAmino(message: NetAddress): NetAddressAmino {
-    const obj: any = {};
-    obj.id = message.id;
-    obj.ip = message.ip;
-    obj.port = message.port;
-    return obj;
   }
 
 };
@@ -279,22 +207,6 @@ export const ProtocolVersion = {
     message.block = object.block !== undefined && object.block !== null ? Long.fromValue(object.block) : Long.UZERO;
     message.app = object.app !== undefined && object.app !== null ? Long.fromValue(object.app) : Long.UZERO;
     return message;
-  },
-
-  fromAmino(object: ProtocolVersionAmino): ProtocolVersion {
-    return {
-      p2p: Long.fromString(object.p2p),
-      block: Long.fromString(object.block),
-      app: Long.fromString(object.app)
-    };
-  },
-
-  toAmino(message: ProtocolVersion): ProtocolVersionAmino {
-    const obj: any = {};
-    obj.p2p = message.p2p ? message.p2p.toString() : undefined;
-    obj.block = message.block ? message.block.toString() : undefined;
-    obj.app = message.app ? message.app.toString() : undefined;
-    return obj;
   }
 
 };
@@ -436,32 +348,6 @@ export const DefaultNodeInfo = {
     message.moniker = object.moniker ?? "";
     message.other = object.other !== undefined && object.other !== null ? DefaultNodeInfoOther.fromPartial(object.other) : undefined;
     return message;
-  },
-
-  fromAmino(object: DefaultNodeInfoAmino): DefaultNodeInfo {
-    return {
-      protocolVersion: object?.protocol_version ? ProtocolVersion.fromAmino(object.protocol_version) : undefined,
-      defaultNodeId: object.default_node_id,
-      listenAddr: object.listen_addr,
-      network: object.network,
-      version: object.version,
-      channels: object.channels,
-      moniker: object.moniker,
-      other: object?.other ? DefaultNodeInfoOther.fromAmino(object.other) : undefined
-    };
-  },
-
-  toAmino(message: DefaultNodeInfo): DefaultNodeInfoAmino {
-    const obj: any = {};
-    obj.protocol_version = message.protocolVersion ? ProtocolVersion.toAmino(message.protocolVersion) : undefined;
-    obj.default_node_id = message.defaultNodeId;
-    obj.listen_addr = message.listenAddr;
-    obj.network = message.network;
-    obj.version = message.version;
-    obj.channels = message.channels;
-    obj.moniker = message.moniker;
-    obj.other = message.other ? DefaultNodeInfoOther.toAmino(message.other) : undefined;
-    return obj;
   }
 
 };
@@ -531,20 +417,6 @@ export const DefaultNodeInfoOther = {
     message.txIndex = object.txIndex ?? "";
     message.rpcAddress = object.rpcAddress ?? "";
     return message;
-  },
-
-  fromAmino(object: DefaultNodeInfoOtherAmino): DefaultNodeInfoOther {
-    return {
-      txIndex: object.tx_index,
-      rpcAddress: object.rpc_address
-    };
-  },
-
-  toAmino(message: DefaultNodeInfoOther): DefaultNodeInfoOtherAmino {
-    const obj: any = {};
-    obj.tx_index = message.txIndex;
-    obj.rpc_address = message.rpcAddress;
-    return obj;
   }
 
 };
