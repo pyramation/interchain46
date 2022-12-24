@@ -25,6 +25,10 @@ export interface GenesisState {
 
   tallyParams?: TallyParams;
 }
+export interface GenesisStateProtoType {
+  typeUrl: "/cosmos.gov.v1.GenesisState";
+  value: Uint8Array;
+}
 /** GenesisState defines the gov module's genesis state. */
 
 export interface GenesisStateAmino {
@@ -48,6 +52,10 @@ export interface GenesisStateAmino {
   /** params defines all the paramaters of related to tally. */
 
   tally_params?: TallyParamsAmino;
+}
+export interface GenesisStateAminoType {
+  type: "cosmos-sdk/v1/GenesisState";
+  value: GenesisStateAmino;
 }
 /** GenesisState defines the gov module's genesis state. */
 
