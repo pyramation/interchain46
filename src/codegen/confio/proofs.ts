@@ -13,6 +13,7 @@ export enum HashOp {
   UNRECOGNIZED = -1,
 }
 export const HashOpSDKType = HashOp;
+export const HashOpAmino = HashOp;
 export function hashOpFromJSON(object: any): HashOp {
   switch (object) {
     case 0:
@@ -107,6 +108,7 @@ export enum LengthOp {
   UNRECOGNIZED = -1,
 }
 export const LengthOpSDKType = LengthOp;
+export const LengthOpAmino = LengthOp;
 export function lengthOpFromJSON(object: any): LengthOp {
   switch (object) {
     case 0:
@@ -213,6 +215,42 @@ export interface ExistenceProof {
   leaf?: LeafOp;
   path: InnerOp[];
 }
+export interface ExistenceProofProtoType {
+  typeUrl: "/ics23.ExistenceProof";
+  value: Uint8Array;
+}
+/**
+ * ExistenceProof takes a key and a value and a set of steps to perform on it.
+ * The result of peforming all these steps will provide a "root hash", which can
+ * be compared to the value in a header.
+ * 
+ * Since it is computationally infeasible to produce a hash collission for any of the used
+ * cryptographic hash functions, if someone can provide a series of operations to transform
+ * a given key and value into a root hash that matches some trusted root, these key and values
+ * must be in the referenced merkle tree.
+ * 
+ * The only possible issue is maliablity in LeafOp, such as providing extra prefix data,
+ * which should be controlled by a spec. Eg. with lengthOp as NONE,
+ * prefix = FOO, key = BAR, value = CHOICE
+ * and
+ * prefix = F, key = OOBAR, value = CHOICE
+ * would produce the same value.
+ * 
+ * With LengthOp this is tricker but not impossible. Which is why the "leafPrefixEqual" field
+ * in the ProofSpec is valuable to prevent this mutability. And why all trees should
+ * length-prefix the data before hashing it.
+ */
+
+export interface ExistenceProofAmino {
+  key: Uint8Array;
+  value: Uint8Array;
+  leaf?: LeafOpAmino;
+  path: InnerOpAmino[];
+}
+export interface ExistenceProofAminoType {
+  type: "/ics23.ExistenceProof";
+  value: ExistenceProofAmino;
+}
 /**
  * ExistenceProof takes a key and a value and a set of steps to perform on it.
  * The result of peforming all these steps will provide a "root hash", which can
@@ -253,6 +291,26 @@ export interface NonExistenceProof {
   left?: ExistenceProof;
   right?: ExistenceProof;
 }
+export interface NonExistenceProofProtoType {
+  typeUrl: "/ics23.NonExistenceProof";
+  value: Uint8Array;
+}
+/**
+ * NonExistenceProof takes a proof of two neighbors, one left of the desired key,
+ * one right of the desired key. If both proofs are valid AND they are neighbors,
+ * then there is no valid proof for the given key.
+ */
+
+export interface NonExistenceProofAmino {
+  /** TODO: remove this as unnecessary??? we prove a range */
+  key: Uint8Array;
+  left?: ExistenceProofAmino;
+  right?: ExistenceProofAmino;
+}
+export interface NonExistenceProofAminoType {
+  type: "/ics23.NonExistenceProof";
+  value: NonExistenceProofAmino;
+}
 /**
  * NonExistenceProof takes a proof of two neighbors, one left of the desired key,
  * one right of the desired key. If both proofs are valid AND they are neighbors,
@@ -271,6 +329,22 @@ export interface CommitmentProof {
   nonexist?: NonExistenceProof;
   batch?: BatchProof;
   compressed?: CompressedBatchProof;
+}
+export interface CommitmentProofProtoType {
+  typeUrl: "/ics23.CommitmentProof";
+  value: Uint8Array;
+}
+/** CommitmentProof is either an ExistenceProof or a NonExistenceProof, or a Batch of such messages */
+
+export interface CommitmentProofAmino {
+  exist?: ExistenceProofAmino;
+  nonexist?: NonExistenceProofAmino;
+  batch?: BatchProofAmino;
+  compressed?: CompressedBatchProofAmino;
+}
+export interface CommitmentProofAminoType {
+  type: "/ics23.CommitmentProof";
+  value: CommitmentProofAmino;
 }
 /** CommitmentProof is either an ExistenceProof or a NonExistenceProof, or a Batch of such messages */
 
@@ -308,6 +382,43 @@ export interface LeafOp {
    */
 
   prefix: Uint8Array;
+}
+export interface LeafOpProtoType {
+  typeUrl: "/ics23.LeafOp";
+  value: Uint8Array;
+}
+/**
+ * LeafOp represents the raw key-value data we wish to prove, and
+ * must be flexible to represent the internal transformation from
+ * the original key-value pairs into the basis hash, for many existing
+ * merkle trees.
+ * 
+ * key and value are passed in. So that the signature of this operation is:
+ * leafOp(key, value) -> output
+ * 
+ * To process this, first prehash the keys and values if needed (ANY means no hash in this case):
+ * hkey = prehashKey(key)
+ * hvalue = prehashValue(value)
+ * 
+ * Then combine the bytes, and hash it
+ * output = hash(prefix || length(hkey) || hkey || length(hvalue) || hvalue)
+ */
+
+export interface LeafOpAmino {
+  hash: HashOp;
+  prehash_key: HashOp;
+  prehash_value: HashOp;
+  length: LengthOp;
+  /**
+   * prefix is a fixed bytes that may optionally be included at the beginning to differentiate
+   * a leaf node from an inner node.
+   */
+
+  prefix: Uint8Array;
+}
+export interface LeafOpAminoType {
+  type: "/ics23.LeafOp";
+  value: LeafOpAmino;
 }
 /**
  * LeafOp represents the raw key-value data we wish to prove, and
@@ -355,6 +466,37 @@ export interface InnerOp {
   hash: HashOp;
   prefix: Uint8Array;
   suffix: Uint8Array;
+}
+export interface InnerOpProtoType {
+  typeUrl: "/ics23.InnerOp";
+  value: Uint8Array;
+}
+/**
+ * InnerOp represents a merkle-proof step that is not a leaf.
+ * It represents concatenating two children and hashing them to provide the next result.
+ * 
+ * The result of the previous step is passed in, so the signature of this op is:
+ * innerOp(child) -> output
+ * 
+ * The result of applying InnerOp should be:
+ * output = op.hash(op.prefix || child || op.suffix)
+ * 
+ * where the || operator is concatenation of binary data,
+ * and child is the result of hashing all the tree below this step.
+ * 
+ * Any special data, like prepending child with the length, or prepending the entire operation with
+ * some value to differentiate from leaf nodes, should be included in prefix and suffix.
+ * If either of prefix or suffix is empty, we just treat it as an empty string
+ */
+
+export interface InnerOpAmino {
+  hash: HashOp;
+  prefix: Uint8Array;
+  suffix: Uint8Array;
+}
+export interface InnerOpAminoType {
+  type: "/ics23.InnerOp";
+  value: InnerOpAmino;
 }
 /**
  * InnerOp represents a merkle-proof step that is not a leaf.
@@ -406,6 +548,41 @@ export interface ProofSpec {
 
   minDepth: number;
 }
+export interface ProofSpecProtoType {
+  typeUrl: "/ics23.ProofSpec";
+  value: Uint8Array;
+}
+/**
+ * ProofSpec defines what the expected parameters are for a given proof type.
+ * This can be stored in the client and used to validate any incoming proofs.
+ * 
+ * verify(ProofSpec, Proof) -> Proof | Error
+ * 
+ * As demonstrated in tests, if we don't fix the algorithm used to calculate the
+ * LeafHash for a given tree, there are many possible key-value pairs that can
+ * generate a given hash (by interpretting the preimage differently).
+ * We need this for proper security, requires client knows a priori what
+ * tree format server uses. But not in code, rather a configuration object.
+ */
+
+export interface ProofSpecAmino {
+  /**
+   * any field in the ExistenceProof must be the same as in this spec.
+   * except Prefix, which is just the first bytes of prefix (spec can be longer)
+   */
+  leaf_spec?: LeafOpAmino;
+  inner_spec?: InnerSpecAmino;
+  /** max_depth (if > 0) is the maximum number of InnerOps allowed (mainly for fixed-depth tries) */
+
+  max_depth: number;
+  /** min_depth (if > 0) is the minimum number of InnerOps allowed (mainly for fixed-depth tries) */
+
+  min_depth: number;
+}
+export interface ProofSpecAminoType {
+  type: "/ics23.ProofSpec";
+  value: ProofSpecAmino;
+}
 /**
  * ProofSpec defines what the expected parameters are for a given proof type.
  * This can be stored in the client and used to validate any incoming proofs.
@@ -453,6 +630,42 @@ export interface InnerSpec {
 
   hash: HashOp;
 }
+export interface InnerSpecProtoType {
+  typeUrl: "/ics23.InnerSpec";
+  value: Uint8Array;
+}
+/**
+ * InnerSpec contains all store-specific structure info to determine if two proofs from a
+ * given store are neighbors.
+ * 
+ * This enables:
+ * 
+ * isLeftMost(spec: InnerSpec, op: InnerOp)
+ * isRightMost(spec: InnerSpec, op: InnerOp)
+ * isLeftNeighbor(spec: InnerSpec, left: InnerOp, right: InnerOp)
+ */
+
+export interface InnerSpecAmino {
+  /**
+   * Child order is the ordering of the children node, must count from 0
+   * iavl tree is [0, 1] (left then right)
+   * merk is [0, 2, 1] (left, right, here)
+   */
+  child_order: number[];
+  child_size: number;
+  min_prefix_length: number;
+  max_prefix_length: number;
+  /** empty child is the prehash image that is used when one child is nil (eg. 20 bytes of 0) */
+
+  empty_child: Uint8Array;
+  /** hash is the algorithm that must be used for each InnerOp */
+
+  hash: HashOp;
+}
+export interface InnerSpecAminoType {
+  type: "/ics23.InnerSpec";
+  value: InnerSpecAmino;
+}
 /**
  * InnerSpec contains all store-specific structure info to determine if two proofs from a
  * given store are neighbors.
@@ -477,6 +690,19 @@ export interface InnerSpecSDKType {
 export interface BatchProof {
   entries: BatchEntry[];
 }
+export interface BatchProofProtoType {
+  typeUrl: "/ics23.BatchProof";
+  value: Uint8Array;
+}
+/** BatchProof is a group of multiple proof types than can be compressed */
+
+export interface BatchProofAmino {
+  entries: BatchEntryAmino[];
+}
+export interface BatchProofAminoType {
+  type: "/ics23.BatchProof";
+  value: BatchProofAmino;
+}
 /** BatchProof is a group of multiple proof types than can be compressed */
 
 export interface BatchProofSDKType {
@@ -488,6 +714,20 @@ export interface BatchEntry {
   exist?: ExistenceProof;
   nonexist?: NonExistenceProof;
 }
+export interface BatchEntryProtoType {
+  typeUrl: "/ics23.BatchEntry";
+  value: Uint8Array;
+}
+/** Use BatchEntry not CommitmentProof, to avoid recursion */
+
+export interface BatchEntryAmino {
+  exist?: ExistenceProofAmino;
+  nonexist?: NonExistenceProofAmino;
+}
+export interface BatchEntryAminoType {
+  type: "/ics23.BatchEntry";
+  value: BatchEntryAmino;
+}
 /** Use BatchEntry not CommitmentProof, to avoid recursion */
 
 export interface BatchEntrySDKType {
@@ -498,6 +738,18 @@ export interface CompressedBatchProof {
   entries: CompressedBatchEntry[];
   lookupInners: InnerOp[];
 }
+export interface CompressedBatchProofProtoType {
+  typeUrl: "/ics23.CompressedBatchProof";
+  value: Uint8Array;
+}
+export interface CompressedBatchProofAmino {
+  entries: CompressedBatchEntryAmino[];
+  lookup_inners: InnerOpAmino[];
+}
+export interface CompressedBatchProofAminoType {
+  type: "/ics23.CompressedBatchProof";
+  value: CompressedBatchProofAmino;
+}
 export interface CompressedBatchProofSDKType {
   entries: CompressedBatchEntrySDKType[];
   lookup_inners: InnerOpSDKType[];
@@ -507,6 +759,20 @@ export interface CompressedBatchProofSDKType {
 export interface CompressedBatchEntry {
   exist?: CompressedExistenceProof;
   nonexist?: CompressedNonExistenceProof;
+}
+export interface CompressedBatchEntryProtoType {
+  typeUrl: "/ics23.CompressedBatchEntry";
+  value: Uint8Array;
+}
+/** Use BatchEntry not CommitmentProof, to avoid recursion */
+
+export interface CompressedBatchEntryAmino {
+  exist?: CompressedExistenceProofAmino;
+  nonexist?: CompressedNonExistenceProofAmino;
+}
+export interface CompressedBatchEntryAminoType {
+  type: "/ics23.CompressedBatchEntry";
+  value: CompressedBatchEntryAmino;
 }
 /** Use BatchEntry not CommitmentProof, to avoid recursion */
 
@@ -522,6 +788,22 @@ export interface CompressedExistenceProof {
 
   path: number[];
 }
+export interface CompressedExistenceProofProtoType {
+  typeUrl: "/ics23.CompressedExistenceProof";
+  value: Uint8Array;
+}
+export interface CompressedExistenceProofAmino {
+  key: Uint8Array;
+  value: Uint8Array;
+  leaf?: LeafOpAmino;
+  /** these are indexes into the lookup_inners table in CompressedBatchProof */
+
+  path: number[];
+}
+export interface CompressedExistenceProofAminoType {
+  type: "/ics23.CompressedExistenceProof";
+  value: CompressedExistenceProofAmino;
+}
 export interface CompressedExistenceProofSDKType {
   key: Uint8Array;
   value: Uint8Array;
@@ -533,6 +815,20 @@ export interface CompressedNonExistenceProof {
   key: Uint8Array;
   left?: CompressedExistenceProof;
   right?: CompressedExistenceProof;
+}
+export interface CompressedNonExistenceProofProtoType {
+  typeUrl: "/ics23.CompressedNonExistenceProof";
+  value: Uint8Array;
+}
+export interface CompressedNonExistenceProofAmino {
+  /** TODO: remove this as unnecessary??? we prove a range */
+  key: Uint8Array;
+  left?: CompressedExistenceProofAmino;
+  right?: CompressedExistenceProofAmino;
+}
+export interface CompressedNonExistenceProofAminoType {
+  type: "/ics23.CompressedNonExistenceProof";
+  value: CompressedNonExistenceProofAmino;
 }
 export interface CompressedNonExistenceProofSDKType {
   key: Uint8Array;
@@ -635,6 +931,30 @@ export const ExistenceProof = {
     message.leaf = object.leaf !== undefined && object.leaf !== null ? LeafOp.fromPartial(object.leaf) : undefined;
     message.path = object.path?.map(e => InnerOp.fromPartial(e)) || [];
     return message;
+  },
+
+  fromAmino(object: ExistenceProofAmino): ExistenceProof {
+    return {
+      key: object.key,
+      value: object.value,
+      leaf: object?.leaf ? LeafOp.fromAmino(object.leaf) : undefined,
+      path: Array.isArray(object?.path) ? object.path.map((e: any) => InnerOp.fromAmino(e)) : []
+    };
+  },
+
+  toAmino(message: ExistenceProof): ExistenceProofAmino {
+    const obj: any = {};
+    obj.key = message.key;
+    obj.value = message.value;
+    obj.leaf = message.leaf ? LeafOp.toAmino(message.leaf) : undefined;
+
+    if (message.path) {
+      obj.path = message.path.map(e => e ? InnerOp.toAmino(e) : undefined);
+    } else {
+      obj.path = [];
+    }
+
+    return obj;
   }
 
 };
@@ -716,6 +1036,22 @@ export const NonExistenceProof = {
     message.left = object.left !== undefined && object.left !== null ? ExistenceProof.fromPartial(object.left) : undefined;
     message.right = object.right !== undefined && object.right !== null ? ExistenceProof.fromPartial(object.right) : undefined;
     return message;
+  },
+
+  fromAmino(object: NonExistenceProofAmino): NonExistenceProof {
+    return {
+      key: object.key,
+      left: object?.left ? ExistenceProof.fromAmino(object.left) : undefined,
+      right: object?.right ? ExistenceProof.fromAmino(object.right) : undefined
+    };
+  },
+
+  toAmino(message: NonExistenceProof): NonExistenceProofAmino {
+    const obj: any = {};
+    obj.key = message.key;
+    obj.left = message.left ? ExistenceProof.toAmino(message.left) : undefined;
+    obj.right = message.right ? ExistenceProof.toAmino(message.right) : undefined;
+    return obj;
   }
 
 };
@@ -809,6 +1145,24 @@ export const CommitmentProof = {
     message.batch = object.batch !== undefined && object.batch !== null ? BatchProof.fromPartial(object.batch) : undefined;
     message.compressed = object.compressed !== undefined && object.compressed !== null ? CompressedBatchProof.fromPartial(object.compressed) : undefined;
     return message;
+  },
+
+  fromAmino(object: CommitmentProofAmino): CommitmentProof {
+    return {
+      exist: object?.exist ? ExistenceProof.fromAmino(object.exist) : undefined,
+      nonexist: object?.nonexist ? NonExistenceProof.fromAmino(object.nonexist) : undefined,
+      batch: object?.batch ? BatchProof.fromAmino(object.batch) : undefined,
+      compressed: object?.compressed ? CompressedBatchProof.fromAmino(object.compressed) : undefined
+    };
+  },
+
+  toAmino(message: CommitmentProof): CommitmentProofAmino {
+    const obj: any = {};
+    obj.exist = message.exist ? ExistenceProof.toAmino(message.exist) : undefined;
+    obj.nonexist = message.nonexist ? NonExistenceProof.toAmino(message.nonexist) : undefined;
+    obj.batch = message.batch ? BatchProof.toAmino(message.batch) : undefined;
+    obj.compressed = message.compressed ? CompressedBatchProof.toAmino(message.compressed) : undefined;
+    return obj;
   }
 
 };
@@ -914,6 +1268,26 @@ export const LeafOp = {
     message.length = object.length ?? 0;
     message.prefix = object.prefix ?? new Uint8Array();
     return message;
+  },
+
+  fromAmino(object: LeafOpAmino): LeafOp {
+    return {
+      hash: isSet(object.hash) ? hashOpFromJSON(object.hash) : 0,
+      prehashKey: isSet(object.prehash_key) ? hashOpFromJSON(object.prehash_key) : 0,
+      prehashValue: isSet(object.prehash_value) ? hashOpFromJSON(object.prehash_value) : 0,
+      length: isSet(object.length) ? lengthOpFromJSON(object.length) : 0,
+      prefix: object.prefix
+    };
+  },
+
+  toAmino(message: LeafOp): LeafOpAmino {
+    const obj: any = {};
+    obj.hash = message.hash;
+    obj.prehash_key = message.prehashKey;
+    obj.prehash_value = message.prehashValue;
+    obj.length = message.length;
+    obj.prefix = message.prefix;
+    return obj;
   }
 
 };
@@ -995,6 +1369,22 @@ export const InnerOp = {
     message.prefix = object.prefix ?? new Uint8Array();
     message.suffix = object.suffix ?? new Uint8Array();
     return message;
+  },
+
+  fromAmino(object: InnerOpAmino): InnerOp {
+    return {
+      hash: isSet(object.hash) ? hashOpFromJSON(object.hash) : 0,
+      prefix: object.prefix,
+      suffix: object.suffix
+    };
+  },
+
+  toAmino(message: InnerOp): InnerOpAmino {
+    const obj: any = {};
+    obj.hash = message.hash;
+    obj.prefix = message.prefix;
+    obj.suffix = message.suffix;
+    return obj;
   }
 
 };
@@ -1088,6 +1478,24 @@ export const ProofSpec = {
     message.maxDepth = object.maxDepth ?? 0;
     message.minDepth = object.minDepth ?? 0;
     return message;
+  },
+
+  fromAmino(object: ProofSpecAmino): ProofSpec {
+    return {
+      leafSpec: object?.leaf_spec ? LeafOp.fromAmino(object.leaf_spec) : undefined,
+      innerSpec: object?.inner_spec ? InnerSpec.fromAmino(object.inner_spec) : undefined,
+      maxDepth: object.max_depth,
+      minDepth: object.min_depth
+    };
+  },
+
+  toAmino(message: ProofSpec): ProofSpecAmino {
+    const obj: any = {};
+    obj.leaf_spec = message.leafSpec ? LeafOp.toAmino(message.leafSpec) : undefined;
+    obj.inner_spec = message.innerSpec ? InnerSpec.toAmino(message.innerSpec) : undefined;
+    obj.max_depth = message.maxDepth;
+    obj.min_depth = message.minDepth;
+    return obj;
   }
 
 };
@@ -1224,6 +1632,34 @@ export const InnerSpec = {
     message.emptyChild = object.emptyChild ?? new Uint8Array();
     message.hash = object.hash ?? 0;
     return message;
+  },
+
+  fromAmino(object: InnerSpecAmino): InnerSpec {
+    return {
+      childOrder: Array.isArray(object?.child_order) ? object.child_order.map((e: any) => e) : [],
+      childSize: object.child_size,
+      minPrefixLength: object.min_prefix_length,
+      maxPrefixLength: object.max_prefix_length,
+      emptyChild: object.empty_child,
+      hash: isSet(object.hash) ? hashOpFromJSON(object.hash) : 0
+    };
+  },
+
+  toAmino(message: InnerSpec): InnerSpecAmino {
+    const obj: any = {};
+
+    if (message.childOrder) {
+      obj.child_order = message.childOrder.map(e => e);
+    } else {
+      obj.child_order = [];
+    }
+
+    obj.child_size = message.childSize;
+    obj.min_prefix_length = message.minPrefixLength;
+    obj.max_prefix_length = message.maxPrefixLength;
+    obj.empty_child = message.emptyChild;
+    obj.hash = message.hash;
+    return obj;
   }
 
 };
@@ -1287,6 +1723,24 @@ export const BatchProof = {
     const message = createBaseBatchProof();
     message.entries = object.entries?.map(e => BatchEntry.fromPartial(e)) || [];
     return message;
+  },
+
+  fromAmino(object: BatchProofAmino): BatchProof {
+    return {
+      entries: Array.isArray(object?.entries) ? object.entries.map((e: any) => BatchEntry.fromAmino(e)) : []
+    };
+  },
+
+  toAmino(message: BatchProof): BatchProofAmino {
+    const obj: any = {};
+
+    if (message.entries) {
+      obj.entries = message.entries.map(e => e ? BatchEntry.toAmino(e) : undefined);
+    } else {
+      obj.entries = [];
+    }
+
+    return obj;
   }
 
 };
@@ -1356,6 +1810,20 @@ export const BatchEntry = {
     message.exist = object.exist !== undefined && object.exist !== null ? ExistenceProof.fromPartial(object.exist) : undefined;
     message.nonexist = object.nonexist !== undefined && object.nonexist !== null ? NonExistenceProof.fromPartial(object.nonexist) : undefined;
     return message;
+  },
+
+  fromAmino(object: BatchEntryAmino): BatchEntry {
+    return {
+      exist: object?.exist ? ExistenceProof.fromAmino(object.exist) : undefined,
+      nonexist: object?.nonexist ? NonExistenceProof.fromAmino(object.nonexist) : undefined
+    };
+  },
+
+  toAmino(message: BatchEntry): BatchEntryAmino {
+    const obj: any = {};
+    obj.exist = message.exist ? ExistenceProof.toAmino(message.exist) : undefined;
+    obj.nonexist = message.nonexist ? NonExistenceProof.toAmino(message.nonexist) : undefined;
+    return obj;
   }
 
 };
@@ -1436,6 +1904,31 @@ export const CompressedBatchProof = {
     message.entries = object.entries?.map(e => CompressedBatchEntry.fromPartial(e)) || [];
     message.lookupInners = object.lookupInners?.map(e => InnerOp.fromPartial(e)) || [];
     return message;
+  },
+
+  fromAmino(object: CompressedBatchProofAmino): CompressedBatchProof {
+    return {
+      entries: Array.isArray(object?.entries) ? object.entries.map((e: any) => CompressedBatchEntry.fromAmino(e)) : [],
+      lookupInners: Array.isArray(object?.lookup_inners) ? object.lookup_inners.map((e: any) => InnerOp.fromAmino(e)) : []
+    };
+  },
+
+  toAmino(message: CompressedBatchProof): CompressedBatchProofAmino {
+    const obj: any = {};
+
+    if (message.entries) {
+      obj.entries = message.entries.map(e => e ? CompressedBatchEntry.toAmino(e) : undefined);
+    } else {
+      obj.entries = [];
+    }
+
+    if (message.lookupInners) {
+      obj.lookup_inners = message.lookupInners.map(e => e ? InnerOp.toAmino(e) : undefined);
+    } else {
+      obj.lookup_inners = [];
+    }
+
+    return obj;
   }
 
 };
@@ -1505,6 +1998,20 @@ export const CompressedBatchEntry = {
     message.exist = object.exist !== undefined && object.exist !== null ? CompressedExistenceProof.fromPartial(object.exist) : undefined;
     message.nonexist = object.nonexist !== undefined && object.nonexist !== null ? CompressedNonExistenceProof.fromPartial(object.nonexist) : undefined;
     return message;
+  },
+
+  fromAmino(object: CompressedBatchEntryAmino): CompressedBatchEntry {
+    return {
+      exist: object?.exist ? CompressedExistenceProof.fromAmino(object.exist) : undefined,
+      nonexist: object?.nonexist ? CompressedNonExistenceProof.fromAmino(object.nonexist) : undefined
+    };
+  },
+
+  toAmino(message: CompressedBatchEntry): CompressedBatchEntryAmino {
+    const obj: any = {};
+    obj.exist = message.exist ? CompressedExistenceProof.toAmino(message.exist) : undefined;
+    obj.nonexist = message.nonexist ? CompressedNonExistenceProof.toAmino(message.nonexist) : undefined;
+    return obj;
   }
 
 };
@@ -1616,6 +2123,30 @@ export const CompressedExistenceProof = {
     message.leaf = object.leaf !== undefined && object.leaf !== null ? LeafOp.fromPartial(object.leaf) : undefined;
     message.path = object.path?.map(e => e) || [];
     return message;
+  },
+
+  fromAmino(object: CompressedExistenceProofAmino): CompressedExistenceProof {
+    return {
+      key: object.key,
+      value: object.value,
+      leaf: object?.leaf ? LeafOp.fromAmino(object.leaf) : undefined,
+      path: Array.isArray(object?.path) ? object.path.map((e: any) => e) : []
+    };
+  },
+
+  toAmino(message: CompressedExistenceProof): CompressedExistenceProofAmino {
+    const obj: any = {};
+    obj.key = message.key;
+    obj.value = message.value;
+    obj.leaf = message.leaf ? LeafOp.toAmino(message.leaf) : undefined;
+
+    if (message.path) {
+      obj.path = message.path.map(e => e);
+    } else {
+      obj.path = [];
+    }
+
+    return obj;
   }
 
 };
@@ -1697,6 +2228,22 @@ export const CompressedNonExistenceProof = {
     message.left = object.left !== undefined && object.left !== null ? CompressedExistenceProof.fromPartial(object.left) : undefined;
     message.right = object.right !== undefined && object.right !== null ? CompressedExistenceProof.fromPartial(object.right) : undefined;
     return message;
+  },
+
+  fromAmino(object: CompressedNonExistenceProofAmino): CompressedNonExistenceProof {
+    return {
+      key: object.key,
+      left: object?.left ? CompressedExistenceProof.fromAmino(object.left) : undefined,
+      right: object?.right ? CompressedExistenceProof.fromAmino(object.right) : undefined
+    };
+  },
+
+  toAmino(message: CompressedNonExistenceProof): CompressedNonExistenceProofAmino {
+    const obj: any = {};
+    obj.key = message.key;
+    obj.left = message.left ? CompressedExistenceProof.toAmino(message.left) : undefined;
+    obj.right = message.right ? CompressedExistenceProof.toAmino(message.right) : undefined;
+    return obj;
   }
 
 };
