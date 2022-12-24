@@ -10,6 +10,10 @@ export interface MsgSubmitEvidence {
   submitter: string;
   evidence?: (Any) | undefined;
 }
+export interface MsgSubmitEvidenceProtoType {
+  typeUrl: "/cosmos.evidence.v1beta1.MsgSubmitEvidence";
+  value: Uint8Array;
+}
 /**
  * MsgSubmitEvidence represents a message that supports submitting arbitrary
  * Evidence of misbehavior such as equivocation or counterfactual signing.
@@ -18,6 +22,10 @@ export interface MsgSubmitEvidence {
 export interface MsgSubmitEvidenceAmino {
   submitter: string;
   evidence?: AnyAmino;
+}
+export interface MsgSubmitEvidenceAminoType {
+  type: "cosmos-sdk/MsgSubmitEvidence";
+  value: MsgSubmitEvidenceAmino;
 }
 /**
  * MsgSubmitEvidence represents a message that supports submitting arbitrary
@@ -34,11 +42,19 @@ export interface MsgSubmitEvidenceResponse {
   /** hash defines the hash of the evidence. */
   hash: Uint8Array;
 }
+export interface MsgSubmitEvidenceResponseProtoType {
+  typeUrl: "/cosmos.evidence.v1beta1.MsgSubmitEvidenceResponse";
+  value: Uint8Array;
+}
 /** MsgSubmitEvidenceResponse defines the Msg/SubmitEvidence response type. */
 
 export interface MsgSubmitEvidenceResponseAmino {
   /** hash defines the hash of the evidence. */
   hash: Uint8Array;
+}
+export interface MsgSubmitEvidenceResponseAminoType {
+  type: "cosmos-sdk/MsgSubmitEvidenceResponse";
+  value: MsgSubmitEvidenceResponseAmino;
 }
 /** MsgSubmitEvidenceResponse defines the Msg/SubmitEvidence response type. */
 
@@ -207,14 +223,8 @@ export const Evidence_InterfaceDecoder = (input: _m0.Reader | Uint8Array): Any =
   }
 };
 export const Evidence_FromAmino = (content: AnyAmino) => {
-  switch (content.type) {
-    default:
-      return Any.fromAmino(content);
-  }
+  return Any.fromAmino(content);
 };
 export const Evidence_ToAmino = (content: Any) => {
-  switch (content.typeUrl) {
-    default:
-      return Any.toAmino(content);
-  }
+  return Any.toAmino(content);
 };

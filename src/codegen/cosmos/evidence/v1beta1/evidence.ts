@@ -12,6 +12,10 @@ export interface Equivocation {
   power: Long;
   consensusAddress: string;
 }
+export interface EquivocationProtoType {
+  typeUrl: "/cosmos.evidence.v1beta1.Equivocation";
+  value: Uint8Array;
+}
 /**
  * Equivocation implements the Evidence interface and defines evidence of double
  * signing misbehavior.
@@ -22,6 +26,10 @@ export interface EquivocationAmino {
   time?: TimestampAmino;
   power: string;
   consensus_address: string;
+}
+export interface EquivocationAminoType {
+  type: "cosmos-sdk/Equivocation";
+  value: EquivocationAmino;
 }
 /**
  * Equivocation implements the Evidence interface and defines evidence of double
