@@ -1,4 +1,4 @@
-import { Plan, PlanSDKType, ModuleVersion, ModuleVersionSDKType } from "./upgrade";
+import { Plan, PlanAmino, PlanSDKType, ModuleVersion, ModuleVersionAmino, ModuleVersionSDKType } from "./upgrade";
 import * as _m0 from "protobufjs/minimal";
 import { isSet, Long, bytesFromBase64, base64FromBytes } from "../../../helpers";
 /**
@@ -7,6 +7,20 @@ import { isSet, Long, bytesFromBase64, base64FromBytes } from "../../../helpers"
  */
 
 export interface QueryCurrentPlanRequest {}
+export interface QueryCurrentPlanRequestProtoType {
+  typeUrl: "/cosmos.upgrade.v1beta1.QueryCurrentPlanRequest";
+  value: Uint8Array;
+}
+/**
+ * QueryCurrentPlanRequest is the request type for the Query/CurrentPlan RPC
+ * method.
+ */
+
+export interface QueryCurrentPlanRequestAmino {}
+export interface QueryCurrentPlanRequestAminoType {
+  type: "cosmos-sdk/QueryCurrentPlanRequest";
+  value: QueryCurrentPlanRequestAmino;
+}
 /**
  * QueryCurrentPlanRequest is the request type for the Query/CurrentPlan RPC
  * method.
@@ -21,6 +35,23 @@ export interface QueryCurrentPlanRequestSDKType {}
 export interface QueryCurrentPlanResponse {
   /** plan is the current upgrade plan. */
   plan?: Plan;
+}
+export interface QueryCurrentPlanResponseProtoType {
+  typeUrl: "/cosmos.upgrade.v1beta1.QueryCurrentPlanResponse";
+  value: Uint8Array;
+}
+/**
+ * QueryCurrentPlanResponse is the response type for the Query/CurrentPlan RPC
+ * method.
+ */
+
+export interface QueryCurrentPlanResponseAmino {
+  /** plan is the current upgrade plan. */
+  plan?: PlanAmino;
+}
+export interface QueryCurrentPlanResponseAminoType {
+  type: "cosmos-sdk/QueryCurrentPlanResponse";
+  value: QueryCurrentPlanResponseAmino;
 }
 /**
  * QueryCurrentPlanResponse is the response type for the Query/CurrentPlan RPC
@@ -39,6 +70,23 @@ export interface QueryAppliedPlanRequest {
   /** name is the name of the applied plan to query for. */
   name: string;
 }
+export interface QueryAppliedPlanRequestProtoType {
+  typeUrl: "/cosmos.upgrade.v1beta1.QueryAppliedPlanRequest";
+  value: Uint8Array;
+}
+/**
+ * QueryCurrentPlanRequest is the request type for the Query/AppliedPlan RPC
+ * method.
+ */
+
+export interface QueryAppliedPlanRequestAmino {
+  /** name is the name of the applied plan to query for. */
+  name: string;
+}
+export interface QueryAppliedPlanRequestAminoType {
+  type: "cosmos-sdk/QueryAppliedPlanRequest";
+  value: QueryAppliedPlanRequestAmino;
+}
 /**
  * QueryCurrentPlanRequest is the request type for the Query/AppliedPlan RPC
  * method.
@@ -55,6 +103,23 @@ export interface QueryAppliedPlanRequestSDKType {
 export interface QueryAppliedPlanResponse {
   /** height is the block height at which the plan was applied. */
   height: Long;
+}
+export interface QueryAppliedPlanResponseProtoType {
+  typeUrl: "/cosmos.upgrade.v1beta1.QueryAppliedPlanResponse";
+  value: Uint8Array;
+}
+/**
+ * QueryAppliedPlanResponse is the response type for the Query/AppliedPlan RPC
+ * method.
+ */
+
+export interface QueryAppliedPlanResponseAmino {
+  /** height is the block height at which the plan was applied. */
+  height: string;
+}
+export interface QueryAppliedPlanResponseAminoType {
+  type: "cosmos-sdk/QueryAppliedPlanResponse";
+  value: QueryAppliedPlanResponseAmino;
 }
 /**
  * QueryAppliedPlanResponse is the response type for the Query/AppliedPlan RPC
@@ -78,6 +143,28 @@ export interface QueryUpgradedConsensusStateRequest {
    */
   lastHeight: Long;
 }
+export interface QueryUpgradedConsensusStateRequestProtoType {
+  typeUrl: "/cosmos.upgrade.v1beta1.QueryUpgradedConsensusStateRequest";
+  value: Uint8Array;
+}
+/**
+ * QueryUpgradedConsensusStateRequest is the request type for the Query/UpgradedConsensusState
+ * RPC method.
+ */
+
+/** @deprecated */
+
+export interface QueryUpgradedConsensusStateRequestAmino {
+  /**
+   * last height of the current chain must be sent in request
+   * as this is the height under which next consensus state is stored
+   */
+  last_height: string;
+}
+export interface QueryUpgradedConsensusStateRequestAminoType {
+  type: "cosmos-sdk/QueryUpgradedConsensusStateRequest";
+  value: QueryUpgradedConsensusStateRequestAmino;
+}
 /**
  * QueryUpgradedConsensusStateRequest is the request type for the Query/UpgradedConsensusState
  * RPC method.
@@ -98,6 +185,25 @@ export interface QueryUpgradedConsensusStateRequestSDKType {
 export interface QueryUpgradedConsensusStateResponse {
   /** Since: cosmos-sdk 0.43 */
   upgradedConsensusState: Uint8Array;
+}
+export interface QueryUpgradedConsensusStateResponseProtoType {
+  typeUrl: "/cosmos.upgrade.v1beta1.QueryUpgradedConsensusStateResponse";
+  value: Uint8Array;
+}
+/**
+ * QueryUpgradedConsensusStateResponse is the response type for the Query/UpgradedConsensusState
+ * RPC method.
+ */
+
+/** @deprecated */
+
+export interface QueryUpgradedConsensusStateResponseAmino {
+  /** Since: cosmos-sdk 0.43 */
+  upgraded_consensus_state: Uint8Array;
+}
+export interface QueryUpgradedConsensusStateResponseAminoType {
+  type: "cosmos-sdk/QueryUpgradedConsensusStateResponse";
+  value: QueryUpgradedConsensusStateResponseAmino;
 }
 /**
  * QueryUpgradedConsensusStateResponse is the response type for the Query/UpgradedConsensusState
@@ -124,6 +230,29 @@ export interface QueryModuleVersionsRequest {
    */
   moduleName: string;
 }
+export interface QueryModuleVersionsRequestProtoType {
+  typeUrl: "/cosmos.upgrade.v1beta1.QueryModuleVersionsRequest";
+  value: Uint8Array;
+}
+/**
+ * QueryModuleVersionsRequest is the request type for the Query/ModuleVersions
+ * RPC method.
+ * 
+ * Since: cosmos-sdk 0.43
+ */
+
+export interface QueryModuleVersionsRequestAmino {
+  /**
+   * module_name is a field to query a specific module
+   * consensus version from state. Leaving this empty will
+   * fetch the full list of module versions from state
+   */
+  module_name: string;
+}
+export interface QueryModuleVersionsRequestAminoType {
+  type: "cosmos-sdk/QueryModuleVersionsRequest";
+  value: QueryModuleVersionsRequestAmino;
+}
 /**
  * QueryModuleVersionsRequest is the request type for the Query/ModuleVersions
  * RPC method.
@@ -145,6 +274,25 @@ export interface QueryModuleVersionsResponse {
   /** module_versions is a list of module names with their consensus versions. */
   moduleVersions: ModuleVersion[];
 }
+export interface QueryModuleVersionsResponseProtoType {
+  typeUrl: "/cosmos.upgrade.v1beta1.QueryModuleVersionsResponse";
+  value: Uint8Array;
+}
+/**
+ * QueryModuleVersionsResponse is the response type for the Query/ModuleVersions
+ * RPC method.
+ * 
+ * Since: cosmos-sdk 0.43
+ */
+
+export interface QueryModuleVersionsResponseAmino {
+  /** module_versions is a list of module names with their consensus versions. */
+  module_versions: ModuleVersionAmino[];
+}
+export interface QueryModuleVersionsResponseAminoType {
+  type: "cosmos-sdk/QueryModuleVersionsResponse";
+  value: QueryModuleVersionsResponseAmino;
+}
 /**
  * QueryModuleVersionsResponse is the response type for the Query/ModuleVersions
  * RPC method.
@@ -162,6 +310,21 @@ export interface QueryModuleVersionsResponseSDKType {
  */
 
 export interface QueryAuthorityRequest {}
+export interface QueryAuthorityRequestProtoType {
+  typeUrl: "/cosmos.upgrade.v1beta1.QueryAuthorityRequest";
+  value: Uint8Array;
+}
+/**
+ * QueryAuthorityRequest is the request type for Query/Authority
+ * 
+ * Since: cosmos-sdk 0.46
+ */
+
+export interface QueryAuthorityRequestAmino {}
+export interface QueryAuthorityRequestAminoType {
+  type: "cosmos-sdk/QueryAuthorityRequest";
+  value: QueryAuthorityRequestAmino;
+}
 /**
  * QueryAuthorityRequest is the request type for Query/Authority
  * 
@@ -177,6 +340,23 @@ export interface QueryAuthorityRequestSDKType {}
 
 export interface QueryAuthorityResponse {
   address: string;
+}
+export interface QueryAuthorityResponseProtoType {
+  typeUrl: "/cosmos.upgrade.v1beta1.QueryAuthorityResponse";
+  value: Uint8Array;
+}
+/**
+ * QueryAuthorityResponse is the response type for Query/Authority
+ * 
+ * Since: cosmos-sdk 0.46
+ */
+
+export interface QueryAuthorityResponseAmino {
+  address: string;
+}
+export interface QueryAuthorityResponseAminoType {
+  type: "cosmos-sdk/QueryAuthorityResponse";
+  value: QueryAuthorityResponseAmino;
 }
 /**
  * QueryAuthorityResponse is the response type for Query/Authority
@@ -227,6 +407,15 @@ export const QueryCurrentPlanRequest = {
   fromPartial(_: Partial<QueryCurrentPlanRequest>): QueryCurrentPlanRequest {
     const message = createBaseQueryCurrentPlanRequest();
     return message;
+  },
+
+  fromAmino(_: QueryCurrentPlanRequestAmino): QueryCurrentPlanRequest {
+    return {};
+  },
+
+  toAmino(_: QueryCurrentPlanRequest): QueryCurrentPlanRequestAmino {
+    const obj: any = {};
+    return obj;
   }
 
 };
@@ -284,6 +473,18 @@ export const QueryCurrentPlanResponse = {
     const message = createBaseQueryCurrentPlanResponse();
     message.plan = object.plan !== undefined && object.plan !== null ? Plan.fromPartial(object.plan) : undefined;
     return message;
+  },
+
+  fromAmino(object: QueryCurrentPlanResponseAmino): QueryCurrentPlanResponse {
+    return {
+      plan: object?.plan ? Plan.fromAmino(object.plan) : undefined
+    };
+  },
+
+  toAmino(message: QueryCurrentPlanResponse): QueryCurrentPlanResponseAmino {
+    const obj: any = {};
+    obj.plan = message.plan ? Plan.toAmino(message.plan) : undefined;
+    return obj;
   }
 
 };
@@ -341,6 +542,18 @@ export const QueryAppliedPlanRequest = {
     const message = createBaseQueryAppliedPlanRequest();
     message.name = object.name ?? "";
     return message;
+  },
+
+  fromAmino(object: QueryAppliedPlanRequestAmino): QueryAppliedPlanRequest {
+    return {
+      name: object.name
+    };
+  },
+
+  toAmino(message: QueryAppliedPlanRequest): QueryAppliedPlanRequestAmino {
+    const obj: any = {};
+    obj.name = message.name;
+    return obj;
   }
 
 };
@@ -398,6 +611,18 @@ export const QueryAppliedPlanResponse = {
     const message = createBaseQueryAppliedPlanResponse();
     message.height = object.height !== undefined && object.height !== null ? Long.fromValue(object.height) : Long.ZERO;
     return message;
+  },
+
+  fromAmino(object: QueryAppliedPlanResponseAmino): QueryAppliedPlanResponse {
+    return {
+      height: Long.fromString(object.height)
+    };
+  },
+
+  toAmino(message: QueryAppliedPlanResponse): QueryAppliedPlanResponseAmino {
+    const obj: any = {};
+    obj.height = message.height ? message.height.toString() : undefined;
+    return obj;
   }
 
 };
@@ -455,6 +680,18 @@ export const QueryUpgradedConsensusStateRequest = {
     const message = createBaseQueryUpgradedConsensusStateRequest();
     message.lastHeight = object.lastHeight !== undefined && object.lastHeight !== null ? Long.fromValue(object.lastHeight) : Long.ZERO;
     return message;
+  },
+
+  fromAmino(object: QueryUpgradedConsensusStateRequestAmino): QueryUpgradedConsensusStateRequest {
+    return {
+      lastHeight: Long.fromString(object.last_height)
+    };
+  },
+
+  toAmino(message: QueryUpgradedConsensusStateRequest): QueryUpgradedConsensusStateRequestAmino {
+    const obj: any = {};
+    obj.last_height = message.lastHeight ? message.lastHeight.toString() : undefined;
+    return obj;
   }
 
 };
@@ -512,6 +749,18 @@ export const QueryUpgradedConsensusStateResponse = {
     const message = createBaseQueryUpgradedConsensusStateResponse();
     message.upgradedConsensusState = object.upgradedConsensusState ?? new Uint8Array();
     return message;
+  },
+
+  fromAmino(object: QueryUpgradedConsensusStateResponseAmino): QueryUpgradedConsensusStateResponse {
+    return {
+      upgradedConsensusState: object.upgraded_consensus_state
+    };
+  },
+
+  toAmino(message: QueryUpgradedConsensusStateResponse): QueryUpgradedConsensusStateResponseAmino {
+    const obj: any = {};
+    obj.upgraded_consensus_state = message.upgradedConsensusState;
+    return obj;
   }
 
 };
@@ -569,6 +818,18 @@ export const QueryModuleVersionsRequest = {
     const message = createBaseQueryModuleVersionsRequest();
     message.moduleName = object.moduleName ?? "";
     return message;
+  },
+
+  fromAmino(object: QueryModuleVersionsRequestAmino): QueryModuleVersionsRequest {
+    return {
+      moduleName: object.module_name
+    };
+  },
+
+  toAmino(message: QueryModuleVersionsRequest): QueryModuleVersionsRequestAmino {
+    const obj: any = {};
+    obj.module_name = message.moduleName;
+    return obj;
   }
 
 };
@@ -632,6 +893,24 @@ export const QueryModuleVersionsResponse = {
     const message = createBaseQueryModuleVersionsResponse();
     message.moduleVersions = object.moduleVersions?.map(e => ModuleVersion.fromPartial(e)) || [];
     return message;
+  },
+
+  fromAmino(object: QueryModuleVersionsResponseAmino): QueryModuleVersionsResponse {
+    return {
+      moduleVersions: Array.isArray(object?.module_versions) ? object.module_versions.map((e: any) => ModuleVersion.fromAmino(e)) : []
+    };
+  },
+
+  toAmino(message: QueryModuleVersionsResponse): QueryModuleVersionsResponseAmino {
+    const obj: any = {};
+
+    if (message.moduleVersions) {
+      obj.module_versions = message.moduleVersions.map(e => e ? ModuleVersion.toAmino(e) : undefined);
+    } else {
+      obj.module_versions = [];
+    }
+
+    return obj;
   }
 
 };
@@ -675,6 +954,15 @@ export const QueryAuthorityRequest = {
   fromPartial(_: Partial<QueryAuthorityRequest>): QueryAuthorityRequest {
     const message = createBaseQueryAuthorityRequest();
     return message;
+  },
+
+  fromAmino(_: QueryAuthorityRequestAmino): QueryAuthorityRequest {
+    return {};
+  },
+
+  toAmino(_: QueryAuthorityRequest): QueryAuthorityRequestAmino {
+    const obj: any = {};
+    return obj;
   }
 
 };
@@ -732,6 +1020,18 @@ export const QueryAuthorityResponse = {
     const message = createBaseQueryAuthorityResponse();
     message.address = object.address ?? "";
     return message;
+  },
+
+  fromAmino(object: QueryAuthorityResponseAmino): QueryAuthorityResponse {
+    return {
+      address: object.address
+    };
+  },
+
+  toAmino(message: QueryAuthorityResponse): QueryAuthorityResponseAmino {
+    const obj: any = {};
+    obj.address = message.address;
+    return obj;
   }
 
 };
