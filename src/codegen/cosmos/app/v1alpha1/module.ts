@@ -29,6 +29,10 @@ export interface ModuleDescriptor {
 
   canMigrateFrom: MigrateFromInfo[];
 }
+export interface ModuleDescriptorProtoType {
+  typeUrl: "/cosmos.app.v1alpha1.ModuleDescriptor";
+  value: Uint8Array;
+}
 /** ModuleDescriptor describes an app module. */
 
 export interface ModuleDescriptorAmino {
@@ -57,6 +61,10 @@ export interface ModuleDescriptorAmino {
    */
 
   can_migrate_from: MigrateFromInfoAmino[];
+}
+export interface ModuleDescriptorAminoType {
+  type: "cosmos-sdk/ModuleDescriptor";
+  value: ModuleDescriptorAmino;
 }
 /** ModuleDescriptor describes an app module. */
 
@@ -110,6 +118,10 @@ export interface PackageReference {
 
   revision: number;
 }
+export interface PackageReferenceProtoType {
+  typeUrl: "/cosmos.app.v1alpha1.PackageReference";
+  value: Uint8Array;
+}
 /** PackageReference is a reference to a protobuf package used by a module. */
 
 export interface PackageReferenceAmino {
@@ -155,6 +167,10 @@ export interface PackageReferenceAmino {
 
   revision: number;
 }
+export interface PackageReferenceAminoType {
+  type: "cosmos-sdk/PackageReference";
+  value: PackageReferenceAmino;
+}
 /** PackageReference is a reference to a protobuf package used by a module. */
 
 export interface PackageReferenceSDKType {
@@ -173,6 +189,10 @@ export interface MigrateFromInfo {
    */
   module: string;
 }
+export interface MigrateFromInfoProtoType {
+  typeUrl: "/cosmos.app.v1alpha1.MigrateFromInfo";
+  value: Uint8Array;
+}
 /**
  * MigrateFromInfo is information on a module version that a newer module
  * can migrate from.
@@ -184,6 +204,10 @@ export interface MigrateFromInfoAmino {
    * for the previous module version, ex: "cosmos.group.module.v1.Module".
    */
   module: string;
+}
+export interface MigrateFromInfoAminoType {
+  type: "cosmos-sdk/MigrateFromInfo";
+  value: MigrateFromInfoAmino;
 }
 /**
  * MigrateFromInfo is information on a module version that a newer module
