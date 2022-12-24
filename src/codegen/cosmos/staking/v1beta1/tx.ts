@@ -1,11 +1,9 @@
-import { Description, DescriptionAmino, DescriptionSDKType, CommissionRates, CommissionRatesAmino, CommissionRatesSDKType } from "./staking";
-import { Any, AnyAmino, AnySDKType } from "../../../google/protobuf/any";
-import { Coin, CoinAmino, CoinSDKType } from "../../base/v1beta1/coin";
-import { Timestamp, TimestampAmino, TimestampSDKType } from "../../../google/protobuf/timestamp";
+import { Description, DescriptionSDKType, CommissionRates, CommissionRatesSDKType } from "./staking";
+import { Any, AnySDKType } from "../../../google/protobuf/any";
+import { Coin, CoinSDKType } from "../../base/v1beta1/coin";
+import { Timestamp, TimestampSDKType } from "../../../google/protobuf/timestamp";
 import * as _m0 from "protobufjs/minimal";
 import { isSet, fromJsonTimestamp, fromTimestamp, Long } from "../../../helpers";
-import { toBase64, fromBase64 } from "@cosmjs/encoding";
-import { encodeBech32Pubkey, decodeBech32Pubkey } from "@cosmjs/amino";
 /** MsgCreateValidator defines a SDK message for creating a new validator. */
 
 export interface MsgCreateValidator {
@@ -16,25 +14,6 @@ export interface MsgCreateValidator {
   validatorAddress: string;
   pubkey?: (Any) | undefined;
   value?: Coin;
-}
-export interface MsgCreateValidatorProtoType {
-  typeUrl: "/cosmos.staking.v1beta1.MsgCreateValidator";
-  value: Uint8Array;
-}
-/** MsgCreateValidator defines a SDK message for creating a new validator. */
-
-export interface MsgCreateValidatorAmino {
-  description?: DescriptionAmino;
-  commission?: CommissionRatesAmino;
-  min_self_delegation: string;
-  delegator_address: string;
-  validator_address: string;
-  pubkey?: AnyAmino;
-  value?: CoinAmino;
-}
-export interface MsgCreateValidatorAminoType {
-  type: "cosmos-sdk/MsgCreateValidator";
-  value: MsgCreateValidatorAmino;
 }
 /** MsgCreateValidator defines a SDK message for creating a new validator. */
 
@@ -50,17 +29,6 @@ export interface MsgCreateValidatorSDKType {
 /** MsgCreateValidatorResponse defines the Msg/CreateValidator response type. */
 
 export interface MsgCreateValidatorResponse {}
-export interface MsgCreateValidatorResponseProtoType {
-  typeUrl: "/cosmos.staking.v1beta1.MsgCreateValidatorResponse";
-  value: Uint8Array;
-}
-/** MsgCreateValidatorResponse defines the Msg/CreateValidator response type. */
-
-export interface MsgCreateValidatorResponseAmino {}
-export interface MsgCreateValidatorResponseAminoType {
-  type: "cosmos-sdk/MsgCreateValidatorResponse";
-  value: MsgCreateValidatorResponseAmino;
-}
 /** MsgCreateValidatorResponse defines the Msg/CreateValidator response type. */
 
 export interface MsgCreateValidatorResponseSDKType {}
@@ -79,29 +47,6 @@ export interface MsgEditValidator {
   commissionRate: string;
   minSelfDelegation: string;
 }
-export interface MsgEditValidatorProtoType {
-  typeUrl: "/cosmos.staking.v1beta1.MsgEditValidator";
-  value: Uint8Array;
-}
-/** MsgEditValidator defines a SDK message for editing an existing validator. */
-
-export interface MsgEditValidatorAmino {
-  description?: DescriptionAmino;
-  validator_address: string;
-  /**
-   * We pass a reference to the new commission rate and min self delegation as
-   * it's not mandatory to update. If not updated, the deserialized rate will be
-   * zero with no way to distinguish if an update was intended.
-   * REF: #2373
-   */
-
-  commission_rate: string;
-  min_self_delegation: string;
-}
-export interface MsgEditValidatorAminoType {
-  type: "cosmos-sdk/MsgEditValidator";
-  value: MsgEditValidatorAmino;
-}
 /** MsgEditValidator defines a SDK message for editing an existing validator. */
 
 export interface MsgEditValidatorSDKType {
@@ -113,17 +58,6 @@ export interface MsgEditValidatorSDKType {
 /** MsgEditValidatorResponse defines the Msg/EditValidator response type. */
 
 export interface MsgEditValidatorResponse {}
-export interface MsgEditValidatorResponseProtoType {
-  typeUrl: "/cosmos.staking.v1beta1.MsgEditValidatorResponse";
-  value: Uint8Array;
-}
-/** MsgEditValidatorResponse defines the Msg/EditValidator response type. */
-
-export interface MsgEditValidatorResponseAmino {}
-export interface MsgEditValidatorResponseAminoType {
-  type: "cosmos-sdk/MsgEditValidatorResponse";
-  value: MsgEditValidatorResponseAmino;
-}
 /** MsgEditValidatorResponse defines the Msg/EditValidator response type. */
 
 export interface MsgEditValidatorResponseSDKType {}
@@ -136,24 +70,6 @@ export interface MsgDelegate {
   delegatorAddress: string;
   validatorAddress: string;
   amount?: Coin;
-}
-export interface MsgDelegateProtoType {
-  typeUrl: "/cosmos.staking.v1beta1.MsgDelegate";
-  value: Uint8Array;
-}
-/**
- * MsgDelegate defines a SDK message for performing a delegation of coins
- * from a delegator to a validator.
- */
-
-export interface MsgDelegateAmino {
-  delegator_address: string;
-  validator_address: string;
-  amount?: CoinAmino;
-}
-export interface MsgDelegateAminoType {
-  type: "cosmos-sdk/MsgDelegate";
-  value: MsgDelegateAmino;
 }
 /**
  * MsgDelegate defines a SDK message for performing a delegation of coins
@@ -168,17 +84,6 @@ export interface MsgDelegateSDKType {
 /** MsgDelegateResponse defines the Msg/Delegate response type. */
 
 export interface MsgDelegateResponse {}
-export interface MsgDelegateResponseProtoType {
-  typeUrl: "/cosmos.staking.v1beta1.MsgDelegateResponse";
-  value: Uint8Array;
-}
-/** MsgDelegateResponse defines the Msg/Delegate response type. */
-
-export interface MsgDelegateResponseAmino {}
-export interface MsgDelegateResponseAminoType {
-  type: "cosmos-sdk/MsgDelegateResponse";
-  value: MsgDelegateResponseAmino;
-}
 /** MsgDelegateResponse defines the Msg/Delegate response type. */
 
 export interface MsgDelegateResponseSDKType {}
@@ -192,25 +97,6 @@ export interface MsgBeginRedelegate {
   validatorSrcAddress: string;
   validatorDstAddress: string;
   amount?: Coin;
-}
-export interface MsgBeginRedelegateProtoType {
-  typeUrl: "/cosmos.staking.v1beta1.MsgBeginRedelegate";
-  value: Uint8Array;
-}
-/**
- * MsgBeginRedelegate defines a SDK message for performing a redelegation
- * of coins from a delegator and source validator to a destination validator.
- */
-
-export interface MsgBeginRedelegateAmino {
-  delegator_address: string;
-  validator_src_address: string;
-  validator_dst_address: string;
-  amount?: CoinAmino;
-}
-export interface MsgBeginRedelegateAminoType {
-  type: "cosmos-sdk/MsgBeginRedelegate";
-  value: MsgBeginRedelegateAmino;
 }
 /**
  * MsgBeginRedelegate defines a SDK message for performing a redelegation
@@ -228,19 +114,6 @@ export interface MsgBeginRedelegateSDKType {
 export interface MsgBeginRedelegateResponse {
   completionTime?: Timestamp;
 }
-export interface MsgBeginRedelegateResponseProtoType {
-  typeUrl: "/cosmos.staking.v1beta1.MsgBeginRedelegateResponse";
-  value: Uint8Array;
-}
-/** MsgBeginRedelegateResponse defines the Msg/BeginRedelegate response type. */
-
-export interface MsgBeginRedelegateResponseAmino {
-  completion_time?: TimestampAmino;
-}
-export interface MsgBeginRedelegateResponseAminoType {
-  type: "cosmos-sdk/MsgBeginRedelegateResponse";
-  value: MsgBeginRedelegateResponseAmino;
-}
 /** MsgBeginRedelegateResponse defines the Msg/BeginRedelegate response type. */
 
 export interface MsgBeginRedelegateResponseSDKType {
@@ -256,24 +129,6 @@ export interface MsgUndelegate {
   validatorAddress: string;
   amount?: Coin;
 }
-export interface MsgUndelegateProtoType {
-  typeUrl: "/cosmos.staking.v1beta1.MsgUndelegate";
-  value: Uint8Array;
-}
-/**
- * MsgUndelegate defines a SDK message for performing an undelegation from a
- * delegate and a validator.
- */
-
-export interface MsgUndelegateAmino {
-  delegator_address: string;
-  validator_address: string;
-  amount?: CoinAmino;
-}
-export interface MsgUndelegateAminoType {
-  type: "cosmos-sdk/MsgUndelegate";
-  value: MsgUndelegateAmino;
-}
 /**
  * MsgUndelegate defines a SDK message for performing an undelegation from a
  * delegate and a validator.
@@ -288,19 +143,6 @@ export interface MsgUndelegateSDKType {
 
 export interface MsgUndelegateResponse {
   completionTime?: Timestamp;
-}
-export interface MsgUndelegateResponseProtoType {
-  typeUrl: "/cosmos.staking.v1beta1.MsgUndelegateResponse";
-  value: Uint8Array;
-}
-/** MsgUndelegateResponse defines the Msg/Undelegate response type. */
-
-export interface MsgUndelegateResponseAmino {
-  completion_time?: TimestampAmino;
-}
-export interface MsgUndelegateResponseAminoType {
-  type: "cosmos-sdk/MsgUndelegateResponse";
-  value: MsgUndelegateResponseAmino;
 }
 /** MsgUndelegateResponse defines the Msg/Undelegate response type. */
 
@@ -323,30 +165,6 @@ export interface MsgCancelUnbondingDelegation {
 
   creationHeight: Long;
 }
-export interface MsgCancelUnbondingDelegationProtoType {
-  typeUrl: "/cosmos.staking.v1beta1.MsgCancelUnbondingDelegation";
-  value: Uint8Array;
-}
-/**
- * MsgCancelUnbondingDelegation defines the SDK message for performing a cancel unbonding delegation for delegator
- * 
- * Since: cosmos-sdk 0.46
- */
-
-export interface MsgCancelUnbondingDelegationAmino {
-  delegator_address: string;
-  validator_address: string;
-  /** amount is always less than or equal to unbonding delegation entry balance */
-
-  amount?: CoinAmino;
-  /** creation_height is the height which the unbonding took place. */
-
-  creation_height: string;
-}
-export interface MsgCancelUnbondingDelegationAminoType {
-  type: "cosmos-sdk/MsgCancelUnbondingDelegation";
-  value: MsgCancelUnbondingDelegationAmino;
-}
 /**
  * MsgCancelUnbondingDelegation defines the SDK message for performing a cancel unbonding delegation for delegator
  * 
@@ -366,21 +184,6 @@ export interface MsgCancelUnbondingDelegationSDKType {
  */
 
 export interface MsgCancelUnbondingDelegationResponse {}
-export interface MsgCancelUnbondingDelegationResponseProtoType {
-  typeUrl: "/cosmos.staking.v1beta1.MsgCancelUnbondingDelegationResponse";
-  value: Uint8Array;
-}
-/**
- * MsgCancelUnbondingDelegationResponse
- * 
- * Since: cosmos-sdk 0.46
- */
-
-export interface MsgCancelUnbondingDelegationResponseAmino {}
-export interface MsgCancelUnbondingDelegationResponseAminoType {
-  type: "cosmos-sdk/MsgCancelUnbondingDelegationResponse";
-  value: MsgCancelUnbondingDelegationResponseAmino;
-}
 /**
  * MsgCancelUnbondingDelegationResponse
  * 
@@ -424,7 +227,7 @@ export const MsgCreateValidator = {
     }
 
     if (message.pubkey !== undefined) {
-      Any.encode((message.pubkey as Any), writer.uint32(50).fork()).ldelim();
+      Any.encode(message.pubkey, writer.uint32(50).fork()).ldelim();
     }
 
     if (message.value !== undefined) {
@@ -464,7 +267,7 @@ export const MsgCreateValidator = {
           break;
 
         case 6:
-          message.pubkey = (Cosmos_cryptoPubKey_InterfaceDecoder(reader) as Any);
+          message.pubkey = Any.decode(reader, reader.uint32());
           break;
 
         case 7:
@@ -514,36 +317,6 @@ export const MsgCreateValidator = {
     message.pubkey = object.pubkey !== undefined && object.pubkey !== null ? Any.fromPartial(object.pubkey) : undefined;
     message.value = object.value !== undefined && object.value !== null ? Coin.fromPartial(object.value) : undefined;
     return message;
-  },
-
-  fromAmino(object: MsgCreateValidatorAmino): MsgCreateValidator {
-    return {
-      description: object?.description ? Description.fromAmino(object.description) : undefined,
-      commission: object?.commission ? CommissionRates.fromAmino(object.commission) : undefined,
-      minSelfDelegation: object.min_self_delegation,
-      delegatorAddress: object.delegator_address,
-      validatorAddress: object.validator_address,
-      pubkey: encodeBech32Pubkey({
-        type: "tendermint/PubKeySecp256k1",
-        value: toBase64(object.pubkey.value)
-      }, "cosmos"),
-      value: object?.value ? Coin.fromAmino(object.value) : undefined
-    };
-  },
-
-  toAmino(message: MsgCreateValidator): MsgCreateValidatorAmino {
-    const obj: any = {};
-    obj.description = message.description ? Description.toAmino(message.description) : undefined;
-    obj.commission = message.commission ? CommissionRates.toAmino(message.commission) : undefined;
-    obj.min_self_delegation = message.minSelfDelegation;
-    obj.delegator_address = message.delegatorAddress;
-    obj.validator_address = message.validatorAddress;
-    obj.pubkey = message.pubkey ? {
-      typeUrl: "/cosmos.crypto.secp256k1.PubKey",
-      value: fromBase64(decodeBech32Pubkey(message.pubkey).value)
-    } : undefined;
-    obj.value = message.value ? Coin.toAmino(message.value) : undefined;
-    return obj;
   }
 
 };
@@ -587,15 +360,6 @@ export const MsgCreateValidatorResponse = {
   fromPartial(_: Partial<MsgCreateValidatorResponse>): MsgCreateValidatorResponse {
     const message = createBaseMsgCreateValidatorResponse();
     return message;
-  },
-
-  fromAmino(_: MsgCreateValidatorResponseAmino): MsgCreateValidatorResponse {
-    return {};
-  },
-
-  toAmino(_: MsgCreateValidatorResponse): MsgCreateValidatorResponseAmino {
-    const obj: any = {};
-    return obj;
   }
 
 };
@@ -689,24 +453,6 @@ export const MsgEditValidator = {
     message.commissionRate = object.commissionRate ?? "";
     message.minSelfDelegation = object.minSelfDelegation ?? "";
     return message;
-  },
-
-  fromAmino(object: MsgEditValidatorAmino): MsgEditValidator {
-    return {
-      description: object?.description ? Description.fromAmino(object.description) : undefined,
-      validatorAddress: object.validator_address,
-      commissionRate: object.commission_rate,
-      minSelfDelegation: object.min_self_delegation
-    };
-  },
-
-  toAmino(message: MsgEditValidator): MsgEditValidatorAmino {
-    const obj: any = {};
-    obj.description = message.description ? Description.toAmino(message.description) : undefined;
-    obj.validator_address = message.validatorAddress;
-    obj.commission_rate = message.commissionRate;
-    obj.min_self_delegation = message.minSelfDelegation;
-    return obj;
   }
 
 };
@@ -750,15 +496,6 @@ export const MsgEditValidatorResponse = {
   fromPartial(_: Partial<MsgEditValidatorResponse>): MsgEditValidatorResponse {
     const message = createBaseMsgEditValidatorResponse();
     return message;
-  },
-
-  fromAmino(_: MsgEditValidatorResponseAmino): MsgEditValidatorResponse {
-    return {};
-  },
-
-  toAmino(_: MsgEditValidatorResponse): MsgEditValidatorResponseAmino {
-    const obj: any = {};
-    return obj;
   }
 
 };
@@ -840,22 +577,6 @@ export const MsgDelegate = {
     message.validatorAddress = object.validatorAddress ?? "";
     message.amount = object.amount !== undefined && object.amount !== null ? Coin.fromPartial(object.amount) : undefined;
     return message;
-  },
-
-  fromAmino(object: MsgDelegateAmino): MsgDelegate {
-    return {
-      delegatorAddress: object.delegator_address,
-      validatorAddress: object.validator_address,
-      amount: object?.amount ? Coin.fromAmino(object.amount) : undefined
-    };
-  },
-
-  toAmino(message: MsgDelegate): MsgDelegateAmino {
-    const obj: any = {};
-    obj.delegator_address = message.delegatorAddress;
-    obj.validator_address = message.validatorAddress;
-    obj.amount = message.amount ? Coin.toAmino(message.amount) : undefined;
-    return obj;
   }
 
 };
@@ -899,15 +620,6 @@ export const MsgDelegateResponse = {
   fromPartial(_: Partial<MsgDelegateResponse>): MsgDelegateResponse {
     const message = createBaseMsgDelegateResponse();
     return message;
-  },
-
-  fromAmino(_: MsgDelegateResponseAmino): MsgDelegateResponse {
-    return {};
-  },
-
-  toAmino(_: MsgDelegateResponse): MsgDelegateResponseAmino {
-    const obj: any = {};
-    return obj;
   }
 
 };
@@ -1001,24 +713,6 @@ export const MsgBeginRedelegate = {
     message.validatorDstAddress = object.validatorDstAddress ?? "";
     message.amount = object.amount !== undefined && object.amount !== null ? Coin.fromPartial(object.amount) : undefined;
     return message;
-  },
-
-  fromAmino(object: MsgBeginRedelegateAmino): MsgBeginRedelegate {
-    return {
-      delegatorAddress: object.delegator_address,
-      validatorSrcAddress: object.validator_src_address,
-      validatorDstAddress: object.validator_dst_address,
-      amount: object?.amount ? Coin.fromAmino(object.amount) : undefined
-    };
-  },
-
-  toAmino(message: MsgBeginRedelegate): MsgBeginRedelegateAmino {
-    const obj: any = {};
-    obj.delegator_address = message.delegatorAddress;
-    obj.validator_src_address = message.validatorSrcAddress;
-    obj.validator_dst_address = message.validatorDstAddress;
-    obj.amount = message.amount ? Coin.toAmino(message.amount) : undefined;
-    return obj;
   }
 
 };
@@ -1076,18 +770,6 @@ export const MsgBeginRedelegateResponse = {
     const message = createBaseMsgBeginRedelegateResponse();
     message.completionTime = object.completionTime !== undefined && object.completionTime !== null ? Timestamp.fromPartial(object.completionTime) : undefined;
     return message;
-  },
-
-  fromAmino(object: MsgBeginRedelegateResponseAmino): MsgBeginRedelegateResponse {
-    return {
-      completionTime: object?.completion_time ? Timestamp.fromAmino(object.completion_time) : undefined
-    };
-  },
-
-  toAmino(message: MsgBeginRedelegateResponse): MsgBeginRedelegateResponseAmino {
-    const obj: any = {};
-    obj.completion_time = message.completionTime ? Timestamp.toAmino(message.completionTime) : undefined;
-    return obj;
   }
 
 };
@@ -1169,22 +851,6 @@ export const MsgUndelegate = {
     message.validatorAddress = object.validatorAddress ?? "";
     message.amount = object.amount !== undefined && object.amount !== null ? Coin.fromPartial(object.amount) : undefined;
     return message;
-  },
-
-  fromAmino(object: MsgUndelegateAmino): MsgUndelegate {
-    return {
-      delegatorAddress: object.delegator_address,
-      validatorAddress: object.validator_address,
-      amount: object?.amount ? Coin.fromAmino(object.amount) : undefined
-    };
-  },
-
-  toAmino(message: MsgUndelegate): MsgUndelegateAmino {
-    const obj: any = {};
-    obj.delegator_address = message.delegatorAddress;
-    obj.validator_address = message.validatorAddress;
-    obj.amount = message.amount ? Coin.toAmino(message.amount) : undefined;
-    return obj;
   }
 
 };
@@ -1242,18 +908,6 @@ export const MsgUndelegateResponse = {
     const message = createBaseMsgUndelegateResponse();
     message.completionTime = object.completionTime !== undefined && object.completionTime !== null ? Timestamp.fromPartial(object.completionTime) : undefined;
     return message;
-  },
-
-  fromAmino(object: MsgUndelegateResponseAmino): MsgUndelegateResponse {
-    return {
-      completionTime: object?.completion_time ? Timestamp.fromAmino(object.completion_time) : undefined
-    };
-  },
-
-  toAmino(message: MsgUndelegateResponse): MsgUndelegateResponseAmino {
-    const obj: any = {};
-    obj.completion_time = message.completionTime ? Timestamp.toAmino(message.completionTime) : undefined;
-    return obj;
   }
 
 };
@@ -1347,24 +1001,6 @@ export const MsgCancelUnbondingDelegation = {
     message.amount = object.amount !== undefined && object.amount !== null ? Coin.fromPartial(object.amount) : undefined;
     message.creationHeight = object.creationHeight !== undefined && object.creationHeight !== null ? Long.fromValue(object.creationHeight) : Long.ZERO;
     return message;
-  },
-
-  fromAmino(object: MsgCancelUnbondingDelegationAmino): MsgCancelUnbondingDelegation {
-    return {
-      delegatorAddress: object.delegator_address,
-      validatorAddress: object.validator_address,
-      amount: object?.amount ? Coin.fromAmino(object.amount) : undefined,
-      creationHeight: Long.fromString(object.creation_height)
-    };
-  },
-
-  toAmino(message: MsgCancelUnbondingDelegation): MsgCancelUnbondingDelegationAmino {
-    const obj: any = {};
-    obj.delegator_address = message.delegatorAddress;
-    obj.validator_address = message.validatorAddress;
-    obj.amount = message.amount ? Coin.toAmino(message.amount) : undefined;
-    obj.creation_height = message.creationHeight ? message.creationHeight.toString() : undefined;
-    return obj;
   }
 
 };
@@ -1408,15 +1044,6 @@ export const MsgCancelUnbondingDelegationResponse = {
   fromPartial(_: Partial<MsgCancelUnbondingDelegationResponse>): MsgCancelUnbondingDelegationResponse {
     const message = createBaseMsgCancelUnbondingDelegationResponse();
     return message;
-  },
-
-  fromAmino(_: MsgCancelUnbondingDelegationResponseAmino): MsgCancelUnbondingDelegationResponse {
-    return {};
-  },
-
-  toAmino(_: MsgCancelUnbondingDelegationResponse): MsgCancelUnbondingDelegationResponseAmino {
-    const obj: any = {};
-    return obj;
   }
 
 };
@@ -1428,16 +1055,4 @@ export const Cosmos_cryptoPubKey_InterfaceDecoder = (input: _m0.Reader | Uint8Ar
     default:
       return data;
   }
-};
-export const Cosmos_cryptoPubKey_FromAmino = (content: AnyAmino) => {
-  return encodeBech32Pubkey({
-    type: "tendermint/PubKeySecp256k1",
-    value: toBase64(content.value)
-  }, "cosmos");
-};
-export const Cosmos_cryptoPubKey_ToAmino = (content: Any) => {
-  return {
-    typeUrl: "/cosmos.crypto.secp256k1.PubKey",
-    value: fromBase64(decodeBech32Pubkey(content).value)
-  };
 };
