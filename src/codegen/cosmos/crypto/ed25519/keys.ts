@@ -11,6 +11,10 @@ import { isSet, bytesFromBase64, base64FromBytes } from "../../../helpers";
 export interface PubKey {
   key: Uint8Array;
 }
+export interface PubKeyProtoType {
+  typeUrl: "/cosmos.crypto.ed25519.PubKey";
+  value: Uint8Array;
+}
 /**
  * PubKey is an ed25519 public key for handling Tendermint keys in SDK.
  * It's needed for Any serialization and SDK compatibility.
@@ -21,6 +25,10 @@ export interface PubKey {
 
 export interface PubKeyAmino {
   key: Uint8Array;
+}
+export interface PubKeyAminoType {
+  type: "cosmos-sdk/PubKey";
+  value: PubKeyAmino;
 }
 /**
  * PubKey is an ed25519 public key for handling Tendermint keys in SDK.
@@ -41,6 +49,10 @@ export interface PubKeySDKType {
 export interface PrivKey {
   key: Uint8Array;
 }
+export interface PrivKeyProtoType {
+  typeUrl: "/cosmos.crypto.ed25519.PrivKey";
+  value: Uint8Array;
+}
 /**
  * Deprecated: PrivKey defines a ed25519 private key.
  * NOTE: ed25519 keys must not be used in SDK apps except in a tendermint validator context.
@@ -48,6 +60,10 @@ export interface PrivKey {
 
 export interface PrivKeyAmino {
   key: Uint8Array;
+}
+export interface PrivKeyAminoType {
+  type: "cosmos-sdk/PrivKey";
+  value: PrivKeyAmino;
 }
 /**
  * Deprecated: PrivKey defines a ed25519 private key.

@@ -9,6 +9,10 @@ import { bytesFromBase64, base64FromBytes, isSet } from "../../../../helpers";
 export interface MultiSignature {
   signatures: Uint8Array[];
 }
+export interface MultiSignatureProtoType {
+  typeUrl: "/cosmos.crypto.multisig.v1beta1.MultiSignature";
+  value: Uint8Array;
+}
 /**
  * MultiSignature wraps the signatures from a multisig.LegacyAminoPubKey.
  * See cosmos.tx.v1betata1.ModeInfo.Multi for how to specify which signers
@@ -17,6 +21,10 @@ export interface MultiSignature {
 
 export interface MultiSignatureAmino {
   signatures: Uint8Array[];
+}
+export interface MultiSignatureAminoType {
+  type: "cosmos-sdk/MultiSignature";
+  value: MultiSignatureAmino;
 }
 /**
  * MultiSignature wraps the signatures from a multisig.LegacyAminoPubKey.
@@ -38,6 +46,10 @@ export interface CompactBitArray {
   extraBitsStored: number;
   elems: Uint8Array;
 }
+export interface CompactBitArrayProtoType {
+  typeUrl: "/cosmos.crypto.multisig.v1beta1.CompactBitArray";
+  value: Uint8Array;
+}
 /**
  * CompactBitArray is an implementation of a space efficient bit array.
  * This is used to ensure that the encoded data takes up a minimal amount of
@@ -48,6 +60,10 @@ export interface CompactBitArray {
 export interface CompactBitArrayAmino {
   extra_bits_stored: number;
   elems: Uint8Array;
+}
+export interface CompactBitArrayAminoType {
+  type: "cosmos-sdk/CompactBitArray";
+  value: CompactBitArrayAmino;
 }
 /**
  * CompactBitArray is an implementation of a space efficient bit array.
