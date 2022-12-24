@@ -7,21 +7,6 @@ export interface MsgVerifyInvariant {
   invariantModuleName: string;
   invariantRoute: string;
 }
-export interface MsgVerifyInvariantProtoType {
-  typeUrl: "/cosmos.crisis.v1beta1.MsgVerifyInvariant";
-  value: Uint8Array;
-}
-/** MsgVerifyInvariant represents a message to verify a particular invariance. */
-
-export interface MsgVerifyInvariantAmino {
-  sender: string;
-  invariant_module_name: string;
-  invariant_route: string;
-}
-export interface MsgVerifyInvariantAminoType {
-  type: "cosmos-sdk/MsgVerifyInvariant";
-  value: MsgVerifyInvariantAmino;
-}
 /** MsgVerifyInvariant represents a message to verify a particular invariance. */
 
 export interface MsgVerifyInvariantSDKType {
@@ -32,17 +17,6 @@ export interface MsgVerifyInvariantSDKType {
 /** MsgVerifyInvariantResponse defines the Msg/VerifyInvariant response type. */
 
 export interface MsgVerifyInvariantResponse {}
-export interface MsgVerifyInvariantResponseProtoType {
-  typeUrl: "/cosmos.crisis.v1beta1.MsgVerifyInvariantResponse";
-  value: Uint8Array;
-}
-/** MsgVerifyInvariantResponse defines the Msg/VerifyInvariant response type. */
-
-export interface MsgVerifyInvariantResponseAmino {}
-export interface MsgVerifyInvariantResponseAminoType {
-  type: "cosmos-sdk/MsgVerifyInvariantResponse";
-  value: MsgVerifyInvariantResponseAmino;
-}
 /** MsgVerifyInvariantResponse defines the Msg/VerifyInvariant response type. */
 
 export interface MsgVerifyInvariantResponseSDKType {}
@@ -124,22 +98,6 @@ export const MsgVerifyInvariant = {
     message.invariantModuleName = object.invariantModuleName ?? "";
     message.invariantRoute = object.invariantRoute ?? "";
     return message;
-  },
-
-  fromAmino(object: MsgVerifyInvariantAmino): MsgVerifyInvariant {
-    return {
-      sender: object.sender,
-      invariantModuleName: object.invariant_module_name,
-      invariantRoute: object.invariant_route
-    };
-  },
-
-  toAmino(message: MsgVerifyInvariant): MsgVerifyInvariantAmino {
-    const obj: any = {};
-    obj.sender = message.sender;
-    obj.invariant_module_name = message.invariantModuleName;
-    obj.invariant_route = message.invariantRoute;
-    return obj;
   }
 
 };
@@ -183,15 +141,6 @@ export const MsgVerifyInvariantResponse = {
   fromPartial(_: Partial<MsgVerifyInvariantResponse>): MsgVerifyInvariantResponse {
     const message = createBaseMsgVerifyInvariantResponse();
     return message;
-  },
-
-  fromAmino(_: MsgVerifyInvariantResponseAmino): MsgVerifyInvariantResponse {
-    return {};
-  },
-
-  toAmino(_: MsgVerifyInvariantResponse): MsgVerifyInvariantResponseAmino {
-    const obj: any = {};
-    return obj;
   }
 
 };
