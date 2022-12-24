@@ -10,6 +10,10 @@ export interface GenesisState {
 
   params?: Params;
 }
+export interface GenesisStateProtoType {
+  typeUrl: "/cosmos.mint.v1beta1.GenesisState";
+  value: Uint8Array;
+}
 /** GenesisState defines the mint module's genesis state. */
 
 export interface GenesisStateAmino {
@@ -18,6 +22,10 @@ export interface GenesisStateAmino {
   /** params defines all the paramaters of the module. */
 
   params?: ParamsAmino;
+}
+export interface GenesisStateAminoType {
+  type: "cosmos-sdk/GenesisState";
+  value: GenesisStateAmino;
 }
 /** GenesisState defines the mint module's genesis state. */
 
