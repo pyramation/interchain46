@@ -1,4 +1,4 @@
-import { Coin, CoinAmino, CoinSDKType } from "../../base/v1beta1/coin";
+import { Coin, CoinSDKType } from "../../base/v1beta1/coin";
 import * as _m0 from "protobufjs/minimal";
 import { isSet } from "../../../helpers";
 /** GenesisState defines the crisis module's genesis state. */
@@ -9,23 +9,6 @@ export interface GenesisState {
    * module.
    */
   constantFee?: Coin;
-}
-export interface GenesisStateProtoType {
-  typeUrl: "/cosmos.crisis.v1beta1.GenesisState";
-  value: Uint8Array;
-}
-/** GenesisState defines the crisis module's genesis state. */
-
-export interface GenesisStateAmino {
-  /**
-   * constant_fee is the fee used to verify the invariant in the crisis
-   * module.
-   */
-  constant_fee?: CoinAmino;
-}
-export interface GenesisStateAminoType {
-  type: "cosmos-sdk/GenesisState";
-  value: GenesisStateAmino;
 }
 /** GenesisState defines the crisis module's genesis state. */
 
@@ -86,18 +69,6 @@ export const GenesisState = {
     const message = createBaseGenesisState();
     message.constantFee = object.constantFee !== undefined && object.constantFee !== null ? Coin.fromPartial(object.constantFee) : undefined;
     return message;
-  },
-
-  fromAmino(object: GenesisStateAmino): GenesisState {
-    return {
-      constantFee: object?.constant_fee ? Coin.fromAmino(object.constant_fee) : undefined
-    };
-  },
-
-  toAmino(message: GenesisState): GenesisStateAmino {
-    const obj: any = {};
-    obj.constant_fee = message.constantFee ? Coin.toAmino(message.constantFee) : undefined;
-    return obj;
   }
 
 };
