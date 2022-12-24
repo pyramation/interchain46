@@ -46,6 +46,10 @@ export interface Plan {
 
   upgradedClientState?: Any;
 }
+export interface PlanProtoType {
+  typeUrl: "/cosmos.upgrade.v1beta1.Plan";
+  value: Uint8Array;
+}
 /** Plan specifies information about a planned upgrade and when it should occur. */
 
 export interface PlanAmino {
@@ -90,6 +94,10 @@ export interface PlanAmino {
 
   upgraded_client_state?: AnyAmino;
 }
+export interface PlanAminoType {
+  type: "cosmos-sdk/Plan";
+  value: PlanAmino;
+}
 /** Plan specifies information about a planned upgrade and when it should occur. */
 
 export interface PlanSDKType {
@@ -118,6 +126,10 @@ export interface SoftwareUpgradeProposal {
   description: string;
   plan?: Plan;
 }
+export interface SoftwareUpgradeProposalProtoType {
+  typeUrl: "/cosmos.upgrade.v1beta1.SoftwareUpgradeProposal";
+  value: Uint8Array;
+}
 /**
  * SoftwareUpgradeProposal is a gov Content type for initiating a software
  * upgrade.
@@ -131,6 +143,10 @@ export interface SoftwareUpgradeProposalAmino {
   title: string;
   description: string;
   plan?: PlanAmino;
+}
+export interface SoftwareUpgradeProposalAminoType {
+  type: "cosmos-sdk/SoftwareUpgradeProposal";
+  value: SoftwareUpgradeProposalAmino;
 }
 /**
  * SoftwareUpgradeProposal is a gov Content type for initiating a software
@@ -161,6 +177,10 @@ export interface CancelSoftwareUpgradeProposal {
   title: string;
   description: string;
 }
+export interface CancelSoftwareUpgradeProposalProtoType {
+  typeUrl: "/cosmos.upgrade.v1beta1.CancelSoftwareUpgradeProposal";
+  value: Uint8Array;
+}
 /**
  * CancelSoftwareUpgradeProposal is a gov Content type for cancelling a software
  * upgrade.
@@ -173,6 +193,10 @@ export interface CancelSoftwareUpgradeProposal {
 export interface CancelSoftwareUpgradeProposalAmino {
   title: string;
   description: string;
+}
+export interface CancelSoftwareUpgradeProposalAminoType {
+  type: "cosmos-sdk/CancelSoftwareUpgradeProposal";
+  value: CancelSoftwareUpgradeProposalAmino;
 }
 /**
  * CancelSoftwareUpgradeProposal is a gov Content type for cancelling a software
@@ -201,6 +225,10 @@ export interface ModuleVersion {
 
   version: Long;
 }
+export interface ModuleVersionProtoType {
+  typeUrl: "/cosmos.upgrade.v1beta1.ModuleVersion";
+  value: Uint8Array;
+}
 /**
  * ModuleVersion specifies a module and its consensus version.
  * 
@@ -213,6 +241,10 @@ export interface ModuleVersionAmino {
   /** consensus version of the app module */
 
   version: string;
+}
+export interface ModuleVersionAminoType {
+  type: "cosmos-sdk/ModuleVersion";
+  value: ModuleVersionAmino;
 }
 /**
  * ModuleVersion specifies a module and its consensus version.
