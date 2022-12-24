@@ -9,23 +9,6 @@ export interface PubKey {
    */
   key: Uint8Array;
 }
-export interface PubKeyProtoType {
-  typeUrl: "/cosmos.crypto.secp256r1.PubKey";
-  value: Uint8Array;
-}
-/** PubKey defines a secp256r1 ECDSA public key. */
-
-export interface PubKeyAmino {
-  /**
-   * Point on secp256r1 curve in a compressed representation as specified in section
-   * 4.3.6 of ANSI X9.62: https://webstore.ansi.org/standards/ascx9/ansix9621998
-   */
-  key: Uint8Array;
-}
-export interface PubKeyAminoType {
-  type: "cosmos-sdk/PubKey";
-  value: PubKeyAmino;
-}
 /** PubKey defines a secp256r1 ECDSA public key. */
 
 export interface PubKeySDKType {
@@ -36,20 +19,6 @@ export interface PubKeySDKType {
 export interface PrivKey {
   /** secret number serialized using big-endian encoding */
   secret: Uint8Array;
-}
-export interface PrivKeyProtoType {
-  typeUrl: "/cosmos.crypto.secp256r1.PrivKey";
-  value: Uint8Array;
-}
-/** PrivKey defines a secp256r1 ECDSA private key. */
-
-export interface PrivKeyAmino {
-  /** secret number serialized using big-endian encoding */
-  secret: Uint8Array;
-}
-export interface PrivKeyAminoType {
-  type: "cosmos-sdk/PrivKey";
-  value: PrivKeyAmino;
 }
 /** PrivKey defines a secp256r1 ECDSA private key. */
 
@@ -110,18 +79,6 @@ export const PubKey = {
     const message = createBasePubKey();
     message.key = object.key ?? new Uint8Array();
     return message;
-  },
-
-  fromAmino(object: PubKeyAmino): PubKey {
-    return {
-      key: object.key
-    };
-  },
-
-  toAmino(message: PubKey): PubKeyAmino {
-    const obj: any = {};
-    obj.key = message.key;
-    return obj;
   }
 
 };
@@ -179,18 +136,6 @@ export const PrivKey = {
     const message = createBasePrivKey();
     message.secret = object.secret ?? new Uint8Array();
     return message;
-  },
-
-  fromAmino(object: PrivKeyAmino): PrivKey {
-    return {
-      secret: object.secret
-    };
-  },
-
-  toAmino(message: PrivKey): PrivKeyAmino {
-    const obj: any = {};
-    obj.secret = message.secret;
-    return obj;
   }
 
 };
