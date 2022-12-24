@@ -1,7 +1,7 @@
-import { Any, AnyAmino, AnySDKType } from "../../../google/protobuf/any";
+import { Any, AnySDKType } from "../../../google/protobuf/any";
 import { BasicAllowance, PeriodicAllowance, AllowedMsgAllowance } from "./feegrant";
 import * as _m0 from "protobufjs/minimal";
-import { isSet, DeepPartial } from "../../../helpers";
+import { isSet } from "../../../helpers";
 /**
  * MsgGrantAllowance adds permission for Grantee to spend up to Allowance
  * of fees from the account of Granter.
@@ -17,29 +17,6 @@ export interface MsgGrantAllowance {
 
   allowance?: (BasicAllowance & PeriodicAllowance & AllowedMsgAllowance & Any) | undefined;
 }
-export interface MsgGrantAllowanceProtoType {
-  typeUrl: "/cosmos.feegrant.v1beta1.MsgGrantAllowance";
-  value: Uint8Array;
-}
-/**
- * MsgGrantAllowance adds permission for Grantee to spend up to Allowance
- * of fees from the account of Granter.
- */
-
-export interface MsgGrantAllowanceAmino {
-  /** granter is the address of the user granting an allowance of their funds. */
-  granter: string;
-  /** grantee is the address of the user being granted an allowance of another user's funds. */
-
-  grantee: string;
-  /** allowance can be any of basic, periodic, allowed fee allowance. */
-
-  allowance?: AnyAmino;
-}
-export interface MsgGrantAllowanceAminoType {
-  type: "cosmos-sdk/MsgGrantAllowance";
-  value: MsgGrantAllowanceAmino;
-}
 /**
  * MsgGrantAllowance adds permission for Grantee to spend up to Allowance
  * of fees from the account of Granter.
@@ -53,17 +30,6 @@ export interface MsgGrantAllowanceSDKType {
 /** MsgGrantAllowanceResponse defines the Msg/GrantAllowanceResponse response type. */
 
 export interface MsgGrantAllowanceResponse {}
-export interface MsgGrantAllowanceResponseProtoType {
-  typeUrl: "/cosmos.feegrant.v1beta1.MsgGrantAllowanceResponse";
-  value: Uint8Array;
-}
-/** MsgGrantAllowanceResponse defines the Msg/GrantAllowanceResponse response type. */
-
-export interface MsgGrantAllowanceResponseAmino {}
-export interface MsgGrantAllowanceResponseAminoType {
-  type: "cosmos-sdk/MsgGrantAllowanceResponse";
-  value: MsgGrantAllowanceResponseAmino;
-}
 /** MsgGrantAllowanceResponse defines the Msg/GrantAllowanceResponse response type. */
 
 export interface MsgGrantAllowanceResponseSDKType {}
@@ -76,23 +42,6 @@ export interface MsgRevokeAllowance {
 
   grantee: string;
 }
-export interface MsgRevokeAllowanceProtoType {
-  typeUrl: "/cosmos.feegrant.v1beta1.MsgRevokeAllowance";
-  value: Uint8Array;
-}
-/** MsgRevokeAllowance removes any existing Allowance from Granter to Grantee. */
-
-export interface MsgRevokeAllowanceAmino {
-  /** granter is the address of the user granting an allowance of their funds. */
-  granter: string;
-  /** grantee is the address of the user being granted an allowance of another user's funds. */
-
-  grantee: string;
-}
-export interface MsgRevokeAllowanceAminoType {
-  type: "cosmos-sdk/MsgRevokeAllowance";
-  value: MsgRevokeAllowanceAmino;
-}
 /** MsgRevokeAllowance removes any existing Allowance from Granter to Grantee. */
 
 export interface MsgRevokeAllowanceSDKType {
@@ -102,17 +51,6 @@ export interface MsgRevokeAllowanceSDKType {
 /** MsgRevokeAllowanceResponse defines the Msg/RevokeAllowanceResponse response type. */
 
 export interface MsgRevokeAllowanceResponse {}
-export interface MsgRevokeAllowanceResponseProtoType {
-  typeUrl: "/cosmos.feegrant.v1beta1.MsgRevokeAllowanceResponse";
-  value: Uint8Array;
-}
-/** MsgRevokeAllowanceResponse defines the Msg/RevokeAllowanceResponse response type. */
-
-export interface MsgRevokeAllowanceResponseAmino {}
-export interface MsgRevokeAllowanceResponseAminoType {
-  type: "cosmos-sdk/MsgRevokeAllowanceResponse";
-  value: MsgRevokeAllowanceResponseAmino;
-}
 /** MsgRevokeAllowanceResponse defines the Msg/RevokeAllowanceResponse response type. */
 
 export interface MsgRevokeAllowanceResponseSDKType {}
@@ -136,7 +74,7 @@ export const MsgGrantAllowance = {
     }
 
     if (message.allowance !== undefined) {
-      Any.encode((message.allowance as Any), writer.uint32(26).fork()).ldelim();
+      Any.encode(message.allowance, writer.uint32(26).fork()).ldelim();
     }
 
     return writer;
@@ -160,7 +98,7 @@ export const MsgGrantAllowance = {
           break;
 
         case 3:
-          message.allowance = (FeeAllowanceI_InterfaceDecoder(reader) as Any);
+          message.allowance = Any.decode(reader, reader.uint32());
           break;
 
         default:
@@ -194,22 +132,6 @@ export const MsgGrantAllowance = {
     message.grantee = object.grantee ?? "";
     message.allowance = object.allowance !== undefined && object.allowance !== null ? Any.fromPartial(object.allowance) : undefined;
     return message;
-  },
-
-  fromAmino(object: MsgGrantAllowanceAmino): MsgGrantAllowance {
-    return {
-      granter: object.granter,
-      grantee: object.grantee,
-      allowance: object?.allowance ? FeeAllowanceI_FromAmino(object.allowance) : undefined
-    };
-  },
-
-  toAmino(message: MsgGrantAllowance): MsgGrantAllowanceAmino {
-    const obj: any = {};
-    obj.granter = message.granter;
-    obj.grantee = message.grantee;
-    obj.allowance = message.allowance ? FeeAllowanceI_ToAmino((message.allowance as Any)) : undefined;
-    return obj;
   }
 
 };
@@ -253,15 +175,6 @@ export const MsgGrantAllowanceResponse = {
   fromPartial(_: Partial<MsgGrantAllowanceResponse>): MsgGrantAllowanceResponse {
     const message = createBaseMsgGrantAllowanceResponse();
     return message;
-  },
-
-  fromAmino(_: MsgGrantAllowanceResponseAmino): MsgGrantAllowanceResponse {
-    return {};
-  },
-
-  toAmino(_: MsgGrantAllowanceResponse): MsgGrantAllowanceResponseAmino {
-    const obj: any = {};
-    return obj;
   }
 
 };
@@ -331,20 +244,6 @@ export const MsgRevokeAllowance = {
     message.granter = object.granter ?? "";
     message.grantee = object.grantee ?? "";
     return message;
-  },
-
-  fromAmino(object: MsgRevokeAllowanceAmino): MsgRevokeAllowance {
-    return {
-      granter: object.granter,
-      grantee: object.grantee
-    };
-  },
-
-  toAmino(message: MsgRevokeAllowance): MsgRevokeAllowanceAmino {
-    const obj: any = {};
-    obj.granter = message.granter;
-    obj.grantee = message.grantee;
-    return obj;
   }
 
 };
@@ -388,15 +287,6 @@ export const MsgRevokeAllowanceResponse = {
   fromPartial(_: Partial<MsgRevokeAllowanceResponse>): MsgRevokeAllowanceResponse {
     const message = createBaseMsgRevokeAllowanceResponse();
     return message;
-  },
-
-  fromAmino(_: MsgRevokeAllowanceResponseAmino): MsgRevokeAllowanceResponse {
-    return {};
-  },
-
-  toAmino(_: MsgRevokeAllowanceResponse): MsgRevokeAllowanceResponseAmino {
-    const obj: any = {};
-    return obj;
   }
 
 };
@@ -416,53 +306,5 @@ export const FeeAllowanceI_InterfaceDecoder = (input: _m0.Reader | Uint8Array): 
 
     default:
       return data;
-  }
-};
-export const FeeAllowanceI_FromAmino = (content: AnyAmino) => {
-  switch (content.type) {
-    case "cosmos-sdk/BasicAllowance":
-      return Any.fromPartial({
-        typeUrl: "/cosmos.feegrant.v1beta1.BasicAllowance",
-        value: BasicAllowance.encode(BasicAllowance.fromPartial((content.value as DeepPartial<BasicAllowance>))).finish()
-      });
-
-    case "cosmos-sdk/PeriodicAllowance":
-      return Any.fromPartial({
-        typeUrl: "/cosmos.feegrant.v1beta1.PeriodicAllowance",
-        value: PeriodicAllowance.encode(PeriodicAllowance.fromPartial((content.value as DeepPartial<PeriodicAllowance>))).finish()
-      });
-
-    case "cosmos-sdk/AllowedMsgAllowance":
-      return Any.fromPartial({
-        typeUrl: "/cosmos.feegrant.v1beta1.AllowedMsgAllowance",
-        value: AllowedMsgAllowance.encode(AllowedMsgAllowance.fromPartial((content.value as DeepPartial<AllowedMsgAllowance>))).finish()
-      });
-
-    default:
-      return Any.fromAmino(content);
-  }
-};
-export const FeeAllowanceI_ToAmino = (content: Any) => {
-  switch (content.typeUrl) {
-    case "/cosmos.feegrant.v1beta1.BasicAllowance":
-      return {
-        type: "cosmos-sdk/BasicAllowance",
-        value: BasicAllowance.toAmino(BasicAllowance.decode(content.value))
-      };
-
-    case "/cosmos.feegrant.v1beta1.PeriodicAllowance":
-      return {
-        type: "cosmos-sdk/PeriodicAllowance",
-        value: PeriodicAllowance.toAmino(PeriodicAllowance.decode(content.value))
-      };
-
-    case "/cosmos.feegrant.v1beta1.AllowedMsgAllowance":
-      return {
-        type: "cosmos-sdk/AllowedMsgAllowance",
-        value: AllowedMsgAllowance.toAmino(AllowedMsgAllowance.decode(content.value))
-      };
-
-    default:
-      return Any.toAmino(content);
   }
 };
