@@ -8,6 +8,22 @@ import * as _m0 from "protobufjs/minimal";
 export interface Capability {
   index: Long;
 }
+export interface CapabilityProtoType {
+  typeUrl: "/cosmos.capability.v1beta1.Capability";
+  value: Uint8Array;
+}
+/**
+ * Capability defines an implementation of an object capability. The index
+ * provided to a Capability must be globally unique.
+ */
+
+export interface CapabilityAmino {
+  index: string;
+}
+export interface CapabilityAminoType {
+  type: "cosmos-sdk/Capability";
+  value: CapabilityAmino;
+}
 /**
  * Capability defines an implementation of an object capability. The index
  * provided to a Capability must be globally unique.
@@ -25,6 +41,23 @@ export interface Owner {
   module: string;
   name: string;
 }
+export interface OwnerProtoType {
+  typeUrl: "/cosmos.capability.v1beta1.Owner";
+  value: Uint8Array;
+}
+/**
+ * Owner defines a single capability owner. An owner is defined by the name of
+ * capability and the module name.
+ */
+
+export interface OwnerAmino {
+  module: string;
+  name: string;
+}
+export interface OwnerAminoType {
+  type: "cosmos-sdk/Owner";
+  value: OwnerAmino;
+}
 /**
  * Owner defines a single capability owner. An owner is defined by the name of
  * capability and the module name.
@@ -41,6 +74,22 @@ export interface OwnerSDKType {
 
 export interface CapabilityOwners {
   owners: Owner[];
+}
+export interface CapabilityOwnersProtoType {
+  typeUrl: "/cosmos.capability.v1beta1.CapabilityOwners";
+  value: Uint8Array;
+}
+/**
+ * CapabilityOwners defines a set of owners of a single Capability. The set of
+ * owners must be unique.
+ */
+
+export interface CapabilityOwnersAmino {
+  owners: OwnerAmino[];
+}
+export interface CapabilityOwnersAminoType {
+  type: "cosmos-sdk/CapabilityOwners";
+  value: CapabilityOwnersAmino;
 }
 /**
  * CapabilityOwners defines a set of owners of a single Capability. The set of
@@ -104,6 +153,18 @@ export const Capability = {
     const message = createBaseCapability();
     message.index = object.index !== undefined && object.index !== null ? Long.fromValue(object.index) : Long.UZERO;
     return message;
+  },
+
+  fromAmino(object: CapabilityAmino): Capability {
+    return {
+      index: Long.fromString(object.index)
+    };
+  },
+
+  toAmino(message: Capability): CapabilityAmino {
+    const obj: any = {};
+    obj.index = message.index ? message.index.toString() : undefined;
+    return obj;
   }
 
 };
@@ -173,6 +234,20 @@ export const Owner = {
     message.module = object.module ?? "";
     message.name = object.name ?? "";
     return message;
+  },
+
+  fromAmino(object: OwnerAmino): Owner {
+    return {
+      module: object.module,
+      name: object.name
+    };
+  },
+
+  toAmino(message: Owner): OwnerAmino {
+    const obj: any = {};
+    obj.module = message.module;
+    obj.name = message.name;
+    return obj;
   }
 
 };
@@ -236,6 +311,24 @@ export const CapabilityOwners = {
     const message = createBaseCapabilityOwners();
     message.owners = object.owners?.map(e => Owner.fromPartial(e)) || [];
     return message;
+  },
+
+  fromAmino(object: CapabilityOwnersAmino): CapabilityOwners {
+    return {
+      owners: Array.isArray(object?.owners) ? object.owners.map((e: any) => Owner.fromAmino(e)) : []
+    };
+  },
+
+  toAmino(message: CapabilityOwners): CapabilityOwnersAmino {
+    const obj: any = {};
+
+    if (message.owners) {
+      obj.owners = message.owners.map(e => e ? Owner.toAmino(e) : undefined);
+    } else {
+      obj.owners = [];
+    }
+
+    return obj;
   }
 
 };
