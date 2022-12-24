@@ -1,5 +1,5 @@
-import { Any, AnySDKType } from "../../../../google/protobuf/any";
-import { BIP44Params, BIP44ParamsSDKType } from "../../hd/v1/hd";
+import { Any, AnyAmino, AnySDKType } from "../../../../google/protobuf/any";
+import { BIP44Params, BIP44ParamsAmino, BIP44ParamsSDKType } from "../../hd/v1/hd";
 import * as _m0 from "protobufjs/minimal";
 import { isSet } from "../../../../helpers";
 /** Record is used for representing a key in the keyring. */
@@ -23,6 +23,35 @@ export interface Record {
 
   offline?: Record_Offline;
 }
+export interface RecordProtoType {
+  typeUrl: "/cosmos.crypto.keyring.v1.Record";
+  value: Uint8Array;
+}
+/** Record is used for representing a key in the keyring. */
+
+export interface RecordAmino {
+  /** name represents a name of Record */
+  name: string;
+  /** pub_key represents a public key in any format */
+
+  pub_key?: AnyAmino;
+  /** local stores the private key locally. */
+
+  local?: Record_LocalAmino;
+  /** ledger stores the information about a Ledger key. */
+
+  ledger?: Record_LedgerAmino;
+  /** Multi does not store any other information. */
+
+  multi?: Record_MultiAmino;
+  /** Offline does not store any other information. */
+
+  offline?: Record_OfflineAmino;
+}
+export interface RecordAminoType {
+  type: "cosmos-sdk/Record";
+  value: RecordAmino;
+}
 /** Record is used for representing a key in the keyring. */
 
 export interface RecordSDKType {
@@ -41,6 +70,22 @@ export interface RecordSDKType {
 export interface Record_Local {
   privKey?: Any;
 }
+export interface Record_LocalProtoType {
+  typeUrl: "/cosmos.crypto.keyring.v1.Local";
+  value: Uint8Array;
+}
+/**
+ * Item is a keyring item stored in a keyring backend.
+ * Local item
+ */
+
+export interface Record_LocalAmino {
+  priv_key?: AnyAmino;
+}
+export interface Record_LocalAminoType {
+  type: "cosmos-sdk/Local";
+  value: Record_LocalAmino;
+}
 /**
  * Item is a keyring item stored in a keyring backend.
  * Local item
@@ -54,6 +99,19 @@ export interface Record_LocalSDKType {
 export interface Record_Ledger {
   path?: BIP44Params;
 }
+export interface Record_LedgerProtoType {
+  typeUrl: "/cosmos.crypto.keyring.v1.Ledger";
+  value: Uint8Array;
+}
+/** Ledger item */
+
+export interface Record_LedgerAmino {
+  path?: BIP44ParamsAmino;
+}
+export interface Record_LedgerAminoType {
+  type: "cosmos-sdk/Ledger";
+  value: Record_LedgerAmino;
+}
 /** Ledger item */
 
 export interface Record_LedgerSDKType {
@@ -62,12 +120,34 @@ export interface Record_LedgerSDKType {
 /** Multi item */
 
 export interface Record_Multi {}
+export interface Record_MultiProtoType {
+  typeUrl: "/cosmos.crypto.keyring.v1.Multi";
+  value: Uint8Array;
+}
+/** Multi item */
+
+export interface Record_MultiAmino {}
+export interface Record_MultiAminoType {
+  type: "cosmos-sdk/Multi";
+  value: Record_MultiAmino;
+}
 /** Multi item */
 
 export interface Record_MultiSDKType {}
 /** Offline item */
 
 export interface Record_Offline {}
+export interface Record_OfflineProtoType {
+  typeUrl: "/cosmos.crypto.keyring.v1.Offline";
+  value: Uint8Array;
+}
+/** Offline item */
+
+export interface Record_OfflineAmino {}
+export interface Record_OfflineAminoType {
+  type: "cosmos-sdk/Offline";
+  value: Record_OfflineAmino;
+}
 /** Offline item */
 
 export interface Record_OfflineSDKType {}
@@ -185,6 +265,28 @@ export const Record = {
     message.multi = object.multi !== undefined && object.multi !== null ? Record_Multi.fromPartial(object.multi) : undefined;
     message.offline = object.offline !== undefined && object.offline !== null ? Record_Offline.fromPartial(object.offline) : undefined;
     return message;
+  },
+
+  fromAmino(object: RecordAmino): Record {
+    return {
+      name: object.name,
+      pubKey: object?.pub_key ? Any.fromAmino(object.pub_key) : undefined,
+      local: object?.local ? Record_Local.fromAmino(object.local) : undefined,
+      ledger: object?.ledger ? Record_Ledger.fromAmino(object.ledger) : undefined,
+      multi: object?.multi ? Record_Multi.fromAmino(object.multi) : undefined,
+      offline: object?.offline ? Record_Offline.fromAmino(object.offline) : undefined
+    };
+  },
+
+  toAmino(message: Record): RecordAmino {
+    const obj: any = {};
+    obj.name = message.name;
+    obj.pub_key = message.pubKey ? Any.toAmino(message.pubKey) : undefined;
+    obj.local = message.local ? Record_Local.toAmino(message.local) : undefined;
+    obj.ledger = message.ledger ? Record_Ledger.toAmino(message.ledger) : undefined;
+    obj.multi = message.multi ? Record_Multi.toAmino(message.multi) : undefined;
+    obj.offline = message.offline ? Record_Offline.toAmino(message.offline) : undefined;
+    return obj;
   }
 
 };
@@ -242,6 +344,18 @@ export const Record_Local = {
     const message = createBaseRecord_Local();
     message.privKey = object.privKey !== undefined && object.privKey !== null ? Any.fromPartial(object.privKey) : undefined;
     return message;
+  },
+
+  fromAmino(object: Record_LocalAmino): Record_Local {
+    return {
+      privKey: object?.priv_key ? Any.fromAmino(object.priv_key) : undefined
+    };
+  },
+
+  toAmino(message: Record_Local): Record_LocalAmino {
+    const obj: any = {};
+    obj.priv_key = message.privKey ? Any.toAmino(message.privKey) : undefined;
+    return obj;
   }
 
 };
@@ -299,6 +413,18 @@ export const Record_Ledger = {
     const message = createBaseRecord_Ledger();
     message.path = object.path !== undefined && object.path !== null ? BIP44Params.fromPartial(object.path) : undefined;
     return message;
+  },
+
+  fromAmino(object: Record_LedgerAmino): Record_Ledger {
+    return {
+      path: object?.path ? BIP44Params.fromAmino(object.path) : undefined
+    };
+  },
+
+  toAmino(message: Record_Ledger): Record_LedgerAmino {
+    const obj: any = {};
+    obj.path = message.path ? BIP44Params.toAmino(message.path) : undefined;
+    return obj;
   }
 
 };
@@ -342,6 +468,15 @@ export const Record_Multi = {
   fromPartial(_: Partial<Record_Multi>): Record_Multi {
     const message = createBaseRecord_Multi();
     return message;
+  },
+
+  fromAmino(_: Record_MultiAmino): Record_Multi {
+    return {};
+  },
+
+  toAmino(_: Record_Multi): Record_MultiAmino {
+    const obj: any = {};
+    return obj;
   }
 
 };
@@ -385,6 +520,15 @@ export const Record_Offline = {
   fromPartial(_: Partial<Record_Offline>): Record_Offline {
     const message = createBaseRecord_Offline();
     return message;
+  },
+
+  fromAmino(_: Record_OfflineAmino): Record_Offline {
+    return {};
+  },
+
+  toAmino(_: Record_Offline): Record_OfflineAmino {
+    const obj: any = {};
+    return obj;
   }
 
 };
