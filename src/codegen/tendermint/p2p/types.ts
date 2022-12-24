@@ -5,10 +5,18 @@ export interface NetAddress {
   ip: string;
   port: number;
 }
+export interface NetAddressProtoType {
+  typeUrl: "/tendermint.p2p.NetAddress";
+  value: Uint8Array;
+}
 export interface NetAddressAmino {
   id: string;
   ip: string;
   port: number;
+}
+export interface NetAddressAminoType {
+  type: "/tendermint.p2p.NetAddress";
+  value: NetAddressAmino;
 }
 export interface NetAddressSDKType {
   id: string;
@@ -20,10 +28,18 @@ export interface ProtocolVersion {
   block: Long;
   app: Long;
 }
+export interface ProtocolVersionProtoType {
+  typeUrl: "/tendermint.p2p.ProtocolVersion";
+  value: Uint8Array;
+}
 export interface ProtocolVersionAmino {
   p2p: string;
   block: string;
   app: string;
+}
+export interface ProtocolVersionAminoType {
+  type: "/tendermint.p2p.ProtocolVersion";
+  value: ProtocolVersionAmino;
 }
 export interface ProtocolVersionSDKType {
   p2p: Long;
@@ -40,6 +56,10 @@ export interface DefaultNodeInfo {
   moniker: string;
   other?: DefaultNodeInfoOther;
 }
+export interface DefaultNodeInfoProtoType {
+  typeUrl: "/tendermint.p2p.DefaultNodeInfo";
+  value: Uint8Array;
+}
 export interface DefaultNodeInfoAmino {
   protocol_version?: ProtocolVersionAmino;
   default_node_id: string;
@@ -49,6 +69,10 @@ export interface DefaultNodeInfoAmino {
   channels: Uint8Array;
   moniker: string;
   other?: DefaultNodeInfoOtherAmino;
+}
+export interface DefaultNodeInfoAminoType {
+  type: "/tendermint.p2p.DefaultNodeInfo";
+  value: DefaultNodeInfoAmino;
 }
 export interface DefaultNodeInfoSDKType {
   protocol_version?: ProtocolVersionSDKType;
@@ -64,9 +88,17 @@ export interface DefaultNodeInfoOther {
   txIndex: string;
   rpcAddress: string;
 }
+export interface DefaultNodeInfoOtherProtoType {
+  typeUrl: "/tendermint.p2p.DefaultNodeInfoOther";
+  value: Uint8Array;
+}
 export interface DefaultNodeInfoOtherAmino {
   tx_index: string;
   rpc_address: string;
+}
+export interface DefaultNodeInfoOtherAminoType {
+  type: "/tendermint.p2p.DefaultNodeInfoOther";
+  value: DefaultNodeInfoOtherAmino;
 }
 export interface DefaultNodeInfoOtherSDKType {
   tx_index: string;
