@@ -9,6 +9,10 @@ export interface Params {
   bonusProposerReward: string;
   withdrawAddrEnabled: boolean;
 }
+export interface ParamsProtoType {
+  typeUrl: "/cosmos.distribution.v1beta1.Params";
+  value: Uint8Array;
+}
 /** Params defines the set of params for the distribution module. */
 
 export interface ParamsAmino {
@@ -16,6 +20,10 @@ export interface ParamsAmino {
   base_proposer_reward: string;
   bonus_proposer_reward: string;
   withdraw_addr_enabled: boolean;
+}
+export interface ParamsAminoType {
+  type: "cosmos-sdk/Params";
+  value: ParamsAmino;
 }
 /** Params defines the set of params for the distribution module. */
 
@@ -44,6 +52,10 @@ export interface ValidatorHistoricalRewards {
   cumulativeRewardRatio: DecCoin[];
   referenceCount: number;
 }
+export interface ValidatorHistoricalRewardsProtoType {
+  typeUrl: "/cosmos.distribution.v1beta1.ValidatorHistoricalRewards";
+  value: Uint8Array;
+}
 /**
  * ValidatorHistoricalRewards represents historical rewards for a validator.
  * Height is implicit within the store key.
@@ -62,6 +74,10 @@ export interface ValidatorHistoricalRewards {
 export interface ValidatorHistoricalRewardsAmino {
   cumulative_reward_ratio: DecCoinAmino[];
   reference_count: number;
+}
+export interface ValidatorHistoricalRewardsAminoType {
+  type: "cosmos-sdk/ValidatorHistoricalRewards";
+  value: ValidatorHistoricalRewardsAmino;
 }
 /**
  * ValidatorHistoricalRewards represents historical rewards for a validator.
@@ -92,6 +108,10 @@ export interface ValidatorCurrentRewards {
   rewards: DecCoin[];
   period: Long;
 }
+export interface ValidatorCurrentRewardsProtoType {
+  typeUrl: "/cosmos.distribution.v1beta1.ValidatorCurrentRewards";
+  value: Uint8Array;
+}
 /**
  * ValidatorCurrentRewards represents current rewards and current
  * period for a validator kept as a running counter and incremented
@@ -101,6 +121,10 @@ export interface ValidatorCurrentRewards {
 export interface ValidatorCurrentRewardsAmino {
   rewards: DecCoinAmino[];
   period: string;
+}
+export interface ValidatorCurrentRewardsAminoType {
+  type: "cosmos-sdk/ValidatorCurrentRewards";
+  value: ValidatorCurrentRewardsAmino;
 }
 /**
  * ValidatorCurrentRewards represents current rewards and current
@@ -120,6 +144,10 @@ export interface ValidatorCurrentRewardsSDKType {
 export interface ValidatorAccumulatedCommission {
   commission: DecCoin[];
 }
+export interface ValidatorAccumulatedCommissionProtoType {
+  typeUrl: "/cosmos.distribution.v1beta1.ValidatorAccumulatedCommission";
+  value: Uint8Array;
+}
 /**
  * ValidatorAccumulatedCommission represents accumulated commission
  * for a validator kept as a running counter, can be withdrawn at any time.
@@ -127,6 +155,10 @@ export interface ValidatorAccumulatedCommission {
 
 export interface ValidatorAccumulatedCommissionAmino {
   commission: DecCoinAmino[];
+}
+export interface ValidatorAccumulatedCommissionAminoType {
+  type: "cosmos-sdk/ValidatorAccumulatedCommission";
+  value: ValidatorAccumulatedCommissionAmino;
 }
 /**
  * ValidatorAccumulatedCommission represents accumulated commission
@@ -144,6 +176,10 @@ export interface ValidatorAccumulatedCommissionSDKType {
 export interface ValidatorOutstandingRewards {
   rewards: DecCoin[];
 }
+export interface ValidatorOutstandingRewardsProtoType {
+  typeUrl: "/cosmos.distribution.v1beta1.ValidatorOutstandingRewards";
+  value: Uint8Array;
+}
 /**
  * ValidatorOutstandingRewards represents outstanding (un-withdrawn) rewards
  * for a validator inexpensive to track, allows simple sanity checks.
@@ -151,6 +187,10 @@ export interface ValidatorOutstandingRewards {
 
 export interface ValidatorOutstandingRewardsAmino {
   rewards: DecCoinAmino[];
+}
+export interface ValidatorOutstandingRewardsAminoType {
+  type: "cosmos-sdk/ValidatorOutstandingRewards";
+  value: ValidatorOutstandingRewardsAmino;
 }
 /**
  * ValidatorOutstandingRewards represents outstanding (un-withdrawn) rewards
@@ -171,6 +211,10 @@ export interface ValidatorSlashEvent {
   validatorPeriod: Long;
   fraction: string;
 }
+export interface ValidatorSlashEventProtoType {
+  typeUrl: "/cosmos.distribution.v1beta1.ValidatorSlashEvent";
+  value: Uint8Array;
+}
 /**
  * ValidatorSlashEvent represents a validator slash event.
  * Height is implicit within the store key.
@@ -181,6 +225,10 @@ export interface ValidatorSlashEvent {
 export interface ValidatorSlashEventAmino {
   validator_period: string;
   fraction: string;
+}
+export interface ValidatorSlashEventAminoType {
+  type: "cosmos-sdk/ValidatorSlashEvent";
+  value: ValidatorSlashEventAmino;
 }
 /**
  * ValidatorSlashEvent represents a validator slash event.
@@ -198,10 +246,18 @@ export interface ValidatorSlashEventSDKType {
 export interface ValidatorSlashEvents {
   validatorSlashEvents: ValidatorSlashEvent[];
 }
+export interface ValidatorSlashEventsProtoType {
+  typeUrl: "/cosmos.distribution.v1beta1.ValidatorSlashEvents";
+  value: Uint8Array;
+}
 /** ValidatorSlashEvents is a collection of ValidatorSlashEvent messages. */
 
 export interface ValidatorSlashEventsAmino {
   validator_slash_events: ValidatorSlashEventAmino[];
+}
+export interface ValidatorSlashEventsAminoType {
+  type: "cosmos-sdk/ValidatorSlashEvents";
+  value: ValidatorSlashEventsAmino;
 }
 /** ValidatorSlashEvents is a collection of ValidatorSlashEvent messages. */
 
@@ -213,10 +269,18 @@ export interface ValidatorSlashEventsSDKType {
 export interface FeePool {
   communityPool: DecCoin[];
 }
+export interface FeePoolProtoType {
+  typeUrl: "/cosmos.distribution.v1beta1.FeePool";
+  value: Uint8Array;
+}
 /** FeePool is the global fee pool for distribution. */
 
 export interface FeePoolAmino {
   community_pool: DecCoinAmino[];
+}
+export interface FeePoolAminoType {
+  type: "cosmos-sdk/FeePool";
+  value: FeePoolAmino;
 }
 /** FeePool is the global fee pool for distribution. */
 
@@ -236,6 +300,10 @@ export interface CommunityPoolSpendProposal {
   recipient: string;
   amount: Coin[];
 }
+export interface CommunityPoolSpendProposalProtoType {
+  typeUrl: "/cosmos.distribution.v1beta1.CommunityPoolSpendProposal";
+  value: Uint8Array;
+}
 /**
  * CommunityPoolSpendProposal details a proposal for use of community funds,
  * together with how many coins are proposed to be spent, and to which
@@ -247,6 +315,10 @@ export interface CommunityPoolSpendProposalAmino {
   description: string;
   recipient: string;
   amount: CoinAmino[];
+}
+export interface CommunityPoolSpendProposalAminoType {
+  type: "cosmos-sdk/CommunityPoolSpendProposal";
+  value: CommunityPoolSpendProposalAmino;
 }
 /**
  * CommunityPoolSpendProposal details a proposal for use of community funds,
@@ -275,6 +347,10 @@ export interface DelegatorStartingInfo {
   stake: string;
   height: Long;
 }
+export interface DelegatorStartingInfoProtoType {
+  typeUrl: "/cosmos.distribution.v1beta1.DelegatorStartingInfo";
+  value: Uint8Array;
+}
 /**
  * DelegatorStartingInfo represents the starting info for a delegator reward
  * period. It tracks the previous validator period, the delegation's amount of
@@ -288,6 +364,10 @@ export interface DelegatorStartingInfoAmino {
   previous_period: string;
   stake: string;
   height: string;
+}
+export interface DelegatorStartingInfoAminoType {
+  type: "cosmos-sdk/DelegatorStartingInfo";
+  value: DelegatorStartingInfoAmino;
 }
 /**
  * DelegatorStartingInfo represents the starting info for a delegator reward
@@ -312,6 +392,10 @@ export interface DelegationDelegatorReward {
   validatorAddress: string;
   reward: DecCoin[];
 }
+export interface DelegationDelegatorRewardProtoType {
+  typeUrl: "/cosmos.distribution.v1beta1.DelegationDelegatorReward";
+  value: Uint8Array;
+}
 /**
  * DelegationDelegatorReward represents the properties
  * of a delegator's delegation reward.
@@ -320,6 +404,10 @@ export interface DelegationDelegatorReward {
 export interface DelegationDelegatorRewardAmino {
   validator_address: string;
   reward: DecCoinAmino[];
+}
+export interface DelegationDelegatorRewardAminoType {
+  type: "cosmos-sdk/DelegationDelegatorReward";
+  value: DelegationDelegatorRewardAmino;
 }
 /**
  * DelegationDelegatorReward represents the properties
@@ -343,6 +431,10 @@ export interface CommunityPoolSpendProposalWithDeposit {
   amount: string;
   deposit: string;
 }
+export interface CommunityPoolSpendProposalWithDepositProtoType {
+  typeUrl: "/cosmos.distribution.v1beta1.CommunityPoolSpendProposalWithDeposit";
+  value: Uint8Array;
+}
 /**
  * CommunityPoolSpendProposalWithDeposit defines a CommunityPoolSpendProposal
  * with a deposit
@@ -354,6 +446,10 @@ export interface CommunityPoolSpendProposalWithDepositAmino {
   recipient: string;
   amount: string;
   deposit: string;
+}
+export interface CommunityPoolSpendProposalWithDepositAminoType {
+  type: "cosmos-sdk/CommunityPoolSpendProposalWithDeposit";
+  value: CommunityPoolSpendProposalWithDepositAmino;
 }
 /**
  * CommunityPoolSpendProposalWithDeposit defines a CommunityPoolSpendProposal
