@@ -17,6 +17,10 @@ export interface StoreKVPair {
   key: Uint8Array;
   value: Uint8Array;
 }
+export interface StoreKVPairProtoType {
+  typeUrl: "/cosmos.base.store.v1beta1.StoreKVPair";
+  value: Uint8Array;
+}
 /**
  * StoreKVPair is a KVStore KVPair used for listening to state changes (Sets and Deletes)
  * It optionally includes the StoreKey for the originating KVStore and a Boolean flag to distinguish between Sets and
@@ -33,6 +37,10 @@ export interface StoreKVPairAmino {
   delete: boolean;
   key: Uint8Array;
   value: Uint8Array;
+}
+export interface StoreKVPairAminoType {
+  type: "cosmos-sdk/StoreKVPair";
+  value: StoreKVPairAmino;
 }
 /**
  * StoreKVPair is a KVStore KVPair used for listening to state changes (Sets and Deletes)
