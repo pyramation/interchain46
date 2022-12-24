@@ -10,6 +10,10 @@ export interface GenesisOwners {
 
   indexOwners?: CapabilityOwners;
 }
+export interface GenesisOwnersProtoType {
+  typeUrl: "/cosmos.capability.v1beta1.GenesisOwners";
+  value: Uint8Array;
+}
 /** GenesisOwners defines the capability owners with their corresponding index. */
 
 export interface GenesisOwnersAmino {
@@ -18,6 +22,10 @@ export interface GenesisOwnersAmino {
   /** index_owners are the owners at the given index. */
 
   index_owners?: CapabilityOwnersAmino;
+}
+export interface GenesisOwnersAminoType {
+  type: "cosmos-sdk/GenesisOwners";
+  value: GenesisOwnersAmino;
 }
 /** GenesisOwners defines the capability owners with their corresponding index. */
 
@@ -37,6 +45,10 @@ export interface GenesisState {
 
   owners: GenesisOwners[];
 }
+export interface GenesisStateProtoType {
+  typeUrl: "/cosmos.capability.v1beta1.GenesisState";
+  value: Uint8Array;
+}
 /** GenesisState defines the capability module's genesis state. */
 
 export interface GenesisStateAmino {
@@ -48,6 +60,10 @@ export interface GenesisStateAmino {
    */
 
   owners: GenesisOwnersAmino[];
+}
+export interface GenesisStateAminoType {
+  type: "cosmos-sdk/GenesisState";
+  value: GenesisStateAmino;
 }
 /** GenesisState defines the capability module's genesis state. */
 
