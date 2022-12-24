@@ -11,6 +11,25 @@ export interface Coin {
   denom: string;
   amount: string;
 }
+export interface CoinProtoType {
+  typeUrl: "/cosmos.base.v1beta1.Coin";
+  value: Uint8Array;
+}
+/**
+ * Coin defines a token with a denomination and an amount.
+ * 
+ * NOTE: The amount field is an Int which implements the custom method
+ * signatures required by gogoproto.
+ */
+
+export interface CoinAmino {
+  denom: string;
+  amount: string;
+}
+export interface CoinAminoType {
+  type: "cosmos-sdk/Coin";
+  value: CoinAmino;
+}
 /**
  * Coin defines a token with a denomination and an amount.
  * 
@@ -33,6 +52,25 @@ export interface DecCoin {
   denom: string;
   amount: string;
 }
+export interface DecCoinProtoType {
+  typeUrl: "/cosmos.base.v1beta1.DecCoin";
+  value: Uint8Array;
+}
+/**
+ * DecCoin defines a token with a denomination and a decimal amount.
+ * 
+ * NOTE: The amount field is an Dec which implements the custom method
+ * signatures required by gogoproto.
+ */
+
+export interface DecCoinAmino {
+  denom: string;
+  amount: string;
+}
+export interface DecCoinAminoType {
+  type: "cosmos-sdk/DecCoin";
+  value: DecCoinAmino;
+}
 /**
  * DecCoin defines a token with a denomination and a decimal amount.
  * 
@@ -49,6 +87,19 @@ export interface DecCoinSDKType {
 export interface IntProto {
   int: string;
 }
+export interface IntProtoProtoType {
+  typeUrl: "/cosmos.base.v1beta1.IntProto";
+  value: Uint8Array;
+}
+/** IntProto defines a Protobuf wrapper around an Int object. */
+
+export interface IntProtoAmino {
+  int: string;
+}
+export interface IntProtoAminoType {
+  type: "cosmos-sdk/IntProto";
+  value: IntProtoAmino;
+}
 /** IntProto defines a Protobuf wrapper around an Int object. */
 
 export interface IntProtoSDKType {
@@ -58,6 +109,19 @@ export interface IntProtoSDKType {
 
 export interface DecProto {
   dec: string;
+}
+export interface DecProtoProtoType {
+  typeUrl: "/cosmos.base.v1beta1.DecProto";
+  value: Uint8Array;
+}
+/** DecProto defines a Protobuf wrapper around a Dec object. */
+
+export interface DecProtoAmino {
+  dec: string;
+}
+export interface DecProtoAminoType {
+  type: "cosmos-sdk/DecProto";
+  value: DecProtoAmino;
 }
 /** DecProto defines a Protobuf wrapper around a Dec object. */
 
@@ -130,6 +194,20 @@ export const Coin = {
     message.denom = object.denom ?? "";
     message.amount = object.amount ?? "";
     return message;
+  },
+
+  fromAmino(object: CoinAmino): Coin {
+    return {
+      denom: object.denom,
+      amount: object.amount
+    };
+  },
+
+  toAmino(message: Coin): CoinAmino {
+    const obj: any = {};
+    obj.denom = message.denom;
+    obj.amount = message.amount;
+    return obj;
   }
 
 };
@@ -199,6 +277,20 @@ export const DecCoin = {
     message.denom = object.denom ?? "";
     message.amount = object.amount ?? "";
     return message;
+  },
+
+  fromAmino(object: DecCoinAmino): DecCoin {
+    return {
+      denom: object.denom,
+      amount: object.amount
+    };
+  },
+
+  toAmino(message: DecCoin): DecCoinAmino {
+    const obj: any = {};
+    obj.denom = message.denom;
+    obj.amount = message.amount;
+    return obj;
   }
 
 };
@@ -256,6 +348,18 @@ export const IntProto = {
     const message = createBaseIntProto();
     message.int = object.int ?? "";
     return message;
+  },
+
+  fromAmino(object: IntProtoAmino): IntProto {
+    return {
+      int: object.int
+    };
+  },
+
+  toAmino(message: IntProto): IntProtoAmino {
+    const obj: any = {};
+    obj.int = message.int;
+    return obj;
   }
 
 };
@@ -313,6 +417,18 @@ export const DecProto = {
     const message = createBaseDecProto();
     message.dec = object.dec ?? "";
     return message;
+  },
+
+  fromAmino(object: DecProtoAmino): DecProto {
+    return {
+      dec: object.dec
+    };
+  },
+
+  toAmino(message: DecProto): DecProtoAmino {
+    const obj: any = {};
+    obj.dec = message.dec;
+    return obj;
   }
 
 };
