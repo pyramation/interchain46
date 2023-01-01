@@ -719,6 +719,24 @@ export const TextProposal = {
     obj.title = message.title;
     obj.description = message.description;
     return obj;
+  },
+
+  toProto(message: TextProposal): Uint8Array {
+    return TextProposal.encode(message).finish();
+  },
+
+  toAminoType(message: TextProposal): TextProposalAminoType {
+    return {
+      type: 'cosmos-sdk/TextProposal',
+      value: TextProposal.toAmino(message)
+    }
+  },
+
+  toProtoType(message: TextProposal): TextProposalProtoType {
+    return {
+      typeUrl: '/cosmos.gov.v1beta1.TextProposal',
+      value: TextProposal.toProto(message)
+    }
   }
 
 };

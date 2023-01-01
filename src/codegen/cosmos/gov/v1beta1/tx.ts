@@ -98,21 +98,21 @@ export interface MsgVoteSDKType {
 }
 /** MsgVoteResponse defines the Msg/Vote response type. */
 
-export interface MsgVoteResponse {}
+export interface MsgVoteResponse { }
 export interface MsgVoteResponseProtoType {
   typeUrl: "/cosmos.gov.v1beta1.MsgVoteResponse";
   value: Uint8Array;
 }
 /** MsgVoteResponse defines the Msg/Vote response type. */
 
-export interface MsgVoteResponseAmino {}
+export interface MsgVoteResponseAmino { }
 export interface MsgVoteResponseAminoType {
   type: "cosmos-sdk/MsgVoteResponse";
   value: MsgVoteResponseAmino;
 }
 /** MsgVoteResponse defines the Msg/Vote response type. */
 
-export interface MsgVoteResponseSDKType {}
+export interface MsgVoteResponseSDKType { }
 /**
  * MsgVoteWeighted defines a message to cast a vote.
  * 
@@ -160,7 +160,7 @@ export interface MsgVoteWeightedSDKType {
  * Since: cosmos-sdk 0.43
  */
 
-export interface MsgVoteWeightedResponse {}
+export interface MsgVoteWeightedResponse { }
 export interface MsgVoteWeightedResponseProtoType {
   typeUrl: "/cosmos.gov.v1beta1.MsgVoteWeightedResponse";
   value: Uint8Array;
@@ -171,7 +171,7 @@ export interface MsgVoteWeightedResponseProtoType {
  * Since: cosmos-sdk 0.43
  */
 
-export interface MsgVoteWeightedResponseAmino {}
+export interface MsgVoteWeightedResponseAmino { }
 export interface MsgVoteWeightedResponseAminoType {
   type: "cosmos-sdk/MsgVoteWeightedResponse";
   value: MsgVoteWeightedResponseAmino;
@@ -182,7 +182,7 @@ export interface MsgVoteWeightedResponseAminoType {
  * Since: cosmos-sdk 0.43
  */
 
-export interface MsgVoteWeightedResponseSDKType {}
+export interface MsgVoteWeightedResponseSDKType { }
 /** MsgDeposit defines a message to submit a deposit to an existing proposal. */
 
 export interface MsgDeposit {
@@ -214,21 +214,21 @@ export interface MsgDepositSDKType {
 }
 /** MsgDepositResponse defines the Msg/Deposit response type. */
 
-export interface MsgDepositResponse {}
+export interface MsgDepositResponse { }
 export interface MsgDepositResponseProtoType {
   typeUrl: "/cosmos.gov.v1beta1.MsgDepositResponse";
   value: Uint8Array;
 }
 /** MsgDepositResponse defines the Msg/Deposit response type. */
 
-export interface MsgDepositResponseAmino {}
+export interface MsgDepositResponseAmino { }
 export interface MsgDepositResponseAminoType {
   type: "cosmos-sdk/MsgDepositResponse";
   value: MsgDepositResponseAmino;
 }
 /** MsgDepositResponse defines the Msg/Deposit response type. */
 
-export interface MsgDepositResponseSDKType {}
+export interface MsgDepositResponseSDKType { }
 
 function createBaseMsgSubmitProposal(): MsgSubmitProposal {
   return {
@@ -335,6 +335,24 @@ export const MsgSubmitProposal = {
 
     obj.proposer = message.proposer;
     return obj;
+  },
+
+  toProto(message: MsgSubmitProposal): Uint8Array {
+    return MsgSubmitProposal.encode(message).finish()
+  },
+
+  toProtoType(message: MsgSubmitProposal): MsgSubmitProposalProtoType {
+    return {
+      typeUrl: '/cosmos.gov.v1beta1.MsgSubmitProposal',
+      value: MsgSubmitProposal.toProto(message)
+    }
+  },
+
+  toAminoType(message: MsgSubmitProposal): MsgSubmitProposalAminoType {
+    return {
+      type: 'cosmos-sdk/MsgSubmitProposal',
+      value: MsgSubmitProposal.toAmino(message)
+    }
   }
 
 };
@@ -823,6 +841,24 @@ export const MsgDeposit = {
     }
 
     return obj;
+  },
+
+  toProto(message: MsgDeposit): Uint8Array {
+    return MsgDeposit.encode(message).finish()
+  },
+
+  toProtoType(message: MsgDeposit): MsgDepositProtoType {
+    return {
+      typeUrl: '/cosmos.gov.v1beta1.MsgDeposit',
+      value: MsgDeposit.toProto(message)
+    }
+  },
+
+  toAminoType(message: MsgDeposit): MsgDepositAminoType {
+    return {
+      type: 'cosmos-sdk/MsgDeposit',
+      value: MsgDeposit.toAmino(message)
+    }
   }
 
 };
@@ -908,40 +944,22 @@ export const Content_InterfaceDecoder = (input: _m0.Reader | Uint8Array): Commun
 export const Content_FromAmino = (content: AnyAmino) => {
   switch (content.type) {
     case "cosmos-sdk/CommunityPoolSpendProposal":
-      return Any.fromPartial({
-        typeUrl: "/cosmos.distribution.v1beta1.CommunityPoolSpendProposal",
-        value: CommunityPoolSpendProposal.encode(CommunityPoolSpendProposal.fromPartial((content.value as DeepPartial<CommunityPoolSpendProposal>))).finish()
-      });
+      return CommunityPoolSpendProposal.toProtoType((content.value as CommunityPoolSpendProposal)).finish()
 
     case "cosmos-sdk/CommunityPoolSpendProposalWithDeposit":
-      return Any.fromPartial({
-        typeUrl: "/cosmos.distribution.v1beta1.CommunityPoolSpendProposalWithDeposit",
-        value: CommunityPoolSpendProposalWithDeposit.encode(CommunityPoolSpendProposalWithDeposit.fromPartial((content.value as DeepPartial<CommunityPoolSpendProposalWithDeposit>))).finish()
-      });
+      return CommunityPoolSpendProposalWithDeposit.toProtoType(CommunityPoolSpendProposalWithDeposit.fromPartial((content.value as DeepPartial<CommunityPoolSpendProposalWithDeposit>)));
 
     case "cosmos-sdk/TextProposal":
-      return Any.fromPartial({
-        typeUrl: "/cosmos.gov.v1beta1.TextProposal",
-        value: TextProposal.encode(TextProposal.fromPartial((content.value as DeepPartial<TextProposal>))).finish()
-      });
+      return TextProposal.toProtoType(TextProposal.fromPartial((content.value as DeepPartial<TextProposal>)));
 
     case "cosmos-sdk/ParameterChangeProposal":
-      return Any.fromPartial({
-        typeUrl: "/cosmos.params.v1beta1.ParameterChangeProposal",
-        value: ParameterChangeProposal.encode(ParameterChangeProposal.fromPartial((content.value as DeepPartial<ParameterChangeProposal>))).finish()
-      });
+      return ParameterChangeProposal.toProtoType(ParameterChangeProposal.fromPartial((content.value as DeepPartial<ParameterChangeProposal>)));
 
     case "cosmos-sdk/SoftwareUpgradeProposal":
-      return Any.fromPartial({
-        typeUrl: "/cosmos.upgrade.v1beta1.SoftwareUpgradeProposal",
-        value: SoftwareUpgradeProposal.encode(SoftwareUpgradeProposal.fromPartial((content.value as DeepPartial<SoftwareUpgradeProposal>))).finish()
-      });
+      return SoftwareUpgradeProposal.toProtoType(SoftwareUpgradeProposal.fromPartial((content.value as DeepPartial<SoftwareUpgradeProposal>)));
 
     case "cosmos-sdk/CancelSoftwareUpgradeProposal":
-      return Any.fromPartial({
-        typeUrl: "/cosmos.upgrade.v1beta1.CancelSoftwareUpgradeProposal",
-        value: CancelSoftwareUpgradeProposal.encode(CancelSoftwareUpgradeProposal.fromPartial((content.value as DeepPartial<CancelSoftwareUpgradeProposal>))).finish()
-      });
+      return CancelSoftwareUpgradeProposal.toProtoType(CancelSoftwareUpgradeProposal.fromPartial((content.value as DeepPartial<CancelSoftwareUpgradeProposal>)));
 
     default:
       return Any.fromAmino(content);
@@ -950,40 +968,22 @@ export const Content_FromAmino = (content: AnyAmino) => {
 export const Content_ToAmino = (content: Any) => {
   switch (content.typeUrl) {
     case "/cosmos.distribution.v1beta1.CommunityPoolSpendProposal":
-      return {
-        type: "cosmos-sdk/CommunityPoolSpendProposal",
-        value: CommunityPoolSpendProposal.toAmino(CommunityPoolSpendProposal.decode(content.value))
-      };
+      return CommunityPoolSpendProposal.toAminoType(CommunityPoolSpendProposal.decode(content.value));
 
     case "/cosmos.distribution.v1beta1.CommunityPoolSpendProposalWithDeposit":
-      return {
-        type: "cosmos-sdk/CommunityPoolSpendProposalWithDeposit",
-        value: CommunityPoolSpendProposalWithDeposit.toAmino(CommunityPoolSpendProposalWithDeposit.decode(content.value))
-      };
+      return CommunityPoolSpendProposalWithDeposit.toAminoType(CommunityPoolSpendProposalWithDeposit.decode(content.value));
 
     case "/cosmos.gov.v1beta1.TextProposal":
-      return {
-        type: "cosmos-sdk/TextProposal",
-        value: TextProposal.toAmino(TextProposal.decode(content.value))
-      };
+      return TextProposal.toAminoType(TextProposal.decode(content.value));
 
     case "/cosmos.params.v1beta1.ParameterChangeProposal":
-      return {
-        type: "cosmos-sdk/ParameterChangeProposal",
-        value: ParameterChangeProposal.toAmino(ParameterChangeProposal.decode(content.value))
-      };
+      return ParameterChangeProposal.toAminoType(ParameterChangeProposal.decode(content.value));
 
     case "/cosmos.upgrade.v1beta1.SoftwareUpgradeProposal":
-      return {
-        type: "cosmos-sdk/SoftwareUpgradeProposal",
-        value: SoftwareUpgradeProposal.toAmino(SoftwareUpgradeProposal.decode(content.value))
-      };
+      return SoftwareUpgradeProposal.toAminoType(SoftwareUpgradeProposal.decode(content.value))
 
     case "/cosmos.upgrade.v1beta1.CancelSoftwareUpgradeProposal":
-      return {
-        type: "cosmos-sdk/CancelSoftwareUpgradeProposal",
-        value: CancelSoftwareUpgradeProposal.toAmino(CancelSoftwareUpgradeProposal.decode(content.value))
-      };
+      return CancelSoftwareUpgradeProposal.toAminoType(CancelSoftwareUpgradeProposal.decode(content.value));
 
     default:
       return Any.toAmino(content);

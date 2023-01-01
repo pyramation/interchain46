@@ -476,6 +476,24 @@ export const SoftwareUpgradeProposal = {
     obj.description = message.description;
     obj.plan = message.plan ? Plan.toAmino(message.plan) : undefined;
     return obj;
+  },
+
+  toProto(message: SoftwareUpgradeProposal): Uint8Array {
+    return SoftwareUpgradeProposal.encode(message).finish();
+  },
+
+  toAminoType(message: SoftwareUpgradeProposal): SoftwareUpgradeProposalAminoType {
+    return {
+      type: 'cosmos-sdk/SoftwareUpgradeProposal',
+      value: SoftwareUpgradeProposal.toAmino(message)
+    }
+  },
+
+  toProtoType(message: SoftwareUpgradeProposal): SoftwareUpgradeProposalProtoType {
+    return {
+      typeUrl: '/cosmos.upgrade.v1beta1.SoftwareUpgradeProposal',
+      value: SoftwareUpgradeProposal.toProto(message)
+    }
   }
 
 };
@@ -560,6 +578,24 @@ export const CancelSoftwareUpgradeProposal = {
     obj.title = message.title;
     obj.description = message.description;
     return obj;
+  },
+
+  toProto(message: CancelSoftwareUpgradeProposal): Uint8Array {
+    return CancelSoftwareUpgradeProposal.encode(message).finish();
+  },
+
+  toAminoType(message: CancelSoftwareUpgradeProposal): CancelSoftwareUpgradeProposalAminoType {
+    return {
+      type: 'cosmos-sdk/CancelSoftwareUpgradeProposal',
+      value: CancelSoftwareUpgradeProposal.toAmino(message)
+    }
+  },
+
+  toProtoType(message: CancelSoftwareUpgradeProposal): CancelSoftwareUpgradeProposalProtoType {
+    return {
+      typeUrl: '/cosmos.upgrade.v1beta1.CancelSoftwareUpgradeProposal',
+      value: CancelSoftwareUpgradeProposal.toProto(message)
+    }
   }
 
 };

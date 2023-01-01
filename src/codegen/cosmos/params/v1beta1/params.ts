@@ -176,6 +176,23 @@ export const ParameterChangeProposal = {
     }
 
     return obj;
+  },
+  toProto(message: ParameterChangeProposal): Uint8Array {
+    return ParameterChangeProposal.encode(message).finish();
+  },
+
+  toAminoType(message: ParameterChangeProposal): ParameterChangeProposalAminoType {
+    return {
+      type: 'cosmos-sdk/ParameterChangeProposal',
+      value: ParameterChangeProposal.toAmino(message)
+    }
+  },
+
+  toProtoType(message: ParameterChangeProposal): ParameterChangeProposalProtoType {
+    return {
+      typeUrl: '/cosmos.params.v1beta1.ParameterChangeProposal',
+      value: ParameterChangeProposal.toProto(message)
+    }
   }
 
 };

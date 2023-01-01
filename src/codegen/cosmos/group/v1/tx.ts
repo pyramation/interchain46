@@ -1,4 +1,4 @@
-import { MemberRequest, MemberRequestAmino, MemberRequestSDKType, VoteOption, ProposalExecutorResult, ThresholdDecisionPolicy, PercentageDecisionPolicy, voteOptionFromJSON, voteOptionToJSON, proposalExecutorResultFromJSON, proposalExecutorResultToJSON } from "./types";
+import { MemberRequest, MemberRequestAmino, MemberRequestSDKType, VoteOption, ProposalExecutorResult, ThresholdDecisionPolicy, PercentageDecisionPolicy, voteOptionFromJSON, voteOptionToJSON, proposalExecutorResultFromJSON, proposalExecutorResultToJSON, ThresholdDecisionPolicyProtoType, PercentageDecisionPolicyProtoType } from "./types";
 import { Any, AnyAmino, AnySDKType } from "../../../google/protobuf/any";
 import * as _m0 from "protobufjs/minimal";
 import { isSet, Long, DeepPartial } from "../../../helpers";
@@ -162,21 +162,21 @@ export interface MsgUpdateGroupMembersSDKType {
 }
 /** MsgUpdateGroupMembersResponse is the Msg/UpdateGroupMembers response type. */
 
-export interface MsgUpdateGroupMembersResponse {}
+export interface MsgUpdateGroupMembersResponse { }
 export interface MsgUpdateGroupMembersResponseProtoType {
   typeUrl: "/cosmos.group.v1.MsgUpdateGroupMembersResponse";
   value: Uint8Array;
 }
 /** MsgUpdateGroupMembersResponse is the Msg/UpdateGroupMembers response type. */
 
-export interface MsgUpdateGroupMembersResponseAmino {}
+export interface MsgUpdateGroupMembersResponseAmino { }
 export interface MsgUpdateGroupMembersResponseAminoType {
   type: "cosmos-sdk/MsgUpdateGroupMembersResponse";
   value: MsgUpdateGroupMembersResponseAmino;
 }
 /** MsgUpdateGroupMembersResponse is the Msg/UpdateGroupMembers response type. */
 
-export interface MsgUpdateGroupMembersResponseSDKType {}
+export interface MsgUpdateGroupMembersResponseSDKType { }
 /** MsgUpdateGroupAdmin is the Msg/UpdateGroupAdmin request type. */
 
 export interface MsgUpdateGroupAdmin {
@@ -218,21 +218,21 @@ export interface MsgUpdateGroupAdminSDKType {
 }
 /** MsgUpdateGroupAdminResponse is the Msg/UpdateGroupAdmin response type. */
 
-export interface MsgUpdateGroupAdminResponse {}
+export interface MsgUpdateGroupAdminResponse { }
 export interface MsgUpdateGroupAdminResponseProtoType {
   typeUrl: "/cosmos.group.v1.MsgUpdateGroupAdminResponse";
   value: Uint8Array;
 }
 /** MsgUpdateGroupAdminResponse is the Msg/UpdateGroupAdmin response type. */
 
-export interface MsgUpdateGroupAdminResponseAmino {}
+export interface MsgUpdateGroupAdminResponseAmino { }
 export interface MsgUpdateGroupAdminResponseAminoType {
   type: "cosmos-sdk/MsgUpdateGroupAdminResponse";
   value: MsgUpdateGroupAdminResponseAmino;
 }
 /** MsgUpdateGroupAdminResponse is the Msg/UpdateGroupAdmin response type. */
 
-export interface MsgUpdateGroupAdminResponseSDKType {}
+export interface MsgUpdateGroupAdminResponseSDKType { }
 /** MsgUpdateGroupMetadata is the Msg/UpdateGroupMetadata request type. */
 
 export interface MsgUpdateGroupMetadata {
@@ -274,21 +274,21 @@ export interface MsgUpdateGroupMetadataSDKType {
 }
 /** MsgUpdateGroupMetadataResponse is the Msg/UpdateGroupMetadata response type. */
 
-export interface MsgUpdateGroupMetadataResponse {}
+export interface MsgUpdateGroupMetadataResponse { }
 export interface MsgUpdateGroupMetadataResponseProtoType {
   typeUrl: "/cosmos.group.v1.MsgUpdateGroupMetadataResponse";
   value: Uint8Array;
 }
 /** MsgUpdateGroupMetadataResponse is the Msg/UpdateGroupMetadata response type. */
 
-export interface MsgUpdateGroupMetadataResponseAmino {}
+export interface MsgUpdateGroupMetadataResponseAmino { }
 export interface MsgUpdateGroupMetadataResponseAminoType {
   type: "cosmos-sdk/MsgUpdateGroupMetadataResponse";
   value: MsgUpdateGroupMetadataResponseAmino;
 }
 /** MsgUpdateGroupMetadataResponse is the Msg/UpdateGroupMetadata response type. */
 
-export interface MsgUpdateGroupMetadataResponseSDKType {}
+export interface MsgUpdateGroupMetadataResponseSDKType { }
 /** MsgCreateGroupPolicy is the Msg/CreateGroupPolicy request type. */
 
 export interface MsgCreateGroupPolicy {
@@ -401,21 +401,21 @@ export interface MsgUpdateGroupPolicyAdminSDKType {
 }
 /** MsgUpdateGroupPolicyAdminResponse is the Msg/UpdateGroupPolicyAdmin response type. */
 
-export interface MsgUpdateGroupPolicyAdminResponse {}
+export interface MsgUpdateGroupPolicyAdminResponse { }
 export interface MsgUpdateGroupPolicyAdminResponseProtoType {
   typeUrl: "/cosmos.group.v1.MsgUpdateGroupPolicyAdminResponse";
   value: Uint8Array;
 }
 /** MsgUpdateGroupPolicyAdminResponse is the Msg/UpdateGroupPolicyAdmin response type. */
 
-export interface MsgUpdateGroupPolicyAdminResponseAmino {}
+export interface MsgUpdateGroupPolicyAdminResponseAmino { }
 export interface MsgUpdateGroupPolicyAdminResponseAminoType {
   type: "cosmos-sdk/MsgUpdateGroupPolicyAdminResponse";
   value: MsgUpdateGroupPolicyAdminResponseAmino;
 }
 /** MsgUpdateGroupPolicyAdminResponse is the Msg/UpdateGroupPolicyAdmin response type. */
 
-export interface MsgUpdateGroupPolicyAdminResponseSDKType {}
+export interface MsgUpdateGroupPolicyAdminResponseSDKType { }
 /** MsgCreateGroupWithPolicy is the Msg/CreateGroupWithPolicy request type. */
 
 export interface MsgCreateGroupWithPolicy {
@@ -439,7 +439,12 @@ export interface MsgCreateGroupWithPolicy {
   /** decision_policy specifies the group policy's decision policy. */
 
   decisionPolicy?: (ThresholdDecisionPolicy & PercentageDecisionPolicy & Any) | undefined;
+
 }
+export interface CreateMsgCreateGroupWithPolicy extends MsgCreateGroupWithPolicy {
+  decisionPolicy?: ((ThresholdDecisionPolicyProtoType | PercentageDecisionPolicyProtoType) & Any) | undefined;
+}
+
 export interface MsgCreateGroupWithPolicyProtoType {
   typeUrl: "/cosmos.group.v1.MsgCreateGroupWithPolicy";
   value: Uint8Array;
@@ -555,21 +560,21 @@ export interface MsgUpdateGroupPolicyDecisionPolicySDKType {
 }
 /** MsgUpdateGroupPolicyDecisionPolicyResponse is the Msg/UpdateGroupPolicyDecisionPolicy response type. */
 
-export interface MsgUpdateGroupPolicyDecisionPolicyResponse {}
+export interface MsgUpdateGroupPolicyDecisionPolicyResponse { }
 export interface MsgUpdateGroupPolicyDecisionPolicyResponseProtoType {
   typeUrl: "/cosmos.group.v1.MsgUpdateGroupPolicyDecisionPolicyResponse";
   value: Uint8Array;
 }
 /** MsgUpdateGroupPolicyDecisionPolicyResponse is the Msg/UpdateGroupPolicyDecisionPolicy response type. */
 
-export interface MsgUpdateGroupPolicyDecisionPolicyResponseAmino {}
+export interface MsgUpdateGroupPolicyDecisionPolicyResponseAmino { }
 export interface MsgUpdateGroupPolicyDecisionPolicyResponseAminoType {
   type: "cosmos-sdk/MsgUpdateGroupPolicyDecisionPolicyResponse";
   value: MsgUpdateGroupPolicyDecisionPolicyResponseAmino;
 }
 /** MsgUpdateGroupPolicyDecisionPolicyResponse is the Msg/UpdateGroupPolicyDecisionPolicy response type. */
 
-export interface MsgUpdateGroupPolicyDecisionPolicyResponseSDKType {}
+export interface MsgUpdateGroupPolicyDecisionPolicyResponseSDKType { }
 /** MsgUpdateGroupPolicyMetadata is the Msg/UpdateGroupPolicyMetadata request type. */
 
 export interface MsgUpdateGroupPolicyMetadata {
@@ -611,21 +616,21 @@ export interface MsgUpdateGroupPolicyMetadataSDKType {
 }
 /** MsgUpdateGroupPolicyMetadataResponse is the Msg/UpdateGroupPolicyMetadata response type. */
 
-export interface MsgUpdateGroupPolicyMetadataResponse {}
+export interface MsgUpdateGroupPolicyMetadataResponse { }
 export interface MsgUpdateGroupPolicyMetadataResponseProtoType {
   typeUrl: "/cosmos.group.v1.MsgUpdateGroupPolicyMetadataResponse";
   value: Uint8Array;
 }
 /** MsgUpdateGroupPolicyMetadataResponse is the Msg/UpdateGroupPolicyMetadata response type. */
 
-export interface MsgUpdateGroupPolicyMetadataResponseAmino {}
+export interface MsgUpdateGroupPolicyMetadataResponseAmino { }
 export interface MsgUpdateGroupPolicyMetadataResponseAminoType {
   type: "cosmos-sdk/MsgUpdateGroupPolicyMetadataResponse";
   value: MsgUpdateGroupPolicyMetadataResponseAmino;
 }
 /** MsgUpdateGroupPolicyMetadataResponse is the Msg/UpdateGroupPolicyMetadata response type. */
 
-export interface MsgUpdateGroupPolicyMetadataResponseSDKType {}
+export interface MsgUpdateGroupPolicyMetadataResponseSDKType { }
 /** MsgSubmitProposal is the Msg/SubmitProposal request type. */
 
 export interface MsgSubmitProposal {
@@ -752,21 +757,21 @@ export interface MsgWithdrawProposalSDKType {
 }
 /** MsgWithdrawProposalResponse is the Msg/WithdrawProposal response type. */
 
-export interface MsgWithdrawProposalResponse {}
+export interface MsgWithdrawProposalResponse { }
 export interface MsgWithdrawProposalResponseProtoType {
   typeUrl: "/cosmos.group.v1.MsgWithdrawProposalResponse";
   value: Uint8Array;
 }
 /** MsgWithdrawProposalResponse is the Msg/WithdrawProposal response type. */
 
-export interface MsgWithdrawProposalResponseAmino {}
+export interface MsgWithdrawProposalResponseAmino { }
 export interface MsgWithdrawProposalResponseAminoType {
   type: "cosmos-sdk/MsgWithdrawProposalResponse";
   value: MsgWithdrawProposalResponseAmino;
 }
 /** MsgWithdrawProposalResponse is the Msg/WithdrawProposal response type. */
 
-export interface MsgWithdrawProposalResponseSDKType {}
+export interface MsgWithdrawProposalResponseSDKType { }
 /** MsgVote is the Msg/Vote request type. */
 
 export interface MsgVote {
@@ -828,21 +833,21 @@ export interface MsgVoteSDKType {
 }
 /** MsgVoteResponse is the Msg/Vote response type. */
 
-export interface MsgVoteResponse {}
+export interface MsgVoteResponse { }
 export interface MsgVoteResponseProtoType {
   typeUrl: "/cosmos.group.v1.MsgVoteResponse";
   value: Uint8Array;
 }
 /** MsgVoteResponse is the Msg/Vote response type. */
 
-export interface MsgVoteResponseAmino {}
+export interface MsgVoteResponseAmino { }
 export interface MsgVoteResponseAminoType {
   type: "cosmos-sdk/MsgVoteResponse";
   value: MsgVoteResponseAmino;
 }
 /** MsgVoteResponse is the Msg/Vote response type. */
 
-export interface MsgVoteResponseSDKType {}
+export interface MsgVoteResponseSDKType { }
 /** MsgExec is the Msg/Exec request type. */
 
 export interface MsgExec {
@@ -934,21 +939,21 @@ export interface MsgLeaveGroupSDKType {
 }
 /** MsgLeaveGroupResponse is the Msg/LeaveGroup response type. */
 
-export interface MsgLeaveGroupResponse {}
+export interface MsgLeaveGroupResponse { }
 export interface MsgLeaveGroupResponseProtoType {
   typeUrl: "/cosmos.group.v1.MsgLeaveGroupResponse";
   value: Uint8Array;
 }
 /** MsgLeaveGroupResponse is the Msg/LeaveGroup response type. */
 
-export interface MsgLeaveGroupResponseAmino {}
+export interface MsgLeaveGroupResponseAmino { }
 export interface MsgLeaveGroupResponseAminoType {
   type: "cosmos-sdk/MsgLeaveGroupResponse";
   value: MsgLeaveGroupResponseAmino;
 }
 /** MsgLeaveGroupResponse is the Msg/LeaveGroup response type. */
 
-export interface MsgLeaveGroupResponseSDKType {}
+export interface MsgLeaveGroupResponseSDKType { }
 
 function createBaseMsgCreateGroup(): MsgCreateGroup {
   return {
@@ -3279,6 +3284,7 @@ export const DecisionPolicy_InterfaceDecoder = (input: _m0.Reader | Uint8Array):
       return data;
   }
 };
+
 export const DecisionPolicy_FromAmino = (content: AnyAmino) => {
   switch (content.type) {
     case "cosmos-sdk/ThresholdDecisionPolicy":

@@ -1293,6 +1293,24 @@ export const CommunityPoolSpendProposal = {
     }
 
     return obj;
+  },
+
+  toProto(message: CommunityPoolSpendProposal): Uint8Array {
+    return CommunityPoolSpendProposal.encode(message).finish();
+  },
+
+  toProtoType(message: CommunityPoolSpendProposal): CommunityPoolSpendProposalProtoType {
+    return {
+      typeUrl: '/cosmos.distribution.v1beta1.CommunityPoolSpendProposal',
+      value: CommunityPoolSpendProposal.encode(message).finish()
+    }
+  },
+
+  toAminoType(message: CommunityPoolSpendProposal): CommunityPoolSpendProposalAminoType {
+    return {
+      type: 'cosmos-sdk/CommunityPoolSpendProposal',
+      value: CommunityPoolSpendProposal.toAmino(message)
+    }
   }
 
 };
@@ -1611,6 +1629,24 @@ export const CommunityPoolSpendProposalWithDeposit = {
     obj.amount = message.amount;
     obj.deposit = message.deposit;
     return obj;
+  },
+
+  toProto(message: CommunityPoolSpendProposalWithDeposit): Uint8Array {
+    return CommunityPoolSpendProposalWithDeposit.encode(message).finish();
+  },
+
+  toAminoType(message: CommunityPoolSpendProposalWithDeposit): CommunityPoolSpendProposalWithDepositAminoType {
+    return {
+      type: 'cosmos-sdk/CommunityPoolSpendProposalWithDeposit',
+      value: CommunityPoolSpendProposalWithDeposit.toAmino(message)
+    }
+  },
+
+  toProtoType(message: CommunityPoolSpendProposalWithDeposit): CommunityPoolSpendProposalWithDepositProtoType {
+    return {
+      typeUrl: '/cosmos.distribution.v1beta1.CommunityPoolSpendProposalWithDeposit',
+      value: CommunityPoolSpendProposalWithDeposit.toProto(message)
+    }
   }
 
 };

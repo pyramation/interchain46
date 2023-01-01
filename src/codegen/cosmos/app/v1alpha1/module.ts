@@ -29,7 +29,7 @@ export interface ModuleDescriptor {
 
   canMigrateFrom: MigrateFromInfo[];
 }
-export interface ModuleDescriptorProtoType {
+export interface ModuleDescriptorProtoMsg {
   typeUrl: "/cosmos.app.v1alpha1.ModuleDescriptor";
   value: Uint8Array;
 }
@@ -62,7 +62,7 @@ export interface ModuleDescriptorAmino {
 
   can_migrate_from: MigrateFromInfoAmino[];
 }
-export interface ModuleDescriptorAminoType {
+export interface ModuleDescriptorAminoMsg {
   type: "cosmos-sdk/ModuleDescriptor";
   value: ModuleDescriptorAmino;
 }
@@ -118,7 +118,7 @@ export interface PackageReference {
 
   revision: number;
 }
-export interface PackageReferenceProtoType {
+export interface PackageReferenceProtoMsg {
   typeUrl: "/cosmos.app.v1alpha1.PackageReference";
   value: Uint8Array;
 }
@@ -167,7 +167,7 @@ export interface PackageReferenceAmino {
 
   revision: number;
 }
-export interface PackageReferenceAminoType {
+export interface PackageReferenceAminoMsg {
   type: "cosmos-sdk/PackageReference";
   value: PackageReferenceAmino;
 }
@@ -189,7 +189,7 @@ export interface MigrateFromInfo {
    */
   module: string;
 }
-export interface MigrateFromInfoProtoType {
+export interface MigrateFromInfoProtoMsg {
   typeUrl: "/cosmos.app.v1alpha1.MigrateFromInfo";
   value: Uint8Array;
 }
@@ -205,7 +205,7 @@ export interface MigrateFromInfoAmino {
    */
   module: string;
 }
-export interface MigrateFromInfoAminoType {
+export interface MigrateFromInfoAminoMsg {
   type: "cosmos-sdk/MigrateFromInfo";
   value: MigrateFromInfoAmino;
 }
@@ -333,6 +333,32 @@ export const ModuleDescriptor = {
     }
 
     return obj;
+  },
+
+  fromAminoMsg(object: ModuleDescriptorAminoMsg): ModuleDescriptor {
+    return ModuleDescriptor.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: ModuleDescriptor): ModuleDescriptorAminoMsg {
+    return {
+      type: "cosmos-sdk/ModuleDescriptor",
+      value: ModuleDescriptor.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: ModuleDescriptorProtoMsg): ModuleDescriptor {
+    return ModuleDescriptor.decode(message.value);
+  },
+
+  toProto(message: ModuleDescriptor): Uint8Array {
+    return ModuleDescriptor.encode(message).finish();
+  },
+
+  toProtoMsg(message: ModuleDescriptor): ModuleDescriptorProtoMsg {
+    return {
+      typeUrl: "/cosmos.app.v1alpha1.ModuleDescriptor",
+      value: ModuleDescriptor.encode(message).finish()
+    };
   }
 
 };
@@ -416,6 +442,32 @@ export const PackageReference = {
     obj.name = message.name;
     obj.revision = message.revision;
     return obj;
+  },
+
+  fromAminoMsg(object: PackageReferenceAminoMsg): PackageReference {
+    return PackageReference.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: PackageReference): PackageReferenceAminoMsg {
+    return {
+      type: "cosmos-sdk/PackageReference",
+      value: PackageReference.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: PackageReferenceProtoMsg): PackageReference {
+    return PackageReference.decode(message.value);
+  },
+
+  toProto(message: PackageReference): Uint8Array {
+    return PackageReference.encode(message).finish();
+  },
+
+  toProtoMsg(message: PackageReference): PackageReferenceProtoMsg {
+    return {
+      typeUrl: "/cosmos.app.v1alpha1.PackageReference",
+      value: PackageReference.encode(message).finish()
+    };
   }
 
 };
@@ -485,6 +537,32 @@ export const MigrateFromInfo = {
     const obj: any = {};
     obj.module = message.module;
     return obj;
+  },
+
+  fromAminoMsg(object: MigrateFromInfoAminoMsg): MigrateFromInfo {
+    return MigrateFromInfo.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: MigrateFromInfo): MigrateFromInfoAminoMsg {
+    return {
+      type: "cosmos-sdk/MigrateFromInfo",
+      value: MigrateFromInfo.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: MigrateFromInfoProtoMsg): MigrateFromInfo {
+    return MigrateFromInfo.decode(message.value);
+  },
+
+  toProto(message: MigrateFromInfo): Uint8Array {
+    return MigrateFromInfo.encode(message).finish();
+  },
+
+  toProtoMsg(message: MigrateFromInfo): MigrateFromInfoProtoMsg {
+    return {
+      typeUrl: "/cosmos.app.v1alpha1.MigrateFromInfo",
+      value: MigrateFromInfo.encode(message).finish()
+    };
   }
 
 };
