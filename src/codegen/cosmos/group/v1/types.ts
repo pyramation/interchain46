@@ -2,7 +2,7 @@ import { Timestamp, TimestampAmino, TimestampSDKType } from "../../../google/pro
 import { Duration, DurationAmino, DurationSDKType } from "../../../google/protobuf/duration";
 import { Any, AnyProtoMsg, AnyAmino, AnySDKType } from "../../../google/protobuf/any";
 import * as _m0 from "protobufjs/minimal";
-import { isSet, fromJsonTimestamp, fromTimestamp, Long, DeepPartial } from "../../../helpers";
+import { isSet, fromJsonTimestamp, fromTimestamp, Long } from "../../../helpers";
 /** VoteOption enumerates the valid vote options for a given proposal. */
 
 export enum VoteOption {
@@ -2579,13 +2579,13 @@ export const DecisionPolicy_FromAmino = (content: AnyAmino) => {
     case "cosmos-sdk/ThresholdDecisionPolicy":
       return Any.fromPartial({
         typeUrl: "/cosmos.group.v1.ThresholdDecisionPolicy",
-        value: ThresholdDecisionPolicy.encode(ThresholdDecisionPolicy.fromPartial((content.value as DeepPartial<ThresholdDecisionPolicy>))).finish()
+        value: ThresholdDecisionPolicy.encode(ThresholdDecisionPolicy.fromPartial(ThresholdDecisionPolicy.fromAmino(content.value))).finish()
       });
 
     case "cosmos-sdk/PercentageDecisionPolicy":
       return Any.fromPartial({
         typeUrl: "/cosmos.group.v1.PercentageDecisionPolicy",
-        value: PercentageDecisionPolicy.encode(PercentageDecisionPolicy.fromPartial((content.value as DeepPartial<PercentageDecisionPolicy>))).finish()
+        value: PercentageDecisionPolicy.encode(PercentageDecisionPolicy.fromPartial(PercentageDecisionPolicy.fromAmino(content.value))).finish()
       });
 
     default:
