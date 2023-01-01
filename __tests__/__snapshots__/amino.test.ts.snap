@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`fromAmino 1 1`] = `
+exports[`tests 1`] = `
 {
   "admin": "address",
   "decision_policy": {
@@ -26,7 +26,7 @@ exports[`fromAmino 1 1`] = `
 }
 `;
 
-exports[`fromAmino 1 2`] = `
+exports[`tests 2`] = `
 {
   "type": "cosmos-sdk/PercentageDecisionPolicy",
   "value": {
@@ -39,31 +39,7 @@ exports[`fromAmino 1 2`] = `
 }
 `;
 
-exports[`fromAmino 1 3`] = `
-{
-  "percentage": "0.5",
-  "windows": {
-    "minExecutionPeriod": {
-      "nanos": 0,
-      "seconds": Long {
-        "high": 0,
-        "low": 100,
-        "unsigned": false,
-      },
-    },
-    "votingPeriod": {
-      "nanos": 0,
-      "seconds": Long {
-        "high": 0,
-        "low": 100,
-        "unsigned": false,
-      },
-    },
-  },
-}
-`;
-
-exports[`fromAmino 1 4`] = `
+exports[`tests 3`] = `
 {
   "encodedVersion": {
     "$typeUrl": "/google.protobuf.Any",
@@ -76,7 +52,15 @@ exports[`fromAmino 1 4`] = `
         46,
         53,
         18,
-        0,
+        8,
+        10,
+        2,
+        8,
+        100,
+        18,
+        2,
+        8,
+        100,
       ],
       "type": "Buffer",
     },
@@ -84,22 +68,22 @@ exports[`fromAmino 1 4`] = `
 }
 `;
 
-exports[`fromAmino 1 5`] = `
+exports[`tests 4`] = `
 {
   "decodedVersion": {
     "type": "cosmos-sdk/PercentageDecisionPolicy",
     "value": {
       "percentage": "0.5",
       "windows": {
-        "min_execution_period": undefined,
-        "voting_period": undefined,
+        "min_execution_period": "100000000000",
+        "voting_period": "100000000000",
       },
     },
   },
 }
 `;
 
-exports[`fromAmino 1 6`] = `
+exports[`tests 5`] = `
 {
   "percentage": "0.5",
   "windows": {
@@ -123,7 +107,7 @@ exports[`fromAmino 1 6`] = `
 }
 `;
 
-exports[`fromAmino 1 7`] = `
+exports[`tests 6`] = `
 {
   "percentage": "0.5",
   "windows": {
@@ -133,7 +117,7 @@ exports[`fromAmino 1 7`] = `
 }
 `;
 
-exports[`fromAmino 1 8`] = `
+exports[`tests 7`] = `
 {
   "admin": "address",
   "decisionPolicy": {
@@ -147,7 +131,15 @@ exports[`fromAmino 1 8`] = `
         46,
         53,
         18,
-        0,
+        8,
+        10,
+        2,
+        8,
+        100,
+        18,
+        2,
+        8,
+        100,
       ],
       "type": "Buffer",
     },
@@ -165,7 +157,7 @@ exports[`fromAmino 1 8`] = `
 }
 `;
 
-exports[`toAmino 1`] = `
+exports[`where it breaks 1`] = `
 {
   "admin": "address",
   "decision_policy": {
@@ -188,5 +180,93 @@ exports[`toAmino 1`] = `
       "weight": "10",
     },
   ],
+}
+`;
+
+exports[`where it breaks 2`] = `
+{
+  "encodedVersion": {
+    "$typeUrl": "/google.protobuf.Any",
+    "typeUrl": "/cosmos.group.v1.PercentageDecisionPolicy",
+    "value": {
+      "data": [
+        10,
+        3,
+        48,
+        46,
+        53,
+        18,
+        8,
+        10,
+        2,
+        8,
+        100,
+        18,
+        2,
+        8,
+        100,
+      ],
+      "type": "Buffer",
+    },
+  },
+}
+`;
+
+exports[`where it breaks 3`] = `
+{
+  "decodedVersion": {
+    "type": "cosmos-sdk/PercentageDecisionPolicy",
+    "value": {
+      "percentage": "0.5",
+      "windows": {
+        "min_execution_period": "100000000000",
+        "voting_period": "100000000000",
+      },
+    },
+  },
+}
+`;
+
+exports[`where it breaks 4`] = `
+{
+  "encodedVersion2": {
+    "$typeUrl": "/google.protobuf.Any",
+    "typeUrl": "/cosmos.group.v1.PercentageDecisionPolicy",
+    "value": {
+      "data": [
+        10,
+        3,
+        48,
+        46,
+        53,
+        18,
+        8,
+        10,
+        2,
+        8,
+        100,
+        18,
+        2,
+        8,
+        100,
+      ],
+      "type": "Buffer",
+    },
+  },
+}
+`;
+
+exports[`where it breaks 5`] = `
+{
+  "decodedVersion2": {
+    "type": "cosmos-sdk/PercentageDecisionPolicy",
+    "value": {
+      "percentage": "0.5",
+      "windows": {
+        "min_execution_period": "100000000000",
+        "voting_period": "100000000000",
+      },
+    },
+  },
 }
 `;
