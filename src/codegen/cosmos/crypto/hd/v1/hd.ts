@@ -21,7 +21,7 @@ export interface BIP44Params {
 
   addressIndex: number;
 }
-export interface BIP44ParamsProtoType {
+export interface BIP44ParamsProtoMsg {
   typeUrl: "/cosmos.crypto.hd.v1.BIP44Params";
   value: Uint8Array;
 }
@@ -46,7 +46,7 @@ export interface BIP44ParamsAmino {
 
   address_index: number;
 }
-export interface BIP44ParamsAminoType {
+export interface BIP44ParamsAminoMsg {
   type: "cosmos-sdk/BIP44Params";
   value: BIP44ParamsAmino;
 }
@@ -181,6 +181,32 @@ export const BIP44Params = {
     obj.change = message.change;
     obj.address_index = message.addressIndex;
     return obj;
+  },
+
+  fromAminoMsg(object: BIP44ParamsAminoMsg): BIP44Params {
+    return BIP44Params.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: BIP44Params): BIP44ParamsAminoMsg {
+    return {
+      type: "cosmos-sdk/BIP44Params",
+      value: BIP44Params.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: BIP44ParamsProtoMsg): BIP44Params {
+    return BIP44Params.decode(message.value);
+  },
+
+  toProto(message: BIP44Params): Uint8Array {
+    return BIP44Params.encode(message).finish();
+  },
+
+  toProtoMsg(message: BIP44Params): BIP44ParamsProtoMsg {
+    return {
+      typeUrl: "/cosmos.crypto.hd.v1.BIP44Params",
+      value: BIP44Params.encode(message).finish()
+    };
   }
 
 };

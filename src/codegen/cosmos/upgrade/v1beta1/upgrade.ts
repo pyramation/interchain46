@@ -46,7 +46,7 @@ export interface Plan {
 
   upgradedClientState?: Any;
 }
-export interface PlanProtoType {
+export interface PlanProtoMsg {
   typeUrl: "/cosmos.upgrade.v1beta1.Plan";
   value: Uint8Array;
 }
@@ -94,7 +94,7 @@ export interface PlanAmino {
 
   upgraded_client_state?: AnyAmino;
 }
-export interface PlanAminoType {
+export interface PlanAminoMsg {
   type: "cosmos-sdk/Plan";
   value: PlanAmino;
 }
@@ -126,7 +126,7 @@ export interface SoftwareUpgradeProposal {
   description: string;
   plan?: Plan;
 }
-export interface SoftwareUpgradeProposalProtoType {
+export interface SoftwareUpgradeProposalProtoMsg {
   typeUrl: "/cosmos.upgrade.v1beta1.SoftwareUpgradeProposal";
   value: Uint8Array;
 }
@@ -144,7 +144,7 @@ export interface SoftwareUpgradeProposalAmino {
   description: string;
   plan?: PlanAmino;
 }
-export interface SoftwareUpgradeProposalAminoType {
+export interface SoftwareUpgradeProposalAminoMsg {
   type: "cosmos-sdk/SoftwareUpgradeProposal";
   value: SoftwareUpgradeProposalAmino;
 }
@@ -177,7 +177,7 @@ export interface CancelSoftwareUpgradeProposal {
   title: string;
   description: string;
 }
-export interface CancelSoftwareUpgradeProposalProtoType {
+export interface CancelSoftwareUpgradeProposalProtoMsg {
   typeUrl: "/cosmos.upgrade.v1beta1.CancelSoftwareUpgradeProposal";
   value: Uint8Array;
 }
@@ -194,7 +194,7 @@ export interface CancelSoftwareUpgradeProposalAmino {
   title: string;
   description: string;
 }
-export interface CancelSoftwareUpgradeProposalAminoType {
+export interface CancelSoftwareUpgradeProposalAminoMsg {
   type: "cosmos-sdk/CancelSoftwareUpgradeProposal";
   value: CancelSoftwareUpgradeProposalAmino;
 }
@@ -225,7 +225,7 @@ export interface ModuleVersion {
 
   version: Long;
 }
-export interface ModuleVersionProtoType {
+export interface ModuleVersionProtoMsg {
   typeUrl: "/cosmos.upgrade.v1beta1.ModuleVersion";
   value: Uint8Array;
 }
@@ -242,7 +242,7 @@ export interface ModuleVersionAmino {
 
   version: string;
 }
-export interface ModuleVersionAminoType {
+export interface ModuleVersionAminoMsg {
   type: "cosmos-sdk/ModuleVersion";
   value: ModuleVersionAmino;
 }
@@ -378,6 +378,32 @@ export const Plan = {
     obj.info = message.info;
     obj.upgraded_client_state = message.upgradedClientState ? Any.toAmino(message.upgradedClientState) : undefined;
     return obj;
+  },
+
+  fromAminoMsg(object: PlanAminoMsg): Plan {
+    return Plan.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: Plan): PlanAminoMsg {
+    return {
+      type: "cosmos-sdk/Plan",
+      value: Plan.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: PlanProtoMsg): Plan {
+    return Plan.decode(message.value);
+  },
+
+  toProto(message: Plan): Uint8Array {
+    return Plan.encode(message).finish();
+  },
+
+  toProtoMsg(message: Plan): PlanProtoMsg {
+    return {
+      typeUrl: "/cosmos.upgrade.v1beta1.Plan",
+      value: Plan.encode(message).finish()
+    };
   }
 
 };
@@ -478,22 +504,30 @@ export const SoftwareUpgradeProposal = {
     return obj;
   },
 
+  fromAminoMsg(object: SoftwareUpgradeProposalAminoMsg): SoftwareUpgradeProposal {
+    return SoftwareUpgradeProposal.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: SoftwareUpgradeProposal): SoftwareUpgradeProposalAminoMsg {
+    return {
+      type: "cosmos-sdk/SoftwareUpgradeProposal",
+      value: SoftwareUpgradeProposal.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: SoftwareUpgradeProposalProtoMsg): SoftwareUpgradeProposal {
+    return SoftwareUpgradeProposal.decode(message.value);
+  },
+
   toProto(message: SoftwareUpgradeProposal): Uint8Array {
     return SoftwareUpgradeProposal.encode(message).finish();
   },
 
-  toAminoType(message: SoftwareUpgradeProposal): SoftwareUpgradeProposalAminoType {
+  toProtoMsg(message: SoftwareUpgradeProposal): SoftwareUpgradeProposalProtoMsg {
     return {
-      type: 'cosmos-sdk/SoftwareUpgradeProposal',
-      value: SoftwareUpgradeProposal.toAmino(message)
-    }
-  },
-
-  toProtoType(message: SoftwareUpgradeProposal): SoftwareUpgradeProposalProtoType {
-    return {
-      typeUrl: '/cosmos.upgrade.v1beta1.SoftwareUpgradeProposal',
-      value: SoftwareUpgradeProposal.toProto(message)
-    }
+      typeUrl: "/cosmos.upgrade.v1beta1.SoftwareUpgradeProposal",
+      value: SoftwareUpgradeProposal.encode(message).finish()
+    };
   }
 
 };
@@ -580,22 +614,30 @@ export const CancelSoftwareUpgradeProposal = {
     return obj;
   },
 
+  fromAminoMsg(object: CancelSoftwareUpgradeProposalAminoMsg): CancelSoftwareUpgradeProposal {
+    return CancelSoftwareUpgradeProposal.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: CancelSoftwareUpgradeProposal): CancelSoftwareUpgradeProposalAminoMsg {
+    return {
+      type: "cosmos-sdk/CancelSoftwareUpgradeProposal",
+      value: CancelSoftwareUpgradeProposal.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: CancelSoftwareUpgradeProposalProtoMsg): CancelSoftwareUpgradeProposal {
+    return CancelSoftwareUpgradeProposal.decode(message.value);
+  },
+
   toProto(message: CancelSoftwareUpgradeProposal): Uint8Array {
     return CancelSoftwareUpgradeProposal.encode(message).finish();
   },
 
-  toAminoType(message: CancelSoftwareUpgradeProposal): CancelSoftwareUpgradeProposalAminoType {
+  toProtoMsg(message: CancelSoftwareUpgradeProposal): CancelSoftwareUpgradeProposalProtoMsg {
     return {
-      type: 'cosmos-sdk/CancelSoftwareUpgradeProposal',
-      value: CancelSoftwareUpgradeProposal.toAmino(message)
-    }
-  },
-
-  toProtoType(message: CancelSoftwareUpgradeProposal): CancelSoftwareUpgradeProposalProtoType {
-    return {
-      typeUrl: '/cosmos.upgrade.v1beta1.CancelSoftwareUpgradeProposal',
-      value: CancelSoftwareUpgradeProposal.toProto(message)
-    }
+      typeUrl: "/cosmos.upgrade.v1beta1.CancelSoftwareUpgradeProposal",
+      value: CancelSoftwareUpgradeProposal.encode(message).finish()
+    };
   }
 
 };
@@ -679,6 +721,32 @@ export const ModuleVersion = {
     obj.name = message.name;
     obj.version = message.version ? message.version.toString() : undefined;
     return obj;
+  },
+
+  fromAminoMsg(object: ModuleVersionAminoMsg): ModuleVersion {
+    return ModuleVersion.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: ModuleVersion): ModuleVersionAminoMsg {
+    return {
+      type: "cosmos-sdk/ModuleVersion",
+      value: ModuleVersion.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: ModuleVersionProtoMsg): ModuleVersion {
+    return ModuleVersion.decode(message.value);
+  },
+
+  toProto(message: ModuleVersion): Uint8Array {
+    return ModuleVersion.encode(message).finish();
+  },
+
+  toProtoMsg(message: ModuleVersion): ModuleVersionProtoMsg {
+    return {
+      typeUrl: "/cosmos.upgrade.v1beta1.ModuleVersion",
+      value: ModuleVersion.encode(message).finish()
+    };
   }
 
 };

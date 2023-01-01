@@ -9,7 +9,7 @@ export interface Params {
   bonusProposerReward: string;
   withdrawAddrEnabled: boolean;
 }
-export interface ParamsProtoType {
+export interface ParamsProtoMsg {
   typeUrl: "/cosmos.distribution.v1beta1.Params";
   value: Uint8Array;
 }
@@ -21,7 +21,7 @@ export interface ParamsAmino {
   bonus_proposer_reward: string;
   withdraw_addr_enabled: boolean;
 }
-export interface ParamsAminoType {
+export interface ParamsAminoMsg {
   type: "cosmos-sdk/Params";
   value: ParamsAmino;
 }
@@ -52,7 +52,7 @@ export interface ValidatorHistoricalRewards {
   cumulativeRewardRatio: DecCoin[];
   referenceCount: number;
 }
-export interface ValidatorHistoricalRewardsProtoType {
+export interface ValidatorHistoricalRewardsProtoMsg {
   typeUrl: "/cosmos.distribution.v1beta1.ValidatorHistoricalRewards";
   value: Uint8Array;
 }
@@ -75,7 +75,7 @@ export interface ValidatorHistoricalRewardsAmino {
   cumulative_reward_ratio: DecCoinAmino[];
   reference_count: number;
 }
-export interface ValidatorHistoricalRewardsAminoType {
+export interface ValidatorHistoricalRewardsAminoMsg {
   type: "cosmos-sdk/ValidatorHistoricalRewards";
   value: ValidatorHistoricalRewardsAmino;
 }
@@ -108,7 +108,7 @@ export interface ValidatorCurrentRewards {
   rewards: DecCoin[];
   period: Long;
 }
-export interface ValidatorCurrentRewardsProtoType {
+export interface ValidatorCurrentRewardsProtoMsg {
   typeUrl: "/cosmos.distribution.v1beta1.ValidatorCurrentRewards";
   value: Uint8Array;
 }
@@ -122,7 +122,7 @@ export interface ValidatorCurrentRewardsAmino {
   rewards: DecCoinAmino[];
   period: string;
 }
-export interface ValidatorCurrentRewardsAminoType {
+export interface ValidatorCurrentRewardsAminoMsg {
   type: "cosmos-sdk/ValidatorCurrentRewards";
   value: ValidatorCurrentRewardsAmino;
 }
@@ -144,7 +144,7 @@ export interface ValidatorCurrentRewardsSDKType {
 export interface ValidatorAccumulatedCommission {
   commission: DecCoin[];
 }
-export interface ValidatorAccumulatedCommissionProtoType {
+export interface ValidatorAccumulatedCommissionProtoMsg {
   typeUrl: "/cosmos.distribution.v1beta1.ValidatorAccumulatedCommission";
   value: Uint8Array;
 }
@@ -156,7 +156,7 @@ export interface ValidatorAccumulatedCommissionProtoType {
 export interface ValidatorAccumulatedCommissionAmino {
   commission: DecCoinAmino[];
 }
-export interface ValidatorAccumulatedCommissionAminoType {
+export interface ValidatorAccumulatedCommissionAminoMsg {
   type: "cosmos-sdk/ValidatorAccumulatedCommission";
   value: ValidatorAccumulatedCommissionAmino;
 }
@@ -176,7 +176,7 @@ export interface ValidatorAccumulatedCommissionSDKType {
 export interface ValidatorOutstandingRewards {
   rewards: DecCoin[];
 }
-export interface ValidatorOutstandingRewardsProtoType {
+export interface ValidatorOutstandingRewardsProtoMsg {
   typeUrl: "/cosmos.distribution.v1beta1.ValidatorOutstandingRewards";
   value: Uint8Array;
 }
@@ -188,7 +188,7 @@ export interface ValidatorOutstandingRewardsProtoType {
 export interface ValidatorOutstandingRewardsAmino {
   rewards: DecCoinAmino[];
 }
-export interface ValidatorOutstandingRewardsAminoType {
+export interface ValidatorOutstandingRewardsAminoMsg {
   type: "cosmos-sdk/ValidatorOutstandingRewards";
   value: ValidatorOutstandingRewardsAmino;
 }
@@ -211,7 +211,7 @@ export interface ValidatorSlashEvent {
   validatorPeriod: Long;
   fraction: string;
 }
-export interface ValidatorSlashEventProtoType {
+export interface ValidatorSlashEventProtoMsg {
   typeUrl: "/cosmos.distribution.v1beta1.ValidatorSlashEvent";
   value: Uint8Array;
 }
@@ -226,7 +226,7 @@ export interface ValidatorSlashEventAmino {
   validator_period: string;
   fraction: string;
 }
-export interface ValidatorSlashEventAminoType {
+export interface ValidatorSlashEventAminoMsg {
   type: "cosmos-sdk/ValidatorSlashEvent";
   value: ValidatorSlashEventAmino;
 }
@@ -246,7 +246,7 @@ export interface ValidatorSlashEventSDKType {
 export interface ValidatorSlashEvents {
   validatorSlashEvents: ValidatorSlashEvent[];
 }
-export interface ValidatorSlashEventsProtoType {
+export interface ValidatorSlashEventsProtoMsg {
   typeUrl: "/cosmos.distribution.v1beta1.ValidatorSlashEvents";
   value: Uint8Array;
 }
@@ -255,7 +255,7 @@ export interface ValidatorSlashEventsProtoType {
 export interface ValidatorSlashEventsAmino {
   validator_slash_events: ValidatorSlashEventAmino[];
 }
-export interface ValidatorSlashEventsAminoType {
+export interface ValidatorSlashEventsAminoMsg {
   type: "cosmos-sdk/ValidatorSlashEvents";
   value: ValidatorSlashEventsAmino;
 }
@@ -269,7 +269,7 @@ export interface ValidatorSlashEventsSDKType {
 export interface FeePool {
   communityPool: DecCoin[];
 }
-export interface FeePoolProtoType {
+export interface FeePoolProtoMsg {
   typeUrl: "/cosmos.distribution.v1beta1.FeePool";
   value: Uint8Array;
 }
@@ -278,7 +278,7 @@ export interface FeePoolProtoType {
 export interface FeePoolAmino {
   community_pool: DecCoinAmino[];
 }
-export interface FeePoolAminoType {
+export interface FeePoolAminoMsg {
   type: "cosmos-sdk/FeePool";
   value: FeePoolAmino;
 }
@@ -300,7 +300,7 @@ export interface CommunityPoolSpendProposal {
   recipient: string;
   amount: Coin[];
 }
-export interface CommunityPoolSpendProposalProtoType {
+export interface CommunityPoolSpendProposalProtoMsg {
   typeUrl: "/cosmos.distribution.v1beta1.CommunityPoolSpendProposal";
   value: Uint8Array;
 }
@@ -316,7 +316,7 @@ export interface CommunityPoolSpendProposalAmino {
   recipient: string;
   amount: CoinAmino[];
 }
-export interface CommunityPoolSpendProposalAminoType {
+export interface CommunityPoolSpendProposalAminoMsg {
   type: "cosmos-sdk/CommunityPoolSpendProposal";
   value: CommunityPoolSpendProposalAmino;
 }
@@ -347,7 +347,7 @@ export interface DelegatorStartingInfo {
   stake: string;
   height: Long;
 }
-export interface DelegatorStartingInfoProtoType {
+export interface DelegatorStartingInfoProtoMsg {
   typeUrl: "/cosmos.distribution.v1beta1.DelegatorStartingInfo";
   value: Uint8Array;
 }
@@ -365,7 +365,7 @@ export interface DelegatorStartingInfoAmino {
   stake: string;
   height: string;
 }
-export interface DelegatorStartingInfoAminoType {
+export interface DelegatorStartingInfoAminoMsg {
   type: "cosmos-sdk/DelegatorStartingInfo";
   value: DelegatorStartingInfoAmino;
 }
@@ -392,7 +392,7 @@ export interface DelegationDelegatorReward {
   validatorAddress: string;
   reward: DecCoin[];
 }
-export interface DelegationDelegatorRewardProtoType {
+export interface DelegationDelegatorRewardProtoMsg {
   typeUrl: "/cosmos.distribution.v1beta1.DelegationDelegatorReward";
   value: Uint8Array;
 }
@@ -405,7 +405,7 @@ export interface DelegationDelegatorRewardAmino {
   validator_address: string;
   reward: DecCoinAmino[];
 }
-export interface DelegationDelegatorRewardAminoType {
+export interface DelegationDelegatorRewardAminoMsg {
   type: "cosmos-sdk/DelegationDelegatorReward";
   value: DelegationDelegatorRewardAmino;
 }
@@ -431,7 +431,7 @@ export interface CommunityPoolSpendProposalWithDeposit {
   amount: string;
   deposit: string;
 }
-export interface CommunityPoolSpendProposalWithDepositProtoType {
+export interface CommunityPoolSpendProposalWithDepositProtoMsg {
   typeUrl: "/cosmos.distribution.v1beta1.CommunityPoolSpendProposalWithDeposit";
   value: Uint8Array;
 }
@@ -447,7 +447,7 @@ export interface CommunityPoolSpendProposalWithDepositAmino {
   amount: string;
   deposit: string;
 }
-export interface CommunityPoolSpendProposalWithDepositAminoType {
+export interface CommunityPoolSpendProposalWithDepositAminoMsg {
   type: "cosmos-sdk/CommunityPoolSpendProposalWithDeposit";
   value: CommunityPoolSpendProposalWithDepositAmino;
 }
@@ -572,6 +572,32 @@ export const Params = {
     obj.bonus_proposer_reward = message.bonusProposerReward;
     obj.withdraw_addr_enabled = message.withdrawAddrEnabled;
     return obj;
+  },
+
+  fromAminoMsg(object: ParamsAminoMsg): Params {
+    return Params.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: Params): ParamsAminoMsg {
+    return {
+      type: "cosmos-sdk/Params",
+      value: Params.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: ParamsProtoMsg): Params {
+    return Params.decode(message.value);
+  },
+
+  toProto(message: Params): Uint8Array {
+    return Params.encode(message).finish();
+  },
+
+  toProtoMsg(message: Params): ParamsProtoMsg {
+    return {
+      typeUrl: "/cosmos.distribution.v1beta1.Params",
+      value: Params.encode(message).finish()
+    };
   }
 
 };
@@ -667,6 +693,32 @@ export const ValidatorHistoricalRewards = {
 
     obj.reference_count = message.referenceCount;
     return obj;
+  },
+
+  fromAminoMsg(object: ValidatorHistoricalRewardsAminoMsg): ValidatorHistoricalRewards {
+    return ValidatorHistoricalRewards.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: ValidatorHistoricalRewards): ValidatorHistoricalRewardsAminoMsg {
+    return {
+      type: "cosmos-sdk/ValidatorHistoricalRewards",
+      value: ValidatorHistoricalRewards.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: ValidatorHistoricalRewardsProtoMsg): ValidatorHistoricalRewards {
+    return ValidatorHistoricalRewards.decode(message.value);
+  },
+
+  toProto(message: ValidatorHistoricalRewards): Uint8Array {
+    return ValidatorHistoricalRewards.encode(message).finish();
+  },
+
+  toProtoMsg(message: ValidatorHistoricalRewards): ValidatorHistoricalRewardsProtoMsg {
+    return {
+      typeUrl: "/cosmos.distribution.v1beta1.ValidatorHistoricalRewards",
+      value: ValidatorHistoricalRewards.encode(message).finish()
+    };
   }
 
 };
@@ -762,6 +814,32 @@ export const ValidatorCurrentRewards = {
 
     obj.period = message.period ? message.period.toString() : undefined;
     return obj;
+  },
+
+  fromAminoMsg(object: ValidatorCurrentRewardsAminoMsg): ValidatorCurrentRewards {
+    return ValidatorCurrentRewards.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: ValidatorCurrentRewards): ValidatorCurrentRewardsAminoMsg {
+    return {
+      type: "cosmos-sdk/ValidatorCurrentRewards",
+      value: ValidatorCurrentRewards.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: ValidatorCurrentRewardsProtoMsg): ValidatorCurrentRewards {
+    return ValidatorCurrentRewards.decode(message.value);
+  },
+
+  toProto(message: ValidatorCurrentRewards): Uint8Array {
+    return ValidatorCurrentRewards.encode(message).finish();
+  },
+
+  toProtoMsg(message: ValidatorCurrentRewards): ValidatorCurrentRewardsProtoMsg {
+    return {
+      typeUrl: "/cosmos.distribution.v1beta1.ValidatorCurrentRewards",
+      value: ValidatorCurrentRewards.encode(message).finish()
+    };
   }
 
 };
@@ -843,6 +921,32 @@ export const ValidatorAccumulatedCommission = {
     }
 
     return obj;
+  },
+
+  fromAminoMsg(object: ValidatorAccumulatedCommissionAminoMsg): ValidatorAccumulatedCommission {
+    return ValidatorAccumulatedCommission.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: ValidatorAccumulatedCommission): ValidatorAccumulatedCommissionAminoMsg {
+    return {
+      type: "cosmos-sdk/ValidatorAccumulatedCommission",
+      value: ValidatorAccumulatedCommission.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: ValidatorAccumulatedCommissionProtoMsg): ValidatorAccumulatedCommission {
+    return ValidatorAccumulatedCommission.decode(message.value);
+  },
+
+  toProto(message: ValidatorAccumulatedCommission): Uint8Array {
+    return ValidatorAccumulatedCommission.encode(message).finish();
+  },
+
+  toProtoMsg(message: ValidatorAccumulatedCommission): ValidatorAccumulatedCommissionProtoMsg {
+    return {
+      typeUrl: "/cosmos.distribution.v1beta1.ValidatorAccumulatedCommission",
+      value: ValidatorAccumulatedCommission.encode(message).finish()
+    };
   }
 
 };
@@ -924,6 +1028,32 @@ export const ValidatorOutstandingRewards = {
     }
 
     return obj;
+  },
+
+  fromAminoMsg(object: ValidatorOutstandingRewardsAminoMsg): ValidatorOutstandingRewards {
+    return ValidatorOutstandingRewards.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: ValidatorOutstandingRewards): ValidatorOutstandingRewardsAminoMsg {
+    return {
+      type: "cosmos-sdk/ValidatorOutstandingRewards",
+      value: ValidatorOutstandingRewards.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: ValidatorOutstandingRewardsProtoMsg): ValidatorOutstandingRewards {
+    return ValidatorOutstandingRewards.decode(message.value);
+  },
+
+  toProto(message: ValidatorOutstandingRewards): Uint8Array {
+    return ValidatorOutstandingRewards.encode(message).finish();
+  },
+
+  toProtoMsg(message: ValidatorOutstandingRewards): ValidatorOutstandingRewardsProtoMsg {
+    return {
+      typeUrl: "/cosmos.distribution.v1beta1.ValidatorOutstandingRewards",
+      value: ValidatorOutstandingRewards.encode(message).finish()
+    };
   }
 
 };
@@ -1007,6 +1137,32 @@ export const ValidatorSlashEvent = {
     obj.validator_period = message.validatorPeriod ? message.validatorPeriod.toString() : undefined;
     obj.fraction = message.fraction;
     return obj;
+  },
+
+  fromAminoMsg(object: ValidatorSlashEventAminoMsg): ValidatorSlashEvent {
+    return ValidatorSlashEvent.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: ValidatorSlashEvent): ValidatorSlashEventAminoMsg {
+    return {
+      type: "cosmos-sdk/ValidatorSlashEvent",
+      value: ValidatorSlashEvent.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: ValidatorSlashEventProtoMsg): ValidatorSlashEvent {
+    return ValidatorSlashEvent.decode(message.value);
+  },
+
+  toProto(message: ValidatorSlashEvent): Uint8Array {
+    return ValidatorSlashEvent.encode(message).finish();
+  },
+
+  toProtoMsg(message: ValidatorSlashEvent): ValidatorSlashEventProtoMsg {
+    return {
+      typeUrl: "/cosmos.distribution.v1beta1.ValidatorSlashEvent",
+      value: ValidatorSlashEvent.encode(message).finish()
+    };
   }
 
 };
@@ -1088,6 +1244,32 @@ export const ValidatorSlashEvents = {
     }
 
     return obj;
+  },
+
+  fromAminoMsg(object: ValidatorSlashEventsAminoMsg): ValidatorSlashEvents {
+    return ValidatorSlashEvents.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: ValidatorSlashEvents): ValidatorSlashEventsAminoMsg {
+    return {
+      type: "cosmos-sdk/ValidatorSlashEvents",
+      value: ValidatorSlashEvents.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: ValidatorSlashEventsProtoMsg): ValidatorSlashEvents {
+    return ValidatorSlashEvents.decode(message.value);
+  },
+
+  toProto(message: ValidatorSlashEvents): Uint8Array {
+    return ValidatorSlashEvents.encode(message).finish();
+  },
+
+  toProtoMsg(message: ValidatorSlashEvents): ValidatorSlashEventsProtoMsg {
+    return {
+      typeUrl: "/cosmos.distribution.v1beta1.ValidatorSlashEvents",
+      value: ValidatorSlashEvents.encode(message).finish()
+    };
   }
 
 };
@@ -1169,6 +1351,32 @@ export const FeePool = {
     }
 
     return obj;
+  },
+
+  fromAminoMsg(object: FeePoolAminoMsg): FeePool {
+    return FeePool.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: FeePool): FeePoolAminoMsg {
+    return {
+      type: "cosmos-sdk/FeePool",
+      value: FeePool.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: FeePoolProtoMsg): FeePool {
+    return FeePool.decode(message.value);
+  },
+
+  toProto(message: FeePool): Uint8Array {
+    return FeePool.encode(message).finish();
+  },
+
+  toProtoMsg(message: FeePool): FeePoolProtoMsg {
+    return {
+      typeUrl: "/cosmos.distribution.v1beta1.FeePool",
+      value: FeePool.encode(message).finish()
+    };
   }
 
 };
@@ -1295,22 +1503,30 @@ export const CommunityPoolSpendProposal = {
     return obj;
   },
 
+  fromAminoMsg(object: CommunityPoolSpendProposalAminoMsg): CommunityPoolSpendProposal {
+    return CommunityPoolSpendProposal.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: CommunityPoolSpendProposal): CommunityPoolSpendProposalAminoMsg {
+    return {
+      type: "cosmos-sdk/CommunityPoolSpendProposal",
+      value: CommunityPoolSpendProposal.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: CommunityPoolSpendProposalProtoMsg): CommunityPoolSpendProposal {
+    return CommunityPoolSpendProposal.decode(message.value);
+  },
+
   toProto(message: CommunityPoolSpendProposal): Uint8Array {
     return CommunityPoolSpendProposal.encode(message).finish();
   },
 
-  toProtoType(message: CommunityPoolSpendProposal): CommunityPoolSpendProposalProtoType {
+  toProtoMsg(message: CommunityPoolSpendProposal): CommunityPoolSpendProposalProtoMsg {
     return {
-      typeUrl: '/cosmos.distribution.v1beta1.CommunityPoolSpendProposal',
+      typeUrl: "/cosmos.distribution.v1beta1.CommunityPoolSpendProposal",
       value: CommunityPoolSpendProposal.encode(message).finish()
-    }
-  },
-
-  toAminoType(message: CommunityPoolSpendProposal): CommunityPoolSpendProposalAminoType {
-    return {
-      type: 'cosmos-sdk/CommunityPoolSpendProposal',
-      value: CommunityPoolSpendProposal.toAmino(message)
-    }
+    };
   }
 
 };
@@ -1408,6 +1624,32 @@ export const DelegatorStartingInfo = {
     obj.stake = message.stake;
     obj.height = message.height ? message.height.toString() : undefined;
     return obj;
+  },
+
+  fromAminoMsg(object: DelegatorStartingInfoAminoMsg): DelegatorStartingInfo {
+    return DelegatorStartingInfo.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: DelegatorStartingInfo): DelegatorStartingInfoAminoMsg {
+    return {
+      type: "cosmos-sdk/DelegatorStartingInfo",
+      value: DelegatorStartingInfo.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: DelegatorStartingInfoProtoMsg): DelegatorStartingInfo {
+    return DelegatorStartingInfo.decode(message.value);
+  },
+
+  toProto(message: DelegatorStartingInfo): Uint8Array {
+    return DelegatorStartingInfo.encode(message).finish();
+  },
+
+  toProtoMsg(message: DelegatorStartingInfo): DelegatorStartingInfoProtoMsg {
+    return {
+      typeUrl: "/cosmos.distribution.v1beta1.DelegatorStartingInfo",
+      value: DelegatorStartingInfo.encode(message).finish()
+    };
   }
 
 };
@@ -1503,6 +1745,32 @@ export const DelegationDelegatorReward = {
     }
 
     return obj;
+  },
+
+  fromAminoMsg(object: DelegationDelegatorRewardAminoMsg): DelegationDelegatorReward {
+    return DelegationDelegatorReward.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: DelegationDelegatorReward): DelegationDelegatorRewardAminoMsg {
+    return {
+      type: "cosmos-sdk/DelegationDelegatorReward",
+      value: DelegationDelegatorReward.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: DelegationDelegatorRewardProtoMsg): DelegationDelegatorReward {
+    return DelegationDelegatorReward.decode(message.value);
+  },
+
+  toProto(message: DelegationDelegatorReward): Uint8Array {
+    return DelegationDelegatorReward.encode(message).finish();
+  },
+
+  toProtoMsg(message: DelegationDelegatorReward): DelegationDelegatorRewardProtoMsg {
+    return {
+      typeUrl: "/cosmos.distribution.v1beta1.DelegationDelegatorReward",
+      value: DelegationDelegatorReward.encode(message).finish()
+    };
   }
 
 };
@@ -1631,22 +1899,30 @@ export const CommunityPoolSpendProposalWithDeposit = {
     return obj;
   },
 
+  fromAminoMsg(object: CommunityPoolSpendProposalWithDepositAminoMsg): CommunityPoolSpendProposalWithDeposit {
+    return CommunityPoolSpendProposalWithDeposit.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: CommunityPoolSpendProposalWithDeposit): CommunityPoolSpendProposalWithDepositAminoMsg {
+    return {
+      type: "cosmos-sdk/CommunityPoolSpendProposalWithDeposit",
+      value: CommunityPoolSpendProposalWithDeposit.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: CommunityPoolSpendProposalWithDepositProtoMsg): CommunityPoolSpendProposalWithDeposit {
+    return CommunityPoolSpendProposalWithDeposit.decode(message.value);
+  },
+
   toProto(message: CommunityPoolSpendProposalWithDeposit): Uint8Array {
     return CommunityPoolSpendProposalWithDeposit.encode(message).finish();
   },
 
-  toAminoType(message: CommunityPoolSpendProposalWithDeposit): CommunityPoolSpendProposalWithDepositAminoType {
+  toProtoMsg(message: CommunityPoolSpendProposalWithDeposit): CommunityPoolSpendProposalWithDepositProtoMsg {
     return {
-      type: 'cosmos-sdk/CommunityPoolSpendProposalWithDeposit',
-      value: CommunityPoolSpendProposalWithDeposit.toAmino(message)
-    }
-  },
-
-  toProtoType(message: CommunityPoolSpendProposalWithDeposit): CommunityPoolSpendProposalWithDepositProtoType {
-    return {
-      typeUrl: '/cosmos.distribution.v1beta1.CommunityPoolSpendProposalWithDeposit',
-      value: CommunityPoolSpendProposalWithDeposit.toProto(message)
-    }
+      typeUrl: "/cosmos.distribution.v1beta1.CommunityPoolSpendProposalWithDeposit",
+      value: CommunityPoolSpendProposalWithDeposit.encode(message).finish()
+    };
   }
 
 };

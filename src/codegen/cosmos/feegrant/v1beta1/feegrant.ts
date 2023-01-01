@@ -1,7 +1,7 @@
 import { Coin, CoinAmino, CoinSDKType } from "../../base/v1beta1/coin";
 import { Timestamp, TimestampAmino, TimestampSDKType } from "../../../google/protobuf/timestamp";
 import { Duration, DurationAmino, DurationSDKType } from "../../../google/protobuf/duration";
-import { Any, AnyAmino, AnySDKType } from "../../../google/protobuf/any";
+import { Any, AnyProtoMsg, AnyAmino, AnySDKType } from "../../../google/protobuf/any";
 import * as _m0 from "protobufjs/minimal";
 import { isSet, fromJsonTimestamp, fromTimestamp, DeepPartial } from "../../../helpers";
 /**
@@ -22,7 +22,7 @@ export interface BasicAllowance {
 
   expiration?: Timestamp;
 }
-export interface BasicAllowanceProtoType {
+export interface BasicAllowanceProtoMsg {
   typeUrl: "/cosmos.feegrant.v1beta1.BasicAllowance";
   value: Uint8Array;
 }
@@ -42,7 +42,7 @@ export interface BasicAllowanceAmino {
 
   expiration?: TimestampAmino;
 }
-export interface BasicAllowanceAminoType {
+export interface BasicAllowanceAminoMsg {
   type: "cosmos-sdk/BasicAllowance";
   value: BasicAllowanceAmino;
 }
@@ -89,7 +89,7 @@ export interface PeriodicAllowance {
 
   periodReset?: Timestamp;
 }
-export interface PeriodicAllowanceProtoType {
+export interface PeriodicAllowanceProtoMsg {
   typeUrl: "/cosmos.feegrant.v1beta1.PeriodicAllowance";
   value: Uint8Array;
 }
@@ -124,7 +124,7 @@ export interface PeriodicAllowanceAmino {
 
   period_reset?: TimestampAmino;
 }
-export interface PeriodicAllowanceAminoType {
+export interface PeriodicAllowanceAminoMsg {
   type: "cosmos-sdk/PeriodicAllowance";
   value: PeriodicAllowanceAmino;
 }
@@ -152,10 +152,14 @@ export interface AllowedMsgAllowance {
 
   allowedMessages: string[];
 }
-export interface AllowedMsgAllowanceProtoType {
+export interface AllowedMsgAllowanceProtoMsg {
   typeUrl: "/cosmos.feegrant.v1beta1.AllowedMsgAllowance";
   value: Uint8Array;
 }
+export type AllowedMsgAllowanceEncoded = Omit<AllowedMsgAllowance, "allowance"> & {
+  /** allowance can be any of basic and periodic fee allowance. */
+  allowance?: BasicAllowanceProtoMsg | PeriodicAllowanceProtoMsg | AllowedMsgAllowanceProtoMsg | AnyProtoMsg | undefined;
+};
 /** AllowedMsgAllowance creates allowance only for specified message types. */
 
 export interface AllowedMsgAllowanceAmino {
@@ -165,7 +169,7 @@ export interface AllowedMsgAllowanceAmino {
 
   allowed_messages: string[];
 }
-export interface AllowedMsgAllowanceAminoType {
+export interface AllowedMsgAllowanceAminoMsg {
   type: "cosmos-sdk/AllowedMsgAllowance";
   value: AllowedMsgAllowanceAmino;
 }
@@ -173,7 +177,7 @@ export interface AllowedMsgAllowanceAminoType {
 
 export interface AllowedMsgAllowanceSDKType {
   $typeUrl?: string;
-  allowance?: AnySDKType;
+  allowance?: BasicAllowanceSDKType | PeriodicAllowanceSDKType | AllowedMsgAllowanceSDKType | AnySDKType | undefined;
   allowed_messages: string[];
 }
 /** Grant is stored in the KVStore to record a grant with full context */
@@ -188,10 +192,14 @@ export interface Grant {
 
   allowance?: (BasicAllowance & PeriodicAllowance & AllowedMsgAllowance & Any) | undefined;
 }
-export interface GrantProtoType {
+export interface GrantProtoMsg {
   typeUrl: "/cosmos.feegrant.v1beta1.Grant";
   value: Uint8Array;
 }
+export type GrantEncoded = Omit<Grant, "allowance"> & {
+  /** allowance can be any of basic, periodic, allowed fee allowance. */
+  allowance?: BasicAllowanceProtoMsg | PeriodicAllowanceProtoMsg | AllowedMsgAllowanceProtoMsg | AnyProtoMsg | undefined;
+};
 /** Grant is stored in the KVStore to record a grant with full context */
 
 export interface GrantAmino {
@@ -204,7 +212,7 @@ export interface GrantAmino {
 
   allowance?: AnyAmino;
 }
-export interface GrantAminoType {
+export interface GrantAminoMsg {
   type: "cosmos-sdk/Grant";
   value: GrantAmino;
 }
@@ -213,7 +221,7 @@ export interface GrantAminoType {
 export interface GrantSDKType {
   granter: string;
   grantee: string;
-  allowance?: AnySDKType;
+  allowance?: BasicAllowanceSDKType | PeriodicAllowanceSDKType | AllowedMsgAllowanceSDKType | AnySDKType | undefined;
 }
 
 function createBaseBasicAllowance(): BasicAllowance {
@@ -308,6 +316,32 @@ export const BasicAllowance = {
 
     obj.expiration = message.expiration ? Timestamp.toAmino(message.expiration) : undefined;
     return obj;
+  },
+
+  fromAminoMsg(object: BasicAllowanceAminoMsg): BasicAllowance {
+    return BasicAllowance.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: BasicAllowance): BasicAllowanceAminoMsg {
+    return {
+      type: "cosmos-sdk/BasicAllowance",
+      value: BasicAllowance.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: BasicAllowanceProtoMsg): BasicAllowance {
+    return BasicAllowance.decode(message.value);
+  },
+
+  toProto(message: BasicAllowance): Uint8Array {
+    return BasicAllowance.encode(message).finish();
+  },
+
+  toProtoMsg(message: BasicAllowance): BasicAllowanceProtoMsg {
+    return {
+      typeUrl: "/cosmos.feegrant.v1beta1.BasicAllowance",
+      value: BasicAllowance.encode(message).finish()
+    };
   }
 
 };
@@ -456,6 +490,32 @@ export const PeriodicAllowance = {
 
     obj.period_reset = message.periodReset ? Timestamp.toAmino(message.periodReset) : undefined;
     return obj;
+  },
+
+  fromAminoMsg(object: PeriodicAllowanceAminoMsg): PeriodicAllowance {
+    return PeriodicAllowance.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: PeriodicAllowance): PeriodicAllowanceAminoMsg {
+    return {
+      type: "cosmos-sdk/PeriodicAllowance",
+      value: PeriodicAllowance.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: PeriodicAllowanceProtoMsg): PeriodicAllowance {
+    return PeriodicAllowance.decode(message.value);
+  },
+
+  toProto(message: PeriodicAllowance): Uint8Array {
+    return PeriodicAllowance.encode(message).finish();
+  },
+
+  toProtoMsg(message: PeriodicAllowance): PeriodicAllowanceProtoMsg {
+    return {
+      typeUrl: "/cosmos.feegrant.v1beta1.PeriodicAllowance",
+      value: PeriodicAllowance.encode(message).finish()
+    };
   }
 
 };
@@ -552,6 +612,32 @@ export const AllowedMsgAllowance = {
     }
 
     return obj;
+  },
+
+  fromAminoMsg(object: AllowedMsgAllowanceAminoMsg): AllowedMsgAllowance {
+    return AllowedMsgAllowance.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: AllowedMsgAllowance): AllowedMsgAllowanceAminoMsg {
+    return {
+      type: "cosmos-sdk/AllowedMsgAllowance",
+      value: AllowedMsgAllowance.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: AllowedMsgAllowanceProtoMsg): AllowedMsgAllowance {
+    return AllowedMsgAllowance.decode(message.value);
+  },
+
+  toProto(message: AllowedMsgAllowance): Uint8Array {
+    return AllowedMsgAllowance.encode(message).finish();
+  },
+
+  toProtoMsg(message: AllowedMsgAllowance): AllowedMsgAllowanceProtoMsg {
+    return {
+      typeUrl: "/cosmos.feegrant.v1beta1.AllowedMsgAllowance",
+      value: AllowedMsgAllowance.encode(message).finish()
+    };
   }
 
 };
@@ -649,6 +735,32 @@ export const Grant = {
     obj.grantee = message.grantee;
     obj.allowance = message.allowance ? FeeAllowanceI_ToAmino((message.allowance as Any)) : undefined;
     return obj;
+  },
+
+  fromAminoMsg(object: GrantAminoMsg): Grant {
+    return Grant.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: Grant): GrantAminoMsg {
+    return {
+      type: "cosmos-sdk/Grant",
+      value: Grant.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: GrantProtoMsg): Grant {
+    return Grant.decode(message.value);
+  },
+
+  toProto(message: Grant): Uint8Array {
+    return Grant.encode(message).finish();
+  },
+
+  toProtoMsg(message: Grant): GrantProtoMsg {
+    return {
+      typeUrl: "/cosmos.feegrant.v1beta1.Grant",
+      value: Grant.encode(message).finish()
+    };
   }
 
 };

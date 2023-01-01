@@ -8,7 +8,7 @@ export interface QueryGroupInfoRequest {
   /** group_id is the unique ID of the group. */
   groupId: Long;
 }
-export interface QueryGroupInfoRequestProtoType {
+export interface QueryGroupInfoRequestProtoMsg {
   typeUrl: "/cosmos.group.v1.QueryGroupInfoRequest";
   value: Uint8Array;
 }
@@ -18,7 +18,7 @@ export interface QueryGroupInfoRequestAmino {
   /** group_id is the unique ID of the group. */
   group_id: string;
 }
-export interface QueryGroupInfoRequestAminoType {
+export interface QueryGroupInfoRequestAminoMsg {
   type: "cosmos-sdk/QueryGroupInfoRequest";
   value: QueryGroupInfoRequestAmino;
 }
@@ -33,7 +33,7 @@ export interface QueryGroupInfoResponse {
   /** info is the GroupInfo for the group. */
   info?: GroupInfo;
 }
-export interface QueryGroupInfoResponseProtoType {
+export interface QueryGroupInfoResponseProtoMsg {
   typeUrl: "/cosmos.group.v1.QueryGroupInfoResponse";
   value: Uint8Array;
 }
@@ -43,7 +43,7 @@ export interface QueryGroupInfoResponseAmino {
   /** info is the GroupInfo for the group. */
   info?: GroupInfoAmino;
 }
-export interface QueryGroupInfoResponseAminoType {
+export interface QueryGroupInfoResponseAminoMsg {
   type: "cosmos-sdk/QueryGroupInfoResponse";
   value: QueryGroupInfoResponseAmino;
 }
@@ -58,7 +58,7 @@ export interface QueryGroupPolicyInfoRequest {
   /** address is the account address of the group policy. */
   address: string;
 }
-export interface QueryGroupPolicyInfoRequestProtoType {
+export interface QueryGroupPolicyInfoRequestProtoMsg {
   typeUrl: "/cosmos.group.v1.QueryGroupPolicyInfoRequest";
   value: Uint8Array;
 }
@@ -68,7 +68,7 @@ export interface QueryGroupPolicyInfoRequestAmino {
   /** address is the account address of the group policy. */
   address: string;
 }
-export interface QueryGroupPolicyInfoRequestAminoType {
+export interface QueryGroupPolicyInfoRequestAminoMsg {
   type: "cosmos-sdk/QueryGroupPolicyInfoRequest";
   value: QueryGroupPolicyInfoRequestAmino;
 }
@@ -83,7 +83,7 @@ export interface QueryGroupPolicyInfoResponse {
   /** info is the GroupPolicyInfo for the group policy. */
   info?: GroupPolicyInfo;
 }
-export interface QueryGroupPolicyInfoResponseProtoType {
+export interface QueryGroupPolicyInfoResponseProtoMsg {
   typeUrl: "/cosmos.group.v1.QueryGroupPolicyInfoResponse";
   value: Uint8Array;
 }
@@ -93,7 +93,7 @@ export interface QueryGroupPolicyInfoResponseAmino {
   /** info is the GroupPolicyInfo for the group policy. */
   info?: GroupPolicyInfoAmino;
 }
-export interface QueryGroupPolicyInfoResponseAminoType {
+export interface QueryGroupPolicyInfoResponseAminoMsg {
   type: "cosmos-sdk/QueryGroupPolicyInfoResponse";
   value: QueryGroupPolicyInfoResponseAmino;
 }
@@ -111,7 +111,7 @@ export interface QueryGroupMembersRequest {
 
   pagination?: PageRequest;
 }
-export interface QueryGroupMembersRequestProtoType {
+export interface QueryGroupMembersRequestProtoMsg {
   typeUrl: "/cosmos.group.v1.QueryGroupMembersRequest";
   value: Uint8Array;
 }
@@ -124,7 +124,7 @@ export interface QueryGroupMembersRequestAmino {
 
   pagination?: PageRequestAmino;
 }
-export interface QueryGroupMembersRequestAminoType {
+export interface QueryGroupMembersRequestAminoMsg {
   type: "cosmos-sdk/QueryGroupMembersRequest";
   value: QueryGroupMembersRequestAmino;
 }
@@ -143,7 +143,7 @@ export interface QueryGroupMembersResponse {
 
   pagination?: PageResponse;
 }
-export interface QueryGroupMembersResponseProtoType {
+export interface QueryGroupMembersResponseProtoMsg {
   typeUrl: "/cosmos.group.v1.QueryGroupMembersResponse";
   value: Uint8Array;
 }
@@ -156,7 +156,7 @@ export interface QueryGroupMembersResponseAmino {
 
   pagination?: PageResponseAmino;
 }
-export interface QueryGroupMembersResponseAminoType {
+export interface QueryGroupMembersResponseAminoMsg {
   type: "cosmos-sdk/QueryGroupMembersResponse";
   value: QueryGroupMembersResponseAmino;
 }
@@ -175,7 +175,7 @@ export interface QueryGroupsByAdminRequest {
 
   pagination?: PageRequest;
 }
-export interface QueryGroupsByAdminRequestProtoType {
+export interface QueryGroupsByAdminRequestProtoMsg {
   typeUrl: "/cosmos.group.v1.QueryGroupsByAdminRequest";
   value: Uint8Array;
 }
@@ -188,7 +188,7 @@ export interface QueryGroupsByAdminRequestAmino {
 
   pagination?: PageRequestAmino;
 }
-export interface QueryGroupsByAdminRequestAminoType {
+export interface QueryGroupsByAdminRequestAminoMsg {
   type: "cosmos-sdk/QueryGroupsByAdminRequest";
   value: QueryGroupsByAdminRequestAmino;
 }
@@ -207,7 +207,7 @@ export interface QueryGroupsByAdminResponse {
 
   pagination?: PageResponse;
 }
-export interface QueryGroupsByAdminResponseProtoType {
+export interface QueryGroupsByAdminResponseProtoMsg {
   typeUrl: "/cosmos.group.v1.QueryGroupsByAdminResponse";
   value: Uint8Array;
 }
@@ -220,7 +220,7 @@ export interface QueryGroupsByAdminResponseAmino {
 
   pagination?: PageResponseAmino;
 }
-export interface QueryGroupsByAdminResponseAminoType {
+export interface QueryGroupsByAdminResponseAminoMsg {
   type: "cosmos-sdk/QueryGroupsByAdminResponse";
   value: QueryGroupsByAdminResponseAmino;
 }
@@ -239,7 +239,7 @@ export interface QueryGroupPoliciesByGroupRequest {
 
   pagination?: PageRequest;
 }
-export interface QueryGroupPoliciesByGroupRequestProtoType {
+export interface QueryGroupPoliciesByGroupRequestProtoMsg {
   typeUrl: "/cosmos.group.v1.QueryGroupPoliciesByGroupRequest";
   value: Uint8Array;
 }
@@ -252,7 +252,7 @@ export interface QueryGroupPoliciesByGroupRequestAmino {
 
   pagination?: PageRequestAmino;
 }
-export interface QueryGroupPoliciesByGroupRequestAminoType {
+export interface QueryGroupPoliciesByGroupRequestAminoMsg {
   type: "cosmos-sdk/QueryGroupPoliciesByGroupRequest";
   value: QueryGroupPoliciesByGroupRequestAmino;
 }
@@ -271,7 +271,7 @@ export interface QueryGroupPoliciesByGroupResponse {
 
   pagination?: PageResponse;
 }
-export interface QueryGroupPoliciesByGroupResponseProtoType {
+export interface QueryGroupPoliciesByGroupResponseProtoMsg {
   typeUrl: "/cosmos.group.v1.QueryGroupPoliciesByGroupResponse";
   value: Uint8Array;
 }
@@ -284,7 +284,7 @@ export interface QueryGroupPoliciesByGroupResponseAmino {
 
   pagination?: PageResponseAmino;
 }
-export interface QueryGroupPoliciesByGroupResponseAminoType {
+export interface QueryGroupPoliciesByGroupResponseAminoMsg {
   type: "cosmos-sdk/QueryGroupPoliciesByGroupResponse";
   value: QueryGroupPoliciesByGroupResponseAmino;
 }
@@ -303,7 +303,7 @@ export interface QueryGroupPoliciesByAdminRequest {
 
   pagination?: PageRequest;
 }
-export interface QueryGroupPoliciesByAdminRequestProtoType {
+export interface QueryGroupPoliciesByAdminRequestProtoMsg {
   typeUrl: "/cosmos.group.v1.QueryGroupPoliciesByAdminRequest";
   value: Uint8Array;
 }
@@ -316,7 +316,7 @@ export interface QueryGroupPoliciesByAdminRequestAmino {
 
   pagination?: PageRequestAmino;
 }
-export interface QueryGroupPoliciesByAdminRequestAminoType {
+export interface QueryGroupPoliciesByAdminRequestAminoMsg {
   type: "cosmos-sdk/QueryGroupPoliciesByAdminRequest";
   value: QueryGroupPoliciesByAdminRequestAmino;
 }
@@ -335,7 +335,7 @@ export interface QueryGroupPoliciesByAdminResponse {
 
   pagination?: PageResponse;
 }
-export interface QueryGroupPoliciesByAdminResponseProtoType {
+export interface QueryGroupPoliciesByAdminResponseProtoMsg {
   typeUrl: "/cosmos.group.v1.QueryGroupPoliciesByAdminResponse";
   value: Uint8Array;
 }
@@ -348,7 +348,7 @@ export interface QueryGroupPoliciesByAdminResponseAmino {
 
   pagination?: PageResponseAmino;
 }
-export interface QueryGroupPoliciesByAdminResponseAminoType {
+export interface QueryGroupPoliciesByAdminResponseAminoMsg {
   type: "cosmos-sdk/QueryGroupPoliciesByAdminResponse";
   value: QueryGroupPoliciesByAdminResponseAmino;
 }
@@ -364,7 +364,7 @@ export interface QueryProposalRequest {
   /** proposal_id is the unique ID of a proposal. */
   proposalId: Long;
 }
-export interface QueryProposalRequestProtoType {
+export interface QueryProposalRequestProtoMsg {
   typeUrl: "/cosmos.group.v1.QueryProposalRequest";
   value: Uint8Array;
 }
@@ -374,7 +374,7 @@ export interface QueryProposalRequestAmino {
   /** proposal_id is the unique ID of a proposal. */
   proposal_id: string;
 }
-export interface QueryProposalRequestAminoType {
+export interface QueryProposalRequestAminoMsg {
   type: "cosmos-sdk/QueryProposalRequest";
   value: QueryProposalRequestAmino;
 }
@@ -389,7 +389,7 @@ export interface QueryProposalResponse {
   /** proposal is the proposal info. */
   proposal?: Proposal;
 }
-export interface QueryProposalResponseProtoType {
+export interface QueryProposalResponseProtoMsg {
   typeUrl: "/cosmos.group.v1.QueryProposalResponse";
   value: Uint8Array;
 }
@@ -399,7 +399,7 @@ export interface QueryProposalResponseAmino {
   /** proposal is the proposal info. */
   proposal?: ProposalAmino;
 }
-export interface QueryProposalResponseAminoType {
+export interface QueryProposalResponseAminoMsg {
   type: "cosmos-sdk/QueryProposalResponse";
   value: QueryProposalResponseAmino;
 }
@@ -417,7 +417,7 @@ export interface QueryProposalsByGroupPolicyRequest {
 
   pagination?: PageRequest;
 }
-export interface QueryProposalsByGroupPolicyRequestProtoType {
+export interface QueryProposalsByGroupPolicyRequestProtoMsg {
   typeUrl: "/cosmos.group.v1.QueryProposalsByGroupPolicyRequest";
   value: Uint8Array;
 }
@@ -430,7 +430,7 @@ export interface QueryProposalsByGroupPolicyRequestAmino {
 
   pagination?: PageRequestAmino;
 }
-export interface QueryProposalsByGroupPolicyRequestAminoType {
+export interface QueryProposalsByGroupPolicyRequestAminoMsg {
   type: "cosmos-sdk/QueryProposalsByGroupPolicyRequest";
   value: QueryProposalsByGroupPolicyRequestAmino;
 }
@@ -449,7 +449,7 @@ export interface QueryProposalsByGroupPolicyResponse {
 
   pagination?: PageResponse;
 }
-export interface QueryProposalsByGroupPolicyResponseProtoType {
+export interface QueryProposalsByGroupPolicyResponseProtoMsg {
   typeUrl: "/cosmos.group.v1.QueryProposalsByGroupPolicyResponse";
   value: Uint8Array;
 }
@@ -462,7 +462,7 @@ export interface QueryProposalsByGroupPolicyResponseAmino {
 
   pagination?: PageResponseAmino;
 }
-export interface QueryProposalsByGroupPolicyResponseAminoType {
+export interface QueryProposalsByGroupPolicyResponseAminoMsg {
   type: "cosmos-sdk/QueryProposalsByGroupPolicyResponse";
   value: QueryProposalsByGroupPolicyResponseAmino;
 }
@@ -481,7 +481,7 @@ export interface QueryVoteByProposalVoterRequest {
 
   voter: string;
 }
-export interface QueryVoteByProposalVoterRequestProtoType {
+export interface QueryVoteByProposalVoterRequestProtoMsg {
   typeUrl: "/cosmos.group.v1.QueryVoteByProposalVoterRequest";
   value: Uint8Array;
 }
@@ -494,7 +494,7 @@ export interface QueryVoteByProposalVoterRequestAmino {
 
   voter: string;
 }
-export interface QueryVoteByProposalVoterRequestAminoType {
+export interface QueryVoteByProposalVoterRequestAminoMsg {
   type: "cosmos-sdk/QueryVoteByProposalVoterRequest";
   value: QueryVoteByProposalVoterRequestAmino;
 }
@@ -510,7 +510,7 @@ export interface QueryVoteByProposalVoterResponse {
   /** vote is the vote with given proposal_id and voter. */
   vote?: Vote;
 }
-export interface QueryVoteByProposalVoterResponseProtoType {
+export interface QueryVoteByProposalVoterResponseProtoMsg {
   typeUrl: "/cosmos.group.v1.QueryVoteByProposalVoterResponse";
   value: Uint8Array;
 }
@@ -520,7 +520,7 @@ export interface QueryVoteByProposalVoterResponseAmino {
   /** vote is the vote with given proposal_id and voter. */
   vote?: VoteAmino;
 }
-export interface QueryVoteByProposalVoterResponseAminoType {
+export interface QueryVoteByProposalVoterResponseAminoMsg {
   type: "cosmos-sdk/QueryVoteByProposalVoterResponse";
   value: QueryVoteByProposalVoterResponseAmino;
 }
@@ -538,7 +538,7 @@ export interface QueryVotesByProposalRequest {
 
   pagination?: PageRequest;
 }
-export interface QueryVotesByProposalRequestProtoType {
+export interface QueryVotesByProposalRequestProtoMsg {
   typeUrl: "/cosmos.group.v1.QueryVotesByProposalRequest";
   value: Uint8Array;
 }
@@ -551,7 +551,7 @@ export interface QueryVotesByProposalRequestAmino {
 
   pagination?: PageRequestAmino;
 }
-export interface QueryVotesByProposalRequestAminoType {
+export interface QueryVotesByProposalRequestAminoMsg {
   type: "cosmos-sdk/QueryVotesByProposalRequest";
   value: QueryVotesByProposalRequestAmino;
 }
@@ -570,7 +570,7 @@ export interface QueryVotesByProposalResponse {
 
   pagination?: PageResponse;
 }
-export interface QueryVotesByProposalResponseProtoType {
+export interface QueryVotesByProposalResponseProtoMsg {
   typeUrl: "/cosmos.group.v1.QueryVotesByProposalResponse";
   value: Uint8Array;
 }
@@ -583,7 +583,7 @@ export interface QueryVotesByProposalResponseAmino {
 
   pagination?: PageResponseAmino;
 }
-export interface QueryVotesByProposalResponseAminoType {
+export interface QueryVotesByProposalResponseAminoMsg {
   type: "cosmos-sdk/QueryVotesByProposalResponse";
   value: QueryVotesByProposalResponseAmino;
 }
@@ -602,7 +602,7 @@ export interface QueryVotesByVoterRequest {
 
   pagination?: PageRequest;
 }
-export interface QueryVotesByVoterRequestProtoType {
+export interface QueryVotesByVoterRequestProtoMsg {
   typeUrl: "/cosmos.group.v1.QueryVotesByVoterRequest";
   value: Uint8Array;
 }
@@ -615,7 +615,7 @@ export interface QueryVotesByVoterRequestAmino {
 
   pagination?: PageRequestAmino;
 }
-export interface QueryVotesByVoterRequestAminoType {
+export interface QueryVotesByVoterRequestAminoMsg {
   type: "cosmos-sdk/QueryVotesByVoterRequest";
   value: QueryVotesByVoterRequestAmino;
 }
@@ -634,7 +634,7 @@ export interface QueryVotesByVoterResponse {
 
   pagination?: PageResponse;
 }
-export interface QueryVotesByVoterResponseProtoType {
+export interface QueryVotesByVoterResponseProtoMsg {
   typeUrl: "/cosmos.group.v1.QueryVotesByVoterResponse";
   value: Uint8Array;
 }
@@ -647,7 +647,7 @@ export interface QueryVotesByVoterResponseAmino {
 
   pagination?: PageResponseAmino;
 }
-export interface QueryVotesByVoterResponseAminoType {
+export interface QueryVotesByVoterResponseAminoMsg {
   type: "cosmos-sdk/QueryVotesByVoterResponse";
   value: QueryVotesByVoterResponseAmino;
 }
@@ -666,7 +666,7 @@ export interface QueryGroupsByMemberRequest {
 
   pagination?: PageRequest;
 }
-export interface QueryGroupsByMemberRequestProtoType {
+export interface QueryGroupsByMemberRequestProtoMsg {
   typeUrl: "/cosmos.group.v1.QueryGroupsByMemberRequest";
   value: Uint8Array;
 }
@@ -679,7 +679,7 @@ export interface QueryGroupsByMemberRequestAmino {
 
   pagination?: PageRequestAmino;
 }
-export interface QueryGroupsByMemberRequestAminoType {
+export interface QueryGroupsByMemberRequestAminoMsg {
   type: "cosmos-sdk/QueryGroupsByMemberRequest";
   value: QueryGroupsByMemberRequestAmino;
 }
@@ -698,7 +698,7 @@ export interface QueryGroupsByMemberResponse {
 
   pagination?: PageResponse;
 }
-export interface QueryGroupsByMemberResponseProtoType {
+export interface QueryGroupsByMemberResponseProtoMsg {
   typeUrl: "/cosmos.group.v1.QueryGroupsByMemberResponse";
   value: Uint8Array;
 }
@@ -711,7 +711,7 @@ export interface QueryGroupsByMemberResponseAmino {
 
   pagination?: PageResponseAmino;
 }
-export interface QueryGroupsByMemberResponseAminoType {
+export interface QueryGroupsByMemberResponseAminoMsg {
   type: "cosmos-sdk/QueryGroupsByMemberResponse";
   value: QueryGroupsByMemberResponseAmino;
 }
@@ -727,7 +727,7 @@ export interface QueryTallyResultRequest {
   /** proposal_id is the unique id of a proposal. */
   proposalId: Long;
 }
-export interface QueryTallyResultRequestProtoType {
+export interface QueryTallyResultRequestProtoMsg {
   typeUrl: "/cosmos.group.v1.QueryTallyResultRequest";
   value: Uint8Array;
 }
@@ -737,7 +737,7 @@ export interface QueryTallyResultRequestAmino {
   /** proposal_id is the unique id of a proposal. */
   proposal_id: string;
 }
-export interface QueryTallyResultRequestAminoType {
+export interface QueryTallyResultRequestAminoMsg {
   type: "cosmos-sdk/QueryTallyResultRequest";
   value: QueryTallyResultRequestAmino;
 }
@@ -752,7 +752,7 @@ export interface QueryTallyResultResponse {
   /** tally defines the requested tally. */
   tally?: TallyResult;
 }
-export interface QueryTallyResultResponseProtoType {
+export interface QueryTallyResultResponseProtoMsg {
   typeUrl: "/cosmos.group.v1.QueryTallyResultResponse";
   value: Uint8Array;
 }
@@ -762,7 +762,7 @@ export interface QueryTallyResultResponseAmino {
   /** tally defines the requested tally. */
   tally?: TallyResultAmino;
 }
-export interface QueryTallyResultResponseAminoType {
+export interface QueryTallyResultResponseAminoMsg {
   type: "cosmos-sdk/QueryTallyResultResponse";
   value: QueryTallyResultResponseAmino;
 }
@@ -837,6 +837,32 @@ export const QueryGroupInfoRequest = {
     const obj: any = {};
     obj.group_id = message.groupId ? message.groupId.toString() : undefined;
     return obj;
+  },
+
+  fromAminoMsg(object: QueryGroupInfoRequestAminoMsg): QueryGroupInfoRequest {
+    return QueryGroupInfoRequest.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: QueryGroupInfoRequest): QueryGroupInfoRequestAminoMsg {
+    return {
+      type: "cosmos-sdk/QueryGroupInfoRequest",
+      value: QueryGroupInfoRequest.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: QueryGroupInfoRequestProtoMsg): QueryGroupInfoRequest {
+    return QueryGroupInfoRequest.decode(message.value);
+  },
+
+  toProto(message: QueryGroupInfoRequest): Uint8Array {
+    return QueryGroupInfoRequest.encode(message).finish();
+  },
+
+  toProtoMsg(message: QueryGroupInfoRequest): QueryGroupInfoRequestProtoMsg {
+    return {
+      typeUrl: "/cosmos.group.v1.QueryGroupInfoRequest",
+      value: QueryGroupInfoRequest.encode(message).finish()
+    };
   }
 
 };
@@ -906,6 +932,32 @@ export const QueryGroupInfoResponse = {
     const obj: any = {};
     obj.info = message.info ? GroupInfo.toAmino(message.info) : undefined;
     return obj;
+  },
+
+  fromAminoMsg(object: QueryGroupInfoResponseAminoMsg): QueryGroupInfoResponse {
+    return QueryGroupInfoResponse.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: QueryGroupInfoResponse): QueryGroupInfoResponseAminoMsg {
+    return {
+      type: "cosmos-sdk/QueryGroupInfoResponse",
+      value: QueryGroupInfoResponse.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: QueryGroupInfoResponseProtoMsg): QueryGroupInfoResponse {
+    return QueryGroupInfoResponse.decode(message.value);
+  },
+
+  toProto(message: QueryGroupInfoResponse): Uint8Array {
+    return QueryGroupInfoResponse.encode(message).finish();
+  },
+
+  toProtoMsg(message: QueryGroupInfoResponse): QueryGroupInfoResponseProtoMsg {
+    return {
+      typeUrl: "/cosmos.group.v1.QueryGroupInfoResponse",
+      value: QueryGroupInfoResponse.encode(message).finish()
+    };
   }
 
 };
@@ -975,6 +1027,32 @@ export const QueryGroupPolicyInfoRequest = {
     const obj: any = {};
     obj.address = message.address;
     return obj;
+  },
+
+  fromAminoMsg(object: QueryGroupPolicyInfoRequestAminoMsg): QueryGroupPolicyInfoRequest {
+    return QueryGroupPolicyInfoRequest.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: QueryGroupPolicyInfoRequest): QueryGroupPolicyInfoRequestAminoMsg {
+    return {
+      type: "cosmos-sdk/QueryGroupPolicyInfoRequest",
+      value: QueryGroupPolicyInfoRequest.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: QueryGroupPolicyInfoRequestProtoMsg): QueryGroupPolicyInfoRequest {
+    return QueryGroupPolicyInfoRequest.decode(message.value);
+  },
+
+  toProto(message: QueryGroupPolicyInfoRequest): Uint8Array {
+    return QueryGroupPolicyInfoRequest.encode(message).finish();
+  },
+
+  toProtoMsg(message: QueryGroupPolicyInfoRequest): QueryGroupPolicyInfoRequestProtoMsg {
+    return {
+      typeUrl: "/cosmos.group.v1.QueryGroupPolicyInfoRequest",
+      value: QueryGroupPolicyInfoRequest.encode(message).finish()
+    };
   }
 
 };
@@ -1044,6 +1122,32 @@ export const QueryGroupPolicyInfoResponse = {
     const obj: any = {};
     obj.info = message.info ? GroupPolicyInfo.toAmino(message.info) : undefined;
     return obj;
+  },
+
+  fromAminoMsg(object: QueryGroupPolicyInfoResponseAminoMsg): QueryGroupPolicyInfoResponse {
+    return QueryGroupPolicyInfoResponse.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: QueryGroupPolicyInfoResponse): QueryGroupPolicyInfoResponseAminoMsg {
+    return {
+      type: "cosmos-sdk/QueryGroupPolicyInfoResponse",
+      value: QueryGroupPolicyInfoResponse.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: QueryGroupPolicyInfoResponseProtoMsg): QueryGroupPolicyInfoResponse {
+    return QueryGroupPolicyInfoResponse.decode(message.value);
+  },
+
+  toProto(message: QueryGroupPolicyInfoResponse): Uint8Array {
+    return QueryGroupPolicyInfoResponse.encode(message).finish();
+  },
+
+  toProtoMsg(message: QueryGroupPolicyInfoResponse): QueryGroupPolicyInfoResponseProtoMsg {
+    return {
+      typeUrl: "/cosmos.group.v1.QueryGroupPolicyInfoResponse",
+      value: QueryGroupPolicyInfoResponse.encode(message).finish()
+    };
   }
 
 };
@@ -1127,6 +1231,32 @@ export const QueryGroupMembersRequest = {
     obj.group_id = message.groupId ? message.groupId.toString() : undefined;
     obj.pagination = message.pagination ? PageRequest.toAmino(message.pagination) : undefined;
     return obj;
+  },
+
+  fromAminoMsg(object: QueryGroupMembersRequestAminoMsg): QueryGroupMembersRequest {
+    return QueryGroupMembersRequest.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: QueryGroupMembersRequest): QueryGroupMembersRequestAminoMsg {
+    return {
+      type: "cosmos-sdk/QueryGroupMembersRequest",
+      value: QueryGroupMembersRequest.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: QueryGroupMembersRequestProtoMsg): QueryGroupMembersRequest {
+    return QueryGroupMembersRequest.decode(message.value);
+  },
+
+  toProto(message: QueryGroupMembersRequest): Uint8Array {
+    return QueryGroupMembersRequest.encode(message).finish();
+  },
+
+  toProtoMsg(message: QueryGroupMembersRequest): QueryGroupMembersRequestProtoMsg {
+    return {
+      typeUrl: "/cosmos.group.v1.QueryGroupMembersRequest",
+      value: QueryGroupMembersRequest.encode(message).finish()
+    };
   }
 
 };
@@ -1222,6 +1352,32 @@ export const QueryGroupMembersResponse = {
 
     obj.pagination = message.pagination ? PageResponse.toAmino(message.pagination) : undefined;
     return obj;
+  },
+
+  fromAminoMsg(object: QueryGroupMembersResponseAminoMsg): QueryGroupMembersResponse {
+    return QueryGroupMembersResponse.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: QueryGroupMembersResponse): QueryGroupMembersResponseAminoMsg {
+    return {
+      type: "cosmos-sdk/QueryGroupMembersResponse",
+      value: QueryGroupMembersResponse.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: QueryGroupMembersResponseProtoMsg): QueryGroupMembersResponse {
+    return QueryGroupMembersResponse.decode(message.value);
+  },
+
+  toProto(message: QueryGroupMembersResponse): Uint8Array {
+    return QueryGroupMembersResponse.encode(message).finish();
+  },
+
+  toProtoMsg(message: QueryGroupMembersResponse): QueryGroupMembersResponseProtoMsg {
+    return {
+      typeUrl: "/cosmos.group.v1.QueryGroupMembersResponse",
+      value: QueryGroupMembersResponse.encode(message).finish()
+    };
   }
 
 };
@@ -1305,6 +1461,32 @@ export const QueryGroupsByAdminRequest = {
     obj.admin = message.admin;
     obj.pagination = message.pagination ? PageRequest.toAmino(message.pagination) : undefined;
     return obj;
+  },
+
+  fromAminoMsg(object: QueryGroupsByAdminRequestAminoMsg): QueryGroupsByAdminRequest {
+    return QueryGroupsByAdminRequest.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: QueryGroupsByAdminRequest): QueryGroupsByAdminRequestAminoMsg {
+    return {
+      type: "cosmos-sdk/QueryGroupsByAdminRequest",
+      value: QueryGroupsByAdminRequest.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: QueryGroupsByAdminRequestProtoMsg): QueryGroupsByAdminRequest {
+    return QueryGroupsByAdminRequest.decode(message.value);
+  },
+
+  toProto(message: QueryGroupsByAdminRequest): Uint8Array {
+    return QueryGroupsByAdminRequest.encode(message).finish();
+  },
+
+  toProtoMsg(message: QueryGroupsByAdminRequest): QueryGroupsByAdminRequestProtoMsg {
+    return {
+      typeUrl: "/cosmos.group.v1.QueryGroupsByAdminRequest",
+      value: QueryGroupsByAdminRequest.encode(message).finish()
+    };
   }
 
 };
@@ -1400,6 +1582,32 @@ export const QueryGroupsByAdminResponse = {
 
     obj.pagination = message.pagination ? PageResponse.toAmino(message.pagination) : undefined;
     return obj;
+  },
+
+  fromAminoMsg(object: QueryGroupsByAdminResponseAminoMsg): QueryGroupsByAdminResponse {
+    return QueryGroupsByAdminResponse.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: QueryGroupsByAdminResponse): QueryGroupsByAdminResponseAminoMsg {
+    return {
+      type: "cosmos-sdk/QueryGroupsByAdminResponse",
+      value: QueryGroupsByAdminResponse.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: QueryGroupsByAdminResponseProtoMsg): QueryGroupsByAdminResponse {
+    return QueryGroupsByAdminResponse.decode(message.value);
+  },
+
+  toProto(message: QueryGroupsByAdminResponse): Uint8Array {
+    return QueryGroupsByAdminResponse.encode(message).finish();
+  },
+
+  toProtoMsg(message: QueryGroupsByAdminResponse): QueryGroupsByAdminResponseProtoMsg {
+    return {
+      typeUrl: "/cosmos.group.v1.QueryGroupsByAdminResponse",
+      value: QueryGroupsByAdminResponse.encode(message).finish()
+    };
   }
 
 };
@@ -1483,6 +1691,32 @@ export const QueryGroupPoliciesByGroupRequest = {
     obj.group_id = message.groupId ? message.groupId.toString() : undefined;
     obj.pagination = message.pagination ? PageRequest.toAmino(message.pagination) : undefined;
     return obj;
+  },
+
+  fromAminoMsg(object: QueryGroupPoliciesByGroupRequestAminoMsg): QueryGroupPoliciesByGroupRequest {
+    return QueryGroupPoliciesByGroupRequest.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: QueryGroupPoliciesByGroupRequest): QueryGroupPoliciesByGroupRequestAminoMsg {
+    return {
+      type: "cosmos-sdk/QueryGroupPoliciesByGroupRequest",
+      value: QueryGroupPoliciesByGroupRequest.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: QueryGroupPoliciesByGroupRequestProtoMsg): QueryGroupPoliciesByGroupRequest {
+    return QueryGroupPoliciesByGroupRequest.decode(message.value);
+  },
+
+  toProto(message: QueryGroupPoliciesByGroupRequest): Uint8Array {
+    return QueryGroupPoliciesByGroupRequest.encode(message).finish();
+  },
+
+  toProtoMsg(message: QueryGroupPoliciesByGroupRequest): QueryGroupPoliciesByGroupRequestProtoMsg {
+    return {
+      typeUrl: "/cosmos.group.v1.QueryGroupPoliciesByGroupRequest",
+      value: QueryGroupPoliciesByGroupRequest.encode(message).finish()
+    };
   }
 
 };
@@ -1578,6 +1812,32 @@ export const QueryGroupPoliciesByGroupResponse = {
 
     obj.pagination = message.pagination ? PageResponse.toAmino(message.pagination) : undefined;
     return obj;
+  },
+
+  fromAminoMsg(object: QueryGroupPoliciesByGroupResponseAminoMsg): QueryGroupPoliciesByGroupResponse {
+    return QueryGroupPoliciesByGroupResponse.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: QueryGroupPoliciesByGroupResponse): QueryGroupPoliciesByGroupResponseAminoMsg {
+    return {
+      type: "cosmos-sdk/QueryGroupPoliciesByGroupResponse",
+      value: QueryGroupPoliciesByGroupResponse.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: QueryGroupPoliciesByGroupResponseProtoMsg): QueryGroupPoliciesByGroupResponse {
+    return QueryGroupPoliciesByGroupResponse.decode(message.value);
+  },
+
+  toProto(message: QueryGroupPoliciesByGroupResponse): Uint8Array {
+    return QueryGroupPoliciesByGroupResponse.encode(message).finish();
+  },
+
+  toProtoMsg(message: QueryGroupPoliciesByGroupResponse): QueryGroupPoliciesByGroupResponseProtoMsg {
+    return {
+      typeUrl: "/cosmos.group.v1.QueryGroupPoliciesByGroupResponse",
+      value: QueryGroupPoliciesByGroupResponse.encode(message).finish()
+    };
   }
 
 };
@@ -1661,6 +1921,32 @@ export const QueryGroupPoliciesByAdminRequest = {
     obj.admin = message.admin;
     obj.pagination = message.pagination ? PageRequest.toAmino(message.pagination) : undefined;
     return obj;
+  },
+
+  fromAminoMsg(object: QueryGroupPoliciesByAdminRequestAminoMsg): QueryGroupPoliciesByAdminRequest {
+    return QueryGroupPoliciesByAdminRequest.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: QueryGroupPoliciesByAdminRequest): QueryGroupPoliciesByAdminRequestAminoMsg {
+    return {
+      type: "cosmos-sdk/QueryGroupPoliciesByAdminRequest",
+      value: QueryGroupPoliciesByAdminRequest.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: QueryGroupPoliciesByAdminRequestProtoMsg): QueryGroupPoliciesByAdminRequest {
+    return QueryGroupPoliciesByAdminRequest.decode(message.value);
+  },
+
+  toProto(message: QueryGroupPoliciesByAdminRequest): Uint8Array {
+    return QueryGroupPoliciesByAdminRequest.encode(message).finish();
+  },
+
+  toProtoMsg(message: QueryGroupPoliciesByAdminRequest): QueryGroupPoliciesByAdminRequestProtoMsg {
+    return {
+      typeUrl: "/cosmos.group.v1.QueryGroupPoliciesByAdminRequest",
+      value: QueryGroupPoliciesByAdminRequest.encode(message).finish()
+    };
   }
 
 };
@@ -1756,6 +2042,32 @@ export const QueryGroupPoliciesByAdminResponse = {
 
     obj.pagination = message.pagination ? PageResponse.toAmino(message.pagination) : undefined;
     return obj;
+  },
+
+  fromAminoMsg(object: QueryGroupPoliciesByAdminResponseAminoMsg): QueryGroupPoliciesByAdminResponse {
+    return QueryGroupPoliciesByAdminResponse.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: QueryGroupPoliciesByAdminResponse): QueryGroupPoliciesByAdminResponseAminoMsg {
+    return {
+      type: "cosmos-sdk/QueryGroupPoliciesByAdminResponse",
+      value: QueryGroupPoliciesByAdminResponse.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: QueryGroupPoliciesByAdminResponseProtoMsg): QueryGroupPoliciesByAdminResponse {
+    return QueryGroupPoliciesByAdminResponse.decode(message.value);
+  },
+
+  toProto(message: QueryGroupPoliciesByAdminResponse): Uint8Array {
+    return QueryGroupPoliciesByAdminResponse.encode(message).finish();
+  },
+
+  toProtoMsg(message: QueryGroupPoliciesByAdminResponse): QueryGroupPoliciesByAdminResponseProtoMsg {
+    return {
+      typeUrl: "/cosmos.group.v1.QueryGroupPoliciesByAdminResponse",
+      value: QueryGroupPoliciesByAdminResponse.encode(message).finish()
+    };
   }
 
 };
@@ -1825,6 +2137,32 @@ export const QueryProposalRequest = {
     const obj: any = {};
     obj.proposal_id = message.proposalId ? message.proposalId.toString() : undefined;
     return obj;
+  },
+
+  fromAminoMsg(object: QueryProposalRequestAminoMsg): QueryProposalRequest {
+    return QueryProposalRequest.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: QueryProposalRequest): QueryProposalRequestAminoMsg {
+    return {
+      type: "cosmos-sdk/QueryProposalRequest",
+      value: QueryProposalRequest.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: QueryProposalRequestProtoMsg): QueryProposalRequest {
+    return QueryProposalRequest.decode(message.value);
+  },
+
+  toProto(message: QueryProposalRequest): Uint8Array {
+    return QueryProposalRequest.encode(message).finish();
+  },
+
+  toProtoMsg(message: QueryProposalRequest): QueryProposalRequestProtoMsg {
+    return {
+      typeUrl: "/cosmos.group.v1.QueryProposalRequest",
+      value: QueryProposalRequest.encode(message).finish()
+    };
   }
 
 };
@@ -1894,6 +2232,32 @@ export const QueryProposalResponse = {
     const obj: any = {};
     obj.proposal = message.proposal ? Proposal.toAmino(message.proposal) : undefined;
     return obj;
+  },
+
+  fromAminoMsg(object: QueryProposalResponseAminoMsg): QueryProposalResponse {
+    return QueryProposalResponse.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: QueryProposalResponse): QueryProposalResponseAminoMsg {
+    return {
+      type: "cosmos-sdk/QueryProposalResponse",
+      value: QueryProposalResponse.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: QueryProposalResponseProtoMsg): QueryProposalResponse {
+    return QueryProposalResponse.decode(message.value);
+  },
+
+  toProto(message: QueryProposalResponse): Uint8Array {
+    return QueryProposalResponse.encode(message).finish();
+  },
+
+  toProtoMsg(message: QueryProposalResponse): QueryProposalResponseProtoMsg {
+    return {
+      typeUrl: "/cosmos.group.v1.QueryProposalResponse",
+      value: QueryProposalResponse.encode(message).finish()
+    };
   }
 
 };
@@ -1977,6 +2341,32 @@ export const QueryProposalsByGroupPolicyRequest = {
     obj.address = message.address;
     obj.pagination = message.pagination ? PageRequest.toAmino(message.pagination) : undefined;
     return obj;
+  },
+
+  fromAminoMsg(object: QueryProposalsByGroupPolicyRequestAminoMsg): QueryProposalsByGroupPolicyRequest {
+    return QueryProposalsByGroupPolicyRequest.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: QueryProposalsByGroupPolicyRequest): QueryProposalsByGroupPolicyRequestAminoMsg {
+    return {
+      type: "cosmos-sdk/QueryProposalsByGroupPolicyRequest",
+      value: QueryProposalsByGroupPolicyRequest.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: QueryProposalsByGroupPolicyRequestProtoMsg): QueryProposalsByGroupPolicyRequest {
+    return QueryProposalsByGroupPolicyRequest.decode(message.value);
+  },
+
+  toProto(message: QueryProposalsByGroupPolicyRequest): Uint8Array {
+    return QueryProposalsByGroupPolicyRequest.encode(message).finish();
+  },
+
+  toProtoMsg(message: QueryProposalsByGroupPolicyRequest): QueryProposalsByGroupPolicyRequestProtoMsg {
+    return {
+      typeUrl: "/cosmos.group.v1.QueryProposalsByGroupPolicyRequest",
+      value: QueryProposalsByGroupPolicyRequest.encode(message).finish()
+    };
   }
 
 };
@@ -2072,6 +2462,32 @@ export const QueryProposalsByGroupPolicyResponse = {
 
     obj.pagination = message.pagination ? PageResponse.toAmino(message.pagination) : undefined;
     return obj;
+  },
+
+  fromAminoMsg(object: QueryProposalsByGroupPolicyResponseAminoMsg): QueryProposalsByGroupPolicyResponse {
+    return QueryProposalsByGroupPolicyResponse.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: QueryProposalsByGroupPolicyResponse): QueryProposalsByGroupPolicyResponseAminoMsg {
+    return {
+      type: "cosmos-sdk/QueryProposalsByGroupPolicyResponse",
+      value: QueryProposalsByGroupPolicyResponse.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: QueryProposalsByGroupPolicyResponseProtoMsg): QueryProposalsByGroupPolicyResponse {
+    return QueryProposalsByGroupPolicyResponse.decode(message.value);
+  },
+
+  toProto(message: QueryProposalsByGroupPolicyResponse): Uint8Array {
+    return QueryProposalsByGroupPolicyResponse.encode(message).finish();
+  },
+
+  toProtoMsg(message: QueryProposalsByGroupPolicyResponse): QueryProposalsByGroupPolicyResponseProtoMsg {
+    return {
+      typeUrl: "/cosmos.group.v1.QueryProposalsByGroupPolicyResponse",
+      value: QueryProposalsByGroupPolicyResponse.encode(message).finish()
+    };
   }
 
 };
@@ -2155,6 +2571,32 @@ export const QueryVoteByProposalVoterRequest = {
     obj.proposal_id = message.proposalId ? message.proposalId.toString() : undefined;
     obj.voter = message.voter;
     return obj;
+  },
+
+  fromAminoMsg(object: QueryVoteByProposalVoterRequestAminoMsg): QueryVoteByProposalVoterRequest {
+    return QueryVoteByProposalVoterRequest.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: QueryVoteByProposalVoterRequest): QueryVoteByProposalVoterRequestAminoMsg {
+    return {
+      type: "cosmos-sdk/QueryVoteByProposalVoterRequest",
+      value: QueryVoteByProposalVoterRequest.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: QueryVoteByProposalVoterRequestProtoMsg): QueryVoteByProposalVoterRequest {
+    return QueryVoteByProposalVoterRequest.decode(message.value);
+  },
+
+  toProto(message: QueryVoteByProposalVoterRequest): Uint8Array {
+    return QueryVoteByProposalVoterRequest.encode(message).finish();
+  },
+
+  toProtoMsg(message: QueryVoteByProposalVoterRequest): QueryVoteByProposalVoterRequestProtoMsg {
+    return {
+      typeUrl: "/cosmos.group.v1.QueryVoteByProposalVoterRequest",
+      value: QueryVoteByProposalVoterRequest.encode(message).finish()
+    };
   }
 
 };
@@ -2224,6 +2666,32 @@ export const QueryVoteByProposalVoterResponse = {
     const obj: any = {};
     obj.vote = message.vote ? Vote.toAmino(message.vote) : undefined;
     return obj;
+  },
+
+  fromAminoMsg(object: QueryVoteByProposalVoterResponseAminoMsg): QueryVoteByProposalVoterResponse {
+    return QueryVoteByProposalVoterResponse.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: QueryVoteByProposalVoterResponse): QueryVoteByProposalVoterResponseAminoMsg {
+    return {
+      type: "cosmos-sdk/QueryVoteByProposalVoterResponse",
+      value: QueryVoteByProposalVoterResponse.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: QueryVoteByProposalVoterResponseProtoMsg): QueryVoteByProposalVoterResponse {
+    return QueryVoteByProposalVoterResponse.decode(message.value);
+  },
+
+  toProto(message: QueryVoteByProposalVoterResponse): Uint8Array {
+    return QueryVoteByProposalVoterResponse.encode(message).finish();
+  },
+
+  toProtoMsg(message: QueryVoteByProposalVoterResponse): QueryVoteByProposalVoterResponseProtoMsg {
+    return {
+      typeUrl: "/cosmos.group.v1.QueryVoteByProposalVoterResponse",
+      value: QueryVoteByProposalVoterResponse.encode(message).finish()
+    };
   }
 
 };
@@ -2307,6 +2775,32 @@ export const QueryVotesByProposalRequest = {
     obj.proposal_id = message.proposalId ? message.proposalId.toString() : undefined;
     obj.pagination = message.pagination ? PageRequest.toAmino(message.pagination) : undefined;
     return obj;
+  },
+
+  fromAminoMsg(object: QueryVotesByProposalRequestAminoMsg): QueryVotesByProposalRequest {
+    return QueryVotesByProposalRequest.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: QueryVotesByProposalRequest): QueryVotesByProposalRequestAminoMsg {
+    return {
+      type: "cosmos-sdk/QueryVotesByProposalRequest",
+      value: QueryVotesByProposalRequest.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: QueryVotesByProposalRequestProtoMsg): QueryVotesByProposalRequest {
+    return QueryVotesByProposalRequest.decode(message.value);
+  },
+
+  toProto(message: QueryVotesByProposalRequest): Uint8Array {
+    return QueryVotesByProposalRequest.encode(message).finish();
+  },
+
+  toProtoMsg(message: QueryVotesByProposalRequest): QueryVotesByProposalRequestProtoMsg {
+    return {
+      typeUrl: "/cosmos.group.v1.QueryVotesByProposalRequest",
+      value: QueryVotesByProposalRequest.encode(message).finish()
+    };
   }
 
 };
@@ -2402,6 +2896,32 @@ export const QueryVotesByProposalResponse = {
 
     obj.pagination = message.pagination ? PageResponse.toAmino(message.pagination) : undefined;
     return obj;
+  },
+
+  fromAminoMsg(object: QueryVotesByProposalResponseAminoMsg): QueryVotesByProposalResponse {
+    return QueryVotesByProposalResponse.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: QueryVotesByProposalResponse): QueryVotesByProposalResponseAminoMsg {
+    return {
+      type: "cosmos-sdk/QueryVotesByProposalResponse",
+      value: QueryVotesByProposalResponse.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: QueryVotesByProposalResponseProtoMsg): QueryVotesByProposalResponse {
+    return QueryVotesByProposalResponse.decode(message.value);
+  },
+
+  toProto(message: QueryVotesByProposalResponse): Uint8Array {
+    return QueryVotesByProposalResponse.encode(message).finish();
+  },
+
+  toProtoMsg(message: QueryVotesByProposalResponse): QueryVotesByProposalResponseProtoMsg {
+    return {
+      typeUrl: "/cosmos.group.v1.QueryVotesByProposalResponse",
+      value: QueryVotesByProposalResponse.encode(message).finish()
+    };
   }
 
 };
@@ -2485,6 +3005,32 @@ export const QueryVotesByVoterRequest = {
     obj.voter = message.voter;
     obj.pagination = message.pagination ? PageRequest.toAmino(message.pagination) : undefined;
     return obj;
+  },
+
+  fromAminoMsg(object: QueryVotesByVoterRequestAminoMsg): QueryVotesByVoterRequest {
+    return QueryVotesByVoterRequest.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: QueryVotesByVoterRequest): QueryVotesByVoterRequestAminoMsg {
+    return {
+      type: "cosmos-sdk/QueryVotesByVoterRequest",
+      value: QueryVotesByVoterRequest.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: QueryVotesByVoterRequestProtoMsg): QueryVotesByVoterRequest {
+    return QueryVotesByVoterRequest.decode(message.value);
+  },
+
+  toProto(message: QueryVotesByVoterRequest): Uint8Array {
+    return QueryVotesByVoterRequest.encode(message).finish();
+  },
+
+  toProtoMsg(message: QueryVotesByVoterRequest): QueryVotesByVoterRequestProtoMsg {
+    return {
+      typeUrl: "/cosmos.group.v1.QueryVotesByVoterRequest",
+      value: QueryVotesByVoterRequest.encode(message).finish()
+    };
   }
 
 };
@@ -2580,6 +3126,32 @@ export const QueryVotesByVoterResponse = {
 
     obj.pagination = message.pagination ? PageResponse.toAmino(message.pagination) : undefined;
     return obj;
+  },
+
+  fromAminoMsg(object: QueryVotesByVoterResponseAminoMsg): QueryVotesByVoterResponse {
+    return QueryVotesByVoterResponse.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: QueryVotesByVoterResponse): QueryVotesByVoterResponseAminoMsg {
+    return {
+      type: "cosmos-sdk/QueryVotesByVoterResponse",
+      value: QueryVotesByVoterResponse.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: QueryVotesByVoterResponseProtoMsg): QueryVotesByVoterResponse {
+    return QueryVotesByVoterResponse.decode(message.value);
+  },
+
+  toProto(message: QueryVotesByVoterResponse): Uint8Array {
+    return QueryVotesByVoterResponse.encode(message).finish();
+  },
+
+  toProtoMsg(message: QueryVotesByVoterResponse): QueryVotesByVoterResponseProtoMsg {
+    return {
+      typeUrl: "/cosmos.group.v1.QueryVotesByVoterResponse",
+      value: QueryVotesByVoterResponse.encode(message).finish()
+    };
   }
 
 };
@@ -2663,6 +3235,32 @@ export const QueryGroupsByMemberRequest = {
     obj.address = message.address;
     obj.pagination = message.pagination ? PageRequest.toAmino(message.pagination) : undefined;
     return obj;
+  },
+
+  fromAminoMsg(object: QueryGroupsByMemberRequestAminoMsg): QueryGroupsByMemberRequest {
+    return QueryGroupsByMemberRequest.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: QueryGroupsByMemberRequest): QueryGroupsByMemberRequestAminoMsg {
+    return {
+      type: "cosmos-sdk/QueryGroupsByMemberRequest",
+      value: QueryGroupsByMemberRequest.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: QueryGroupsByMemberRequestProtoMsg): QueryGroupsByMemberRequest {
+    return QueryGroupsByMemberRequest.decode(message.value);
+  },
+
+  toProto(message: QueryGroupsByMemberRequest): Uint8Array {
+    return QueryGroupsByMemberRequest.encode(message).finish();
+  },
+
+  toProtoMsg(message: QueryGroupsByMemberRequest): QueryGroupsByMemberRequestProtoMsg {
+    return {
+      typeUrl: "/cosmos.group.v1.QueryGroupsByMemberRequest",
+      value: QueryGroupsByMemberRequest.encode(message).finish()
+    };
   }
 
 };
@@ -2758,6 +3356,32 @@ export const QueryGroupsByMemberResponse = {
 
     obj.pagination = message.pagination ? PageResponse.toAmino(message.pagination) : undefined;
     return obj;
+  },
+
+  fromAminoMsg(object: QueryGroupsByMemberResponseAminoMsg): QueryGroupsByMemberResponse {
+    return QueryGroupsByMemberResponse.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: QueryGroupsByMemberResponse): QueryGroupsByMemberResponseAminoMsg {
+    return {
+      type: "cosmos-sdk/QueryGroupsByMemberResponse",
+      value: QueryGroupsByMemberResponse.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: QueryGroupsByMemberResponseProtoMsg): QueryGroupsByMemberResponse {
+    return QueryGroupsByMemberResponse.decode(message.value);
+  },
+
+  toProto(message: QueryGroupsByMemberResponse): Uint8Array {
+    return QueryGroupsByMemberResponse.encode(message).finish();
+  },
+
+  toProtoMsg(message: QueryGroupsByMemberResponse): QueryGroupsByMemberResponseProtoMsg {
+    return {
+      typeUrl: "/cosmos.group.v1.QueryGroupsByMemberResponse",
+      value: QueryGroupsByMemberResponse.encode(message).finish()
+    };
   }
 
 };
@@ -2827,6 +3451,32 @@ export const QueryTallyResultRequest = {
     const obj: any = {};
     obj.proposal_id = message.proposalId ? message.proposalId.toString() : undefined;
     return obj;
+  },
+
+  fromAminoMsg(object: QueryTallyResultRequestAminoMsg): QueryTallyResultRequest {
+    return QueryTallyResultRequest.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: QueryTallyResultRequest): QueryTallyResultRequestAminoMsg {
+    return {
+      type: "cosmos-sdk/QueryTallyResultRequest",
+      value: QueryTallyResultRequest.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: QueryTallyResultRequestProtoMsg): QueryTallyResultRequest {
+    return QueryTallyResultRequest.decode(message.value);
+  },
+
+  toProto(message: QueryTallyResultRequest): Uint8Array {
+    return QueryTallyResultRequest.encode(message).finish();
+  },
+
+  toProtoMsg(message: QueryTallyResultRequest): QueryTallyResultRequestProtoMsg {
+    return {
+      typeUrl: "/cosmos.group.v1.QueryTallyResultRequest",
+      value: QueryTallyResultRequest.encode(message).finish()
+    };
   }
 
 };
@@ -2896,6 +3546,32 @@ export const QueryTallyResultResponse = {
     const obj: any = {};
     obj.tally = message.tally ? TallyResult.toAmino(message.tally) : undefined;
     return obj;
+  },
+
+  fromAminoMsg(object: QueryTallyResultResponseAminoMsg): QueryTallyResultResponse {
+    return QueryTallyResultResponse.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: QueryTallyResultResponse): QueryTallyResultResponseAminoMsg {
+    return {
+      type: "cosmos-sdk/QueryTallyResultResponse",
+      value: QueryTallyResultResponse.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: QueryTallyResultResponseProtoMsg): QueryTallyResultResponse {
+    return QueryTallyResultResponse.decode(message.value);
+  },
+
+  toProto(message: QueryTallyResultResponse): Uint8Array {
+    return QueryTallyResultResponse.encode(message).finish();
+  },
+
+  toProtoMsg(message: QueryTallyResultResponse): QueryTallyResultResponseProtoMsg {
+    return {
+      typeUrl: "/cosmos.group.v1.QueryTallyResultResponse",
+      value: QueryTallyResultResponse.encode(message).finish()
+    };
   }
 
 };

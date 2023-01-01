@@ -1,6 +1,6 @@
 import { Header, HeaderAmino, HeaderSDKType } from "../../../tendermint/types/types";
 import { Timestamp, TimestampAmino, TimestampSDKType } from "../../../google/protobuf/timestamp";
-import { Any, AnyAmino, AnySDKType } from "../../../google/protobuf/any";
+import { Any, AnyProtoMsg, AnyAmino, AnySDKType } from "../../../google/protobuf/any";
 import { Duration, DurationAmino, DurationSDKType } from "../../../google/protobuf/duration";
 import { Coin, CoinAmino, CoinSDKType } from "../../base/v1beta1/coin";
 import * as _m0 from "protobufjs/minimal";
@@ -79,7 +79,7 @@ export interface HistoricalInfo {
   header?: Header;
   valset: Validator[];
 }
-export interface HistoricalInfoProtoType {
+export interface HistoricalInfoProtoMsg {
   typeUrl: "/cosmos.staking.v1beta1.HistoricalInfo";
   value: Uint8Array;
 }
@@ -94,7 +94,7 @@ export interface HistoricalInfoAmino {
   header?: HeaderAmino;
   valset: ValidatorAmino[];
 }
-export interface HistoricalInfoAminoType {
+export interface HistoricalInfoAminoMsg {
   type: "cosmos-sdk/HistoricalInfo";
   value: HistoricalInfoAmino;
 }
@@ -124,7 +124,7 @@ export interface CommissionRates {
 
   maxChangeRate: string;
 }
-export interface CommissionRatesProtoType {
+export interface CommissionRatesProtoMsg {
   typeUrl: "/cosmos.staking.v1beta1.CommissionRates";
   value: Uint8Array;
 }
@@ -143,7 +143,7 @@ export interface CommissionRatesAmino {
 
   max_change_rate: string;
 }
-export interface CommissionRatesAminoType {
+export interface CommissionRatesAminoMsg {
   type: "cosmos-sdk/CommissionRates";
   value: CommissionRatesAmino;
 }
@@ -166,7 +166,7 @@ export interface Commission {
 
   updateTime?: Timestamp;
 }
-export interface CommissionProtoType {
+export interface CommissionProtoMsg {
   typeUrl: "/cosmos.staking.v1beta1.Commission";
   value: Uint8Array;
 }
@@ -179,7 +179,7 @@ export interface CommissionAmino {
 
   update_time?: TimestampAmino;
 }
-export interface CommissionAminoType {
+export interface CommissionAminoMsg {
   type: "cosmos-sdk/Commission";
   value: CommissionAmino;
 }
@@ -207,7 +207,7 @@ export interface Description {
 
   details: string;
 }
-export interface DescriptionProtoType {
+export interface DescriptionProtoMsg {
   typeUrl: "/cosmos.staking.v1beta1.Description";
   value: Uint8Array;
 }
@@ -229,7 +229,7 @@ export interface DescriptionAmino {
 
   details: string;
 }
-export interface DescriptionAminoType {
+export interface DescriptionAminoMsg {
   type: "cosmos-sdk/Description";
   value: DescriptionAmino;
 }
@@ -291,10 +291,14 @@ export interface Validator {
 
   minSelfDelegation: string;
 }
-export interface ValidatorProtoType {
+export interface ValidatorProtoMsg {
   typeUrl: "/cosmos.staking.v1beta1.Validator";
   value: Uint8Array;
 }
+export type ValidatorEncoded = Omit<Validator, "consensusPubkey"> & {
+  /** consensus_pubkey is the consensus public key of the validator, as a Protobuf Any. */
+  consensusPubkey?: AnyProtoMsg | undefined;
+};
 /**
  * Validator defines a validator, together with the total amount of the
  * Validator's bond shares and their exchange rate to coins. Slashing results in
@@ -344,7 +348,7 @@ export interface ValidatorAmino {
 
   min_self_delegation: string;
 }
-export interface ValidatorAminoType {
+export interface ValidatorAminoMsg {
   type: "cosmos-sdk/Validator";
   value: ValidatorAmino;
 }
@@ -361,7 +365,7 @@ export interface ValidatorAminoType {
 
 export interface ValidatorSDKType {
   operator_address: string;
-  consensus_pubkey?: AnySDKType;
+  consensus_pubkey?: AnySDKType | undefined;
   jailed: boolean;
   status: BondStatus;
   tokens: string;
@@ -377,7 +381,7 @@ export interface ValidatorSDKType {
 export interface ValAddresses {
   addresses: string[];
 }
-export interface ValAddressesProtoType {
+export interface ValAddressesProtoMsg {
   typeUrl: "/cosmos.staking.v1beta1.ValAddresses";
   value: Uint8Array;
 }
@@ -386,7 +390,7 @@ export interface ValAddressesProtoType {
 export interface ValAddressesAmino {
   addresses: string[];
 }
-export interface ValAddressesAminoType {
+export interface ValAddressesAminoMsg {
   type: "cosmos-sdk/ValAddresses";
   value: ValAddressesAmino;
 }
@@ -405,7 +409,7 @@ export interface DVPair {
   delegatorAddress: string;
   validatorAddress: string;
 }
-export interface DVPairProtoType {
+export interface DVPairProtoMsg {
   typeUrl: "/cosmos.staking.v1beta1.DVPair";
   value: Uint8Array;
 }
@@ -419,7 +423,7 @@ export interface DVPairAmino {
   delegator_address: string;
   validator_address: string;
 }
-export interface DVPairAminoType {
+export interface DVPairAminoMsg {
   type: "cosmos-sdk/DVPair";
   value: DVPairAmino;
 }
@@ -438,7 +442,7 @@ export interface DVPairSDKType {
 export interface DVPairs {
   pairs: DVPair[];
 }
-export interface DVPairsProtoType {
+export interface DVPairsProtoMsg {
   typeUrl: "/cosmos.staking.v1beta1.DVPairs";
   value: Uint8Array;
 }
@@ -447,7 +451,7 @@ export interface DVPairsProtoType {
 export interface DVPairsAmino {
   pairs: DVPairAmino[];
 }
-export interface DVPairsAminoType {
+export interface DVPairsAminoMsg {
   type: "cosmos-sdk/DVPairs";
   value: DVPairsAmino;
 }
@@ -468,7 +472,7 @@ export interface DVVTriplet {
   validatorSrcAddress: string;
   validatorDstAddress: string;
 }
-export interface DVVTripletProtoType {
+export interface DVVTripletProtoMsg {
   typeUrl: "/cosmos.staking.v1beta1.DVVTriplet";
   value: Uint8Array;
 }
@@ -484,7 +488,7 @@ export interface DVVTripletAmino {
   validator_src_address: string;
   validator_dst_address: string;
 }
-export interface DVVTripletAminoType {
+export interface DVVTripletAminoMsg {
   type: "cosmos-sdk/DVVTriplet";
   value: DVVTripletAmino;
 }
@@ -505,7 +509,7 @@ export interface DVVTripletSDKType {
 export interface DVVTriplets {
   triplets: DVVTriplet[];
 }
-export interface DVVTripletsProtoType {
+export interface DVVTripletsProtoMsg {
   typeUrl: "/cosmos.staking.v1beta1.DVVTriplets";
   value: Uint8Array;
 }
@@ -514,7 +518,7 @@ export interface DVVTripletsProtoType {
 export interface DVVTripletsAmino {
   triplets: DVVTripletAmino[];
 }
-export interface DVVTripletsAminoType {
+export interface DVVTripletsAminoMsg {
   type: "cosmos-sdk/DVVTriplets";
   value: DVVTripletsAmino;
 }
@@ -539,7 +543,7 @@ export interface Delegation {
 
   shares: string;
 }
-export interface DelegationProtoType {
+export interface DelegationProtoMsg {
   typeUrl: "/cosmos.staking.v1beta1.Delegation";
   value: Uint8Array;
 }
@@ -559,7 +563,7 @@ export interface DelegationAmino {
 
   shares: string;
 }
-export interface DelegationAminoType {
+export interface DelegationAminoMsg {
   type: "cosmos-sdk/Delegation";
   value: DelegationAmino;
 }
@@ -589,7 +593,7 @@ export interface UnbondingDelegation {
 
   entries: UnbondingDelegationEntry[];
 }
-export interface UnbondingDelegationProtoType {
+export interface UnbondingDelegationProtoMsg {
   typeUrl: "/cosmos.staking.v1beta1.UnbondingDelegation";
   value: Uint8Array;
 }
@@ -608,7 +612,7 @@ export interface UnbondingDelegationAmino {
 
   entries: UnbondingDelegationEntryAmino[];
 }
-export interface UnbondingDelegationAminoType {
+export interface UnbondingDelegationAminoMsg {
   type: "cosmos-sdk/UnbondingDelegation";
   value: UnbondingDelegationAmino;
 }
@@ -637,7 +641,7 @@ export interface UnbondingDelegationEntry {
 
   balance: string;
 }
-export interface UnbondingDelegationEntryProtoType {
+export interface UnbondingDelegationEntryProtoMsg {
   typeUrl: "/cosmos.staking.v1beta1.UnbondingDelegationEntry";
   value: Uint8Array;
 }
@@ -656,7 +660,7 @@ export interface UnbondingDelegationEntryAmino {
 
   balance: string;
 }
-export interface UnbondingDelegationEntryAminoType {
+export interface UnbondingDelegationEntryAminoMsg {
   type: "cosmos-sdk/UnbondingDelegationEntry";
   value: UnbondingDelegationEntryAmino;
 }
@@ -683,7 +687,7 @@ export interface RedelegationEntry {
 
   sharesDst: string;
 }
-export interface RedelegationEntryProtoType {
+export interface RedelegationEntryProtoMsg {
   typeUrl: "/cosmos.staking.v1beta1.RedelegationEntry";
   value: Uint8Array;
 }
@@ -702,7 +706,7 @@ export interface RedelegationEntryAmino {
 
   shares_dst: string;
 }
-export interface RedelegationEntryAminoType {
+export interface RedelegationEntryAminoMsg {
   type: "cosmos-sdk/RedelegationEntry";
   value: RedelegationEntryAmino;
 }
@@ -732,7 +736,7 @@ export interface Redelegation {
 
   entries: RedelegationEntry[];
 }
-export interface RedelegationProtoType {
+export interface RedelegationProtoMsg {
   typeUrl: "/cosmos.staking.v1beta1.Redelegation";
   value: Uint8Array;
 }
@@ -754,7 +758,7 @@ export interface RedelegationAmino {
 
   entries: RedelegationEntryAmino[];
 }
-export interface RedelegationAminoType {
+export interface RedelegationAminoMsg {
   type: "cosmos-sdk/Redelegation";
   value: RedelegationAmino;
 }
@@ -790,7 +794,7 @@ export interface Params {
 
   minCommissionRate: string;
 }
-export interface ParamsProtoType {
+export interface ParamsProtoMsg {
   typeUrl: "/cosmos.staking.v1beta1.Params";
   value: Uint8Array;
 }
@@ -815,7 +819,7 @@ export interface ParamsAmino {
 
   min_commission_rate: string;
 }
-export interface ParamsAminoType {
+export interface ParamsAminoMsg {
   type: "cosmos-sdk/Params";
   value: ParamsAmino;
 }
@@ -838,7 +842,7 @@ export interface DelegationResponse {
   delegation?: Delegation;
   balance?: Coin;
 }
-export interface DelegationResponseProtoType {
+export interface DelegationResponseProtoMsg {
   typeUrl: "/cosmos.staking.v1beta1.DelegationResponse";
   value: Uint8Array;
 }
@@ -851,7 +855,7 @@ export interface DelegationResponseAmino {
   delegation?: DelegationAmino;
   balance?: CoinAmino;
 }
-export interface DelegationResponseAminoType {
+export interface DelegationResponseAminoMsg {
   type: "cosmos-sdk/DelegationResponse";
   value: DelegationResponseAmino;
 }
@@ -874,7 +878,7 @@ export interface RedelegationEntryResponse {
   redelegationEntry?: RedelegationEntry;
   balance: string;
 }
-export interface RedelegationEntryResponseProtoType {
+export interface RedelegationEntryResponseProtoMsg {
   typeUrl: "/cosmos.staking.v1beta1.RedelegationEntryResponse";
   value: Uint8Array;
 }
@@ -888,7 +892,7 @@ export interface RedelegationEntryResponseAmino {
   redelegation_entry?: RedelegationEntryAmino;
   balance: string;
 }
-export interface RedelegationEntryResponseAminoType {
+export interface RedelegationEntryResponseAminoMsg {
   type: "cosmos-sdk/RedelegationEntryResponse";
   value: RedelegationEntryResponseAmino;
 }
@@ -912,7 +916,7 @@ export interface RedelegationResponse {
   redelegation?: Redelegation;
   entries: RedelegationEntryResponse[];
 }
-export interface RedelegationResponseProtoType {
+export interface RedelegationResponseProtoMsg {
   typeUrl: "/cosmos.staking.v1beta1.RedelegationResponse";
   value: Uint8Array;
 }
@@ -926,7 +930,7 @@ export interface RedelegationResponseAmino {
   redelegation?: RedelegationAmino;
   entries: RedelegationEntryResponseAmino[];
 }
-export interface RedelegationResponseAminoType {
+export interface RedelegationResponseAminoMsg {
   type: "cosmos-sdk/RedelegationResponse";
   value: RedelegationResponseAmino;
 }
@@ -949,7 +953,7 @@ export interface Pool {
   notBondedTokens: string;
   bondedTokens: string;
 }
-export interface PoolProtoType {
+export interface PoolProtoMsg {
   typeUrl: "/cosmos.staking.v1beta1.Pool";
   value: Uint8Array;
 }
@@ -962,7 +966,7 @@ export interface PoolAmino {
   not_bonded_tokens: string;
   bonded_tokens: string;
 }
-export interface PoolAminoType {
+export interface PoolAminoMsg {
   type: "cosmos-sdk/Pool";
   value: PoolAmino;
 }
@@ -1067,6 +1071,32 @@ export const HistoricalInfo = {
     }
 
     return obj;
+  },
+
+  fromAminoMsg(object: HistoricalInfoAminoMsg): HistoricalInfo {
+    return HistoricalInfo.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: HistoricalInfo): HistoricalInfoAminoMsg {
+    return {
+      type: "cosmos-sdk/HistoricalInfo",
+      value: HistoricalInfo.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: HistoricalInfoProtoMsg): HistoricalInfo {
+    return HistoricalInfo.decode(message.value);
+  },
+
+  toProto(message: HistoricalInfo): Uint8Array {
+    return HistoricalInfo.encode(message).finish();
+  },
+
+  toProtoMsg(message: HistoricalInfo): HistoricalInfoProtoMsg {
+    return {
+      typeUrl: "/cosmos.staking.v1beta1.HistoricalInfo",
+      value: HistoricalInfo.encode(message).finish()
+    };
   }
 
 };
@@ -1164,6 +1194,32 @@ export const CommissionRates = {
     obj.max_rate = message.maxRate;
     obj.max_change_rate = message.maxChangeRate;
     return obj;
+  },
+
+  fromAminoMsg(object: CommissionRatesAminoMsg): CommissionRates {
+    return CommissionRates.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: CommissionRates): CommissionRatesAminoMsg {
+    return {
+      type: "cosmos-sdk/CommissionRates",
+      value: CommissionRates.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: CommissionRatesProtoMsg): CommissionRates {
+    return CommissionRates.decode(message.value);
+  },
+
+  toProto(message: CommissionRates): Uint8Array {
+    return CommissionRates.encode(message).finish();
+  },
+
+  toProtoMsg(message: CommissionRates): CommissionRatesProtoMsg {
+    return {
+      typeUrl: "/cosmos.staking.v1beta1.CommissionRates",
+      value: CommissionRates.encode(message).finish()
+    };
   }
 
 };
@@ -1247,6 +1303,32 @@ export const Commission = {
     obj.commission_rates = message.commissionRates ? CommissionRates.toAmino(message.commissionRates) : undefined;
     obj.update_time = message.updateTime ? Timestamp.toAmino(message.updateTime) : undefined;
     return obj;
+  },
+
+  fromAminoMsg(object: CommissionAminoMsg): Commission {
+    return Commission.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: Commission): CommissionAminoMsg {
+    return {
+      type: "cosmos-sdk/Commission",
+      value: Commission.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: CommissionProtoMsg): Commission {
+    return Commission.decode(message.value);
+  },
+
+  toProto(message: Commission): Uint8Array {
+    return Commission.encode(message).finish();
+  },
+
+  toProtoMsg(message: Commission): CommissionProtoMsg {
+    return {
+      typeUrl: "/cosmos.staking.v1beta1.Commission",
+      value: Commission.encode(message).finish()
+    };
   }
 
 };
@@ -1372,6 +1454,32 @@ export const Description = {
     obj.security_contact = message.securityContact;
     obj.details = message.details;
     return obj;
+  },
+
+  fromAminoMsg(object: DescriptionAminoMsg): Description {
+    return Description.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: Description): DescriptionAminoMsg {
+    return {
+      type: "cosmos-sdk/Description",
+      value: Description.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: DescriptionProtoMsg): Description {
+    return Description.decode(message.value);
+  },
+
+  toProto(message: Description): Uint8Array {
+    return Description.encode(message).finish();
+  },
+
+  toProtoMsg(message: Description): DescriptionProtoMsg {
+    return {
+      typeUrl: "/cosmos.staking.v1beta1.Description",
+      value: Description.encode(message).finish()
+    };
   }
 
 };
@@ -1587,6 +1695,32 @@ export const Validator = {
     obj.commission = message.commission ? Commission.toAmino(message.commission) : undefined;
     obj.min_self_delegation = message.minSelfDelegation;
     return obj;
+  },
+
+  fromAminoMsg(object: ValidatorAminoMsg): Validator {
+    return Validator.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: Validator): ValidatorAminoMsg {
+    return {
+      type: "cosmos-sdk/Validator",
+      value: Validator.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: ValidatorProtoMsg): Validator {
+    return Validator.decode(message.value);
+  },
+
+  toProto(message: Validator): Uint8Array {
+    return Validator.encode(message).finish();
+  },
+
+  toProtoMsg(message: Validator): ValidatorProtoMsg {
+    return {
+      typeUrl: "/cosmos.staking.v1beta1.Validator",
+      value: Validator.encode(message).finish()
+    };
   }
 
 };
@@ -1668,6 +1802,32 @@ export const ValAddresses = {
     }
 
     return obj;
+  },
+
+  fromAminoMsg(object: ValAddressesAminoMsg): ValAddresses {
+    return ValAddresses.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: ValAddresses): ValAddressesAminoMsg {
+    return {
+      type: "cosmos-sdk/ValAddresses",
+      value: ValAddresses.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: ValAddressesProtoMsg): ValAddresses {
+    return ValAddresses.decode(message.value);
+  },
+
+  toProto(message: ValAddresses): Uint8Array {
+    return ValAddresses.encode(message).finish();
+  },
+
+  toProtoMsg(message: ValAddresses): ValAddressesProtoMsg {
+    return {
+      typeUrl: "/cosmos.staking.v1beta1.ValAddresses",
+      value: ValAddresses.encode(message).finish()
+    };
   }
 
 };
@@ -1751,6 +1911,32 @@ export const DVPair = {
     obj.delegator_address = message.delegatorAddress;
     obj.validator_address = message.validatorAddress;
     return obj;
+  },
+
+  fromAminoMsg(object: DVPairAminoMsg): DVPair {
+    return DVPair.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: DVPair): DVPairAminoMsg {
+    return {
+      type: "cosmos-sdk/DVPair",
+      value: DVPair.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: DVPairProtoMsg): DVPair {
+    return DVPair.decode(message.value);
+  },
+
+  toProto(message: DVPair): Uint8Array {
+    return DVPair.encode(message).finish();
+  },
+
+  toProtoMsg(message: DVPair): DVPairProtoMsg {
+    return {
+      typeUrl: "/cosmos.staking.v1beta1.DVPair",
+      value: DVPair.encode(message).finish()
+    };
   }
 
 };
@@ -1832,6 +2018,32 @@ export const DVPairs = {
     }
 
     return obj;
+  },
+
+  fromAminoMsg(object: DVPairsAminoMsg): DVPairs {
+    return DVPairs.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: DVPairs): DVPairsAminoMsg {
+    return {
+      type: "cosmos-sdk/DVPairs",
+      value: DVPairs.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: DVPairsProtoMsg): DVPairs {
+    return DVPairs.decode(message.value);
+  },
+
+  toProto(message: DVPairs): Uint8Array {
+    return DVPairs.encode(message).finish();
+  },
+
+  toProtoMsg(message: DVPairs): DVPairsProtoMsg {
+    return {
+      typeUrl: "/cosmos.staking.v1beta1.DVPairs",
+      value: DVPairs.encode(message).finish()
+    };
   }
 
 };
@@ -1929,6 +2141,32 @@ export const DVVTriplet = {
     obj.validator_src_address = message.validatorSrcAddress;
     obj.validator_dst_address = message.validatorDstAddress;
     return obj;
+  },
+
+  fromAminoMsg(object: DVVTripletAminoMsg): DVVTriplet {
+    return DVVTriplet.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: DVVTriplet): DVVTripletAminoMsg {
+    return {
+      type: "cosmos-sdk/DVVTriplet",
+      value: DVVTriplet.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: DVVTripletProtoMsg): DVVTriplet {
+    return DVVTriplet.decode(message.value);
+  },
+
+  toProto(message: DVVTriplet): Uint8Array {
+    return DVVTriplet.encode(message).finish();
+  },
+
+  toProtoMsg(message: DVVTriplet): DVVTripletProtoMsg {
+    return {
+      typeUrl: "/cosmos.staking.v1beta1.DVVTriplet",
+      value: DVVTriplet.encode(message).finish()
+    };
   }
 
 };
@@ -2010,6 +2248,32 @@ export const DVVTriplets = {
     }
 
     return obj;
+  },
+
+  fromAminoMsg(object: DVVTripletsAminoMsg): DVVTriplets {
+    return DVVTriplets.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: DVVTriplets): DVVTripletsAminoMsg {
+    return {
+      type: "cosmos-sdk/DVVTriplets",
+      value: DVVTriplets.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: DVVTripletsProtoMsg): DVVTriplets {
+    return DVVTriplets.decode(message.value);
+  },
+
+  toProto(message: DVVTriplets): Uint8Array {
+    return DVVTriplets.encode(message).finish();
+  },
+
+  toProtoMsg(message: DVVTriplets): DVVTripletsProtoMsg {
+    return {
+      typeUrl: "/cosmos.staking.v1beta1.DVVTriplets",
+      value: DVVTriplets.encode(message).finish()
+    };
   }
 
 };
@@ -2107,6 +2371,32 @@ export const Delegation = {
     obj.validator_address = message.validatorAddress;
     obj.shares = message.shares;
     return obj;
+  },
+
+  fromAminoMsg(object: DelegationAminoMsg): Delegation {
+    return Delegation.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: Delegation): DelegationAminoMsg {
+    return {
+      type: "cosmos-sdk/Delegation",
+      value: Delegation.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: DelegationProtoMsg): Delegation {
+    return Delegation.decode(message.value);
+  },
+
+  toProto(message: Delegation): Uint8Array {
+    return Delegation.encode(message).finish();
+  },
+
+  toProtoMsg(message: Delegation): DelegationProtoMsg {
+    return {
+      typeUrl: "/cosmos.staking.v1beta1.Delegation",
+      value: Delegation.encode(message).finish()
+    };
   }
 
 };
@@ -2216,6 +2506,32 @@ export const UnbondingDelegation = {
     }
 
     return obj;
+  },
+
+  fromAminoMsg(object: UnbondingDelegationAminoMsg): UnbondingDelegation {
+    return UnbondingDelegation.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: UnbondingDelegation): UnbondingDelegationAminoMsg {
+    return {
+      type: "cosmos-sdk/UnbondingDelegation",
+      value: UnbondingDelegation.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: UnbondingDelegationProtoMsg): UnbondingDelegation {
+    return UnbondingDelegation.decode(message.value);
+  },
+
+  toProto(message: UnbondingDelegation): Uint8Array {
+    return UnbondingDelegation.encode(message).finish();
+  },
+
+  toProtoMsg(message: UnbondingDelegation): UnbondingDelegationProtoMsg {
+    return {
+      typeUrl: "/cosmos.staking.v1beta1.UnbondingDelegation",
+      value: UnbondingDelegation.encode(message).finish()
+    };
   }
 
 };
@@ -2327,6 +2643,32 @@ export const UnbondingDelegationEntry = {
     obj.initial_balance = message.initialBalance;
     obj.balance = message.balance;
     return obj;
+  },
+
+  fromAminoMsg(object: UnbondingDelegationEntryAminoMsg): UnbondingDelegationEntry {
+    return UnbondingDelegationEntry.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: UnbondingDelegationEntry): UnbondingDelegationEntryAminoMsg {
+    return {
+      type: "cosmos-sdk/UnbondingDelegationEntry",
+      value: UnbondingDelegationEntry.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: UnbondingDelegationEntryProtoMsg): UnbondingDelegationEntry {
+    return UnbondingDelegationEntry.decode(message.value);
+  },
+
+  toProto(message: UnbondingDelegationEntry): Uint8Array {
+    return UnbondingDelegationEntry.encode(message).finish();
+  },
+
+  toProtoMsg(message: UnbondingDelegationEntry): UnbondingDelegationEntryProtoMsg {
+    return {
+      typeUrl: "/cosmos.staking.v1beta1.UnbondingDelegationEntry",
+      value: UnbondingDelegationEntry.encode(message).finish()
+    };
   }
 
 };
@@ -2438,6 +2780,32 @@ export const RedelegationEntry = {
     obj.initial_balance = message.initialBalance;
     obj.shares_dst = message.sharesDst;
     return obj;
+  },
+
+  fromAminoMsg(object: RedelegationEntryAminoMsg): RedelegationEntry {
+    return RedelegationEntry.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: RedelegationEntry): RedelegationEntryAminoMsg {
+    return {
+      type: "cosmos-sdk/RedelegationEntry",
+      value: RedelegationEntry.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: RedelegationEntryProtoMsg): RedelegationEntry {
+    return RedelegationEntry.decode(message.value);
+  },
+
+  toProto(message: RedelegationEntry): Uint8Array {
+    return RedelegationEntry.encode(message).finish();
+  },
+
+  toProtoMsg(message: RedelegationEntry): RedelegationEntryProtoMsg {
+    return {
+      typeUrl: "/cosmos.staking.v1beta1.RedelegationEntry",
+      value: RedelegationEntry.encode(message).finish()
+    };
   }
 
 };
@@ -2561,6 +2929,32 @@ export const Redelegation = {
     }
 
     return obj;
+  },
+
+  fromAminoMsg(object: RedelegationAminoMsg): Redelegation {
+    return Redelegation.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: Redelegation): RedelegationAminoMsg {
+    return {
+      type: "cosmos-sdk/Redelegation",
+      value: Redelegation.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: RedelegationProtoMsg): Redelegation {
+    return Redelegation.decode(message.value);
+  },
+
+  toProto(message: Redelegation): Uint8Array {
+    return Redelegation.encode(message).finish();
+  },
+
+  toProtoMsg(message: Redelegation): RedelegationProtoMsg {
+    return {
+      typeUrl: "/cosmos.staking.v1beta1.Redelegation",
+      value: Redelegation.encode(message).finish()
+    };
   }
 
 };
@@ -2700,6 +3094,32 @@ export const Params = {
     obj.bond_denom = message.bondDenom;
     obj.min_commission_rate = message.minCommissionRate;
     return obj;
+  },
+
+  fromAminoMsg(object: ParamsAminoMsg): Params {
+    return Params.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: Params): ParamsAminoMsg {
+    return {
+      type: "cosmos-sdk/Params",
+      value: Params.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: ParamsProtoMsg): Params {
+    return Params.decode(message.value);
+  },
+
+  toProto(message: Params): Uint8Array {
+    return Params.encode(message).finish();
+  },
+
+  toProtoMsg(message: Params): ParamsProtoMsg {
+    return {
+      typeUrl: "/cosmos.staking.v1beta1.Params",
+      value: Params.encode(message).finish()
+    };
   }
 
 };
@@ -2783,6 +3203,32 @@ export const DelegationResponse = {
     obj.delegation = message.delegation ? Delegation.toAmino(message.delegation) : undefined;
     obj.balance = message.balance ? Coin.toAmino(message.balance) : undefined;
     return obj;
+  },
+
+  fromAminoMsg(object: DelegationResponseAminoMsg): DelegationResponse {
+    return DelegationResponse.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: DelegationResponse): DelegationResponseAminoMsg {
+    return {
+      type: "cosmos-sdk/DelegationResponse",
+      value: DelegationResponse.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: DelegationResponseProtoMsg): DelegationResponse {
+    return DelegationResponse.decode(message.value);
+  },
+
+  toProto(message: DelegationResponse): Uint8Array {
+    return DelegationResponse.encode(message).finish();
+  },
+
+  toProtoMsg(message: DelegationResponse): DelegationResponseProtoMsg {
+    return {
+      typeUrl: "/cosmos.staking.v1beta1.DelegationResponse",
+      value: DelegationResponse.encode(message).finish()
+    };
   }
 
 };
@@ -2866,6 +3312,32 @@ export const RedelegationEntryResponse = {
     obj.redelegation_entry = message.redelegationEntry ? RedelegationEntry.toAmino(message.redelegationEntry) : undefined;
     obj.balance = message.balance;
     return obj;
+  },
+
+  fromAminoMsg(object: RedelegationEntryResponseAminoMsg): RedelegationEntryResponse {
+    return RedelegationEntryResponse.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: RedelegationEntryResponse): RedelegationEntryResponseAminoMsg {
+    return {
+      type: "cosmos-sdk/RedelegationEntryResponse",
+      value: RedelegationEntryResponse.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: RedelegationEntryResponseProtoMsg): RedelegationEntryResponse {
+    return RedelegationEntryResponse.decode(message.value);
+  },
+
+  toProto(message: RedelegationEntryResponse): Uint8Array {
+    return RedelegationEntryResponse.encode(message).finish();
+  },
+
+  toProtoMsg(message: RedelegationEntryResponse): RedelegationEntryResponseProtoMsg {
+    return {
+      typeUrl: "/cosmos.staking.v1beta1.RedelegationEntryResponse",
+      value: RedelegationEntryResponse.encode(message).finish()
+    };
   }
 
 };
@@ -2961,6 +3433,32 @@ export const RedelegationResponse = {
     }
 
     return obj;
+  },
+
+  fromAminoMsg(object: RedelegationResponseAminoMsg): RedelegationResponse {
+    return RedelegationResponse.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: RedelegationResponse): RedelegationResponseAminoMsg {
+    return {
+      type: "cosmos-sdk/RedelegationResponse",
+      value: RedelegationResponse.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: RedelegationResponseProtoMsg): RedelegationResponse {
+    return RedelegationResponse.decode(message.value);
+  },
+
+  toProto(message: RedelegationResponse): Uint8Array {
+    return RedelegationResponse.encode(message).finish();
+  },
+
+  toProtoMsg(message: RedelegationResponse): RedelegationResponseProtoMsg {
+    return {
+      typeUrl: "/cosmos.staking.v1beta1.RedelegationResponse",
+      value: RedelegationResponse.encode(message).finish()
+    };
   }
 
 };
@@ -3044,6 +3542,32 @@ export const Pool = {
     obj.not_bonded_tokens = message.notBondedTokens;
     obj.bonded_tokens = message.bondedTokens;
     return obj;
+  },
+
+  fromAminoMsg(object: PoolAminoMsg): Pool {
+    return Pool.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: Pool): PoolAminoMsg {
+    return {
+      type: "cosmos-sdk/Pool",
+      value: Pool.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: PoolProtoMsg): Pool {
+    return Pool.decode(message.value);
+  },
+
+  toProto(message: Pool): Uint8Array {
+    return Pool.encode(message).finish();
+  },
+
+  toProtoMsg(message: Pool): PoolProtoMsg {
+    return {
+      typeUrl: "/cosmos.staking.v1beta1.Pool",
+      value: Pool.encode(message).finish()
+    };
   }
 
 };

@@ -119,7 +119,7 @@ export interface Any {
 
   value: Uint8Array;
 }
-export interface AnyProtoType {
+export interface AnyProtoMsg {
   typeUrl: "/google.protobuf.Any";
   value: Uint8Array;
 }
@@ -240,7 +240,7 @@ export interface AnyAmino {
 
   value: Uint8Array;
 }
-export interface AnyAminoType {
+export interface AnyAminoMsg {
   type: "/google.protobuf.Any";
   value: AnyAmino;
 }
@@ -412,6 +412,25 @@ export const Any = {
     obj.type_url = message.typeUrl;
     obj.value = message.value;
     return obj;
+  },
+
+  fromAminoMsg(object: AnyAminoMsg): Any {
+    return Any.fromAmino(object.value);
+  },
+
+  fromProtoMsg(message: AnyProtoMsg): Any {
+    return Any.decode(message.value);
+  },
+
+  toProto(message: Any): Uint8Array {
+    return Any.encode(message).finish();
+  },
+
+  toProtoMsg(message: Any): AnyProtoMsg {
+    return {
+      typeUrl: "/google.protobuf.Any",
+      value: Any.encode(message).finish()
+    };
   }
 
 };

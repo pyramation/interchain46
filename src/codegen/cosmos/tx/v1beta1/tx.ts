@@ -23,7 +23,7 @@ export interface Tx {
 
   signatures: Uint8Array[];
 }
-export interface TxProtoType {
+export interface TxProtoMsg {
   typeUrl: "/cosmos.tx.v1beta1.Tx";
   value: Uint8Array;
 }
@@ -46,7 +46,7 @@ export interface TxAmino {
 
   signatures: Uint8Array[];
 }
-export interface TxAminoType {
+export interface TxAminoMsg {
   type: "cosmos-sdk/Tx";
   value: TxAmino;
 }
@@ -85,7 +85,7 @@ export interface TxRaw {
 
   signatures: Uint8Array[];
 }
-export interface TxRawProtoType {
+export interface TxRawProtoMsg {
   typeUrl: "/cosmos.tx.v1beta1.TxRaw";
   value: Uint8Array;
 }
@@ -117,7 +117,7 @@ export interface TxRawAmino {
 
   signatures: Uint8Array[];
 }
-export interface TxRawAminoType {
+export interface TxRawAminoMsg {
   type: "cosmos-sdk/TxRaw";
   value: TxRawAmino;
 }
@@ -159,7 +159,7 @@ export interface SignDoc {
 
   accountNumber: Long;
 }
-export interface SignDocProtoType {
+export interface SignDocProtoMsg {
   typeUrl: "/cosmos.tx.v1beta1.SignDoc";
   value: Uint8Array;
 }
@@ -188,7 +188,7 @@ export interface SignDocAmino {
 
   account_number: string;
 }
-export interface SignDocAminoType {
+export interface SignDocAminoMsg {
   type: "cosmos-sdk/SignDoc";
   value: SignDocAmino;
 }
@@ -240,7 +240,7 @@ export interface SignDocDirectAux {
 
   tip?: Tip;
 }
-export interface SignDocDirectAuxProtoType {
+export interface SignDocDirectAuxProtoMsg {
   typeUrl: "/cosmos.tx.v1beta1.SignDocDirectAux";
   value: Uint8Array;
 }
@@ -284,7 +284,7 @@ export interface SignDocDirectAuxAmino {
 
   tip?: TipAmino;
 }
-export interface SignDocDirectAuxAminoType {
+export interface SignDocDirectAuxAminoMsg {
   type: "cosmos-sdk/SignDocDirectAux";
   value: SignDocDirectAuxAmino;
 }
@@ -344,7 +344,7 @@ export interface TxBody {
 
   nonCriticalExtensionOptions: Any[];
 }
-export interface TxBodyProtoType {
+export interface TxBodyProtoMsg {
   typeUrl: "/cosmos.tx.v1beta1.TxBody";
   value: Uint8Array;
 }
@@ -389,7 +389,7 @@ export interface TxBodyAmino {
 
   non_critical_extension_options: AnyAmino[];
 }
-export interface TxBodyAminoType {
+export interface TxBodyAminoMsg {
   type: "cosmos-sdk/TxBody";
   value: TxBodyAmino;
 }
@@ -434,7 +434,7 @@ export interface AuthInfo {
 
   tip?: Tip;
 }
-export interface AuthInfoProtoType {
+export interface AuthInfoProtoMsg {
   typeUrl: "/cosmos.tx.v1beta1.AuthInfo";
   value: Uint8Array;
 }
@@ -470,7 +470,7 @@ export interface AuthInfoAmino {
 
   tip?: TipAmino;
 }
-export interface AuthInfoAminoType {
+export interface AuthInfoAminoMsg {
   type: "cosmos-sdk/AuthInfo";
   value: AuthInfoAmino;
 }
@@ -510,7 +510,7 @@ export interface SignerInfo {
 
   sequence: Long;
 }
-export interface SignerInfoProtoType {
+export interface SignerInfoProtoMsg {
   typeUrl: "/cosmos.tx.v1beta1.SignerInfo";
   value: Uint8Array;
 }
@@ -540,7 +540,7 @@ export interface SignerInfoAmino {
 
   sequence: string;
 }
-export interface SignerInfoAminoType {
+export interface SignerInfoAminoMsg {
   type: "cosmos-sdk/SignerInfo";
   value: SignerInfoAmino;
 }
@@ -563,7 +563,7 @@ export interface ModeInfo {
 
   multi?: ModeInfo_Multi;
 }
-export interface ModeInfoProtoType {
+export interface ModeInfoProtoMsg {
   typeUrl: "/cosmos.tx.v1beta1.ModeInfo";
   value: Uint8Array;
 }
@@ -576,7 +576,7 @@ export interface ModeInfoAmino {
 
   multi?: ModeInfo_MultiAmino;
 }
-export interface ModeInfoAminoType {
+export interface ModeInfoAminoMsg {
   type: "cosmos-sdk/ModeInfo";
   value: ModeInfoAmino;
 }
@@ -596,7 +596,7 @@ export interface ModeInfo_Single {
   /** mode is the signing mode of the single signer */
   mode: SignMode;
 }
-export interface ModeInfo_SingleProtoType {
+export interface ModeInfo_SingleProtoMsg {
   typeUrl: "/cosmos.tx.v1beta1.Single";
   value: Uint8Array;
 }
@@ -610,7 +610,7 @@ export interface ModeInfo_SingleAmino {
   /** mode is the signing mode of the single signer */
   mode: SignMode;
 }
-export interface ModeInfo_SingleAminoType {
+export interface ModeInfo_SingleAminoMsg {
   type: "cosmos-sdk/Single";
   value: ModeInfo_SingleAmino;
 }
@@ -635,7 +635,7 @@ export interface ModeInfo_Multi {
 
   modeInfos: ModeInfo[];
 }
-export interface ModeInfo_MultiProtoType {
+export interface ModeInfo_MultiProtoMsg {
   typeUrl: "/cosmos.tx.v1beta1.Multi";
   value: Uint8Array;
 }
@@ -651,7 +651,7 @@ export interface ModeInfo_MultiAmino {
 
   mode_infos: ModeInfoAmino[];
 }
-export interface ModeInfo_MultiAminoType {
+export interface ModeInfo_MultiAminoMsg {
   type: "cosmos-sdk/Multi";
   value: ModeInfo_MultiAmino;
 }
@@ -691,7 +691,7 @@ export interface Fee {
 
   granter: string;
 }
-export interface FeeProtoType {
+export interface FeeProtoMsg {
   typeUrl: "/cosmos.tx.v1beta1.Fee";
   value: Uint8Array;
 }
@@ -725,7 +725,7 @@ export interface FeeAmino {
 
   granter: string;
 }
-export interface FeeAminoType {
+export interface FeeAminoMsg {
   type: "cosmos-sdk/Fee";
   value: FeeAmino;
 }
@@ -754,7 +754,7 @@ export interface Tip {
 
   tipper: string;
 }
-export interface TipProtoType {
+export interface TipProtoMsg {
   typeUrl: "/cosmos.tx.v1beta1.Tip";
   value: Uint8Array;
 }
@@ -771,7 +771,7 @@ export interface TipAmino {
 
   tipper: string;
 }
-export interface TipAminoType {
+export interface TipAminoMsg {
   type: "cosmos-sdk/Tip";
   value: TipAmino;
 }
@@ -815,7 +815,7 @@ export interface AuxSignerData {
 
   sig: Uint8Array;
 }
-export interface AuxSignerDataProtoType {
+export interface AuxSignerDataProtoMsg {
   typeUrl: "/cosmos.tx.v1beta1.AuxSignerData";
   value: Uint8Array;
 }
@@ -849,7 +849,7 @@ export interface AuxSignerDataAmino {
 
   sig: Uint8Array;
 }
-export interface AuxSignerDataAminoType {
+export interface AuxSignerDataAminoMsg {
   type: "cosmos-sdk/AuxSignerData";
   value: AuxSignerDataAmino;
 }
@@ -974,6 +974,32 @@ export const Tx = {
     }
 
     return obj;
+  },
+
+  fromAminoMsg(object: TxAminoMsg): Tx {
+    return Tx.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: Tx): TxAminoMsg {
+    return {
+      type: "cosmos-sdk/Tx",
+      value: Tx.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: TxProtoMsg): Tx {
+    return Tx.decode(message.value);
+  },
+
+  toProto(message: Tx): Uint8Array {
+    return Tx.encode(message).finish();
+  },
+
+  toProtoMsg(message: Tx): TxProtoMsg {
+    return {
+      typeUrl: "/cosmos.tx.v1beta1.Tx",
+      value: Tx.encode(message).finish()
+    };
   }
 
 };
@@ -1083,6 +1109,32 @@ export const TxRaw = {
     }
 
     return obj;
+  },
+
+  fromAminoMsg(object: TxRawAminoMsg): TxRaw {
+    return TxRaw.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: TxRaw): TxRawAminoMsg {
+    return {
+      type: "cosmos-sdk/TxRaw",
+      value: TxRaw.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: TxRawProtoMsg): TxRaw {
+    return TxRaw.decode(message.value);
+  },
+
+  toProto(message: TxRaw): Uint8Array {
+    return TxRaw.encode(message).finish();
+  },
+
+  toProtoMsg(message: TxRaw): TxRawProtoMsg {
+    return {
+      typeUrl: "/cosmos.tx.v1beta1.TxRaw",
+      value: TxRaw.encode(message).finish()
+    };
   }
 
 };
@@ -1194,6 +1246,32 @@ export const SignDoc = {
     obj.chain_id = message.chainId;
     obj.account_number = message.accountNumber ? message.accountNumber.toString() : undefined;
     return obj;
+  },
+
+  fromAminoMsg(object: SignDocAminoMsg): SignDoc {
+    return SignDoc.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: SignDoc): SignDocAminoMsg {
+    return {
+      type: "cosmos-sdk/SignDoc",
+      value: SignDoc.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: SignDocProtoMsg): SignDoc {
+    return SignDoc.decode(message.value);
+  },
+
+  toProto(message: SignDoc): Uint8Array {
+    return SignDoc.encode(message).finish();
+  },
+
+  toProtoMsg(message: SignDoc): SignDocProtoMsg {
+    return {
+      typeUrl: "/cosmos.tx.v1beta1.SignDoc",
+      value: SignDoc.encode(message).finish()
+    };
   }
 
 };
@@ -1333,6 +1411,32 @@ export const SignDocDirectAux = {
     obj.sequence = message.sequence ? message.sequence.toString() : undefined;
     obj.tip = message.tip ? Tip.toAmino(message.tip) : undefined;
     return obj;
+  },
+
+  fromAminoMsg(object: SignDocDirectAuxAminoMsg): SignDocDirectAux {
+    return SignDocDirectAux.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: SignDocDirectAux): SignDocDirectAuxAminoMsg {
+    return {
+      type: "cosmos-sdk/SignDocDirectAux",
+      value: SignDocDirectAux.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: SignDocDirectAuxProtoMsg): SignDocDirectAux {
+    return SignDocDirectAux.decode(message.value);
+  },
+
+  toProto(message: SignDocDirectAux): Uint8Array {
+    return SignDocDirectAux.encode(message).finish();
+  },
+
+  toProtoMsg(message: SignDocDirectAux): SignDocDirectAuxProtoMsg {
+    return {
+      typeUrl: "/cosmos.tx.v1beta1.SignDocDirectAux",
+      value: SignDocDirectAux.encode(message).finish()
+    };
   }
 
 };
@@ -1492,6 +1596,32 @@ export const TxBody = {
     }
 
     return obj;
+  },
+
+  fromAminoMsg(object: TxBodyAminoMsg): TxBody {
+    return TxBody.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: TxBody): TxBodyAminoMsg {
+    return {
+      type: "cosmos-sdk/TxBody",
+      value: TxBody.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: TxBodyProtoMsg): TxBody {
+    return TxBody.decode(message.value);
+  },
+
+  toProto(message: TxBody): Uint8Array {
+    return TxBody.encode(message).finish();
+  },
+
+  toProtoMsg(message: TxBody): TxBodyProtoMsg {
+    return {
+      typeUrl: "/cosmos.tx.v1beta1.TxBody",
+      value: TxBody.encode(message).finish()
+    };
   }
 
 };
@@ -1601,6 +1731,32 @@ export const AuthInfo = {
     obj.fee = message.fee ? Fee.toAmino(message.fee) : undefined;
     obj.tip = message.tip ? Tip.toAmino(message.tip) : undefined;
     return obj;
+  },
+
+  fromAminoMsg(object: AuthInfoAminoMsg): AuthInfo {
+    return AuthInfo.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: AuthInfo): AuthInfoAminoMsg {
+    return {
+      type: "cosmos-sdk/AuthInfo",
+      value: AuthInfo.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: AuthInfoProtoMsg): AuthInfo {
+    return AuthInfo.decode(message.value);
+  },
+
+  toProto(message: AuthInfo): Uint8Array {
+    return AuthInfo.encode(message).finish();
+  },
+
+  toProtoMsg(message: AuthInfo): AuthInfoProtoMsg {
+    return {
+      typeUrl: "/cosmos.tx.v1beta1.AuthInfo",
+      value: AuthInfo.encode(message).finish()
+    };
   }
 
 };
@@ -1698,6 +1854,32 @@ export const SignerInfo = {
     obj.mode_info = message.modeInfo ? ModeInfo.toAmino(message.modeInfo) : undefined;
     obj.sequence = message.sequence ? message.sequence.toString() : undefined;
     return obj;
+  },
+
+  fromAminoMsg(object: SignerInfoAminoMsg): SignerInfo {
+    return SignerInfo.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: SignerInfo): SignerInfoAminoMsg {
+    return {
+      type: "cosmos-sdk/SignerInfo",
+      value: SignerInfo.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: SignerInfoProtoMsg): SignerInfo {
+    return SignerInfo.decode(message.value);
+  },
+
+  toProto(message: SignerInfo): Uint8Array {
+    return SignerInfo.encode(message).finish();
+  },
+
+  toProtoMsg(message: SignerInfo): SignerInfoProtoMsg {
+    return {
+      typeUrl: "/cosmos.tx.v1beta1.SignerInfo",
+      value: SignerInfo.encode(message).finish()
+    };
   }
 
 };
@@ -1781,6 +1963,32 @@ export const ModeInfo = {
     obj.single = message.single ? ModeInfo_Single.toAmino(message.single) : undefined;
     obj.multi = message.multi ? ModeInfo_Multi.toAmino(message.multi) : undefined;
     return obj;
+  },
+
+  fromAminoMsg(object: ModeInfoAminoMsg): ModeInfo {
+    return ModeInfo.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: ModeInfo): ModeInfoAminoMsg {
+    return {
+      type: "cosmos-sdk/ModeInfo",
+      value: ModeInfo.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: ModeInfoProtoMsg): ModeInfo {
+    return ModeInfo.decode(message.value);
+  },
+
+  toProto(message: ModeInfo): Uint8Array {
+    return ModeInfo.encode(message).finish();
+  },
+
+  toProtoMsg(message: ModeInfo): ModeInfoProtoMsg {
+    return {
+      typeUrl: "/cosmos.tx.v1beta1.ModeInfo",
+      value: ModeInfo.encode(message).finish()
+    };
   }
 
 };
@@ -1850,6 +2058,32 @@ export const ModeInfo_Single = {
     const obj: any = {};
     obj.mode = message.mode;
     return obj;
+  },
+
+  fromAminoMsg(object: ModeInfo_SingleAminoMsg): ModeInfo_Single {
+    return ModeInfo_Single.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: ModeInfo_Single): ModeInfo_SingleAminoMsg {
+    return {
+      type: "cosmos-sdk/Single",
+      value: ModeInfo_Single.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: ModeInfo_SingleProtoMsg): ModeInfo_Single {
+    return ModeInfo_Single.decode(message.value);
+  },
+
+  toProto(message: ModeInfo_Single): Uint8Array {
+    return ModeInfo_Single.encode(message).finish();
+  },
+
+  toProtoMsg(message: ModeInfo_Single): ModeInfo_SingleProtoMsg {
+    return {
+      typeUrl: "/cosmos.tx.v1beta1.Single",
+      value: ModeInfo_Single.encode(message).finish()
+    };
   }
 
 };
@@ -1945,6 +2179,32 @@ export const ModeInfo_Multi = {
     }
 
     return obj;
+  },
+
+  fromAminoMsg(object: ModeInfo_MultiAminoMsg): ModeInfo_Multi {
+    return ModeInfo_Multi.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: ModeInfo_Multi): ModeInfo_MultiAminoMsg {
+    return {
+      type: "cosmos-sdk/Multi",
+      value: ModeInfo_Multi.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: ModeInfo_MultiProtoMsg): ModeInfo_Multi {
+    return ModeInfo_Multi.decode(message.value);
+  },
+
+  toProto(message: ModeInfo_Multi): Uint8Array {
+    return ModeInfo_Multi.encode(message).finish();
+  },
+
+  toProtoMsg(message: ModeInfo_Multi): ModeInfo_MultiProtoMsg {
+    return {
+      typeUrl: "/cosmos.tx.v1beta1.Multi",
+      value: ModeInfo_Multi.encode(message).finish()
+    };
   }
 
 };
@@ -2068,6 +2328,32 @@ export const Fee = {
     obj.payer = message.payer;
     obj.granter = message.granter;
     return obj;
+  },
+
+  fromAminoMsg(object: FeeAminoMsg): Fee {
+    return Fee.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: Fee): FeeAminoMsg {
+    return {
+      type: "cosmos-sdk/Fee",
+      value: Fee.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: FeeProtoMsg): Fee {
+    return Fee.decode(message.value);
+  },
+
+  toProto(message: Fee): Uint8Array {
+    return Fee.encode(message).finish();
+  },
+
+  toProtoMsg(message: Fee): FeeProtoMsg {
+    return {
+      typeUrl: "/cosmos.tx.v1beta1.Fee",
+      value: Fee.encode(message).finish()
+    };
   }
 
 };
@@ -2163,6 +2449,32 @@ export const Tip = {
 
     obj.tipper = message.tipper;
     return obj;
+  },
+
+  fromAminoMsg(object: TipAminoMsg): Tip {
+    return Tip.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: Tip): TipAminoMsg {
+    return {
+      type: "cosmos-sdk/Tip",
+      value: Tip.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: TipProtoMsg): Tip {
+    return Tip.decode(message.value);
+  },
+
+  toProto(message: Tip): Uint8Array {
+    return Tip.encode(message).finish();
+  },
+
+  toProtoMsg(message: Tip): TipProtoMsg {
+    return {
+      typeUrl: "/cosmos.tx.v1beta1.Tip",
+      value: Tip.encode(message).finish()
+    };
   }
 
 };
@@ -2274,6 +2586,32 @@ export const AuxSignerData = {
     obj.mode = message.mode;
     obj.sig = message.sig;
     return obj;
+  },
+
+  fromAminoMsg(object: AuxSignerDataAminoMsg): AuxSignerData {
+    return AuxSignerData.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: AuxSignerData): AuxSignerDataAminoMsg {
+    return {
+      type: "cosmos-sdk/AuxSignerData",
+      value: AuxSignerData.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: AuxSignerDataProtoMsg): AuxSignerData {
+    return AuxSignerData.decode(message.value);
+  },
+
+  toProto(message: AuxSignerData): Uint8Array {
+    return AuxSignerData.encode(message).finish();
+  },
+
+  toProtoMsg(message: AuxSignerData): AuxSignerDataProtoMsg {
+    return {
+      typeUrl: "/cosmos.tx.v1beta1.AuxSignerData",
+      value: AuxSignerData.encode(message).finish()
+    };
   }
 
 };

@@ -35,7 +35,7 @@ export interface ValidatorSigningInfo {
 
   missedBlocksCounter: Long;
 }
-export interface ValidatorSigningInfoProtoType {
+export interface ValidatorSigningInfoProtoMsg {
   typeUrl: "/cosmos.slashing.v1beta1.ValidatorSigningInfo";
   value: Uint8Array;
 }
@@ -72,7 +72,7 @@ export interface ValidatorSigningInfoAmino {
 
   missed_blocks_counter: string;
 }
-export interface ValidatorSigningInfoAminoType {
+export interface ValidatorSigningInfoAminoMsg {
   type: "cosmos-sdk/ValidatorSigningInfo";
   value: ValidatorSigningInfoAmino;
 }
@@ -98,7 +98,7 @@ export interface Params {
   slashFractionDoubleSign: Uint8Array;
   slashFractionDowntime: Uint8Array;
 }
-export interface ParamsProtoType {
+export interface ParamsProtoMsg {
   typeUrl: "/cosmos.slashing.v1beta1.Params";
   value: Uint8Array;
 }
@@ -111,7 +111,7 @@ export interface ParamsAmino {
   slash_fraction_double_sign: Uint8Array;
   slash_fraction_downtime: Uint8Array;
 }
-export interface ParamsAminoType {
+export interface ParamsAminoMsg {
   type: "cosmos-sdk/Params";
   value: ParamsAmino;
 }
@@ -260,6 +260,32 @@ export const ValidatorSigningInfo = {
     obj.tombstoned = message.tombstoned;
     obj.missed_blocks_counter = message.missedBlocksCounter ? message.missedBlocksCounter.toString() : undefined;
     return obj;
+  },
+
+  fromAminoMsg(object: ValidatorSigningInfoAminoMsg): ValidatorSigningInfo {
+    return ValidatorSigningInfo.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: ValidatorSigningInfo): ValidatorSigningInfoAminoMsg {
+    return {
+      type: "cosmos-sdk/ValidatorSigningInfo",
+      value: ValidatorSigningInfo.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: ValidatorSigningInfoProtoMsg): ValidatorSigningInfo {
+    return ValidatorSigningInfo.decode(message.value);
+  },
+
+  toProto(message: ValidatorSigningInfo): Uint8Array {
+    return ValidatorSigningInfo.encode(message).finish();
+  },
+
+  toProtoMsg(message: ValidatorSigningInfo): ValidatorSigningInfoProtoMsg {
+    return {
+      typeUrl: "/cosmos.slashing.v1beta1.ValidatorSigningInfo",
+      value: ValidatorSigningInfo.encode(message).finish()
+    };
   }
 
 };
@@ -385,6 +411,32 @@ export const Params = {
     obj.slash_fraction_double_sign = message.slashFractionDoubleSign;
     obj.slash_fraction_downtime = message.slashFractionDowntime;
     return obj;
+  },
+
+  fromAminoMsg(object: ParamsAminoMsg): Params {
+    return Params.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: Params): ParamsAminoMsg {
+    return {
+      type: "cosmos-sdk/Params",
+      value: Params.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: ParamsProtoMsg): Params {
+    return Params.decode(message.value);
+  },
+
+  toProto(message: Params): Uint8Array {
+    return Params.encode(message).finish();
+  },
+
+  toProtoMsg(message: Params): ParamsProtoMsg {
+    return {
+      typeUrl: "/cosmos.slashing.v1beta1.Params",
+      value: Params.encode(message).finish()
+    };
   }
 
 };

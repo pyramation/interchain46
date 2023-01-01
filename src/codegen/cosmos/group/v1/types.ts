@@ -1,6 +1,6 @@
 import { Timestamp, TimestampAmino, TimestampSDKType } from "../../../google/protobuf/timestamp";
 import { Duration, DurationAmino, DurationSDKType } from "../../../google/protobuf/duration";
-import { Any, AnyAmino, AnySDKType } from "../../../google/protobuf/any";
+import { Any, AnyProtoMsg, AnyAmino, AnySDKType } from "../../../google/protobuf/any";
 import * as _m0 from "protobufjs/minimal";
 import { isSet, fromJsonTimestamp, fromTimestamp, Long, DeepPartial } from "../../../helpers";
 /** VoteOption enumerates the valid vote options for a given proposal. */
@@ -249,7 +249,7 @@ export interface Member {
 
   addedAt?: Timestamp;
 }
-export interface MemberProtoType {
+export interface MemberProtoMsg {
   typeUrl: "/cosmos.group.v1.Member";
   value: Uint8Array;
 }
@@ -271,7 +271,7 @@ export interface MemberAmino {
 
   added_at?: TimestampAmino;
 }
-export interface MemberAminoType {
+export interface MemberAminoMsg {
   type: "cosmos-sdk/Member";
   value: MemberAmino;
 }
@@ -302,7 +302,7 @@ export interface MemberRequest {
 
   metadata: string;
 }
-export interface MemberRequestProtoType {
+export interface MemberRequestProtoMsg {
   typeUrl: "/cosmos.group.v1.MemberRequest";
   value: Uint8Array;
 }
@@ -322,7 +322,7 @@ export interface MemberRequestAmino {
 
   metadata: string;
 }
-export interface MemberRequestAminoType {
+export interface MemberRequestAminoMsg {
   type: "cosmos-sdk/MemberRequest";
   value: MemberRequestAmino;
 }
@@ -358,7 +358,7 @@ export interface ThresholdDecisionPolicy {
 
   windows?: DecisionPolicyWindows;
 }
-export interface ThresholdDecisionPolicyProtoType {
+export interface ThresholdDecisionPolicyProtoMsg {
   typeUrl: "/cosmos.group.v1.ThresholdDecisionPolicy";
   value: Uint8Array;
 }
@@ -381,7 +381,7 @@ export interface ThresholdDecisionPolicyAmino {
 
   windows?: DecisionPolicyWindowsAmino;
 }
-export interface ThresholdDecisionPolicyAminoType {
+export interface ThresholdDecisionPolicyAminoMsg {
   type: "cosmos-sdk/ThresholdDecisionPolicy";
   value: ThresholdDecisionPolicyAmino;
 }
@@ -420,7 +420,7 @@ export interface PercentageDecisionPolicy {
 
   windows?: DecisionPolicyWindows;
 }
-export interface PercentageDecisionPolicyProtoType {
+export interface PercentageDecisionPolicyProtoMsg {
   typeUrl: "/cosmos.group.v1.PercentageDecisionPolicy";
   value: Uint8Array;
 }
@@ -443,7 +443,7 @@ export interface PercentageDecisionPolicyAmino {
 
   windows?: DecisionPolicyWindowsAmino;
 }
-export interface PercentageDecisionPolicyAminoType {
+export interface PercentageDecisionPolicyAminoMsg {
   type: "cosmos-sdk/PercentageDecisionPolicy";
   value: PercentageDecisionPolicyAmino;
 }
@@ -485,7 +485,7 @@ export interface DecisionPolicyWindows {
 
   minExecutionPeriod?: Duration;
 }
-export interface DecisionPolicyWindowsProtoType {
+export interface DecisionPolicyWindowsProtoMsg {
   typeUrl: "/cosmos.group.v1.DecisionPolicyWindows";
   value: Uint8Array;
 }
@@ -513,7 +513,7 @@ export interface DecisionPolicyWindowsAmino {
 
   min_execution_period?: DurationAmino;
 }
-export interface DecisionPolicyWindowsAminoType {
+export interface DecisionPolicyWindowsAminoMsg {
   type: "cosmos-sdk/DecisionPolicyWindows";
   value: DecisionPolicyWindowsAmino;
 }
@@ -549,7 +549,7 @@ export interface GroupInfo {
 
   createdAt?: Timestamp;
 }
-export interface GroupInfoProtoType {
+export interface GroupInfoProtoMsg {
   typeUrl: "/cosmos.group.v1.GroupInfo";
   value: Uint8Array;
 }
@@ -579,7 +579,7 @@ export interface GroupInfoAmino {
 
   created_at?: TimestampAmino;
 }
-export interface GroupInfoAminoType {
+export interface GroupInfoAminoMsg {
   type: "cosmos-sdk/GroupInfo";
   value: GroupInfoAmino;
 }
@@ -602,7 +602,7 @@ export interface GroupMember {
 
   member?: Member;
 }
-export interface GroupMemberProtoType {
+export interface GroupMemberProtoMsg {
   typeUrl: "/cosmos.group.v1.GroupMember";
   value: Uint8Array;
 }
@@ -615,7 +615,7 @@ export interface GroupMemberAmino {
 
   member?: MemberAmino;
 }
-export interface GroupMemberAminoType {
+export interface GroupMemberAminoMsg {
   type: "cosmos-sdk/GroupMember";
   value: GroupMemberAmino;
 }
@@ -652,10 +652,14 @@ export interface GroupPolicyInfo {
 
   createdAt?: Timestamp;
 }
-export interface GroupPolicyInfoProtoType {
+export interface GroupPolicyInfoProtoMsg {
   typeUrl: "/cosmos.group.v1.GroupPolicyInfo";
   value: Uint8Array;
 }
+export type GroupPolicyInfoEncoded = Omit<GroupPolicyInfo, "decisionPolicy"> & {
+  /** decision_policy specifies the group policy's decision policy. */
+  decisionPolicy?: ThresholdDecisionPolicyProtoMsg | PercentageDecisionPolicyProtoMsg | AnyProtoMsg | undefined;
+};
 /** GroupPolicyInfo represents the high-level on-chain information for a group policy. */
 
 export interface GroupPolicyInfoAmino {
@@ -683,7 +687,7 @@ export interface GroupPolicyInfoAmino {
 
   created_at?: TimestampAmino;
 }
-export interface GroupPolicyInfoAminoType {
+export interface GroupPolicyInfoAminoMsg {
   type: "cosmos-sdk/GroupPolicyInfo";
   value: GroupPolicyInfoAmino;
 }
@@ -695,7 +699,7 @@ export interface GroupPolicyInfoSDKType {
   admin: string;
   metadata: string;
   version: Long;
-  decision_policy?: AnySDKType;
+  decision_policy?: ThresholdDecisionPolicySDKType | PercentageDecisionPolicySDKType | AnySDKType | undefined;
   created_at?: TimestampSDKType;
 }
 /**
@@ -761,7 +765,7 @@ export interface Proposal {
 
   messages: Any[];
 }
-export interface ProposalProtoType {
+export interface ProposalProtoMsg {
   typeUrl: "/cosmos.group.v1.Proposal";
   value: Uint8Array;
 }
@@ -828,7 +832,7 @@ export interface ProposalAmino {
 
   messages: AnyAmino[];
 }
-export interface ProposalAminoType {
+export interface ProposalAminoMsg {
   type: "cosmos-sdk/Proposal";
   value: ProposalAmino;
 }
@@ -868,7 +872,7 @@ export interface TallyResult {
 
   noWithVetoCount: string;
 }
-export interface TallyResultProtoType {
+export interface TallyResultProtoMsg {
   typeUrl: "/cosmos.group.v1.TallyResult";
   value: Uint8Array;
 }
@@ -887,7 +891,7 @@ export interface TallyResultAmino {
 
   no_with_veto_count: string;
 }
-export interface TallyResultAminoType {
+export interface TallyResultAminoMsg {
   type: "cosmos-sdk/TallyResult";
   value: TallyResultAmino;
 }
@@ -917,7 +921,7 @@ export interface Vote {
 
   submitTime?: Timestamp;
 }
-export interface VoteProtoType {
+export interface VoteProtoMsg {
   typeUrl: "/cosmos.group.v1.Vote";
   value: Uint8Array;
 }
@@ -939,7 +943,7 @@ export interface VoteAmino {
 
   submit_time?: TimestampAmino;
 }
-export interface VoteAminoType {
+export interface VoteAminoMsg {
   type: "cosmos-sdk/Vote";
   value: VoteAmino;
 }
@@ -1060,6 +1064,32 @@ export const Member = {
     obj.metadata = message.metadata;
     obj.added_at = message.addedAt ? Timestamp.toAmino(message.addedAt) : undefined;
     return obj;
+  },
+
+  fromAminoMsg(object: MemberAminoMsg): Member {
+    return Member.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: Member): MemberAminoMsg {
+    return {
+      type: "cosmos-sdk/Member",
+      value: Member.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: MemberProtoMsg): Member {
+    return Member.decode(message.value);
+  },
+
+  toProto(message: Member): Uint8Array {
+    return Member.encode(message).finish();
+  },
+
+  toProtoMsg(message: Member): MemberProtoMsg {
+    return {
+      typeUrl: "/cosmos.group.v1.Member",
+      value: Member.encode(message).finish()
+    };
   }
 
 };
@@ -1157,6 +1187,32 @@ export const MemberRequest = {
     obj.weight = message.weight;
     obj.metadata = message.metadata;
     return obj;
+  },
+
+  fromAminoMsg(object: MemberRequestAminoMsg): MemberRequest {
+    return MemberRequest.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: MemberRequest): MemberRequestAminoMsg {
+    return {
+      type: "cosmos-sdk/MemberRequest",
+      value: MemberRequest.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: MemberRequestProtoMsg): MemberRequest {
+    return MemberRequest.decode(message.value);
+  },
+
+  toProto(message: MemberRequest): Uint8Array {
+    return MemberRequest.encode(message).finish();
+  },
+
+  toProtoMsg(message: MemberRequest): MemberRequestProtoMsg {
+    return {
+      typeUrl: "/cosmos.group.v1.MemberRequest",
+      value: MemberRequest.encode(message).finish()
+    };
   }
 
 };
@@ -1241,6 +1297,32 @@ export const ThresholdDecisionPolicy = {
     obj.threshold = message.threshold;
     obj.windows = message.windows ? DecisionPolicyWindows.toAmino(message.windows) : undefined;
     return obj;
+  },
+
+  fromAminoMsg(object: ThresholdDecisionPolicyAminoMsg): ThresholdDecisionPolicy {
+    return ThresholdDecisionPolicy.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: ThresholdDecisionPolicy): ThresholdDecisionPolicyAminoMsg {
+    return {
+      type: "cosmos-sdk/ThresholdDecisionPolicy",
+      value: ThresholdDecisionPolicy.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: ThresholdDecisionPolicyProtoMsg): ThresholdDecisionPolicy {
+    return ThresholdDecisionPolicy.decode(message.value);
+  },
+
+  toProto(message: ThresholdDecisionPolicy): Uint8Array {
+    return ThresholdDecisionPolicy.encode(message).finish();
+  },
+
+  toProtoMsg(message: ThresholdDecisionPolicy): ThresholdDecisionPolicyProtoMsg {
+    return {
+      typeUrl: "/cosmos.group.v1.ThresholdDecisionPolicy",
+      value: ThresholdDecisionPolicy.encode(message).finish()
+    };
   }
 
 };
@@ -1325,6 +1407,32 @@ export const PercentageDecisionPolicy = {
     obj.percentage = message.percentage;
     obj.windows = message.windows ? DecisionPolicyWindows.toAmino(message.windows) : undefined;
     return obj;
+  },
+
+  fromAminoMsg(object: PercentageDecisionPolicyAminoMsg): PercentageDecisionPolicy {
+    return PercentageDecisionPolicy.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: PercentageDecisionPolicy): PercentageDecisionPolicyAminoMsg {
+    return {
+      type: "cosmos-sdk/PercentageDecisionPolicy",
+      value: PercentageDecisionPolicy.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: PercentageDecisionPolicyProtoMsg): PercentageDecisionPolicy {
+    return PercentageDecisionPolicy.decode(message.value);
+  },
+
+  toProto(message: PercentageDecisionPolicy): Uint8Array {
+    return PercentageDecisionPolicy.encode(message).finish();
+  },
+
+  toProtoMsg(message: PercentageDecisionPolicy): PercentageDecisionPolicyProtoMsg {
+    return {
+      typeUrl: "/cosmos.group.v1.PercentageDecisionPolicy",
+      value: PercentageDecisionPolicy.encode(message).finish()
+    };
   }
 
 };
@@ -1408,6 +1516,32 @@ export const DecisionPolicyWindows = {
     obj.voting_period = message.votingPeriod ? Duration.toAmino(message.votingPeriod) : undefined;
     obj.min_execution_period = message.minExecutionPeriod ? Duration.toAmino(message.minExecutionPeriod) : undefined;
     return obj;
+  },
+
+  fromAminoMsg(object: DecisionPolicyWindowsAminoMsg): DecisionPolicyWindows {
+    return DecisionPolicyWindows.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: DecisionPolicyWindows): DecisionPolicyWindowsAminoMsg {
+    return {
+      type: "cosmos-sdk/DecisionPolicyWindows",
+      value: DecisionPolicyWindows.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: DecisionPolicyWindowsProtoMsg): DecisionPolicyWindows {
+    return DecisionPolicyWindows.decode(message.value);
+  },
+
+  toProto(message: DecisionPolicyWindows): Uint8Array {
+    return DecisionPolicyWindows.encode(message).finish();
+  },
+
+  toProtoMsg(message: DecisionPolicyWindows): DecisionPolicyWindowsProtoMsg {
+    return {
+      typeUrl: "/cosmos.group.v1.DecisionPolicyWindows",
+      value: DecisionPolicyWindows.encode(message).finish()
+    };
   }
 
 };
@@ -1547,6 +1681,32 @@ export const GroupInfo = {
     obj.total_weight = message.totalWeight;
     obj.created_at = message.createdAt ? Timestamp.toAmino(message.createdAt) : undefined;
     return obj;
+  },
+
+  fromAminoMsg(object: GroupInfoAminoMsg): GroupInfo {
+    return GroupInfo.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: GroupInfo): GroupInfoAminoMsg {
+    return {
+      type: "cosmos-sdk/GroupInfo",
+      value: GroupInfo.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: GroupInfoProtoMsg): GroupInfo {
+    return GroupInfo.decode(message.value);
+  },
+
+  toProto(message: GroupInfo): Uint8Array {
+    return GroupInfo.encode(message).finish();
+  },
+
+  toProtoMsg(message: GroupInfo): GroupInfoProtoMsg {
+    return {
+      typeUrl: "/cosmos.group.v1.GroupInfo",
+      value: GroupInfo.encode(message).finish()
+    };
   }
 
 };
@@ -1630,6 +1790,32 @@ export const GroupMember = {
     obj.group_id = message.groupId ? message.groupId.toString() : undefined;
     obj.member = message.member ? Member.toAmino(message.member) : undefined;
     return obj;
+  },
+
+  fromAminoMsg(object: GroupMemberAminoMsg): GroupMember {
+    return GroupMember.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: GroupMember): GroupMemberAminoMsg {
+    return {
+      type: "cosmos-sdk/GroupMember",
+      value: GroupMember.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: GroupMemberProtoMsg): GroupMember {
+    return GroupMember.decode(message.value);
+  },
+
+  toProto(message: GroupMember): Uint8Array {
+    return GroupMember.encode(message).finish();
+  },
+
+  toProtoMsg(message: GroupMember): GroupMemberProtoMsg {
+    return {
+      typeUrl: "/cosmos.group.v1.GroupMember",
+      value: GroupMember.encode(message).finish()
+    };
   }
 
 };
@@ -1783,6 +1969,32 @@ export const GroupPolicyInfo = {
     obj.decision_policy = message.decisionPolicy ? DecisionPolicy_ToAmino((message.decisionPolicy as Any)) : undefined;
     obj.created_at = message.createdAt ? Timestamp.toAmino(message.createdAt) : undefined;
     return obj;
+  },
+
+  fromAminoMsg(object: GroupPolicyInfoAminoMsg): GroupPolicyInfo {
+    return GroupPolicyInfo.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: GroupPolicyInfo): GroupPolicyInfoAminoMsg {
+    return {
+      type: "cosmos-sdk/GroupPolicyInfo",
+      value: GroupPolicyInfo.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: GroupPolicyInfoProtoMsg): GroupPolicyInfo {
+    return GroupPolicyInfo.decode(message.value);
+  },
+
+  toProto(message: GroupPolicyInfo): Uint8Array {
+    return GroupPolicyInfo.encode(message).finish();
+  },
+
+  toProtoMsg(message: GroupPolicyInfo): GroupPolicyInfoProtoMsg {
+    return {
+      typeUrl: "/cosmos.group.v1.GroupPolicyInfo",
+      value: GroupPolicyInfo.encode(message).finish()
+    };
   }
 
 };
@@ -2030,6 +2242,32 @@ export const Proposal = {
     }
 
     return obj;
+  },
+
+  fromAminoMsg(object: ProposalAminoMsg): Proposal {
+    return Proposal.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: Proposal): ProposalAminoMsg {
+    return {
+      type: "cosmos-sdk/Proposal",
+      value: Proposal.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: ProposalProtoMsg): Proposal {
+    return Proposal.decode(message.value);
+  },
+
+  toProto(message: Proposal): Uint8Array {
+    return Proposal.encode(message).finish();
+  },
+
+  toProtoMsg(message: Proposal): ProposalProtoMsg {
+    return {
+      typeUrl: "/cosmos.group.v1.Proposal",
+      value: Proposal.encode(message).finish()
+    };
   }
 
 };
@@ -2141,6 +2379,32 @@ export const TallyResult = {
     obj.no_count = message.noCount;
     obj.no_with_veto_count = message.noWithVetoCount;
     return obj;
+  },
+
+  fromAminoMsg(object: TallyResultAminoMsg): TallyResult {
+    return TallyResult.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: TallyResult): TallyResultAminoMsg {
+    return {
+      type: "cosmos-sdk/TallyResult",
+      value: TallyResult.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: TallyResultProtoMsg): TallyResult {
+    return TallyResult.decode(message.value);
+  },
+
+  toProto(message: TallyResult): Uint8Array {
+    return TallyResult.encode(message).finish();
+  },
+
+  toProtoMsg(message: TallyResult): TallyResultProtoMsg {
+    return {
+      typeUrl: "/cosmos.group.v1.TallyResult",
+      value: TallyResult.encode(message).finish()
+    };
   }
 
 };
@@ -2266,6 +2530,32 @@ export const Vote = {
     obj.metadata = message.metadata;
     obj.submit_time = message.submitTime ? Timestamp.toAmino(message.submitTime) : undefined;
     return obj;
+  },
+
+  fromAminoMsg(object: VoteAminoMsg): Vote {
+    return Vote.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: Vote): VoteAminoMsg {
+    return {
+      type: "cosmos-sdk/Vote",
+      value: Vote.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: VoteProtoMsg): Vote {
+    return Vote.decode(message.value);
+  },
+
+  toProto(message: Vote): Uint8Array {
+    return Vote.encode(message).finish();
+  },
+
+  toProtoMsg(message: Vote): VoteProtoMsg {
+    return {
+      typeUrl: "/cosmos.group.v1.Vote",
+      value: Vote.encode(message).finish()
+    };
   }
 
 };

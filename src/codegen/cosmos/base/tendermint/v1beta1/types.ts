@@ -15,7 +15,7 @@ export interface Block {
   evidence?: EvidenceList;
   lastCommit?: Commit;
 }
-export interface BlockProtoType {
+export interface BlockProtoMsg {
   typeUrl: "/cosmos.base.tendermint.v1beta1.Block";
   value: Uint8Array;
 }
@@ -30,7 +30,7 @@ export interface BlockAmino {
   evidence?: EvidenceListAmino;
   last_commit?: CommitAmino;
 }
-export interface BlockAminoType {
+export interface BlockAminoMsg {
   type: "cosmos-sdk/Block";
   value: BlockAmino;
 }
@@ -84,7 +84,7 @@ export interface Header {
 
   proposerAddress: string;
 }
-export interface HeaderProtoType {
+export interface HeaderProtoMsg {
   typeUrl: "/cosmos.base.tendermint.v1beta1.Header";
   value: Uint8Array;
 }
@@ -127,7 +127,7 @@ export interface HeaderAmino {
 
   proposer_address: string;
 }
-export interface HeaderAminoType {
+export interface HeaderAminoMsg {
   type: "cosmos-sdk/Header";
   value: HeaderAmino;
 }
@@ -257,6 +257,32 @@ export const Block = {
     obj.evidence = message.evidence ? EvidenceList.toAmino(message.evidence) : undefined;
     obj.last_commit = message.lastCommit ? Commit.toAmino(message.lastCommit) : undefined;
     return obj;
+  },
+
+  fromAminoMsg(object: BlockAminoMsg): Block {
+    return Block.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: Block): BlockAminoMsg {
+    return {
+      type: "cosmos-sdk/Block",
+      value: Block.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: BlockProtoMsg): Block {
+    return Block.decode(message.value);
+  },
+
+  toProto(message: Block): Uint8Array {
+    return Block.encode(message).finish();
+  },
+
+  toProtoMsg(message: Block): BlockProtoMsg {
+    return {
+      typeUrl: "/cosmos.base.tendermint.v1beta1.Block",
+      value: Block.encode(message).finish()
+    };
   }
 
 };
@@ -508,6 +534,32 @@ export const Header = {
     obj.evidence_hash = message.evidenceHash;
     obj.proposer_address = message.proposerAddress;
     return obj;
+  },
+
+  fromAminoMsg(object: HeaderAminoMsg): Header {
+    return Header.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: Header): HeaderAminoMsg {
+    return {
+      type: "cosmos-sdk/Header",
+      value: Header.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: HeaderProtoMsg): Header {
+    return Header.decode(message.value);
+  },
+
+  toProto(message: Header): Uint8Array {
+    return Header.encode(message).finish();
+  },
+
+  toProtoMsg(message: Header): HeaderProtoMsg {
+    return {
+      typeUrl: "/cosmos.base.tendermint.v1beta1.Header",
+      value: Header.encode(message).finish()
+    };
   }
 
 };

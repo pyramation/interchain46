@@ -122,7 +122,7 @@ export interface PartSetHeader {
   total: number;
   hash: Uint8Array;
 }
-export interface PartSetHeaderProtoType {
+export interface PartSetHeaderProtoMsg {
   typeUrl: "/tendermint.types.PartSetHeader";
   value: Uint8Array;
 }
@@ -132,7 +132,7 @@ export interface PartSetHeaderAmino {
   total: number;
   hash: Uint8Array;
 }
-export interface PartSetHeaderAminoType {
+export interface PartSetHeaderAminoMsg {
   type: "/tendermint.types.PartSetHeader";
   value: PartSetHeaderAmino;
 }
@@ -147,7 +147,7 @@ export interface Part {
   bytes: Uint8Array;
   proof?: Proof;
 }
-export interface PartProtoType {
+export interface PartProtoMsg {
   typeUrl: "/tendermint.types.Part";
   value: Uint8Array;
 }
@@ -156,7 +156,7 @@ export interface PartAmino {
   bytes: Uint8Array;
   proof?: ProofAmino;
 }
-export interface PartAminoType {
+export interface PartAminoMsg {
   type: "/tendermint.types.Part";
   value: PartAmino;
 }
@@ -171,7 +171,7 @@ export interface BlockID {
   hash: Uint8Array;
   partSetHeader?: PartSetHeader;
 }
-export interface BlockIDProtoType {
+export interface BlockIDProtoMsg {
   typeUrl: "/tendermint.types.BlockID";
   value: Uint8Array;
 }
@@ -181,7 +181,7 @@ export interface BlockIDAmino {
   hash: Uint8Array;
   part_set_header?: PartSetHeaderAmino;
 }
-export interface BlockIDAminoType {
+export interface BlockIDAminoMsg {
   type: "/tendermint.types.BlockID";
   value: BlockIDAmino;
 }
@@ -226,7 +226,7 @@ export interface Header {
 
   proposerAddress: Uint8Array;
 }
-export interface HeaderProtoType {
+export interface HeaderProtoMsg {
   typeUrl: "/tendermint.types.Header";
   value: Uint8Array;
 }
@@ -265,7 +265,7 @@ export interface HeaderAmino {
 
   proposer_address: Uint8Array;
 }
-export interface HeaderAminoType {
+export interface HeaderAminoMsg {
   type: "/tendermint.types.Header";
   value: HeaderAmino;
 }
@@ -297,7 +297,7 @@ export interface Data {
    */
   txs: Uint8Array[];
 }
-export interface DataProtoType {
+export interface DataProtoMsg {
   typeUrl: "/tendermint.types.Data";
   value: Uint8Array;
 }
@@ -311,7 +311,7 @@ export interface DataAmino {
    */
   txs: Uint8Array[];
 }
-export interface DataAminoType {
+export interface DataAminoMsg {
   type: "/tendermint.types.Data";
   value: DataAmino;
 }
@@ -337,7 +337,7 @@ export interface Vote {
   validatorIndex: number;
   signature: Uint8Array;
 }
-export interface VoteProtoType {
+export interface VoteProtoMsg {
   typeUrl: "/tendermint.types.Vote";
   value: Uint8Array;
 }
@@ -358,7 +358,7 @@ export interface VoteAmino {
   validator_index: number;
   signature: Uint8Array;
 }
-export interface VoteAminoType {
+export interface VoteAminoMsg {
   type: "/tendermint.types.Vote";
   value: VoteAmino;
 }
@@ -385,7 +385,7 @@ export interface Commit {
   blockId?: BlockID;
   signatures: CommitSig[];
 }
-export interface CommitProtoType {
+export interface CommitProtoMsg {
   typeUrl: "/tendermint.types.Commit";
   value: Uint8Array;
 }
@@ -397,7 +397,7 @@ export interface CommitAmino {
   block_id?: BlockIDAmino;
   signatures: CommitSigAmino[];
 }
-export interface CommitAminoType {
+export interface CommitAminoMsg {
   type: "/tendermint.types.Commit";
   value: CommitAmino;
 }
@@ -417,7 +417,7 @@ export interface CommitSig {
   timestamp?: Timestamp;
   signature: Uint8Array;
 }
-export interface CommitSigProtoType {
+export interface CommitSigProtoMsg {
   typeUrl: "/tendermint.types.CommitSig";
   value: Uint8Array;
 }
@@ -429,7 +429,7 @@ export interface CommitSigAmino {
   timestamp?: TimestampAmino;
   signature: Uint8Array;
 }
-export interface CommitSigAminoType {
+export interface CommitSigAminoMsg {
   type: "/tendermint.types.CommitSig";
   value: CommitSigAmino;
 }
@@ -450,7 +450,7 @@ export interface Proposal {
   timestamp?: Timestamp;
   signature: Uint8Array;
 }
-export interface ProposalProtoType {
+export interface ProposalProtoMsg {
   typeUrl: "/tendermint.types.Proposal";
   value: Uint8Array;
 }
@@ -463,7 +463,7 @@ export interface ProposalAmino {
   timestamp?: TimestampAmino;
   signature: Uint8Array;
 }
-export interface ProposalAminoType {
+export interface ProposalAminoMsg {
   type: "/tendermint.types.Proposal";
   value: ProposalAmino;
 }
@@ -480,7 +480,7 @@ export interface SignedHeader {
   header?: Header;
   commit?: Commit;
 }
-export interface SignedHeaderProtoType {
+export interface SignedHeaderProtoMsg {
   typeUrl: "/tendermint.types.SignedHeader";
   value: Uint8Array;
 }
@@ -488,7 +488,7 @@ export interface SignedHeaderAmino {
   header?: HeaderAmino;
   commit?: CommitAmino;
 }
-export interface SignedHeaderAminoType {
+export interface SignedHeaderAminoMsg {
   type: "/tendermint.types.SignedHeader";
   value: SignedHeaderAmino;
 }
@@ -500,7 +500,7 @@ export interface LightBlock {
   signedHeader?: SignedHeader;
   validatorSet?: ValidatorSet;
 }
-export interface LightBlockProtoType {
+export interface LightBlockProtoMsg {
   typeUrl: "/tendermint.types.LightBlock";
   value: Uint8Array;
 }
@@ -508,7 +508,7 @@ export interface LightBlockAmino {
   signed_header?: SignedHeaderAmino;
   validator_set?: ValidatorSetAmino;
 }
-export interface LightBlockAminoType {
+export interface LightBlockAminoMsg {
   type: "/tendermint.types.LightBlock";
   value: LightBlockAmino;
 }
@@ -522,7 +522,7 @@ export interface BlockMeta {
   header?: Header;
   numTxs: Long;
 }
-export interface BlockMetaProtoType {
+export interface BlockMetaProtoMsg {
   typeUrl: "/tendermint.types.BlockMeta";
   value: Uint8Array;
 }
@@ -532,7 +532,7 @@ export interface BlockMetaAmino {
   header?: HeaderAmino;
   num_txs: string;
 }
-export interface BlockMetaAminoType {
+export interface BlockMetaAminoMsg {
   type: "/tendermint.types.BlockMeta";
   value: BlockMetaAmino;
 }
@@ -549,7 +549,7 @@ export interface TxProof {
   data: Uint8Array;
   proof?: Proof;
 }
-export interface TxProofProtoType {
+export interface TxProofProtoMsg {
   typeUrl: "/tendermint.types.TxProof";
   value: Uint8Array;
 }
@@ -560,7 +560,7 @@ export interface TxProofAmino {
   data: Uint8Array;
   proof?: ProofAmino;
 }
-export interface TxProofAminoType {
+export interface TxProofAminoMsg {
   type: "/tendermint.types.TxProof";
   value: TxProofAmino;
 }
@@ -651,6 +651,25 @@ export const PartSetHeader = {
     obj.total = message.total;
     obj.hash = message.hash;
     return obj;
+  },
+
+  fromAminoMsg(object: PartSetHeaderAminoMsg): PartSetHeader {
+    return PartSetHeader.fromAmino(object.value);
+  },
+
+  fromProtoMsg(message: PartSetHeaderProtoMsg): PartSetHeader {
+    return PartSetHeader.decode(message.value);
+  },
+
+  toProto(message: PartSetHeader): Uint8Array {
+    return PartSetHeader.encode(message).finish();
+  },
+
+  toProtoMsg(message: PartSetHeader): PartSetHeaderProtoMsg {
+    return {
+      typeUrl: "/tendermint.types.PartSetHeader",
+      value: PartSetHeader.encode(message).finish()
+    };
   }
 
 };
@@ -748,6 +767,25 @@ export const Part = {
     obj.bytes = message.bytes;
     obj.proof = message.proof ? Proof.toAmino(message.proof) : undefined;
     return obj;
+  },
+
+  fromAminoMsg(object: PartAminoMsg): Part {
+    return Part.fromAmino(object.value);
+  },
+
+  fromProtoMsg(message: PartProtoMsg): Part {
+    return Part.decode(message.value);
+  },
+
+  toProto(message: Part): Uint8Array {
+    return Part.encode(message).finish();
+  },
+
+  toProtoMsg(message: Part): PartProtoMsg {
+    return {
+      typeUrl: "/tendermint.types.Part",
+      value: Part.encode(message).finish()
+    };
   }
 
 };
@@ -831,6 +869,25 @@ export const BlockID = {
     obj.hash = message.hash;
     obj.part_set_header = message.partSetHeader ? PartSetHeader.toAmino(message.partSetHeader) : undefined;
     return obj;
+  },
+
+  fromAminoMsg(object: BlockIDAminoMsg): BlockID {
+    return BlockID.fromAmino(object.value);
+  },
+
+  fromProtoMsg(message: BlockIDProtoMsg): BlockID {
+    return BlockID.decode(message.value);
+  },
+
+  toProto(message: BlockID): Uint8Array {
+    return BlockID.encode(message).finish();
+  },
+
+  toProtoMsg(message: BlockID): BlockIDProtoMsg {
+    return {
+      typeUrl: "/tendermint.types.BlockID",
+      value: BlockID.encode(message).finish()
+    };
   }
 
 };
@@ -1082,6 +1139,25 @@ export const Header = {
     obj.evidence_hash = message.evidenceHash;
     obj.proposer_address = message.proposerAddress;
     return obj;
+  },
+
+  fromAminoMsg(object: HeaderAminoMsg): Header {
+    return Header.fromAmino(object.value);
+  },
+
+  fromProtoMsg(message: HeaderProtoMsg): Header {
+    return Header.decode(message.value);
+  },
+
+  toProto(message: Header): Uint8Array {
+    return Header.encode(message).finish();
+  },
+
+  toProtoMsg(message: Header): HeaderProtoMsg {
+    return {
+      typeUrl: "/tendermint.types.Header",
+      value: Header.encode(message).finish()
+    };
   }
 
 };
@@ -1163,6 +1239,25 @@ export const Data = {
     }
 
     return obj;
+  },
+
+  fromAminoMsg(object: DataAminoMsg): Data {
+    return Data.fromAmino(object.value);
+  },
+
+  fromProtoMsg(message: DataProtoMsg): Data {
+    return Data.decode(message.value);
+  },
+
+  toProto(message: Data): Uint8Array {
+    return Data.encode(message).finish();
+  },
+
+  toProtoMsg(message: Data): DataProtoMsg {
+    return {
+      typeUrl: "/tendermint.types.Data",
+      value: Data.encode(message).finish()
+    };
   }
 
 };
@@ -1330,6 +1425,25 @@ export const Vote = {
     obj.validator_index = message.validatorIndex;
     obj.signature = message.signature;
     return obj;
+  },
+
+  fromAminoMsg(object: VoteAminoMsg): Vote {
+    return Vote.fromAmino(object.value);
+  },
+
+  fromProtoMsg(message: VoteProtoMsg): Vote {
+    return Vote.decode(message.value);
+  },
+
+  toProto(message: Vote): Uint8Array {
+    return Vote.encode(message).finish();
+  },
+
+  toProtoMsg(message: Vote): VoteProtoMsg {
+    return {
+      typeUrl: "/tendermint.types.Vote",
+      value: Vote.encode(message).finish()
+    };
   }
 
 };
@@ -1453,6 +1567,25 @@ export const Commit = {
     }
 
     return obj;
+  },
+
+  fromAminoMsg(object: CommitAminoMsg): Commit {
+    return Commit.fromAmino(object.value);
+  },
+
+  fromProtoMsg(message: CommitProtoMsg): Commit {
+    return Commit.decode(message.value);
+  },
+
+  toProto(message: Commit): Uint8Array {
+    return Commit.encode(message).finish();
+  },
+
+  toProtoMsg(message: Commit): CommitProtoMsg {
+    return {
+      typeUrl: "/tendermint.types.Commit",
+      value: Commit.encode(message).finish()
+    };
   }
 
 };
@@ -1564,6 +1697,25 @@ export const CommitSig = {
     obj.timestamp = message.timestamp ? Timestamp.toAmino(message.timestamp) : undefined;
     obj.signature = message.signature;
     return obj;
+  },
+
+  fromAminoMsg(object: CommitSigAminoMsg): CommitSig {
+    return CommitSig.fromAmino(object.value);
+  },
+
+  fromProtoMsg(message: CommitSigProtoMsg): CommitSig {
+    return CommitSig.decode(message.value);
+  },
+
+  toProto(message: CommitSig): Uint8Array {
+    return CommitSig.encode(message).finish();
+  },
+
+  toProtoMsg(message: CommitSig): CommitSigProtoMsg {
+    return {
+      typeUrl: "/tendermint.types.CommitSig",
+      value: CommitSig.encode(message).finish()
+    };
   }
 
 };
@@ -1717,6 +1869,25 @@ export const Proposal = {
     obj.timestamp = message.timestamp ? Timestamp.toAmino(message.timestamp) : undefined;
     obj.signature = message.signature;
     return obj;
+  },
+
+  fromAminoMsg(object: ProposalAminoMsg): Proposal {
+    return Proposal.fromAmino(object.value);
+  },
+
+  fromProtoMsg(message: ProposalProtoMsg): Proposal {
+    return Proposal.decode(message.value);
+  },
+
+  toProto(message: Proposal): Uint8Array {
+    return Proposal.encode(message).finish();
+  },
+
+  toProtoMsg(message: Proposal): ProposalProtoMsg {
+    return {
+      typeUrl: "/tendermint.types.Proposal",
+      value: Proposal.encode(message).finish()
+    };
   }
 
 };
@@ -1800,6 +1971,25 @@ export const SignedHeader = {
     obj.header = message.header ? Header.toAmino(message.header) : undefined;
     obj.commit = message.commit ? Commit.toAmino(message.commit) : undefined;
     return obj;
+  },
+
+  fromAminoMsg(object: SignedHeaderAminoMsg): SignedHeader {
+    return SignedHeader.fromAmino(object.value);
+  },
+
+  fromProtoMsg(message: SignedHeaderProtoMsg): SignedHeader {
+    return SignedHeader.decode(message.value);
+  },
+
+  toProto(message: SignedHeader): Uint8Array {
+    return SignedHeader.encode(message).finish();
+  },
+
+  toProtoMsg(message: SignedHeader): SignedHeaderProtoMsg {
+    return {
+      typeUrl: "/tendermint.types.SignedHeader",
+      value: SignedHeader.encode(message).finish()
+    };
   }
 
 };
@@ -1883,6 +2073,25 @@ export const LightBlock = {
     obj.signed_header = message.signedHeader ? SignedHeader.toAmino(message.signedHeader) : undefined;
     obj.validator_set = message.validatorSet ? ValidatorSet.toAmino(message.validatorSet) : undefined;
     return obj;
+  },
+
+  fromAminoMsg(object: LightBlockAminoMsg): LightBlock {
+    return LightBlock.fromAmino(object.value);
+  },
+
+  fromProtoMsg(message: LightBlockProtoMsg): LightBlock {
+    return LightBlock.decode(message.value);
+  },
+
+  toProto(message: LightBlock): Uint8Array {
+    return LightBlock.encode(message).finish();
+  },
+
+  toProtoMsg(message: LightBlock): LightBlockProtoMsg {
+    return {
+      typeUrl: "/tendermint.types.LightBlock",
+      value: LightBlock.encode(message).finish()
+    };
   }
 
 };
@@ -1994,6 +2203,25 @@ export const BlockMeta = {
     obj.header = message.header ? Header.toAmino(message.header) : undefined;
     obj.num_txs = message.numTxs ? message.numTxs.toString() : undefined;
     return obj;
+  },
+
+  fromAminoMsg(object: BlockMetaAminoMsg): BlockMeta {
+    return BlockMeta.fromAmino(object.value);
+  },
+
+  fromProtoMsg(message: BlockMetaProtoMsg): BlockMeta {
+    return BlockMeta.decode(message.value);
+  },
+
+  toProto(message: BlockMeta): Uint8Array {
+    return BlockMeta.encode(message).finish();
+  },
+
+  toProtoMsg(message: BlockMeta): BlockMetaProtoMsg {
+    return {
+      typeUrl: "/tendermint.types.BlockMeta",
+      value: BlockMeta.encode(message).finish()
+    };
   }
 
 };
@@ -2091,6 +2319,25 @@ export const TxProof = {
     obj.data = message.data;
     obj.proof = message.proof ? Proof.toAmino(message.proof) : undefined;
     return obj;
+  },
+
+  fromAminoMsg(object: TxProofAminoMsg): TxProof {
+    return TxProof.fromAmino(object.value);
+  },
+
+  fromProtoMsg(message: TxProofProtoMsg): TxProof {
+    return TxProof.decode(message.value);
+  },
+
+  toProto(message: TxProof): Uint8Array {
+    return TxProof.encode(message).finish();
+  },
+
+  toProtoMsg(message: TxProof): TxProofProtoMsg {
+    return {
+      typeUrl: "/tendermint.types.TxProof",
+      value: TxProof.encode(message).finish()
+    };
   }
 
 };

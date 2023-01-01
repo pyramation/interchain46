@@ -7,7 +7,7 @@ export interface EventCreateGroup {
   /** group_id is the unique ID of the group. */
   groupId: Long;
 }
-export interface EventCreateGroupProtoType {
+export interface EventCreateGroupProtoMsg {
   typeUrl: "/cosmos.group.v1.EventCreateGroup";
   value: Uint8Array;
 }
@@ -17,7 +17,7 @@ export interface EventCreateGroupAmino {
   /** group_id is the unique ID of the group. */
   group_id: string;
 }
-export interface EventCreateGroupAminoType {
+export interface EventCreateGroupAminoMsg {
   type: "cosmos-sdk/EventCreateGroup";
   value: EventCreateGroupAmino;
 }
@@ -32,7 +32,7 @@ export interface EventUpdateGroup {
   /** group_id is the unique ID of the group. */
   groupId: Long;
 }
-export interface EventUpdateGroupProtoType {
+export interface EventUpdateGroupProtoMsg {
   typeUrl: "/cosmos.group.v1.EventUpdateGroup";
   value: Uint8Array;
 }
@@ -42,7 +42,7 @@ export interface EventUpdateGroupAmino {
   /** group_id is the unique ID of the group. */
   group_id: string;
 }
-export interface EventUpdateGroupAminoType {
+export interface EventUpdateGroupAminoMsg {
   type: "cosmos-sdk/EventUpdateGroup";
   value: EventUpdateGroupAmino;
 }
@@ -57,7 +57,7 @@ export interface EventCreateGroupPolicy {
   /** address is the account address of the group policy. */
   address: string;
 }
-export interface EventCreateGroupPolicyProtoType {
+export interface EventCreateGroupPolicyProtoMsg {
   typeUrl: "/cosmos.group.v1.EventCreateGroupPolicy";
   value: Uint8Array;
 }
@@ -67,7 +67,7 @@ export interface EventCreateGroupPolicyAmino {
   /** address is the account address of the group policy. */
   address: string;
 }
-export interface EventCreateGroupPolicyAminoType {
+export interface EventCreateGroupPolicyAminoMsg {
   type: "cosmos-sdk/EventCreateGroupPolicy";
   value: EventCreateGroupPolicyAmino;
 }
@@ -82,7 +82,7 @@ export interface EventUpdateGroupPolicy {
   /** address is the account address of the group policy. */
   address: string;
 }
-export interface EventUpdateGroupPolicyProtoType {
+export interface EventUpdateGroupPolicyProtoMsg {
   typeUrl: "/cosmos.group.v1.EventUpdateGroupPolicy";
   value: Uint8Array;
 }
@@ -92,7 +92,7 @@ export interface EventUpdateGroupPolicyAmino {
   /** address is the account address of the group policy. */
   address: string;
 }
-export interface EventUpdateGroupPolicyAminoType {
+export interface EventUpdateGroupPolicyAminoMsg {
   type: "cosmos-sdk/EventUpdateGroupPolicy";
   value: EventUpdateGroupPolicyAmino;
 }
@@ -107,7 +107,7 @@ export interface EventSubmitProposal {
   /** proposal_id is the unique ID of the proposal. */
   proposalId: Long;
 }
-export interface EventSubmitProposalProtoType {
+export interface EventSubmitProposalProtoMsg {
   typeUrl: "/cosmos.group.v1.EventSubmitProposal";
   value: Uint8Array;
 }
@@ -117,7 +117,7 @@ export interface EventSubmitProposalAmino {
   /** proposal_id is the unique ID of the proposal. */
   proposal_id: string;
 }
-export interface EventSubmitProposalAminoType {
+export interface EventSubmitProposalAminoMsg {
   type: "cosmos-sdk/EventSubmitProposal";
   value: EventSubmitProposalAmino;
 }
@@ -132,7 +132,7 @@ export interface EventWithdrawProposal {
   /** proposal_id is the unique ID of the proposal. */
   proposalId: Long;
 }
-export interface EventWithdrawProposalProtoType {
+export interface EventWithdrawProposalProtoMsg {
   typeUrl: "/cosmos.group.v1.EventWithdrawProposal";
   value: Uint8Array;
 }
@@ -142,7 +142,7 @@ export interface EventWithdrawProposalAmino {
   /** proposal_id is the unique ID of the proposal. */
   proposal_id: string;
 }
-export interface EventWithdrawProposalAminoType {
+export interface EventWithdrawProposalAminoMsg {
   type: "cosmos-sdk/EventWithdrawProposal";
   value: EventWithdrawProposalAmino;
 }
@@ -157,7 +157,7 @@ export interface EventVote {
   /** proposal_id is the unique ID of the proposal. */
   proposalId: Long;
 }
-export interface EventVoteProtoType {
+export interface EventVoteProtoMsg {
   typeUrl: "/cosmos.group.v1.EventVote";
   value: Uint8Array;
 }
@@ -167,7 +167,7 @@ export interface EventVoteAmino {
   /** proposal_id is the unique ID of the proposal. */
   proposal_id: string;
 }
-export interface EventVoteAminoType {
+export interface EventVoteAminoMsg {
   type: "cosmos-sdk/EventVote";
   value: EventVoteAmino;
 }
@@ -188,7 +188,7 @@ export interface EventExec {
 
   logs: string;
 }
-export interface EventExecProtoType {
+export interface EventExecProtoMsg {
   typeUrl: "/cosmos.group.v1.EventExec";
   value: Uint8Array;
 }
@@ -204,7 +204,7 @@ export interface EventExecAmino {
 
   logs: string;
 }
-export interface EventExecAminoType {
+export interface EventExecAminoMsg {
   type: "cosmos-sdk/EventExec";
   value: EventExecAmino;
 }
@@ -224,7 +224,7 @@ export interface EventLeaveGroup {
 
   address: string;
 }
-export interface EventLeaveGroupProtoType {
+export interface EventLeaveGroupProtoMsg {
   typeUrl: "/cosmos.group.v1.EventLeaveGroup";
   value: Uint8Array;
 }
@@ -237,7 +237,7 @@ export interface EventLeaveGroupAmino {
 
   address: string;
 }
-export interface EventLeaveGroupAminoType {
+export interface EventLeaveGroupAminoMsg {
   type: "cosmos-sdk/EventLeaveGroup";
   value: EventLeaveGroupAmino;
 }
@@ -313,6 +313,32 @@ export const EventCreateGroup = {
     const obj: any = {};
     obj.group_id = message.groupId ? message.groupId.toString() : undefined;
     return obj;
+  },
+
+  fromAminoMsg(object: EventCreateGroupAminoMsg): EventCreateGroup {
+    return EventCreateGroup.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: EventCreateGroup): EventCreateGroupAminoMsg {
+    return {
+      type: "cosmos-sdk/EventCreateGroup",
+      value: EventCreateGroup.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: EventCreateGroupProtoMsg): EventCreateGroup {
+    return EventCreateGroup.decode(message.value);
+  },
+
+  toProto(message: EventCreateGroup): Uint8Array {
+    return EventCreateGroup.encode(message).finish();
+  },
+
+  toProtoMsg(message: EventCreateGroup): EventCreateGroupProtoMsg {
+    return {
+      typeUrl: "/cosmos.group.v1.EventCreateGroup",
+      value: EventCreateGroup.encode(message).finish()
+    };
   }
 
 };
@@ -382,6 +408,32 @@ export const EventUpdateGroup = {
     const obj: any = {};
     obj.group_id = message.groupId ? message.groupId.toString() : undefined;
     return obj;
+  },
+
+  fromAminoMsg(object: EventUpdateGroupAminoMsg): EventUpdateGroup {
+    return EventUpdateGroup.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: EventUpdateGroup): EventUpdateGroupAminoMsg {
+    return {
+      type: "cosmos-sdk/EventUpdateGroup",
+      value: EventUpdateGroup.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: EventUpdateGroupProtoMsg): EventUpdateGroup {
+    return EventUpdateGroup.decode(message.value);
+  },
+
+  toProto(message: EventUpdateGroup): Uint8Array {
+    return EventUpdateGroup.encode(message).finish();
+  },
+
+  toProtoMsg(message: EventUpdateGroup): EventUpdateGroupProtoMsg {
+    return {
+      typeUrl: "/cosmos.group.v1.EventUpdateGroup",
+      value: EventUpdateGroup.encode(message).finish()
+    };
   }
 
 };
@@ -451,6 +503,32 @@ export const EventCreateGroupPolicy = {
     const obj: any = {};
     obj.address = message.address;
     return obj;
+  },
+
+  fromAminoMsg(object: EventCreateGroupPolicyAminoMsg): EventCreateGroupPolicy {
+    return EventCreateGroupPolicy.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: EventCreateGroupPolicy): EventCreateGroupPolicyAminoMsg {
+    return {
+      type: "cosmos-sdk/EventCreateGroupPolicy",
+      value: EventCreateGroupPolicy.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: EventCreateGroupPolicyProtoMsg): EventCreateGroupPolicy {
+    return EventCreateGroupPolicy.decode(message.value);
+  },
+
+  toProto(message: EventCreateGroupPolicy): Uint8Array {
+    return EventCreateGroupPolicy.encode(message).finish();
+  },
+
+  toProtoMsg(message: EventCreateGroupPolicy): EventCreateGroupPolicyProtoMsg {
+    return {
+      typeUrl: "/cosmos.group.v1.EventCreateGroupPolicy",
+      value: EventCreateGroupPolicy.encode(message).finish()
+    };
   }
 
 };
@@ -520,6 +598,32 @@ export const EventUpdateGroupPolicy = {
     const obj: any = {};
     obj.address = message.address;
     return obj;
+  },
+
+  fromAminoMsg(object: EventUpdateGroupPolicyAminoMsg): EventUpdateGroupPolicy {
+    return EventUpdateGroupPolicy.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: EventUpdateGroupPolicy): EventUpdateGroupPolicyAminoMsg {
+    return {
+      type: "cosmos-sdk/EventUpdateGroupPolicy",
+      value: EventUpdateGroupPolicy.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: EventUpdateGroupPolicyProtoMsg): EventUpdateGroupPolicy {
+    return EventUpdateGroupPolicy.decode(message.value);
+  },
+
+  toProto(message: EventUpdateGroupPolicy): Uint8Array {
+    return EventUpdateGroupPolicy.encode(message).finish();
+  },
+
+  toProtoMsg(message: EventUpdateGroupPolicy): EventUpdateGroupPolicyProtoMsg {
+    return {
+      typeUrl: "/cosmos.group.v1.EventUpdateGroupPolicy",
+      value: EventUpdateGroupPolicy.encode(message).finish()
+    };
   }
 
 };
@@ -589,6 +693,32 @@ export const EventSubmitProposal = {
     const obj: any = {};
     obj.proposal_id = message.proposalId ? message.proposalId.toString() : undefined;
     return obj;
+  },
+
+  fromAminoMsg(object: EventSubmitProposalAminoMsg): EventSubmitProposal {
+    return EventSubmitProposal.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: EventSubmitProposal): EventSubmitProposalAminoMsg {
+    return {
+      type: "cosmos-sdk/EventSubmitProposal",
+      value: EventSubmitProposal.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: EventSubmitProposalProtoMsg): EventSubmitProposal {
+    return EventSubmitProposal.decode(message.value);
+  },
+
+  toProto(message: EventSubmitProposal): Uint8Array {
+    return EventSubmitProposal.encode(message).finish();
+  },
+
+  toProtoMsg(message: EventSubmitProposal): EventSubmitProposalProtoMsg {
+    return {
+      typeUrl: "/cosmos.group.v1.EventSubmitProposal",
+      value: EventSubmitProposal.encode(message).finish()
+    };
   }
 
 };
@@ -658,6 +788,32 @@ export const EventWithdrawProposal = {
     const obj: any = {};
     obj.proposal_id = message.proposalId ? message.proposalId.toString() : undefined;
     return obj;
+  },
+
+  fromAminoMsg(object: EventWithdrawProposalAminoMsg): EventWithdrawProposal {
+    return EventWithdrawProposal.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: EventWithdrawProposal): EventWithdrawProposalAminoMsg {
+    return {
+      type: "cosmos-sdk/EventWithdrawProposal",
+      value: EventWithdrawProposal.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: EventWithdrawProposalProtoMsg): EventWithdrawProposal {
+    return EventWithdrawProposal.decode(message.value);
+  },
+
+  toProto(message: EventWithdrawProposal): Uint8Array {
+    return EventWithdrawProposal.encode(message).finish();
+  },
+
+  toProtoMsg(message: EventWithdrawProposal): EventWithdrawProposalProtoMsg {
+    return {
+      typeUrl: "/cosmos.group.v1.EventWithdrawProposal",
+      value: EventWithdrawProposal.encode(message).finish()
+    };
   }
 
 };
@@ -727,6 +883,32 @@ export const EventVote = {
     const obj: any = {};
     obj.proposal_id = message.proposalId ? message.proposalId.toString() : undefined;
     return obj;
+  },
+
+  fromAminoMsg(object: EventVoteAminoMsg): EventVote {
+    return EventVote.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: EventVote): EventVoteAminoMsg {
+    return {
+      type: "cosmos-sdk/EventVote",
+      value: EventVote.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: EventVoteProtoMsg): EventVote {
+    return EventVote.decode(message.value);
+  },
+
+  toProto(message: EventVote): Uint8Array {
+    return EventVote.encode(message).finish();
+  },
+
+  toProtoMsg(message: EventVote): EventVoteProtoMsg {
+    return {
+      typeUrl: "/cosmos.group.v1.EventVote",
+      value: EventVote.encode(message).finish()
+    };
   }
 
 };
@@ -824,6 +1006,32 @@ export const EventExec = {
     obj.result = message.result;
     obj.logs = message.logs;
     return obj;
+  },
+
+  fromAminoMsg(object: EventExecAminoMsg): EventExec {
+    return EventExec.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: EventExec): EventExecAminoMsg {
+    return {
+      type: "cosmos-sdk/EventExec",
+      value: EventExec.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: EventExecProtoMsg): EventExec {
+    return EventExec.decode(message.value);
+  },
+
+  toProto(message: EventExec): Uint8Array {
+    return EventExec.encode(message).finish();
+  },
+
+  toProtoMsg(message: EventExec): EventExecProtoMsg {
+    return {
+      typeUrl: "/cosmos.group.v1.EventExec",
+      value: EventExec.encode(message).finish()
+    };
   }
 
 };
@@ -907,6 +1115,32 @@ export const EventLeaveGroup = {
     obj.group_id = message.groupId ? message.groupId.toString() : undefined;
     obj.address = message.address;
     return obj;
+  },
+
+  fromAminoMsg(object: EventLeaveGroupAminoMsg): EventLeaveGroup {
+    return EventLeaveGroup.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: EventLeaveGroup): EventLeaveGroupAminoMsg {
+    return {
+      type: "cosmos-sdk/EventLeaveGroup",
+      value: EventLeaveGroup.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: EventLeaveGroupProtoMsg): EventLeaveGroup {
+    return EventLeaveGroup.decode(message.value);
+  },
+
+  toProto(message: EventLeaveGroup): Uint8Array {
+    return EventLeaveGroup.encode(message).finish();
+  },
+
+  toProtoMsg(message: EventLeaveGroup): EventLeaveGroupProtoMsg {
+    return {
+      typeUrl: "/cosmos.group.v1.EventLeaveGroup",
+      value: EventLeaveGroup.encode(message).finish()
+    };
   }
 
 };

@@ -446,7 +446,7 @@ export function methodOptions_IdempotencyLevelToJSON(object: MethodOptions_Idemp
 export interface FileDescriptorSet {
   file: FileDescriptorProto[];
 }
-export interface FileDescriptorSetProtoType {
+export interface FileDescriptorSetProtoMsg {
   typeUrl: "/google.protobuf.FileDescriptorSet";
   value: Uint8Array;
 }
@@ -458,7 +458,7 @@ export interface FileDescriptorSetProtoType {
 export interface FileDescriptorSetAmino {
   file: FileDescriptorProtoAmino[];
 }
-export interface FileDescriptorSetAminoType {
+export interface FileDescriptorSetAminoMsg {
   type: "/google.protobuf.FileDescriptorSet";
   value: FileDescriptorSetAmino;
 }
@@ -510,7 +510,7 @@ export interface FileDescriptorProto {
 
   syntax: string;
 }
-export interface FileDescriptorProtoProtoType {
+export interface FileDescriptorProtoProtoMsg {
   typeUrl: "/google.protobuf.FileDescriptorProto";
   value: Uint8Array;
 }
@@ -554,7 +554,7 @@ export interface FileDescriptorProtoAmino {
 
   syntax: string;
 }
-export interface FileDescriptorProtoAminoType {
+export interface FileDescriptorProtoAminoMsg {
   type: "/google.protobuf.FileDescriptorProto";
   value: FileDescriptorProtoAmino;
 }
@@ -593,7 +593,7 @@ export interface DescriptorProto {
 
   reservedName: string[];
 }
-export interface DescriptorProtoProtoType {
+export interface DescriptorProtoProtoMsg {
   typeUrl: "/google.protobuf.DescriptorProto";
   value: Uint8Array;
 }
@@ -616,7 +616,7 @@ export interface DescriptorProtoAmino {
 
   reserved_name: string[];
 }
-export interface DescriptorProtoAminoType {
+export interface DescriptorProtoAminoMsg {
   type: "/google.protobuf.DescriptorProto";
   value: DescriptorProtoAmino;
 }
@@ -642,7 +642,7 @@ export interface DescriptorProto_ExtensionRange {
   end: number;
   options?: ExtensionRangeOptions;
 }
-export interface DescriptorProto_ExtensionRangeProtoType {
+export interface DescriptorProto_ExtensionRangeProtoMsg {
   typeUrl: "/google.protobuf.ExtensionRange";
   value: Uint8Array;
 }
@@ -654,7 +654,7 @@ export interface DescriptorProto_ExtensionRangeAmino {
   end: number;
   options?: ExtensionRangeOptionsAmino;
 }
-export interface DescriptorProto_ExtensionRangeAminoType {
+export interface DescriptorProto_ExtensionRangeAminoMsg {
   type: "/google.protobuf.ExtensionRange";
   value: DescriptorProto_ExtensionRangeAmino;
 }
@@ -676,7 +676,7 @@ export interface DescriptorProto_ReservedRange {
 
   end: number;
 }
-export interface DescriptorProto_ReservedRangeProtoType {
+export interface DescriptorProto_ReservedRangeProtoMsg {
   typeUrl: "/google.protobuf.ReservedRange";
   value: Uint8Array;
 }
@@ -693,7 +693,7 @@ export interface DescriptorProto_ReservedRangeAmino {
 
   end: number;
 }
-export interface DescriptorProto_ReservedRangeAminoType {
+export interface DescriptorProto_ReservedRangeAminoMsg {
   type: "/google.protobuf.ReservedRange";
   value: DescriptorProto_ReservedRangeAmino;
 }
@@ -711,7 +711,7 @@ export interface ExtensionRangeOptions {
   /** The parser stores options it doesn't recognize here. See above. */
   uninterpretedOption: UninterpretedOption[];
 }
-export interface ExtensionRangeOptionsProtoType {
+export interface ExtensionRangeOptionsProtoMsg {
   typeUrl: "/google.protobuf.ExtensionRangeOptions";
   value: Uint8Array;
 }
@@ -719,7 +719,7 @@ export interface ExtensionRangeOptionsAmino {
   /** The parser stores options it doesn't recognize here. See above. */
   uninterpreted_option: UninterpretedOptionAmino[];
 }
-export interface ExtensionRangeOptionsAminoType {
+export interface ExtensionRangeOptionsAminoMsg {
   type: "/google.protobuf.ExtensionRangeOptions";
   value: ExtensionRangeOptionsAmino;
 }
@@ -778,7 +778,7 @@ export interface FieldDescriptorProto {
   jsonName: string;
   options?: FieldOptions;
 }
-export interface FieldDescriptorProtoProtoType {
+export interface FieldDescriptorProtoProtoMsg {
   typeUrl: "/google.protobuf.FieldDescriptorProto";
   value: Uint8Array;
 }
@@ -834,7 +834,7 @@ export interface FieldDescriptorProtoAmino {
   json_name: string;
   options?: FieldOptionsAmino;
 }
-export interface FieldDescriptorProtoAminoType {
+export interface FieldDescriptorProtoAminoMsg {
   type: "/google.protobuf.FieldDescriptorProto";
   value: FieldDescriptorProtoAmino;
 }
@@ -858,7 +858,7 @@ export interface OneofDescriptorProto {
   name: string;
   options?: OneofOptions;
 }
-export interface OneofDescriptorProtoProtoType {
+export interface OneofDescriptorProtoProtoMsg {
   typeUrl: "/google.protobuf.OneofDescriptorProto";
   value: Uint8Array;
 }
@@ -868,7 +868,7 @@ export interface OneofDescriptorProtoAmino {
   name: string;
   options?: OneofOptionsAmino;
 }
-export interface OneofDescriptorProtoAminoType {
+export interface OneofDescriptorProtoAminoMsg {
   type: "/google.protobuf.OneofDescriptorProto";
   value: OneofDescriptorProtoAmino;
 }
@@ -898,7 +898,7 @@ export interface EnumDescriptorProto {
 
   reservedName: string[];
 }
-export interface EnumDescriptorProtoProtoType {
+export interface EnumDescriptorProtoProtoMsg {
   typeUrl: "/google.protobuf.EnumDescriptorProto";
   value: Uint8Array;
 }
@@ -922,7 +922,7 @@ export interface EnumDescriptorProtoAmino {
 
   reserved_name: string[];
 }
-export interface EnumDescriptorProtoAminoType {
+export interface EnumDescriptorProtoAminoMsg {
   type: "/google.protobuf.EnumDescriptorProto";
   value: EnumDescriptorProtoAmino;
 }
@@ -951,7 +951,7 @@ export interface EnumDescriptorProto_EnumReservedRange {
 
   end: number;
 }
-export interface EnumDescriptorProto_EnumReservedRangeProtoType {
+export interface EnumDescriptorProto_EnumReservedRangeProtoMsg {
   typeUrl: "/google.protobuf.EnumReservedRange";
   value: Uint8Array;
 }
@@ -971,7 +971,7 @@ export interface EnumDescriptorProto_EnumReservedRangeAmino {
 
   end: number;
 }
-export interface EnumDescriptorProto_EnumReservedRangeAminoType {
+export interface EnumDescriptorProto_EnumReservedRangeAminoMsg {
   type: "/google.protobuf.EnumReservedRange";
   value: EnumDescriptorProto_EnumReservedRangeAmino;
 }
@@ -995,7 +995,7 @@ export interface EnumValueDescriptorProto {
   number: number;
   options?: EnumValueOptions;
 }
-export interface EnumValueDescriptorProtoProtoType {
+export interface EnumValueDescriptorProtoProtoMsg {
   typeUrl: "/google.protobuf.EnumValueDescriptorProto";
   value: Uint8Array;
 }
@@ -1006,7 +1006,7 @@ export interface EnumValueDescriptorProtoAmino {
   number: number;
   options?: EnumValueOptionsAmino;
 }
-export interface EnumValueDescriptorProtoAminoType {
+export interface EnumValueDescriptorProtoAminoMsg {
   type: "/google.protobuf.EnumValueDescriptorProto";
   value: EnumValueDescriptorProtoAmino;
 }
@@ -1024,7 +1024,7 @@ export interface ServiceDescriptorProto {
   method: MethodDescriptorProto[];
   options?: ServiceOptions;
 }
-export interface ServiceDescriptorProtoProtoType {
+export interface ServiceDescriptorProtoProtoMsg {
   typeUrl: "/google.protobuf.ServiceDescriptorProto";
   value: Uint8Array;
 }
@@ -1035,7 +1035,7 @@ export interface ServiceDescriptorProtoAmino {
   method: MethodDescriptorProtoAmino[];
   options?: ServiceOptionsAmino;
 }
-export interface ServiceDescriptorProtoAminoType {
+export interface ServiceDescriptorProtoAminoMsg {
   type: "/google.protobuf.ServiceDescriptorProto";
   value: ServiceDescriptorProtoAmino;
 }
@@ -1065,7 +1065,7 @@ export interface MethodDescriptorProto {
 
   serverStreaming: boolean;
 }
-export interface MethodDescriptorProtoProtoType {
+export interface MethodDescriptorProtoProtoMsg {
   typeUrl: "/google.protobuf.MethodDescriptorProto";
   value: Uint8Array;
 }
@@ -1088,7 +1088,7 @@ export interface MethodDescriptorProtoAmino {
 
   server_streaming: boolean;
 }
-export interface MethodDescriptorProtoAminoType {
+export interface MethodDescriptorProtoAminoMsg {
   type: "/google.protobuf.MethodDescriptorProto";
   value: MethodDescriptorProtoAmino;
 }
@@ -1236,7 +1236,7 @@ export interface FileOptions {
 
   uninterpretedOption: UninterpretedOption[];
 }
-export interface FileOptionsProtoType {
+export interface FileOptionsProtoMsg {
   typeUrl: "/google.protobuf.FileOptions";
   value: Uint8Array;
 }
@@ -1374,7 +1374,7 @@ export interface FileOptionsAmino {
 
   uninterpreted_option: UninterpretedOptionAmino[];
 }
-export interface FileOptionsAminoType {
+export interface FileOptionsAminoMsg {
   type: "/google.protobuf.FileOptions";
   value: FileOptionsAmino;
 }
@@ -1469,7 +1469,7 @@ export interface MessageOptions {
 
   uninterpretedOption: UninterpretedOption[];
 }
-export interface MessageOptionsProtoType {
+export interface MessageOptionsProtoMsg {
   typeUrl: "/google.protobuf.MessageOptions";
   value: Uint8Array;
 }
@@ -1539,7 +1539,7 @@ export interface MessageOptionsAmino {
 
   uninterpreted_option: UninterpretedOptionAmino[];
 }
-export interface MessageOptionsAminoType {
+export interface MessageOptionsAminoMsg {
   type: "/google.protobuf.MessageOptions";
   value: MessageOptionsAmino;
 }
@@ -1629,7 +1629,7 @@ export interface FieldOptions {
 
   uninterpretedOption: UninterpretedOption[];
 }
-export interface FieldOptionsProtoType {
+export interface FieldOptionsProtoMsg {
   typeUrl: "/google.protobuf.FieldOptions";
   value: Uint8Array;
 }
@@ -1712,7 +1712,7 @@ export interface FieldOptionsAmino {
 
   uninterpreted_option: UninterpretedOptionAmino[];
 }
-export interface FieldOptionsAminoType {
+export interface FieldOptionsAminoMsg {
   type: "/google.protobuf.FieldOptions";
   value: FieldOptionsAmino;
 }
@@ -1729,7 +1729,7 @@ export interface OneofOptions {
   /** The parser stores options it doesn't recognize here. See above. */
   uninterpretedOption: UninterpretedOption[];
 }
-export interface OneofOptionsProtoType {
+export interface OneofOptionsProtoMsg {
   typeUrl: "/google.protobuf.OneofOptions";
   value: Uint8Array;
 }
@@ -1737,7 +1737,7 @@ export interface OneofOptionsAmino {
   /** The parser stores options it doesn't recognize here. See above. */
   uninterpreted_option: UninterpretedOptionAmino[];
 }
-export interface OneofOptionsAminoType {
+export interface OneofOptionsAminoMsg {
   type: "/google.protobuf.OneofOptions";
   value: OneofOptionsAmino;
 }
@@ -1762,7 +1762,7 @@ export interface EnumOptions {
 
   uninterpretedOption: UninterpretedOption[];
 }
-export interface EnumOptionsProtoType {
+export interface EnumOptionsProtoMsg {
   typeUrl: "/google.protobuf.EnumOptions";
   value: Uint8Array;
 }
@@ -1784,7 +1784,7 @@ export interface EnumOptionsAmino {
 
   uninterpreted_option: UninterpretedOptionAmino[];
 }
-export interface EnumOptionsAminoType {
+export interface EnumOptionsAminoMsg {
   type: "/google.protobuf.EnumOptions";
   value: EnumOptionsAmino;
 }
@@ -1805,7 +1805,7 @@ export interface EnumValueOptions {
 
   uninterpretedOption: UninterpretedOption[];
 }
-export interface EnumValueOptionsProtoType {
+export interface EnumValueOptionsProtoMsg {
   typeUrl: "/google.protobuf.EnumValueOptions";
   value: Uint8Array;
 }
@@ -1821,7 +1821,7 @@ export interface EnumValueOptionsAmino {
 
   uninterpreted_option: UninterpretedOptionAmino[];
 }
-export interface EnumValueOptionsAminoType {
+export interface EnumValueOptionsAminoMsg {
   type: "/google.protobuf.EnumValueOptions";
   value: EnumValueOptionsAmino;
 }
@@ -1841,7 +1841,7 @@ export interface ServiceOptions {
 
   uninterpretedOption: UninterpretedOption[];
 }
-export interface ServiceOptionsProtoType {
+export interface ServiceOptionsProtoMsg {
   typeUrl: "/google.protobuf.ServiceOptions";
   value: Uint8Array;
 }
@@ -1857,7 +1857,7 @@ export interface ServiceOptionsAmino {
 
   uninterpreted_option: UninterpretedOptionAmino[];
 }
-export interface ServiceOptionsAminoType {
+export interface ServiceOptionsAminoMsg {
   type: "/google.protobuf.ServiceOptions";
   value: ServiceOptionsAmino;
 }
@@ -1878,7 +1878,7 @@ export interface MethodOptions {
 
   uninterpretedOption: UninterpretedOption[];
 }
-export interface MethodOptionsProtoType {
+export interface MethodOptionsProtoMsg {
   typeUrl: "/google.protobuf.MethodOptions";
   value: Uint8Array;
 }
@@ -1895,7 +1895,7 @@ export interface MethodOptionsAmino {
 
   uninterpreted_option: UninterpretedOptionAmino[];
 }
-export interface MethodOptionsAminoType {
+export interface MethodOptionsAminoMsg {
   type: "/google.protobuf.MethodOptions";
   value: MethodOptionsAmino;
 }
@@ -1927,7 +1927,7 @@ export interface UninterpretedOption {
   stringValue: Uint8Array;
   aggregateValue: string;
 }
-export interface UninterpretedOptionProtoType {
+export interface UninterpretedOptionProtoMsg {
   typeUrl: "/google.protobuf.UninterpretedOption";
   value: Uint8Array;
 }
@@ -1954,7 +1954,7 @@ export interface UninterpretedOptionAmino {
   string_value: Uint8Array;
   aggregate_value: string;
 }
-export interface UninterpretedOptionAminoType {
+export interface UninterpretedOptionAminoMsg {
   type: "/google.protobuf.UninterpretedOption";
   value: UninterpretedOptionAmino;
 }
@@ -1988,7 +1988,7 @@ export interface UninterpretedOption_NamePart {
   namePart: string;
   isExtension: boolean;
 }
-export interface UninterpretedOption_NamePartProtoType {
+export interface UninterpretedOption_NamePartProtoMsg {
   typeUrl: "/google.protobuf.NamePart";
   value: Uint8Array;
 }
@@ -2004,7 +2004,7 @@ export interface UninterpretedOption_NamePartAmino {
   name_part: string;
   is_extension: boolean;
 }
-export interface UninterpretedOption_NamePartAminoType {
+export interface UninterpretedOption_NamePartAminoMsg {
   type: "/google.protobuf.NamePart";
   value: UninterpretedOption_NamePartAmino;
 }
@@ -2073,7 +2073,7 @@ export interface SourceCodeInfo {
    */
   location: SourceCodeInfo_Location[];
 }
-export interface SourceCodeInfoProtoType {
+export interface SourceCodeInfoProtoMsg {
   typeUrl: "/google.protobuf.SourceCodeInfo";
   value: Uint8Array;
 }
@@ -2130,7 +2130,7 @@ export interface SourceCodeInfoAmino {
    */
   location: SourceCodeInfo_LocationAmino[];
 }
-export interface SourceCodeInfoAminoType {
+export interface SourceCodeInfoAminoMsg {
   type: "/google.protobuf.SourceCodeInfo";
   value: SourceCodeInfoAmino;
 }
@@ -2232,7 +2232,7 @@ export interface SourceCodeInfo_Location {
   trailingComments: string;
   leadingDetachedComments: string[];
 }
-export interface SourceCodeInfo_LocationProtoType {
+export interface SourceCodeInfo_LocationProtoMsg {
   typeUrl: "/google.protobuf.Location";
   value: Uint8Array;
 }
@@ -2326,7 +2326,7 @@ export interface SourceCodeInfo_LocationAmino {
   trailing_comments: string;
   leading_detached_comments: string[];
 }
-export interface SourceCodeInfo_LocationAminoType {
+export interface SourceCodeInfo_LocationAminoMsg {
   type: "/google.protobuf.Location";
   value: SourceCodeInfo_LocationAmino;
 }
@@ -2350,7 +2350,7 @@ export interface GeneratedCodeInfo {
    */
   annotation: GeneratedCodeInfo_Annotation[];
 }
-export interface GeneratedCodeInfoProtoType {
+export interface GeneratedCodeInfoProtoMsg {
   typeUrl: "/google.protobuf.GeneratedCodeInfo";
   value: Uint8Array;
 }
@@ -2367,7 +2367,7 @@ export interface GeneratedCodeInfoAmino {
    */
   annotation: GeneratedCodeInfo_AnnotationAmino[];
 }
-export interface GeneratedCodeInfoAminoType {
+export interface GeneratedCodeInfoAminoMsg {
   type: "/google.protobuf.GeneratedCodeInfo";
   value: GeneratedCodeInfoAmino;
 }
@@ -2403,7 +2403,7 @@ export interface GeneratedCodeInfo_Annotation {
 
   end: number;
 }
-export interface GeneratedCodeInfo_AnnotationProtoType {
+export interface GeneratedCodeInfo_AnnotationProtoMsg {
   typeUrl: "/google.protobuf.Annotation";
   value: Uint8Array;
 }
@@ -2430,7 +2430,7 @@ export interface GeneratedCodeInfo_AnnotationAmino {
 
   end: number;
 }
-export interface GeneratedCodeInfo_AnnotationAminoType {
+export interface GeneratedCodeInfo_AnnotationAminoMsg {
   type: "/google.protobuf.Annotation";
   value: GeneratedCodeInfo_AnnotationAmino;
 }
@@ -2518,6 +2518,25 @@ export const FileDescriptorSet = {
     }
 
     return obj;
+  },
+
+  fromAminoMsg(object: FileDescriptorSetAminoMsg): FileDescriptorSet {
+    return FileDescriptorSet.fromAmino(object.value);
+  },
+
+  fromProtoMsg(message: FileDescriptorSetProtoMsg): FileDescriptorSet {
+    return FileDescriptorSet.decode(message.value);
+  },
+
+  toProto(message: FileDescriptorSet): Uint8Array {
+    return FileDescriptorSet.encode(message).finish();
+  },
+
+  toProtoMsg(message: FileDescriptorSet): FileDescriptorSetProtoMsg {
+    return {
+      typeUrl: "/google.protobuf.FileDescriptorSet",
+      value: FileDescriptorSet.encode(message).finish()
+    };
   }
 
 };
@@ -2838,6 +2857,25 @@ export const FileDescriptorProto = {
     obj.source_code_info = message.sourceCodeInfo ? SourceCodeInfo.toAmino(message.sourceCodeInfo) : undefined;
     obj.syntax = message.syntax;
     return obj;
+  },
+
+  fromAminoMsg(object: FileDescriptorProtoAminoMsg): FileDescriptorProto {
+    return FileDescriptorProto.fromAmino(object.value);
+  },
+
+  fromProtoMsg(message: FileDescriptorProtoProtoMsg): FileDescriptorProto {
+    return FileDescriptorProto.decode(message.value);
+  },
+
+  toProto(message: FileDescriptorProto): Uint8Array {
+    return FileDescriptorProto.encode(message).finish();
+  },
+
+  toProtoMsg(message: FileDescriptorProto): FileDescriptorProtoProtoMsg {
+    return {
+      typeUrl: "/google.protobuf.FileDescriptorProto",
+      value: FileDescriptorProto.encode(message).finish()
+    };
   }
 
 };
@@ -3117,6 +3155,25 @@ export const DescriptorProto = {
     }
 
     return obj;
+  },
+
+  fromAminoMsg(object: DescriptorProtoAminoMsg): DescriptorProto {
+    return DescriptorProto.fromAmino(object.value);
+  },
+
+  fromProtoMsg(message: DescriptorProtoProtoMsg): DescriptorProto {
+    return DescriptorProto.decode(message.value);
+  },
+
+  toProto(message: DescriptorProto): Uint8Array {
+    return DescriptorProto.encode(message).finish();
+  },
+
+  toProtoMsg(message: DescriptorProto): DescriptorProtoProtoMsg {
+    return {
+      typeUrl: "/google.protobuf.DescriptorProto",
+      value: DescriptorProto.encode(message).finish()
+    };
   }
 
 };
@@ -3214,6 +3271,25 @@ export const DescriptorProto_ExtensionRange = {
     obj.end = message.end;
     obj.options = message.options ? ExtensionRangeOptions.toAmino(message.options) : undefined;
     return obj;
+  },
+
+  fromAminoMsg(object: DescriptorProto_ExtensionRangeAminoMsg): DescriptorProto_ExtensionRange {
+    return DescriptorProto_ExtensionRange.fromAmino(object.value);
+  },
+
+  fromProtoMsg(message: DescriptorProto_ExtensionRangeProtoMsg): DescriptorProto_ExtensionRange {
+    return DescriptorProto_ExtensionRange.decode(message.value);
+  },
+
+  toProto(message: DescriptorProto_ExtensionRange): Uint8Array {
+    return DescriptorProto_ExtensionRange.encode(message).finish();
+  },
+
+  toProtoMsg(message: DescriptorProto_ExtensionRange): DescriptorProto_ExtensionRangeProtoMsg {
+    return {
+      typeUrl: "/google.protobuf.ExtensionRange",
+      value: DescriptorProto_ExtensionRange.encode(message).finish()
+    };
   }
 
 };
@@ -3297,6 +3373,25 @@ export const DescriptorProto_ReservedRange = {
     obj.start = message.start;
     obj.end = message.end;
     return obj;
+  },
+
+  fromAminoMsg(object: DescriptorProto_ReservedRangeAminoMsg): DescriptorProto_ReservedRange {
+    return DescriptorProto_ReservedRange.fromAmino(object.value);
+  },
+
+  fromProtoMsg(message: DescriptorProto_ReservedRangeProtoMsg): DescriptorProto_ReservedRange {
+    return DescriptorProto_ReservedRange.decode(message.value);
+  },
+
+  toProto(message: DescriptorProto_ReservedRange): Uint8Array {
+    return DescriptorProto_ReservedRange.encode(message).finish();
+  },
+
+  toProtoMsg(message: DescriptorProto_ReservedRange): DescriptorProto_ReservedRangeProtoMsg {
+    return {
+      typeUrl: "/google.protobuf.ReservedRange",
+      value: DescriptorProto_ReservedRange.encode(message).finish()
+    };
   }
 
 };
@@ -3378,6 +3473,25 @@ export const ExtensionRangeOptions = {
     }
 
     return obj;
+  },
+
+  fromAminoMsg(object: ExtensionRangeOptionsAminoMsg): ExtensionRangeOptions {
+    return ExtensionRangeOptions.fromAmino(object.value);
+  },
+
+  fromProtoMsg(message: ExtensionRangeOptionsProtoMsg): ExtensionRangeOptions {
+    return ExtensionRangeOptions.decode(message.value);
+  },
+
+  toProto(message: ExtensionRangeOptions): Uint8Array {
+    return ExtensionRangeOptions.encode(message).finish();
+  },
+
+  toProtoMsg(message: ExtensionRangeOptions): ExtensionRangeOptionsProtoMsg {
+    return {
+      typeUrl: "/google.protobuf.ExtensionRangeOptions",
+      value: ExtensionRangeOptions.encode(message).finish()
+    };
   }
 
 };
@@ -3573,6 +3687,25 @@ export const FieldDescriptorProto = {
     obj.json_name = message.jsonName;
     obj.options = message.options ? FieldOptions.toAmino(message.options) : undefined;
     return obj;
+  },
+
+  fromAminoMsg(object: FieldDescriptorProtoAminoMsg): FieldDescriptorProto {
+    return FieldDescriptorProto.fromAmino(object.value);
+  },
+
+  fromProtoMsg(message: FieldDescriptorProtoProtoMsg): FieldDescriptorProto {
+    return FieldDescriptorProto.decode(message.value);
+  },
+
+  toProto(message: FieldDescriptorProto): Uint8Array {
+    return FieldDescriptorProto.encode(message).finish();
+  },
+
+  toProtoMsg(message: FieldDescriptorProto): FieldDescriptorProtoProtoMsg {
+    return {
+      typeUrl: "/google.protobuf.FieldDescriptorProto",
+      value: FieldDescriptorProto.encode(message).finish()
+    };
   }
 
 };
@@ -3656,6 +3789,25 @@ export const OneofDescriptorProto = {
     obj.name = message.name;
     obj.options = message.options ? OneofOptions.toAmino(message.options) : undefined;
     return obj;
+  },
+
+  fromAminoMsg(object: OneofDescriptorProtoAminoMsg): OneofDescriptorProto {
+    return OneofDescriptorProto.fromAmino(object.value);
+  },
+
+  fromProtoMsg(message: OneofDescriptorProtoProtoMsg): OneofDescriptorProto {
+    return OneofDescriptorProto.decode(message.value);
+  },
+
+  toProto(message: OneofDescriptorProto): Uint8Array {
+    return OneofDescriptorProto.encode(message).finish();
+  },
+
+  toProtoMsg(message: OneofDescriptorProto): OneofDescriptorProtoProtoMsg {
+    return {
+      typeUrl: "/google.protobuf.OneofDescriptorProto",
+      value: OneofDescriptorProto.encode(message).finish()
+    };
   }
 
 };
@@ -3815,6 +3967,25 @@ export const EnumDescriptorProto = {
     }
 
     return obj;
+  },
+
+  fromAminoMsg(object: EnumDescriptorProtoAminoMsg): EnumDescriptorProto {
+    return EnumDescriptorProto.fromAmino(object.value);
+  },
+
+  fromProtoMsg(message: EnumDescriptorProtoProtoMsg): EnumDescriptorProto {
+    return EnumDescriptorProto.decode(message.value);
+  },
+
+  toProto(message: EnumDescriptorProto): Uint8Array {
+    return EnumDescriptorProto.encode(message).finish();
+  },
+
+  toProtoMsg(message: EnumDescriptorProto): EnumDescriptorProtoProtoMsg {
+    return {
+      typeUrl: "/google.protobuf.EnumDescriptorProto",
+      value: EnumDescriptorProto.encode(message).finish()
+    };
   }
 
 };
@@ -3898,6 +4069,25 @@ export const EnumDescriptorProto_EnumReservedRange = {
     obj.start = message.start;
     obj.end = message.end;
     return obj;
+  },
+
+  fromAminoMsg(object: EnumDescriptorProto_EnumReservedRangeAminoMsg): EnumDescriptorProto_EnumReservedRange {
+    return EnumDescriptorProto_EnumReservedRange.fromAmino(object.value);
+  },
+
+  fromProtoMsg(message: EnumDescriptorProto_EnumReservedRangeProtoMsg): EnumDescriptorProto_EnumReservedRange {
+    return EnumDescriptorProto_EnumReservedRange.decode(message.value);
+  },
+
+  toProto(message: EnumDescriptorProto_EnumReservedRange): Uint8Array {
+    return EnumDescriptorProto_EnumReservedRange.encode(message).finish();
+  },
+
+  toProtoMsg(message: EnumDescriptorProto_EnumReservedRange): EnumDescriptorProto_EnumReservedRangeProtoMsg {
+    return {
+      typeUrl: "/google.protobuf.EnumReservedRange",
+      value: EnumDescriptorProto_EnumReservedRange.encode(message).finish()
+    };
   }
 
 };
@@ -3995,6 +4185,25 @@ export const EnumValueDescriptorProto = {
     obj.number = message.number;
     obj.options = message.options ? EnumValueOptions.toAmino(message.options) : undefined;
     return obj;
+  },
+
+  fromAminoMsg(object: EnumValueDescriptorProtoAminoMsg): EnumValueDescriptorProto {
+    return EnumValueDescriptorProto.fromAmino(object.value);
+  },
+
+  fromProtoMsg(message: EnumValueDescriptorProtoProtoMsg): EnumValueDescriptorProto {
+    return EnumValueDescriptorProto.decode(message.value);
+  },
+
+  toProto(message: EnumValueDescriptorProto): Uint8Array {
+    return EnumValueDescriptorProto.encode(message).finish();
+  },
+
+  toProtoMsg(message: EnumValueDescriptorProto): EnumValueDescriptorProtoProtoMsg {
+    return {
+      typeUrl: "/google.protobuf.EnumValueDescriptorProto",
+      value: EnumValueDescriptorProto.encode(message).finish()
+    };
   }
 
 };
@@ -4104,6 +4313,25 @@ export const ServiceDescriptorProto = {
 
     obj.options = message.options ? ServiceOptions.toAmino(message.options) : undefined;
     return obj;
+  },
+
+  fromAminoMsg(object: ServiceDescriptorProtoAminoMsg): ServiceDescriptorProto {
+    return ServiceDescriptorProto.fromAmino(object.value);
+  },
+
+  fromProtoMsg(message: ServiceDescriptorProtoProtoMsg): ServiceDescriptorProto {
+    return ServiceDescriptorProto.decode(message.value);
+  },
+
+  toProto(message: ServiceDescriptorProto): Uint8Array {
+    return ServiceDescriptorProto.encode(message).finish();
+  },
+
+  toProtoMsg(message: ServiceDescriptorProto): ServiceDescriptorProtoProtoMsg {
+    return {
+      typeUrl: "/google.protobuf.ServiceDescriptorProto",
+      value: ServiceDescriptorProto.encode(message).finish()
+    };
   }
 
 };
@@ -4243,6 +4471,25 @@ export const MethodDescriptorProto = {
     obj.client_streaming = message.clientStreaming;
     obj.server_streaming = message.serverStreaming;
     return obj;
+  },
+
+  fromAminoMsg(object: MethodDescriptorProtoAminoMsg): MethodDescriptorProto {
+    return MethodDescriptorProto.fromAmino(object.value);
+  },
+
+  fromProtoMsg(message: MethodDescriptorProtoProtoMsg): MethodDescriptorProto {
+    return MethodDescriptorProto.decode(message.value);
+  },
+
+  toProto(message: MethodDescriptorProto): Uint8Array {
+    return MethodDescriptorProto.encode(message).finish();
+  },
+
+  toProtoMsg(message: MethodDescriptorProto): MethodDescriptorProtoProtoMsg {
+    return {
+      typeUrl: "/google.protobuf.MethodDescriptorProto",
+      value: MethodDescriptorProto.encode(message).finish()
+    };
   }
 
 };
@@ -4604,6 +4851,25 @@ export const FileOptions = {
     }
 
     return obj;
+  },
+
+  fromAminoMsg(object: FileOptionsAminoMsg): FileOptions {
+    return FileOptions.fromAmino(object.value);
+  },
+
+  fromProtoMsg(message: FileOptionsProtoMsg): FileOptions {
+    return FileOptions.decode(message.value);
+  },
+
+  toProto(message: FileOptions): Uint8Array {
+    return FileOptions.encode(message).finish();
+  },
+
+  toProtoMsg(message: FileOptions): FileOptionsProtoMsg {
+    return {
+      typeUrl: "/google.protobuf.FileOptions",
+      value: FileOptions.encode(message).finish()
+    };
   }
 
 };
@@ -4741,6 +5007,25 @@ export const MessageOptions = {
     }
 
     return obj;
+  },
+
+  fromAminoMsg(object: MessageOptionsAminoMsg): MessageOptions {
+    return MessageOptions.fromAmino(object.value);
+  },
+
+  fromProtoMsg(message: MessageOptionsProtoMsg): MessageOptions {
+    return MessageOptions.decode(message.value);
+  },
+
+  toProto(message: MessageOptions): Uint8Array {
+    return MessageOptions.encode(message).finish();
+  },
+
+  toProtoMsg(message: MessageOptions): MessageOptionsProtoMsg {
+    return {
+      typeUrl: "/google.protobuf.MessageOptions",
+      value: MessageOptions.encode(message).finish()
+    };
   }
 
 };
@@ -4906,6 +5191,25 @@ export const FieldOptions = {
     }
 
     return obj;
+  },
+
+  fromAminoMsg(object: FieldOptionsAminoMsg): FieldOptions {
+    return FieldOptions.fromAmino(object.value);
+  },
+
+  fromProtoMsg(message: FieldOptionsProtoMsg): FieldOptions {
+    return FieldOptions.decode(message.value);
+  },
+
+  toProto(message: FieldOptions): Uint8Array {
+    return FieldOptions.encode(message).finish();
+  },
+
+  toProtoMsg(message: FieldOptions): FieldOptionsProtoMsg {
+    return {
+      typeUrl: "/google.protobuf.FieldOptions",
+      value: FieldOptions.encode(message).finish()
+    };
   }
 
 };
@@ -4987,6 +5291,25 @@ export const OneofOptions = {
     }
 
     return obj;
+  },
+
+  fromAminoMsg(object: OneofOptionsAminoMsg): OneofOptions {
+    return OneofOptions.fromAmino(object.value);
+  },
+
+  fromProtoMsg(message: OneofOptionsProtoMsg): OneofOptions {
+    return OneofOptions.decode(message.value);
+  },
+
+  toProto(message: OneofOptions): Uint8Array {
+    return OneofOptions.encode(message).finish();
+  },
+
+  toProtoMsg(message: OneofOptions): OneofOptionsProtoMsg {
+    return {
+      typeUrl: "/google.protobuf.OneofOptions",
+      value: OneofOptions.encode(message).finish()
+    };
   }
 
 };
@@ -5096,6 +5419,25 @@ export const EnumOptions = {
     }
 
     return obj;
+  },
+
+  fromAminoMsg(object: EnumOptionsAminoMsg): EnumOptions {
+    return EnumOptions.fromAmino(object.value);
+  },
+
+  fromProtoMsg(message: EnumOptionsProtoMsg): EnumOptions {
+    return EnumOptions.decode(message.value);
+  },
+
+  toProto(message: EnumOptions): Uint8Array {
+    return EnumOptions.encode(message).finish();
+  },
+
+  toProtoMsg(message: EnumOptions): EnumOptionsProtoMsg {
+    return {
+      typeUrl: "/google.protobuf.EnumOptions",
+      value: EnumOptions.encode(message).finish()
+    };
   }
 
 };
@@ -5191,6 +5533,25 @@ export const EnumValueOptions = {
     }
 
     return obj;
+  },
+
+  fromAminoMsg(object: EnumValueOptionsAminoMsg): EnumValueOptions {
+    return EnumValueOptions.fromAmino(object.value);
+  },
+
+  fromProtoMsg(message: EnumValueOptionsProtoMsg): EnumValueOptions {
+    return EnumValueOptions.decode(message.value);
+  },
+
+  toProto(message: EnumValueOptions): Uint8Array {
+    return EnumValueOptions.encode(message).finish();
+  },
+
+  toProtoMsg(message: EnumValueOptions): EnumValueOptionsProtoMsg {
+    return {
+      typeUrl: "/google.protobuf.EnumValueOptions",
+      value: EnumValueOptions.encode(message).finish()
+    };
   }
 
 };
@@ -5286,6 +5647,25 @@ export const ServiceOptions = {
     }
 
     return obj;
+  },
+
+  fromAminoMsg(object: ServiceOptionsAminoMsg): ServiceOptions {
+    return ServiceOptions.fromAmino(object.value);
+  },
+
+  fromProtoMsg(message: ServiceOptionsProtoMsg): ServiceOptions {
+    return ServiceOptions.decode(message.value);
+  },
+
+  toProto(message: ServiceOptions): Uint8Array {
+    return ServiceOptions.encode(message).finish();
+  },
+
+  toProtoMsg(message: ServiceOptions): ServiceOptionsProtoMsg {
+    return {
+      typeUrl: "/google.protobuf.ServiceOptions",
+      value: ServiceOptions.encode(message).finish()
+    };
   }
 
 };
@@ -5395,6 +5775,25 @@ export const MethodOptions = {
     }
 
     return obj;
+  },
+
+  fromAminoMsg(object: MethodOptionsAminoMsg): MethodOptions {
+    return MethodOptions.fromAmino(object.value);
+  },
+
+  fromProtoMsg(message: MethodOptionsProtoMsg): MethodOptions {
+    return MethodOptions.decode(message.value);
+  },
+
+  toProto(message: MethodOptions): Uint8Array {
+    return MethodOptions.encode(message).finish();
+  },
+
+  toProtoMsg(message: MethodOptions): MethodOptionsProtoMsg {
+    return {
+      typeUrl: "/google.protobuf.MethodOptions",
+      value: MethodOptions.encode(message).finish()
+    };
   }
 
 };
@@ -5560,6 +5959,25 @@ export const UninterpretedOption = {
     obj.string_value = message.stringValue;
     obj.aggregate_value = message.aggregateValue;
     return obj;
+  },
+
+  fromAminoMsg(object: UninterpretedOptionAminoMsg): UninterpretedOption {
+    return UninterpretedOption.fromAmino(object.value);
+  },
+
+  fromProtoMsg(message: UninterpretedOptionProtoMsg): UninterpretedOption {
+    return UninterpretedOption.decode(message.value);
+  },
+
+  toProto(message: UninterpretedOption): Uint8Array {
+    return UninterpretedOption.encode(message).finish();
+  },
+
+  toProtoMsg(message: UninterpretedOption): UninterpretedOptionProtoMsg {
+    return {
+      typeUrl: "/google.protobuf.UninterpretedOption",
+      value: UninterpretedOption.encode(message).finish()
+    };
   }
 
 };
@@ -5643,6 +6061,25 @@ export const UninterpretedOption_NamePart = {
     obj.name_part = message.namePart;
     obj.is_extension = message.isExtension;
     return obj;
+  },
+
+  fromAminoMsg(object: UninterpretedOption_NamePartAminoMsg): UninterpretedOption_NamePart {
+    return UninterpretedOption_NamePart.fromAmino(object.value);
+  },
+
+  fromProtoMsg(message: UninterpretedOption_NamePartProtoMsg): UninterpretedOption_NamePart {
+    return UninterpretedOption_NamePart.decode(message.value);
+  },
+
+  toProto(message: UninterpretedOption_NamePart): Uint8Array {
+    return UninterpretedOption_NamePart.encode(message).finish();
+  },
+
+  toProtoMsg(message: UninterpretedOption_NamePart): UninterpretedOption_NamePartProtoMsg {
+    return {
+      typeUrl: "/google.protobuf.NamePart",
+      value: UninterpretedOption_NamePart.encode(message).finish()
+    };
   }
 
 };
@@ -5724,6 +6161,25 @@ export const SourceCodeInfo = {
     }
 
     return obj;
+  },
+
+  fromAminoMsg(object: SourceCodeInfoAminoMsg): SourceCodeInfo {
+    return SourceCodeInfo.fromAmino(object.value);
+  },
+
+  fromProtoMsg(message: SourceCodeInfoProtoMsg): SourceCodeInfo {
+    return SourceCodeInfo.decode(message.value);
+  },
+
+  toProto(message: SourceCodeInfo): Uint8Array {
+    return SourceCodeInfo.encode(message).finish();
+  },
+
+  toProtoMsg(message: SourceCodeInfo): SourceCodeInfoProtoMsg {
+    return {
+      typeUrl: "/google.protobuf.SourceCodeInfo",
+      value: SourceCodeInfo.encode(message).finish()
+    };
   }
 
 };
@@ -5908,6 +6364,25 @@ export const SourceCodeInfo_Location = {
     }
 
     return obj;
+  },
+
+  fromAminoMsg(object: SourceCodeInfo_LocationAminoMsg): SourceCodeInfo_Location {
+    return SourceCodeInfo_Location.fromAmino(object.value);
+  },
+
+  fromProtoMsg(message: SourceCodeInfo_LocationProtoMsg): SourceCodeInfo_Location {
+    return SourceCodeInfo_Location.decode(message.value);
+  },
+
+  toProto(message: SourceCodeInfo_Location): Uint8Array {
+    return SourceCodeInfo_Location.encode(message).finish();
+  },
+
+  toProtoMsg(message: SourceCodeInfo_Location): SourceCodeInfo_LocationProtoMsg {
+    return {
+      typeUrl: "/google.protobuf.Location",
+      value: SourceCodeInfo_Location.encode(message).finish()
+    };
   }
 
 };
@@ -5989,6 +6464,25 @@ export const GeneratedCodeInfo = {
     }
 
     return obj;
+  },
+
+  fromAminoMsg(object: GeneratedCodeInfoAminoMsg): GeneratedCodeInfo {
+    return GeneratedCodeInfo.fromAmino(object.value);
+  },
+
+  fromProtoMsg(message: GeneratedCodeInfoProtoMsg): GeneratedCodeInfo {
+    return GeneratedCodeInfo.decode(message.value);
+  },
+
+  toProto(message: GeneratedCodeInfo): Uint8Array {
+    return GeneratedCodeInfo.encode(message).finish();
+  },
+
+  toProtoMsg(message: GeneratedCodeInfo): GeneratedCodeInfoProtoMsg {
+    return {
+      typeUrl: "/google.protobuf.GeneratedCodeInfo",
+      value: GeneratedCodeInfo.encode(message).finish()
+    };
   }
 
 };
@@ -6125,6 +6619,25 @@ export const GeneratedCodeInfo_Annotation = {
     obj.begin = message.begin;
     obj.end = message.end;
     return obj;
+  },
+
+  fromAminoMsg(object: GeneratedCodeInfo_AnnotationAminoMsg): GeneratedCodeInfo_Annotation {
+    return GeneratedCodeInfo_Annotation.fromAmino(object.value);
+  },
+
+  fromProtoMsg(message: GeneratedCodeInfo_AnnotationProtoMsg): GeneratedCodeInfo_Annotation {
+    return GeneratedCodeInfo_Annotation.decode(message.value);
+  },
+
+  toProto(message: GeneratedCodeInfo_Annotation): Uint8Array {
+    return GeneratedCodeInfo_Annotation.encode(message).finish();
+  },
+
+  toProtoMsg(message: GeneratedCodeInfo_Annotation): GeneratedCodeInfo_AnnotationProtoMsg {
+    return {
+      typeUrl: "/google.protobuf.Annotation",
+      value: GeneratedCodeInfo_Annotation.encode(message).finish()
+    };
   }
 
 };

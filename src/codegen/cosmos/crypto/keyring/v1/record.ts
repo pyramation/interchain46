@@ -23,7 +23,7 @@ export interface Record {
 
   offline?: Record_Offline;
 }
-export interface RecordProtoType {
+export interface RecordProtoMsg {
   typeUrl: "/cosmos.crypto.keyring.v1.Record";
   value: Uint8Array;
 }
@@ -48,7 +48,7 @@ export interface RecordAmino {
 
   offline?: Record_OfflineAmino;
 }
-export interface RecordAminoType {
+export interface RecordAminoMsg {
   type: "cosmos-sdk/Record";
   value: RecordAmino;
 }
@@ -70,7 +70,7 @@ export interface RecordSDKType {
 export interface Record_Local {
   privKey?: Any;
 }
-export interface Record_LocalProtoType {
+export interface Record_LocalProtoMsg {
   typeUrl: "/cosmos.crypto.keyring.v1.Local";
   value: Uint8Array;
 }
@@ -82,7 +82,7 @@ export interface Record_LocalProtoType {
 export interface Record_LocalAmino {
   priv_key?: AnyAmino;
 }
-export interface Record_LocalAminoType {
+export interface Record_LocalAminoMsg {
   type: "cosmos-sdk/Local";
   value: Record_LocalAmino;
 }
@@ -99,7 +99,7 @@ export interface Record_LocalSDKType {
 export interface Record_Ledger {
   path?: BIP44Params;
 }
-export interface Record_LedgerProtoType {
+export interface Record_LedgerProtoMsg {
   typeUrl: "/cosmos.crypto.keyring.v1.Ledger";
   value: Uint8Array;
 }
@@ -108,7 +108,7 @@ export interface Record_LedgerProtoType {
 export interface Record_LedgerAmino {
   path?: BIP44ParamsAmino;
 }
-export interface Record_LedgerAminoType {
+export interface Record_LedgerAminoMsg {
   type: "cosmos-sdk/Ledger";
   value: Record_LedgerAmino;
 }
@@ -120,14 +120,14 @@ export interface Record_LedgerSDKType {
 /** Multi item */
 
 export interface Record_Multi {}
-export interface Record_MultiProtoType {
+export interface Record_MultiProtoMsg {
   typeUrl: "/cosmos.crypto.keyring.v1.Multi";
   value: Uint8Array;
 }
 /** Multi item */
 
 export interface Record_MultiAmino {}
-export interface Record_MultiAminoType {
+export interface Record_MultiAminoMsg {
   type: "cosmos-sdk/Multi";
   value: Record_MultiAmino;
 }
@@ -137,14 +137,14 @@ export interface Record_MultiSDKType {}
 /** Offline item */
 
 export interface Record_Offline {}
-export interface Record_OfflineProtoType {
+export interface Record_OfflineProtoMsg {
   typeUrl: "/cosmos.crypto.keyring.v1.Offline";
   value: Uint8Array;
 }
 /** Offline item */
 
 export interface Record_OfflineAmino {}
-export interface Record_OfflineAminoType {
+export interface Record_OfflineAminoMsg {
   type: "cosmos-sdk/Offline";
   value: Record_OfflineAmino;
 }
@@ -287,6 +287,32 @@ export const Record = {
     obj.multi = message.multi ? Record_Multi.toAmino(message.multi) : undefined;
     obj.offline = message.offline ? Record_Offline.toAmino(message.offline) : undefined;
     return obj;
+  },
+
+  fromAminoMsg(object: RecordAminoMsg): Record {
+    return Record.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: Record): RecordAminoMsg {
+    return {
+      type: "cosmos-sdk/Record",
+      value: Record.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: RecordProtoMsg): Record {
+    return Record.decode(message.value);
+  },
+
+  toProto(message: Record): Uint8Array {
+    return Record.encode(message).finish();
+  },
+
+  toProtoMsg(message: Record): RecordProtoMsg {
+    return {
+      typeUrl: "/cosmos.crypto.keyring.v1.Record",
+      value: Record.encode(message).finish()
+    };
   }
 
 };
@@ -356,6 +382,32 @@ export const Record_Local = {
     const obj: any = {};
     obj.priv_key = message.privKey ? Any.toAmino(message.privKey) : undefined;
     return obj;
+  },
+
+  fromAminoMsg(object: Record_LocalAminoMsg): Record_Local {
+    return Record_Local.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: Record_Local): Record_LocalAminoMsg {
+    return {
+      type: "cosmos-sdk/Local",
+      value: Record_Local.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: Record_LocalProtoMsg): Record_Local {
+    return Record_Local.decode(message.value);
+  },
+
+  toProto(message: Record_Local): Uint8Array {
+    return Record_Local.encode(message).finish();
+  },
+
+  toProtoMsg(message: Record_Local): Record_LocalProtoMsg {
+    return {
+      typeUrl: "/cosmos.crypto.keyring.v1.Local",
+      value: Record_Local.encode(message).finish()
+    };
   }
 
 };
@@ -425,6 +477,32 @@ export const Record_Ledger = {
     const obj: any = {};
     obj.path = message.path ? BIP44Params.toAmino(message.path) : undefined;
     return obj;
+  },
+
+  fromAminoMsg(object: Record_LedgerAminoMsg): Record_Ledger {
+    return Record_Ledger.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: Record_Ledger): Record_LedgerAminoMsg {
+    return {
+      type: "cosmos-sdk/Ledger",
+      value: Record_Ledger.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: Record_LedgerProtoMsg): Record_Ledger {
+    return Record_Ledger.decode(message.value);
+  },
+
+  toProto(message: Record_Ledger): Uint8Array {
+    return Record_Ledger.encode(message).finish();
+  },
+
+  toProtoMsg(message: Record_Ledger): Record_LedgerProtoMsg {
+    return {
+      typeUrl: "/cosmos.crypto.keyring.v1.Ledger",
+      value: Record_Ledger.encode(message).finish()
+    };
   }
 
 };
@@ -477,6 +555,32 @@ export const Record_Multi = {
   toAmino(_: Record_Multi): Record_MultiAmino {
     const obj: any = {};
     return obj;
+  },
+
+  fromAminoMsg(object: Record_MultiAminoMsg): Record_Multi {
+    return Record_Multi.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: Record_Multi): Record_MultiAminoMsg {
+    return {
+      type: "cosmos-sdk/Multi",
+      value: Record_Multi.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: Record_MultiProtoMsg): Record_Multi {
+    return Record_Multi.decode(message.value);
+  },
+
+  toProto(message: Record_Multi): Uint8Array {
+    return Record_Multi.encode(message).finish();
+  },
+
+  toProtoMsg(message: Record_Multi): Record_MultiProtoMsg {
+    return {
+      typeUrl: "/cosmos.crypto.keyring.v1.Multi",
+      value: Record_Multi.encode(message).finish()
+    };
   }
 
 };
@@ -529,6 +633,32 @@ export const Record_Offline = {
   toAmino(_: Record_Offline): Record_OfflineAmino {
     const obj: any = {};
     return obj;
+  },
+
+  fromAminoMsg(object: Record_OfflineAminoMsg): Record_Offline {
+    return Record_Offline.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: Record_Offline): Record_OfflineAminoMsg {
+    return {
+      type: "cosmos-sdk/Offline",
+      value: Record_Offline.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: Record_OfflineProtoMsg): Record_Offline {
+    return Record_Offline.decode(message.value);
+  },
+
+  toProto(message: Record_Offline): Uint8Array {
+    return Record_Offline.encode(message).finish();
+  },
+
+  toProtoMsg(message: Record_Offline): Record_OfflineProtoMsg {
+    return {
+      typeUrl: "/cosmos.crypto.keyring.v1.Offline",
+      value: Record_Offline.encode(message).finish()
+    };
   }
 
 };

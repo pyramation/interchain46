@@ -14,7 +14,7 @@ export interface QueryGrantsRequest {
 
   pagination?: PageRequest;
 }
-export interface QueryGrantsRequestProtoType {
+export interface QueryGrantsRequestProtoMsg {
   typeUrl: "/cosmos.authz.v1beta1.QueryGrantsRequest";
   value: Uint8Array;
 }
@@ -30,7 +30,7 @@ export interface QueryGrantsRequestAmino {
 
   pagination?: PageRequestAmino;
 }
-export interface QueryGrantsRequestAminoType {
+export interface QueryGrantsRequestAminoMsg {
   type: "cosmos-sdk/QueryGrantsRequest";
   value: QueryGrantsRequestAmino;
 }
@@ -51,7 +51,7 @@ export interface QueryGrantsResponse {
 
   pagination?: PageResponse;
 }
-export interface QueryGrantsResponseProtoType {
+export interface QueryGrantsResponseProtoMsg {
   typeUrl: "/cosmos.authz.v1beta1.QueryGrantsResponse";
   value: Uint8Array;
 }
@@ -64,7 +64,7 @@ export interface QueryGrantsResponseAmino {
 
   pagination?: PageResponseAmino;
 }
-export interface QueryGrantsResponseAminoType {
+export interface QueryGrantsResponseAminoMsg {
   type: "cosmos-sdk/QueryGrantsResponse";
   value: QueryGrantsResponseAmino;
 }
@@ -82,7 +82,7 @@ export interface QueryGranterGrantsRequest {
 
   pagination?: PageRequest;
 }
-export interface QueryGranterGrantsRequestProtoType {
+export interface QueryGranterGrantsRequestProtoMsg {
   typeUrl: "/cosmos.authz.v1beta1.QueryGranterGrantsRequest";
   value: Uint8Array;
 }
@@ -94,7 +94,7 @@ export interface QueryGranterGrantsRequestAmino {
 
   pagination?: PageRequestAmino;
 }
-export interface QueryGranterGrantsRequestAminoType {
+export interface QueryGranterGrantsRequestAminoMsg {
   type: "cosmos-sdk/QueryGranterGrantsRequest";
   value: QueryGranterGrantsRequestAmino;
 }
@@ -113,7 +113,7 @@ export interface QueryGranterGrantsResponse {
 
   pagination?: PageResponse;
 }
-export interface QueryGranterGrantsResponseProtoType {
+export interface QueryGranterGrantsResponseProtoMsg {
   typeUrl: "/cosmos.authz.v1beta1.QueryGranterGrantsResponse";
   value: Uint8Array;
 }
@@ -126,7 +126,7 @@ export interface QueryGranterGrantsResponseAmino {
 
   pagination?: PageResponseAmino;
 }
-export interface QueryGranterGrantsResponseAminoType {
+export interface QueryGranterGrantsResponseAminoMsg {
   type: "cosmos-sdk/QueryGranterGrantsResponse";
   value: QueryGranterGrantsResponseAmino;
 }
@@ -144,7 +144,7 @@ export interface QueryGranteeGrantsRequest {
 
   pagination?: PageRequest;
 }
-export interface QueryGranteeGrantsRequestProtoType {
+export interface QueryGranteeGrantsRequestProtoMsg {
   typeUrl: "/cosmos.authz.v1beta1.QueryGranteeGrantsRequest";
   value: Uint8Array;
 }
@@ -156,7 +156,7 @@ export interface QueryGranteeGrantsRequestAmino {
 
   pagination?: PageRequestAmino;
 }
-export interface QueryGranteeGrantsRequestAminoType {
+export interface QueryGranteeGrantsRequestAminoMsg {
   type: "cosmos-sdk/QueryGranteeGrantsRequest";
   value: QueryGranteeGrantsRequestAmino;
 }
@@ -175,7 +175,7 @@ export interface QueryGranteeGrantsResponse {
 
   pagination?: PageResponse;
 }
-export interface QueryGranteeGrantsResponseProtoType {
+export interface QueryGranteeGrantsResponseProtoMsg {
   typeUrl: "/cosmos.authz.v1beta1.QueryGranteeGrantsResponse";
   value: Uint8Array;
 }
@@ -188,7 +188,7 @@ export interface QueryGranteeGrantsResponseAmino {
 
   pagination?: PageResponseAmino;
 }
-export interface QueryGranteeGrantsResponseAminoType {
+export interface QueryGranteeGrantsResponseAminoMsg {
   type: "cosmos-sdk/QueryGranteeGrantsResponse";
   value: QueryGranteeGrantsResponseAmino;
 }
@@ -306,6 +306,32 @@ export const QueryGrantsRequest = {
     obj.msg_type_url = message.msgTypeUrl;
     obj.pagination = message.pagination ? PageRequest.toAmino(message.pagination) : undefined;
     return obj;
+  },
+
+  fromAminoMsg(object: QueryGrantsRequestAminoMsg): QueryGrantsRequest {
+    return QueryGrantsRequest.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: QueryGrantsRequest): QueryGrantsRequestAminoMsg {
+    return {
+      type: "cosmos-sdk/QueryGrantsRequest",
+      value: QueryGrantsRequest.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: QueryGrantsRequestProtoMsg): QueryGrantsRequest {
+    return QueryGrantsRequest.decode(message.value);
+  },
+
+  toProto(message: QueryGrantsRequest): Uint8Array {
+    return QueryGrantsRequest.encode(message).finish();
+  },
+
+  toProtoMsg(message: QueryGrantsRequest): QueryGrantsRequestProtoMsg {
+    return {
+      typeUrl: "/cosmos.authz.v1beta1.QueryGrantsRequest",
+      value: QueryGrantsRequest.encode(message).finish()
+    };
   }
 
 };
@@ -401,6 +427,32 @@ export const QueryGrantsResponse = {
 
     obj.pagination = message.pagination ? PageResponse.toAmino(message.pagination) : undefined;
     return obj;
+  },
+
+  fromAminoMsg(object: QueryGrantsResponseAminoMsg): QueryGrantsResponse {
+    return QueryGrantsResponse.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: QueryGrantsResponse): QueryGrantsResponseAminoMsg {
+    return {
+      type: "cosmos-sdk/QueryGrantsResponse",
+      value: QueryGrantsResponse.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: QueryGrantsResponseProtoMsg): QueryGrantsResponse {
+    return QueryGrantsResponse.decode(message.value);
+  },
+
+  toProto(message: QueryGrantsResponse): Uint8Array {
+    return QueryGrantsResponse.encode(message).finish();
+  },
+
+  toProtoMsg(message: QueryGrantsResponse): QueryGrantsResponseProtoMsg {
+    return {
+      typeUrl: "/cosmos.authz.v1beta1.QueryGrantsResponse",
+      value: QueryGrantsResponse.encode(message).finish()
+    };
   }
 
 };
@@ -484,6 +536,32 @@ export const QueryGranterGrantsRequest = {
     obj.granter = message.granter;
     obj.pagination = message.pagination ? PageRequest.toAmino(message.pagination) : undefined;
     return obj;
+  },
+
+  fromAminoMsg(object: QueryGranterGrantsRequestAminoMsg): QueryGranterGrantsRequest {
+    return QueryGranterGrantsRequest.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: QueryGranterGrantsRequest): QueryGranterGrantsRequestAminoMsg {
+    return {
+      type: "cosmos-sdk/QueryGranterGrantsRequest",
+      value: QueryGranterGrantsRequest.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: QueryGranterGrantsRequestProtoMsg): QueryGranterGrantsRequest {
+    return QueryGranterGrantsRequest.decode(message.value);
+  },
+
+  toProto(message: QueryGranterGrantsRequest): Uint8Array {
+    return QueryGranterGrantsRequest.encode(message).finish();
+  },
+
+  toProtoMsg(message: QueryGranterGrantsRequest): QueryGranterGrantsRequestProtoMsg {
+    return {
+      typeUrl: "/cosmos.authz.v1beta1.QueryGranterGrantsRequest",
+      value: QueryGranterGrantsRequest.encode(message).finish()
+    };
   }
 
 };
@@ -579,6 +657,32 @@ export const QueryGranterGrantsResponse = {
 
     obj.pagination = message.pagination ? PageResponse.toAmino(message.pagination) : undefined;
     return obj;
+  },
+
+  fromAminoMsg(object: QueryGranterGrantsResponseAminoMsg): QueryGranterGrantsResponse {
+    return QueryGranterGrantsResponse.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: QueryGranterGrantsResponse): QueryGranterGrantsResponseAminoMsg {
+    return {
+      type: "cosmos-sdk/QueryGranterGrantsResponse",
+      value: QueryGranterGrantsResponse.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: QueryGranterGrantsResponseProtoMsg): QueryGranterGrantsResponse {
+    return QueryGranterGrantsResponse.decode(message.value);
+  },
+
+  toProto(message: QueryGranterGrantsResponse): Uint8Array {
+    return QueryGranterGrantsResponse.encode(message).finish();
+  },
+
+  toProtoMsg(message: QueryGranterGrantsResponse): QueryGranterGrantsResponseProtoMsg {
+    return {
+      typeUrl: "/cosmos.authz.v1beta1.QueryGranterGrantsResponse",
+      value: QueryGranterGrantsResponse.encode(message).finish()
+    };
   }
 
 };
@@ -662,6 +766,32 @@ export const QueryGranteeGrantsRequest = {
     obj.grantee = message.grantee;
     obj.pagination = message.pagination ? PageRequest.toAmino(message.pagination) : undefined;
     return obj;
+  },
+
+  fromAminoMsg(object: QueryGranteeGrantsRequestAminoMsg): QueryGranteeGrantsRequest {
+    return QueryGranteeGrantsRequest.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: QueryGranteeGrantsRequest): QueryGranteeGrantsRequestAminoMsg {
+    return {
+      type: "cosmos-sdk/QueryGranteeGrantsRequest",
+      value: QueryGranteeGrantsRequest.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: QueryGranteeGrantsRequestProtoMsg): QueryGranteeGrantsRequest {
+    return QueryGranteeGrantsRequest.decode(message.value);
+  },
+
+  toProto(message: QueryGranteeGrantsRequest): Uint8Array {
+    return QueryGranteeGrantsRequest.encode(message).finish();
+  },
+
+  toProtoMsg(message: QueryGranteeGrantsRequest): QueryGranteeGrantsRequestProtoMsg {
+    return {
+      typeUrl: "/cosmos.authz.v1beta1.QueryGranteeGrantsRequest",
+      value: QueryGranteeGrantsRequest.encode(message).finish()
+    };
   }
 
 };
@@ -757,6 +887,32 @@ export const QueryGranteeGrantsResponse = {
 
     obj.pagination = message.pagination ? PageResponse.toAmino(message.pagination) : undefined;
     return obj;
+  },
+
+  fromAminoMsg(object: QueryGranteeGrantsResponseAminoMsg): QueryGranteeGrantsResponse {
+    return QueryGranteeGrantsResponse.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: QueryGranteeGrantsResponse): QueryGranteeGrantsResponseAminoMsg {
+    return {
+      type: "cosmos-sdk/QueryGranteeGrantsResponse",
+      value: QueryGranteeGrantsResponse.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: QueryGranteeGrantsResponseProtoMsg): QueryGranteeGrantsResponse {
+    return QueryGranteeGrantsResponse.decode(message.value);
+  },
+
+  toProto(message: QueryGranteeGrantsResponse): Uint8Array {
+    return QueryGranteeGrantsResponse.encode(message).finish();
+  },
+
+  toProtoMsg(message: QueryGranteeGrantsResponse): QueryGranteeGrantsResponseProtoMsg {
+    return {
+      typeUrl: "/cosmos.authz.v1beta1.QueryGranteeGrantsResponse",
+      value: QueryGranteeGrantsResponse.encode(message).finish()
+    };
   }
 
 };

@@ -20,7 +20,7 @@ export interface GenesisState {
 
   denomMetadata: Metadata[];
 }
-export interface GenesisStateProtoType {
+export interface GenesisStateProtoMsg {
   typeUrl: "/cosmos.bank.v1beta1.GenesisState";
   value: Uint8Array;
 }
@@ -42,7 +42,7 @@ export interface GenesisStateAmino {
 
   denom_metadata: MetadataAmino[];
 }
-export interface GenesisStateAminoType {
+export interface GenesisStateAminoMsg {
   type: "cosmos-sdk/GenesisState";
   value: GenesisStateAmino;
 }
@@ -66,7 +66,7 @@ export interface Balance {
 
   coins: Coin[];
 }
-export interface BalanceProtoType {
+export interface BalanceProtoMsg {
   typeUrl: "/cosmos.bank.v1beta1.Balance";
   value: Uint8Array;
 }
@@ -82,7 +82,7 @@ export interface BalanceAmino {
 
   coins: CoinAmino[];
 }
-export interface BalanceAminoType {
+export interface BalanceAminoMsg {
   type: "cosmos-sdk/Balance";
   value: BalanceAmino;
 }
@@ -235,6 +235,32 @@ export const GenesisState = {
     }
 
     return obj;
+  },
+
+  fromAminoMsg(object: GenesisStateAminoMsg): GenesisState {
+    return GenesisState.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: GenesisState): GenesisStateAminoMsg {
+    return {
+      type: "cosmos-sdk/GenesisState",
+      value: GenesisState.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: GenesisStateProtoMsg): GenesisState {
+    return GenesisState.decode(message.value);
+  },
+
+  toProto(message: GenesisState): Uint8Array {
+    return GenesisState.encode(message).finish();
+  },
+
+  toProtoMsg(message: GenesisState): GenesisStateProtoMsg {
+    return {
+      typeUrl: "/cosmos.bank.v1beta1.GenesisState",
+      value: GenesisState.encode(message).finish()
+    };
   }
 
 };
@@ -330,6 +356,32 @@ export const Balance = {
     }
 
     return obj;
+  },
+
+  fromAminoMsg(object: BalanceAminoMsg): Balance {
+    return Balance.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: Balance): BalanceAminoMsg {
+    return {
+      type: "cosmos-sdk/Balance",
+      value: Balance.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: BalanceProtoMsg): Balance {
+    return Balance.decode(message.value);
+  },
+
+  toProto(message: Balance): Uint8Array {
+    return Balance.encode(message).finish();
+  },
+
+  toProtoMsg(message: Balance): BalanceProtoMsg {
+    return {
+      typeUrl: "/cosmos.bank.v1beta1.Balance",
+      value: Balance.encode(message).finish()
+    };
   }
 
 };

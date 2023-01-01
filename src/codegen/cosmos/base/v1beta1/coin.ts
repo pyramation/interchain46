@@ -11,7 +11,7 @@ export interface Coin {
   denom: string;
   amount: string;
 }
-export interface CoinProtoType {
+export interface CoinProtoMsg {
   typeUrl: "/cosmos.base.v1beta1.Coin";
   value: Uint8Array;
 }
@@ -26,7 +26,7 @@ export interface CoinAmino {
   denom: string;
   amount: string;
 }
-export interface CoinAminoType {
+export interface CoinAminoMsg {
   type: "cosmos-sdk/Coin";
   value: CoinAmino;
 }
@@ -52,7 +52,7 @@ export interface DecCoin {
   denom: string;
   amount: string;
 }
-export interface DecCoinProtoType {
+export interface DecCoinProtoMsg {
   typeUrl: "/cosmos.base.v1beta1.DecCoin";
   value: Uint8Array;
 }
@@ -67,7 +67,7 @@ export interface DecCoinAmino {
   denom: string;
   amount: string;
 }
-export interface DecCoinAminoType {
+export interface DecCoinAminoMsg {
   type: "cosmos-sdk/DecCoin";
   value: DecCoinAmino;
 }
@@ -87,7 +87,7 @@ export interface DecCoinSDKType {
 export interface IntProto {
   int: string;
 }
-export interface IntProtoProtoType {
+export interface IntProtoProtoMsg {
   typeUrl: "/cosmos.base.v1beta1.IntProto";
   value: Uint8Array;
 }
@@ -96,7 +96,7 @@ export interface IntProtoProtoType {
 export interface IntProtoAmino {
   int: string;
 }
-export interface IntProtoAminoType {
+export interface IntProtoAminoMsg {
   type: "cosmos-sdk/IntProto";
   value: IntProtoAmino;
 }
@@ -110,7 +110,7 @@ export interface IntProtoSDKType {
 export interface DecProto {
   dec: string;
 }
-export interface DecProtoProtoType {
+export interface DecProtoProtoMsg {
   typeUrl: "/cosmos.base.v1beta1.DecProto";
   value: Uint8Array;
 }
@@ -119,7 +119,7 @@ export interface DecProtoProtoType {
 export interface DecProtoAmino {
   dec: string;
 }
-export interface DecProtoAminoType {
+export interface DecProtoAminoMsg {
   type: "cosmos-sdk/DecProto";
   value: DecProtoAmino;
 }
@@ -208,6 +208,32 @@ export const Coin = {
     obj.denom = message.denom;
     obj.amount = message.amount;
     return obj;
+  },
+
+  fromAminoMsg(object: CoinAminoMsg): Coin {
+    return Coin.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: Coin): CoinAminoMsg {
+    return {
+      type: "cosmos-sdk/Coin",
+      value: Coin.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: CoinProtoMsg): Coin {
+    return Coin.decode(message.value);
+  },
+
+  toProto(message: Coin): Uint8Array {
+    return Coin.encode(message).finish();
+  },
+
+  toProtoMsg(message: Coin): CoinProtoMsg {
+    return {
+      typeUrl: "/cosmos.base.v1beta1.Coin",
+      value: Coin.encode(message).finish()
+    };
   }
 
 };
@@ -291,6 +317,32 @@ export const DecCoin = {
     obj.denom = message.denom;
     obj.amount = message.amount;
     return obj;
+  },
+
+  fromAminoMsg(object: DecCoinAminoMsg): DecCoin {
+    return DecCoin.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: DecCoin): DecCoinAminoMsg {
+    return {
+      type: "cosmos-sdk/DecCoin",
+      value: DecCoin.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: DecCoinProtoMsg): DecCoin {
+    return DecCoin.decode(message.value);
+  },
+
+  toProto(message: DecCoin): Uint8Array {
+    return DecCoin.encode(message).finish();
+  },
+
+  toProtoMsg(message: DecCoin): DecCoinProtoMsg {
+    return {
+      typeUrl: "/cosmos.base.v1beta1.DecCoin",
+      value: DecCoin.encode(message).finish()
+    };
   }
 
 };
@@ -360,6 +412,32 @@ export const IntProto = {
     const obj: any = {};
     obj.int = message.int;
     return obj;
+  },
+
+  fromAminoMsg(object: IntProtoAminoMsg): IntProto {
+    return IntProto.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: IntProto): IntProtoAminoMsg {
+    return {
+      type: "cosmos-sdk/IntProto",
+      value: IntProto.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: IntProtoProtoMsg): IntProto {
+    return IntProto.decode(message.value);
+  },
+
+  toProto(message: IntProto): Uint8Array {
+    return IntProto.encode(message).finish();
+  },
+
+  toProtoMsg(message: IntProto): IntProtoProtoMsg {
+    return {
+      typeUrl: "/cosmos.base.v1beta1.IntProto",
+      value: IntProto.encode(message).finish()
+    };
   }
 
 };
@@ -429,6 +507,32 @@ export const DecProto = {
     const obj: any = {};
     obj.dec = message.dec;
     return obj;
+  },
+
+  fromAminoMsg(object: DecProtoAminoMsg): DecProto {
+    return DecProto.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: DecProto): DecProtoAminoMsg {
+    return {
+      type: "cosmos-sdk/DecProto",
+      value: DecProto.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: DecProtoProtoMsg): DecProto {
+    return DecProto.decode(message.value);
+  },
+
+  toProto(message: DecProto): Uint8Array {
+    return DecProto.encode(message).finish();
+  },
+
+  toProtoMsg(message: DecProto): DecProtoProtoMsg {
+    return {
+      typeUrl: "/cosmos.base.v1beta1.DecProto",
+      value: DecProto.encode(message).finish()
+    };
   }
 
 };

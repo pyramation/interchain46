@@ -16,7 +16,7 @@ export interface TableDescriptor {
 
   id: number;
 }
-export interface TableDescriptorProtoType {
+export interface TableDescriptorProtoMsg {
   typeUrl: "/cosmos.orm.v1.TableDescriptor";
   value: Uint8Array;
 }
@@ -36,7 +36,7 @@ export interface TableDescriptorAmino {
 
   id: number;
 }
-export interface TableDescriptorAminoType {
+export interface TableDescriptorAminoMsg {
   type: "cosmos-sdk/TableDescriptor";
   value: TableDescriptorAmino;
 }
@@ -91,7 +91,7 @@ export interface PrimaryKeyDescriptor {
 
   autoIncrement: boolean;
 }
-export interface PrimaryKeyDescriptorProtoType {
+export interface PrimaryKeyDescriptorProtoMsg {
   typeUrl: "/cosmos.orm.v1.PrimaryKeyDescriptor";
   value: Uint8Array;
 }
@@ -139,7 +139,7 @@ export interface PrimaryKeyDescriptorAmino {
 
   auto_increment: boolean;
 }
-export interface PrimaryKeyDescriptorAminoType {
+export interface PrimaryKeyDescriptorAminoMsg {
   type: "cosmos-sdk/PrimaryKeyDescriptor";
   value: PrimaryKeyDescriptorAmino;
 }
@@ -175,7 +175,7 @@ export interface SecondaryIndexDescriptor {
 
   unique: boolean;
 }
-export interface SecondaryIndexDescriptorProtoType {
+export interface SecondaryIndexDescriptorProtoMsg {
   typeUrl: "/cosmos.orm.v1.SecondaryIndexDescriptor";
   value: Uint8Array;
 }
@@ -205,7 +205,7 @@ export interface SecondaryIndexDescriptorAmino {
 
   unique: boolean;
 }
-export interface SecondaryIndexDescriptorAminoType {
+export interface SecondaryIndexDescriptorAminoMsg {
   type: "cosmos-sdk/SecondaryIndexDescriptor";
   value: SecondaryIndexDescriptorAmino;
 }
@@ -226,7 +226,7 @@ export interface SingletonDescriptor {
    */
   id: number;
 }
-export interface SingletonDescriptorProtoType {
+export interface SingletonDescriptorProtoMsg {
   typeUrl: "/cosmos.orm.v1.SingletonDescriptor";
   value: Uint8Array;
 }
@@ -240,7 +240,7 @@ export interface SingletonDescriptorAmino {
    */
   id: number;
 }
-export interface SingletonDescriptorAminoType {
+export interface SingletonDescriptorAminoMsg {
   type: "cosmos-sdk/SingletonDescriptor";
   value: SingletonDescriptorAmino;
 }
@@ -355,6 +355,32 @@ export const TableDescriptor = {
 
     obj.id = message.id;
     return obj;
+  },
+
+  fromAminoMsg(object: TableDescriptorAminoMsg): TableDescriptor {
+    return TableDescriptor.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: TableDescriptor): TableDescriptorAminoMsg {
+    return {
+      type: "cosmos-sdk/TableDescriptor",
+      value: TableDescriptor.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: TableDescriptorProtoMsg): TableDescriptor {
+    return TableDescriptor.decode(message.value);
+  },
+
+  toProto(message: TableDescriptor): Uint8Array {
+    return TableDescriptor.encode(message).finish();
+  },
+
+  toProtoMsg(message: TableDescriptor): TableDescriptorProtoMsg {
+    return {
+      typeUrl: "/cosmos.orm.v1.TableDescriptor",
+      value: TableDescriptor.encode(message).finish()
+    };
   }
 
 };
@@ -438,6 +464,32 @@ export const PrimaryKeyDescriptor = {
     obj.fields = message.fields;
     obj.auto_increment = message.autoIncrement;
     return obj;
+  },
+
+  fromAminoMsg(object: PrimaryKeyDescriptorAminoMsg): PrimaryKeyDescriptor {
+    return PrimaryKeyDescriptor.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: PrimaryKeyDescriptor): PrimaryKeyDescriptorAminoMsg {
+    return {
+      type: "cosmos-sdk/PrimaryKeyDescriptor",
+      value: PrimaryKeyDescriptor.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: PrimaryKeyDescriptorProtoMsg): PrimaryKeyDescriptor {
+    return PrimaryKeyDescriptor.decode(message.value);
+  },
+
+  toProto(message: PrimaryKeyDescriptor): Uint8Array {
+    return PrimaryKeyDescriptor.encode(message).finish();
+  },
+
+  toProtoMsg(message: PrimaryKeyDescriptor): PrimaryKeyDescriptorProtoMsg {
+    return {
+      typeUrl: "/cosmos.orm.v1.PrimaryKeyDescriptor",
+      value: PrimaryKeyDescriptor.encode(message).finish()
+    };
   }
 
 };
@@ -535,6 +587,32 @@ export const SecondaryIndexDescriptor = {
     obj.id = message.id;
     obj.unique = message.unique;
     return obj;
+  },
+
+  fromAminoMsg(object: SecondaryIndexDescriptorAminoMsg): SecondaryIndexDescriptor {
+    return SecondaryIndexDescriptor.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: SecondaryIndexDescriptor): SecondaryIndexDescriptorAminoMsg {
+    return {
+      type: "cosmos-sdk/SecondaryIndexDescriptor",
+      value: SecondaryIndexDescriptor.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: SecondaryIndexDescriptorProtoMsg): SecondaryIndexDescriptor {
+    return SecondaryIndexDescriptor.decode(message.value);
+  },
+
+  toProto(message: SecondaryIndexDescriptor): Uint8Array {
+    return SecondaryIndexDescriptor.encode(message).finish();
+  },
+
+  toProtoMsg(message: SecondaryIndexDescriptor): SecondaryIndexDescriptorProtoMsg {
+    return {
+      typeUrl: "/cosmos.orm.v1.SecondaryIndexDescriptor",
+      value: SecondaryIndexDescriptor.encode(message).finish()
+    };
   }
 
 };
@@ -604,6 +682,32 @@ export const SingletonDescriptor = {
     const obj: any = {};
     obj.id = message.id;
     return obj;
+  },
+
+  fromAminoMsg(object: SingletonDescriptorAminoMsg): SingletonDescriptor {
+    return SingletonDescriptor.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: SingletonDescriptor): SingletonDescriptorAminoMsg {
+    return {
+      type: "cosmos-sdk/SingletonDescriptor",
+      value: SingletonDescriptor.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: SingletonDescriptorProtoMsg): SingletonDescriptor {
+    return SingletonDescriptor.decode(message.value);
+  },
+
+  toProto(message: SingletonDescriptor): Uint8Array {
+    return SingletonDescriptor.encode(message).finish();
+  },
+
+  toProtoMsg(message: SingletonDescriptor): SingletonDescriptorProtoMsg {
+    return {
+      typeUrl: "/cosmos.orm.v1.SingletonDescriptor",
+      value: SingletonDescriptor.encode(message).finish()
+    };
   }
 
 };

@@ -11,7 +11,7 @@ export interface GenesisState {
 
   accounts: Any[];
 }
-export interface GenesisStateProtoType {
+export interface GenesisStateProtoMsg {
   typeUrl: "/cosmos.auth.v1beta1.GenesisState";
   value: Uint8Array;
 }
@@ -24,7 +24,7 @@ export interface GenesisStateAmino {
 
   accounts: AnyAmino[];
 }
-export interface GenesisStateAminoType {
+export interface GenesisStateAminoMsg {
   type: "cosmos-sdk/GenesisState";
   value: GenesisStateAmino;
 }
@@ -126,6 +126,32 @@ export const GenesisState = {
     }
 
     return obj;
+  },
+
+  fromAminoMsg(object: GenesisStateAminoMsg): GenesisState {
+    return GenesisState.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: GenesisState): GenesisStateAminoMsg {
+    return {
+      type: "cosmos-sdk/GenesisState",
+      value: GenesisState.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: GenesisStateProtoMsg): GenesisState {
+    return GenesisState.decode(message.value);
+  },
+
+  toProto(message: GenesisState): Uint8Array {
+    return GenesisState.encode(message).finish();
+  },
+
+  toProtoMsg(message: GenesisState): GenesisStateProtoMsg {
+    return {
+      typeUrl: "/cosmos.auth.v1beta1.GenesisState",
+      value: GenesisState.encode(message).finish()
+    };
   }
 
 };

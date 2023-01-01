@@ -12,7 +12,7 @@ import * as _m0 from "protobufjs/minimal";
  */
 
 export interface Empty {}
-export interface EmptyProtoType {
+export interface EmptyProtoMsg {
   typeUrl: "/google.protobuf.Empty";
   value: Uint8Array;
 }
@@ -29,7 +29,7 @@ export interface EmptyProtoType {
  */
 
 export interface EmptyAmino {}
-export interface EmptyAminoType {
+export interface EmptyAminoMsg {
   type: "/google.protobuf.Empty";
   value: EmptyAmino;
 }
@@ -95,6 +95,25 @@ export const Empty = {
   toAmino(_: Empty): EmptyAmino {
     const obj: any = {};
     return obj;
+  },
+
+  fromAminoMsg(object: EmptyAminoMsg): Empty {
+    return Empty.fromAmino(object.value);
+  },
+
+  fromProtoMsg(message: EmptyProtoMsg): Empty {
+    return Empty.decode(message.value);
+  },
+
+  toProto(message: Empty): Uint8Array {
+    return Empty.encode(message).finish();
+  },
+
+  toProtoMsg(message: Empty): EmptyProtoMsg {
+    return {
+      typeUrl: "/google.protobuf.Empty",
+      value: Empty.encode(message).finish()
+    };
   }
 
 };

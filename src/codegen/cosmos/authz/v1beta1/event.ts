@@ -12,7 +12,7 @@ export interface EventGrant {
 
   grantee: string;
 }
-export interface EventGrantProtoType {
+export interface EventGrantProtoMsg {
   typeUrl: "/cosmos.authz.v1beta1.EventGrant";
   value: Uint8Array;
 }
@@ -28,7 +28,7 @@ export interface EventGrantAmino {
 
   grantee: string;
 }
-export interface EventGrantAminoType {
+export interface EventGrantAminoMsg {
   type: "cosmos-sdk/EventGrant";
   value: EventGrantAmino;
 }
@@ -51,7 +51,7 @@ export interface EventRevoke {
 
   grantee: string;
 }
-export interface EventRevokeProtoType {
+export interface EventRevokeProtoMsg {
   typeUrl: "/cosmos.authz.v1beta1.EventRevoke";
   value: Uint8Array;
 }
@@ -67,7 +67,7 @@ export interface EventRevokeAmino {
 
   grantee: string;
 }
-export interface EventRevokeAminoType {
+export interface EventRevokeAminoMsg {
   type: "cosmos-sdk/EventRevoke";
   value: EventRevokeAmino;
 }
@@ -172,6 +172,32 @@ export const EventGrant = {
     obj.granter = message.granter;
     obj.grantee = message.grantee;
     return obj;
+  },
+
+  fromAminoMsg(object: EventGrantAminoMsg): EventGrant {
+    return EventGrant.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: EventGrant): EventGrantAminoMsg {
+    return {
+      type: "cosmos-sdk/EventGrant",
+      value: EventGrant.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: EventGrantProtoMsg): EventGrant {
+    return EventGrant.decode(message.value);
+  },
+
+  toProto(message: EventGrant): Uint8Array {
+    return EventGrant.encode(message).finish();
+  },
+
+  toProtoMsg(message: EventGrant): EventGrantProtoMsg {
+    return {
+      typeUrl: "/cosmos.authz.v1beta1.EventGrant",
+      value: EventGrant.encode(message).finish()
+    };
   }
 
 };
@@ -269,6 +295,32 @@ export const EventRevoke = {
     obj.granter = message.granter;
     obj.grantee = message.grantee;
     return obj;
+  },
+
+  fromAminoMsg(object: EventRevokeAminoMsg): EventRevoke {
+    return EventRevoke.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: EventRevoke): EventRevokeAminoMsg {
+    return {
+      type: "cosmos-sdk/EventRevoke",
+      value: EventRevoke.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: EventRevokeProtoMsg): EventRevoke {
+    return EventRevoke.decode(message.value);
+  },
+
+  toProto(message: EventRevoke): Uint8Array {
+    return EventRevoke.encode(message).finish();
+  },
+
+  toProtoMsg(message: EventRevoke): EventRevokeProtoMsg {
+    return {
+      typeUrl: "/cosmos.authz.v1beta1.EventRevoke",
+      value: EventRevoke.encode(message).finish()
+    };
   }
 
 };

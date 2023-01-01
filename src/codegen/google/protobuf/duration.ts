@@ -79,7 +79,7 @@ export interface Duration {
 
   nanos: number;
 }
-export interface DurationProtoType {
+export interface DurationProtoMsg {
   typeUrl: "/google.protobuf.Duration";
   value: Uint8Array;
 }
@@ -145,7 +145,7 @@ export interface DurationProtoType {
  */
 
 export type DurationAmino = string;
-export interface DurationAminoType {
+export interface DurationAminoMsg {
   type: "/google.protobuf.Duration";
   value: DurationAmino;
 }
@@ -292,6 +292,25 @@ export const Duration = {
 
   toAmino(message: Duration): DurationAmino {
     return (message.seconds.toInt() * 1_000_000_000 + message.nanos).toString();
+  },
+
+  fromAminoMsg(object: DurationAminoMsg): Duration {
+    return Duration.fromAmino(object.value);
+  },
+
+  fromProtoMsg(message: DurationProtoMsg): Duration {
+    return Duration.decode(message.value);
+  },
+
+  toProto(message: Duration): Uint8Array {
+    return Duration.encode(message).finish();
+  },
+
+  toProtoMsg(message: Duration): DurationProtoMsg {
+    return {
+      typeUrl: "/google.protobuf.Duration",
+      value: Duration.encode(message).finish()
+    };
   }
 
 };

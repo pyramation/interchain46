@@ -8,7 +8,7 @@ export interface QueryBalanceRequest {
   classId: string;
   owner: string;
 }
-export interface QueryBalanceRequestProtoType {
+export interface QueryBalanceRequestProtoMsg {
   typeUrl: "/cosmos.nft.v1beta1.QueryBalanceRequest";
   value: Uint8Array;
 }
@@ -18,7 +18,7 @@ export interface QueryBalanceRequestAmino {
   class_id: string;
   owner: string;
 }
-export interface QueryBalanceRequestAminoType {
+export interface QueryBalanceRequestAminoMsg {
   type: "cosmos-sdk/QueryBalanceRequest";
   value: QueryBalanceRequestAmino;
 }
@@ -33,7 +33,7 @@ export interface QueryBalanceRequestSDKType {
 export interface QueryBalanceResponse {
   amount: Long;
 }
-export interface QueryBalanceResponseProtoType {
+export interface QueryBalanceResponseProtoMsg {
   typeUrl: "/cosmos.nft.v1beta1.QueryBalanceResponse";
   value: Uint8Array;
 }
@@ -42,7 +42,7 @@ export interface QueryBalanceResponseProtoType {
 export interface QueryBalanceResponseAmino {
   amount: string;
 }
-export interface QueryBalanceResponseAminoType {
+export interface QueryBalanceResponseAminoMsg {
   type: "cosmos-sdk/QueryBalanceResponse";
   value: QueryBalanceResponseAmino;
 }
@@ -57,7 +57,7 @@ export interface QueryOwnerRequest {
   classId: string;
   id: string;
 }
-export interface QueryOwnerRequestProtoType {
+export interface QueryOwnerRequestProtoMsg {
   typeUrl: "/cosmos.nft.v1beta1.QueryOwnerRequest";
   value: Uint8Array;
 }
@@ -67,7 +67,7 @@ export interface QueryOwnerRequestAmino {
   class_id: string;
   id: string;
 }
-export interface QueryOwnerRequestAminoType {
+export interface QueryOwnerRequestAminoMsg {
   type: "cosmos-sdk/QueryOwnerRequest";
   value: QueryOwnerRequestAmino;
 }
@@ -82,7 +82,7 @@ export interface QueryOwnerRequestSDKType {
 export interface QueryOwnerResponse {
   owner: string;
 }
-export interface QueryOwnerResponseProtoType {
+export interface QueryOwnerResponseProtoMsg {
   typeUrl: "/cosmos.nft.v1beta1.QueryOwnerResponse";
   value: Uint8Array;
 }
@@ -91,7 +91,7 @@ export interface QueryOwnerResponseProtoType {
 export interface QueryOwnerResponseAmino {
   owner: string;
 }
-export interface QueryOwnerResponseAminoType {
+export interface QueryOwnerResponseAminoMsg {
   type: "cosmos-sdk/QueryOwnerResponse";
   value: QueryOwnerResponseAmino;
 }
@@ -105,7 +105,7 @@ export interface QueryOwnerResponseSDKType {
 export interface QuerySupplyRequest {
   classId: string;
 }
-export interface QuerySupplyRequestProtoType {
+export interface QuerySupplyRequestProtoMsg {
   typeUrl: "/cosmos.nft.v1beta1.QuerySupplyRequest";
   value: Uint8Array;
 }
@@ -114,7 +114,7 @@ export interface QuerySupplyRequestProtoType {
 export interface QuerySupplyRequestAmino {
   class_id: string;
 }
-export interface QuerySupplyRequestAminoType {
+export interface QuerySupplyRequestAminoMsg {
   type: "cosmos-sdk/QuerySupplyRequest";
   value: QuerySupplyRequestAmino;
 }
@@ -128,7 +128,7 @@ export interface QuerySupplyRequestSDKType {
 export interface QuerySupplyResponse {
   amount: Long;
 }
-export interface QuerySupplyResponseProtoType {
+export interface QuerySupplyResponseProtoMsg {
   typeUrl: "/cosmos.nft.v1beta1.QuerySupplyResponse";
   value: Uint8Array;
 }
@@ -137,7 +137,7 @@ export interface QuerySupplyResponseProtoType {
 export interface QuerySupplyResponseAmino {
   amount: string;
 }
-export interface QuerySupplyResponseAminoType {
+export interface QuerySupplyResponseAminoMsg {
   type: "cosmos-sdk/QuerySupplyResponse";
   value: QuerySupplyResponseAmino;
 }
@@ -153,7 +153,7 @@ export interface QueryNFTsRequest {
   owner: string;
   pagination?: PageRequest;
 }
-export interface QueryNFTsRequestProtoType {
+export interface QueryNFTsRequestProtoMsg {
   typeUrl: "/cosmos.nft.v1beta1.QueryNFTsRequest";
   value: Uint8Array;
 }
@@ -164,7 +164,7 @@ export interface QueryNFTsRequestAmino {
   owner: string;
   pagination?: PageRequestAmino;
 }
-export interface QueryNFTsRequestAminoType {
+export interface QueryNFTsRequestAminoMsg {
   type: "cosmos-sdk/QueryNFTsRequest";
   value: QueryNFTsRequestAmino;
 }
@@ -181,7 +181,7 @@ export interface QueryNFTsResponse {
   nfts: NFT[];
   pagination?: PageResponse;
 }
-export interface QueryNFTsResponseProtoType {
+export interface QueryNFTsResponseProtoMsg {
   typeUrl: "/cosmos.nft.v1beta1.QueryNFTsResponse";
   value: Uint8Array;
 }
@@ -191,7 +191,7 @@ export interface QueryNFTsResponseAmino {
   nfts: NFTAmino[];
   pagination?: PageResponseAmino;
 }
-export interface QueryNFTsResponseAminoType {
+export interface QueryNFTsResponseAminoMsg {
   type: "cosmos-sdk/QueryNFTsResponse";
   value: QueryNFTsResponseAmino;
 }
@@ -207,7 +207,7 @@ export interface QueryNFTRequest {
   classId: string;
   id: string;
 }
-export interface QueryNFTRequestProtoType {
+export interface QueryNFTRequestProtoMsg {
   typeUrl: "/cosmos.nft.v1beta1.QueryNFTRequest";
   value: Uint8Array;
 }
@@ -217,7 +217,7 @@ export interface QueryNFTRequestAmino {
   class_id: string;
   id: string;
 }
-export interface QueryNFTRequestAminoType {
+export interface QueryNFTRequestAminoMsg {
   type: "cosmos-sdk/QueryNFTRequest";
   value: QueryNFTRequestAmino;
 }
@@ -232,7 +232,7 @@ export interface QueryNFTRequestSDKType {
 export interface QueryNFTResponse {
   nft?: NFT;
 }
-export interface QueryNFTResponseProtoType {
+export interface QueryNFTResponseProtoMsg {
   typeUrl: "/cosmos.nft.v1beta1.QueryNFTResponse";
   value: Uint8Array;
 }
@@ -241,7 +241,7 @@ export interface QueryNFTResponseProtoType {
 export interface QueryNFTResponseAmino {
   nft?: NFTAmino;
 }
-export interface QueryNFTResponseAminoType {
+export interface QueryNFTResponseAminoMsg {
   type: "cosmos-sdk/QueryNFTResponse";
   value: QueryNFTResponseAmino;
 }
@@ -255,7 +255,7 @@ export interface QueryNFTResponseSDKType {
 export interface QueryClassRequest {
   classId: string;
 }
-export interface QueryClassRequestProtoType {
+export interface QueryClassRequestProtoMsg {
   typeUrl: "/cosmos.nft.v1beta1.QueryClassRequest";
   value: Uint8Array;
 }
@@ -264,7 +264,7 @@ export interface QueryClassRequestProtoType {
 export interface QueryClassRequestAmino {
   class_id: string;
 }
-export interface QueryClassRequestAminoType {
+export interface QueryClassRequestAminoMsg {
   type: "cosmos-sdk/QueryClassRequest";
   value: QueryClassRequestAmino;
 }
@@ -278,7 +278,7 @@ export interface QueryClassRequestSDKType {
 export interface QueryClassResponse {
   class?: Class;
 }
-export interface QueryClassResponseProtoType {
+export interface QueryClassResponseProtoMsg {
   typeUrl: "/cosmos.nft.v1beta1.QueryClassResponse";
   value: Uint8Array;
 }
@@ -287,7 +287,7 @@ export interface QueryClassResponseProtoType {
 export interface QueryClassResponseAmino {
   class?: ClassAmino;
 }
-export interface QueryClassResponseAminoType {
+export interface QueryClassResponseAminoMsg {
   type: "cosmos-sdk/QueryClassResponse";
   value: QueryClassResponseAmino;
 }
@@ -302,7 +302,7 @@ export interface QueryClassesRequest {
   /** pagination defines an optional pagination for the request. */
   pagination?: PageRequest;
 }
-export interface QueryClassesRequestProtoType {
+export interface QueryClassesRequestProtoMsg {
   typeUrl: "/cosmos.nft.v1beta1.QueryClassesRequest";
   value: Uint8Array;
 }
@@ -312,7 +312,7 @@ export interface QueryClassesRequestAmino {
   /** pagination defines an optional pagination for the request. */
   pagination?: PageRequestAmino;
 }
-export interface QueryClassesRequestAminoType {
+export interface QueryClassesRequestAminoMsg {
   type: "cosmos-sdk/QueryClassesRequest";
   value: QueryClassesRequestAmino;
 }
@@ -327,7 +327,7 @@ export interface QueryClassesResponse {
   classes: Class[];
   pagination?: PageResponse;
 }
-export interface QueryClassesResponseProtoType {
+export interface QueryClassesResponseProtoMsg {
   typeUrl: "/cosmos.nft.v1beta1.QueryClassesResponse";
   value: Uint8Array;
 }
@@ -337,7 +337,7 @@ export interface QueryClassesResponseAmino {
   classes: ClassAmino[];
   pagination?: PageResponseAmino;
 }
-export interface QueryClassesResponseAminoType {
+export interface QueryClassesResponseAminoMsg {
   type: "cosmos-sdk/QueryClassesResponse";
   value: QueryClassesResponseAmino;
 }
@@ -427,6 +427,32 @@ export const QueryBalanceRequest = {
     obj.class_id = message.classId;
     obj.owner = message.owner;
     return obj;
+  },
+
+  fromAminoMsg(object: QueryBalanceRequestAminoMsg): QueryBalanceRequest {
+    return QueryBalanceRequest.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: QueryBalanceRequest): QueryBalanceRequestAminoMsg {
+    return {
+      type: "cosmos-sdk/QueryBalanceRequest",
+      value: QueryBalanceRequest.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: QueryBalanceRequestProtoMsg): QueryBalanceRequest {
+    return QueryBalanceRequest.decode(message.value);
+  },
+
+  toProto(message: QueryBalanceRequest): Uint8Array {
+    return QueryBalanceRequest.encode(message).finish();
+  },
+
+  toProtoMsg(message: QueryBalanceRequest): QueryBalanceRequestProtoMsg {
+    return {
+      typeUrl: "/cosmos.nft.v1beta1.QueryBalanceRequest",
+      value: QueryBalanceRequest.encode(message).finish()
+    };
   }
 
 };
@@ -496,6 +522,32 @@ export const QueryBalanceResponse = {
     const obj: any = {};
     obj.amount = message.amount ? message.amount.toString() : undefined;
     return obj;
+  },
+
+  fromAminoMsg(object: QueryBalanceResponseAminoMsg): QueryBalanceResponse {
+    return QueryBalanceResponse.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: QueryBalanceResponse): QueryBalanceResponseAminoMsg {
+    return {
+      type: "cosmos-sdk/QueryBalanceResponse",
+      value: QueryBalanceResponse.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: QueryBalanceResponseProtoMsg): QueryBalanceResponse {
+    return QueryBalanceResponse.decode(message.value);
+  },
+
+  toProto(message: QueryBalanceResponse): Uint8Array {
+    return QueryBalanceResponse.encode(message).finish();
+  },
+
+  toProtoMsg(message: QueryBalanceResponse): QueryBalanceResponseProtoMsg {
+    return {
+      typeUrl: "/cosmos.nft.v1beta1.QueryBalanceResponse",
+      value: QueryBalanceResponse.encode(message).finish()
+    };
   }
 
 };
@@ -579,6 +631,32 @@ export const QueryOwnerRequest = {
     obj.class_id = message.classId;
     obj.id = message.id;
     return obj;
+  },
+
+  fromAminoMsg(object: QueryOwnerRequestAminoMsg): QueryOwnerRequest {
+    return QueryOwnerRequest.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: QueryOwnerRequest): QueryOwnerRequestAminoMsg {
+    return {
+      type: "cosmos-sdk/QueryOwnerRequest",
+      value: QueryOwnerRequest.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: QueryOwnerRequestProtoMsg): QueryOwnerRequest {
+    return QueryOwnerRequest.decode(message.value);
+  },
+
+  toProto(message: QueryOwnerRequest): Uint8Array {
+    return QueryOwnerRequest.encode(message).finish();
+  },
+
+  toProtoMsg(message: QueryOwnerRequest): QueryOwnerRequestProtoMsg {
+    return {
+      typeUrl: "/cosmos.nft.v1beta1.QueryOwnerRequest",
+      value: QueryOwnerRequest.encode(message).finish()
+    };
   }
 
 };
@@ -648,6 +726,32 @@ export const QueryOwnerResponse = {
     const obj: any = {};
     obj.owner = message.owner;
     return obj;
+  },
+
+  fromAminoMsg(object: QueryOwnerResponseAminoMsg): QueryOwnerResponse {
+    return QueryOwnerResponse.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: QueryOwnerResponse): QueryOwnerResponseAminoMsg {
+    return {
+      type: "cosmos-sdk/QueryOwnerResponse",
+      value: QueryOwnerResponse.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: QueryOwnerResponseProtoMsg): QueryOwnerResponse {
+    return QueryOwnerResponse.decode(message.value);
+  },
+
+  toProto(message: QueryOwnerResponse): Uint8Array {
+    return QueryOwnerResponse.encode(message).finish();
+  },
+
+  toProtoMsg(message: QueryOwnerResponse): QueryOwnerResponseProtoMsg {
+    return {
+      typeUrl: "/cosmos.nft.v1beta1.QueryOwnerResponse",
+      value: QueryOwnerResponse.encode(message).finish()
+    };
   }
 
 };
@@ -717,6 +821,32 @@ export const QuerySupplyRequest = {
     const obj: any = {};
     obj.class_id = message.classId;
     return obj;
+  },
+
+  fromAminoMsg(object: QuerySupplyRequestAminoMsg): QuerySupplyRequest {
+    return QuerySupplyRequest.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: QuerySupplyRequest): QuerySupplyRequestAminoMsg {
+    return {
+      type: "cosmos-sdk/QuerySupplyRequest",
+      value: QuerySupplyRequest.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: QuerySupplyRequestProtoMsg): QuerySupplyRequest {
+    return QuerySupplyRequest.decode(message.value);
+  },
+
+  toProto(message: QuerySupplyRequest): Uint8Array {
+    return QuerySupplyRequest.encode(message).finish();
+  },
+
+  toProtoMsg(message: QuerySupplyRequest): QuerySupplyRequestProtoMsg {
+    return {
+      typeUrl: "/cosmos.nft.v1beta1.QuerySupplyRequest",
+      value: QuerySupplyRequest.encode(message).finish()
+    };
   }
 
 };
@@ -786,6 +916,32 @@ export const QuerySupplyResponse = {
     const obj: any = {};
     obj.amount = message.amount ? message.amount.toString() : undefined;
     return obj;
+  },
+
+  fromAminoMsg(object: QuerySupplyResponseAminoMsg): QuerySupplyResponse {
+    return QuerySupplyResponse.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: QuerySupplyResponse): QuerySupplyResponseAminoMsg {
+    return {
+      type: "cosmos-sdk/QuerySupplyResponse",
+      value: QuerySupplyResponse.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: QuerySupplyResponseProtoMsg): QuerySupplyResponse {
+    return QuerySupplyResponse.decode(message.value);
+  },
+
+  toProto(message: QuerySupplyResponse): Uint8Array {
+    return QuerySupplyResponse.encode(message).finish();
+  },
+
+  toProtoMsg(message: QuerySupplyResponse): QuerySupplyResponseProtoMsg {
+    return {
+      typeUrl: "/cosmos.nft.v1beta1.QuerySupplyResponse",
+      value: QuerySupplyResponse.encode(message).finish()
+    };
   }
 
 };
@@ -883,6 +1039,32 @@ export const QueryNFTsRequest = {
     obj.owner = message.owner;
     obj.pagination = message.pagination ? PageRequest.toAmino(message.pagination) : undefined;
     return obj;
+  },
+
+  fromAminoMsg(object: QueryNFTsRequestAminoMsg): QueryNFTsRequest {
+    return QueryNFTsRequest.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: QueryNFTsRequest): QueryNFTsRequestAminoMsg {
+    return {
+      type: "cosmos-sdk/QueryNFTsRequest",
+      value: QueryNFTsRequest.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: QueryNFTsRequestProtoMsg): QueryNFTsRequest {
+    return QueryNFTsRequest.decode(message.value);
+  },
+
+  toProto(message: QueryNFTsRequest): Uint8Array {
+    return QueryNFTsRequest.encode(message).finish();
+  },
+
+  toProtoMsg(message: QueryNFTsRequest): QueryNFTsRequestProtoMsg {
+    return {
+      typeUrl: "/cosmos.nft.v1beta1.QueryNFTsRequest",
+      value: QueryNFTsRequest.encode(message).finish()
+    };
   }
 
 };
@@ -978,6 +1160,32 @@ export const QueryNFTsResponse = {
 
     obj.pagination = message.pagination ? PageResponse.toAmino(message.pagination) : undefined;
     return obj;
+  },
+
+  fromAminoMsg(object: QueryNFTsResponseAminoMsg): QueryNFTsResponse {
+    return QueryNFTsResponse.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: QueryNFTsResponse): QueryNFTsResponseAminoMsg {
+    return {
+      type: "cosmos-sdk/QueryNFTsResponse",
+      value: QueryNFTsResponse.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: QueryNFTsResponseProtoMsg): QueryNFTsResponse {
+    return QueryNFTsResponse.decode(message.value);
+  },
+
+  toProto(message: QueryNFTsResponse): Uint8Array {
+    return QueryNFTsResponse.encode(message).finish();
+  },
+
+  toProtoMsg(message: QueryNFTsResponse): QueryNFTsResponseProtoMsg {
+    return {
+      typeUrl: "/cosmos.nft.v1beta1.QueryNFTsResponse",
+      value: QueryNFTsResponse.encode(message).finish()
+    };
   }
 
 };
@@ -1061,6 +1269,32 @@ export const QueryNFTRequest = {
     obj.class_id = message.classId;
     obj.id = message.id;
     return obj;
+  },
+
+  fromAminoMsg(object: QueryNFTRequestAminoMsg): QueryNFTRequest {
+    return QueryNFTRequest.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: QueryNFTRequest): QueryNFTRequestAminoMsg {
+    return {
+      type: "cosmos-sdk/QueryNFTRequest",
+      value: QueryNFTRequest.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: QueryNFTRequestProtoMsg): QueryNFTRequest {
+    return QueryNFTRequest.decode(message.value);
+  },
+
+  toProto(message: QueryNFTRequest): Uint8Array {
+    return QueryNFTRequest.encode(message).finish();
+  },
+
+  toProtoMsg(message: QueryNFTRequest): QueryNFTRequestProtoMsg {
+    return {
+      typeUrl: "/cosmos.nft.v1beta1.QueryNFTRequest",
+      value: QueryNFTRequest.encode(message).finish()
+    };
   }
 
 };
@@ -1130,6 +1364,32 @@ export const QueryNFTResponse = {
     const obj: any = {};
     obj.nft = message.nft ? NFT.toAmino(message.nft) : undefined;
     return obj;
+  },
+
+  fromAminoMsg(object: QueryNFTResponseAminoMsg): QueryNFTResponse {
+    return QueryNFTResponse.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: QueryNFTResponse): QueryNFTResponseAminoMsg {
+    return {
+      type: "cosmos-sdk/QueryNFTResponse",
+      value: QueryNFTResponse.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: QueryNFTResponseProtoMsg): QueryNFTResponse {
+    return QueryNFTResponse.decode(message.value);
+  },
+
+  toProto(message: QueryNFTResponse): Uint8Array {
+    return QueryNFTResponse.encode(message).finish();
+  },
+
+  toProtoMsg(message: QueryNFTResponse): QueryNFTResponseProtoMsg {
+    return {
+      typeUrl: "/cosmos.nft.v1beta1.QueryNFTResponse",
+      value: QueryNFTResponse.encode(message).finish()
+    };
   }
 
 };
@@ -1199,6 +1459,32 @@ export const QueryClassRequest = {
     const obj: any = {};
     obj.class_id = message.classId;
     return obj;
+  },
+
+  fromAminoMsg(object: QueryClassRequestAminoMsg): QueryClassRequest {
+    return QueryClassRequest.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: QueryClassRequest): QueryClassRequestAminoMsg {
+    return {
+      type: "cosmos-sdk/QueryClassRequest",
+      value: QueryClassRequest.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: QueryClassRequestProtoMsg): QueryClassRequest {
+    return QueryClassRequest.decode(message.value);
+  },
+
+  toProto(message: QueryClassRequest): Uint8Array {
+    return QueryClassRequest.encode(message).finish();
+  },
+
+  toProtoMsg(message: QueryClassRequest): QueryClassRequestProtoMsg {
+    return {
+      typeUrl: "/cosmos.nft.v1beta1.QueryClassRequest",
+      value: QueryClassRequest.encode(message).finish()
+    };
   }
 
 };
@@ -1268,6 +1554,32 @@ export const QueryClassResponse = {
     const obj: any = {};
     obj.class = message.class ? Class.toAmino(message.class) : undefined;
     return obj;
+  },
+
+  fromAminoMsg(object: QueryClassResponseAminoMsg): QueryClassResponse {
+    return QueryClassResponse.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: QueryClassResponse): QueryClassResponseAminoMsg {
+    return {
+      type: "cosmos-sdk/QueryClassResponse",
+      value: QueryClassResponse.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: QueryClassResponseProtoMsg): QueryClassResponse {
+    return QueryClassResponse.decode(message.value);
+  },
+
+  toProto(message: QueryClassResponse): Uint8Array {
+    return QueryClassResponse.encode(message).finish();
+  },
+
+  toProtoMsg(message: QueryClassResponse): QueryClassResponseProtoMsg {
+    return {
+      typeUrl: "/cosmos.nft.v1beta1.QueryClassResponse",
+      value: QueryClassResponse.encode(message).finish()
+    };
   }
 
 };
@@ -1337,6 +1649,32 @@ export const QueryClassesRequest = {
     const obj: any = {};
     obj.pagination = message.pagination ? PageRequest.toAmino(message.pagination) : undefined;
     return obj;
+  },
+
+  fromAminoMsg(object: QueryClassesRequestAminoMsg): QueryClassesRequest {
+    return QueryClassesRequest.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: QueryClassesRequest): QueryClassesRequestAminoMsg {
+    return {
+      type: "cosmos-sdk/QueryClassesRequest",
+      value: QueryClassesRequest.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: QueryClassesRequestProtoMsg): QueryClassesRequest {
+    return QueryClassesRequest.decode(message.value);
+  },
+
+  toProto(message: QueryClassesRequest): Uint8Array {
+    return QueryClassesRequest.encode(message).finish();
+  },
+
+  toProtoMsg(message: QueryClassesRequest): QueryClassesRequestProtoMsg {
+    return {
+      typeUrl: "/cosmos.nft.v1beta1.QueryClassesRequest",
+      value: QueryClassesRequest.encode(message).finish()
+    };
   }
 
 };
@@ -1432,6 +1770,32 @@ export const QueryClassesResponse = {
 
     obj.pagination = message.pagination ? PageResponse.toAmino(message.pagination) : undefined;
     return obj;
+  },
+
+  fromAminoMsg(object: QueryClassesResponseAminoMsg): QueryClassesResponse {
+    return QueryClassesResponse.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: QueryClassesResponse): QueryClassesResponseAminoMsg {
+    return {
+      type: "cosmos-sdk/QueryClassesResponse",
+      value: QueryClassesResponse.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: QueryClassesResponseProtoMsg): QueryClassesResponse {
+    return QueryClassesResponse.decode(message.value);
+  },
+
+  toProto(message: QueryClassesResponse): Uint8Array {
+    return QueryClassesResponse.encode(message).finish();
+  },
+
+  toProtoMsg(message: QueryClassesResponse): QueryClassesResponseProtoMsg {
+    return {
+      typeUrl: "/cosmos.nft.v1beta1.QueryClassesResponse",
+      value: QueryClassesResponse.encode(message).finish()
+    };
   }
 
 };

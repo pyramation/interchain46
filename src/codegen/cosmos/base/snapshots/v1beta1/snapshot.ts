@@ -9,7 +9,7 @@ export interface Snapshot {
   hash: Uint8Array;
   metadata?: Metadata;
 }
-export interface SnapshotProtoType {
+export interface SnapshotProtoMsg {
   typeUrl: "/cosmos.base.snapshots.v1beta1.Snapshot";
   value: Uint8Array;
 }
@@ -22,7 +22,7 @@ export interface SnapshotAmino {
   hash: Uint8Array;
   metadata?: MetadataAmino;
 }
-export interface SnapshotAminoType {
+export interface SnapshotAminoMsg {
   type: "cosmos-sdk/Snapshot";
   value: SnapshotAmino;
 }
@@ -41,7 +41,7 @@ export interface Metadata {
   /** SHA-256 chunk hashes */
   chunkHashes: Uint8Array[];
 }
-export interface MetadataProtoType {
+export interface MetadataProtoMsg {
   typeUrl: "/cosmos.base.snapshots.v1beta1.Metadata";
   value: Uint8Array;
 }
@@ -51,7 +51,7 @@ export interface MetadataAmino {
   /** SHA-256 chunk hashes */
   chunk_hashes: Uint8Array[];
 }
-export interface MetadataAminoType {
+export interface MetadataAminoMsg {
   type: "cosmos-sdk/Metadata";
   value: MetadataAmino;
 }
@@ -74,7 +74,7 @@ export interface SnapshotItem {
   kv?: SnapshotKVItem;
   schema?: SnapshotSchema;
 }
-export interface SnapshotItemProtoType {
+export interface SnapshotItemProtoMsg {
   typeUrl: "/cosmos.base.snapshots.v1beta1.SnapshotItem";
   value: Uint8Array;
 }
@@ -92,7 +92,7 @@ export interface SnapshotItemAmino {
   kv?: SnapshotKVItemAmino;
   schema?: SnapshotSchemaAmino;
 }
-export interface SnapshotItemAminoType {
+export interface SnapshotItemAminoMsg {
   type: "cosmos-sdk/SnapshotItem";
   value: SnapshotItemAmino;
 }
@@ -119,7 +119,7 @@ export interface SnapshotItemSDKType {
 export interface SnapshotStoreItem {
   name: string;
 }
-export interface SnapshotStoreItemProtoType {
+export interface SnapshotStoreItemProtoMsg {
   typeUrl: "/cosmos.base.snapshots.v1beta1.SnapshotStoreItem";
   value: Uint8Array;
 }
@@ -132,7 +132,7 @@ export interface SnapshotStoreItemProtoType {
 export interface SnapshotStoreItemAmino {
   name: string;
 }
-export interface SnapshotStoreItemAminoType {
+export interface SnapshotStoreItemAminoMsg {
   type: "cosmos-sdk/SnapshotStoreItem";
   value: SnapshotStoreItemAmino;
 }
@@ -161,7 +161,7 @@ export interface SnapshotIAVLItem {
 
   height: number;
 }
-export interface SnapshotIAVLItemProtoType {
+export interface SnapshotIAVLItemProtoMsg {
   typeUrl: "/cosmos.base.snapshots.v1beta1.SnapshotIAVLItem";
   value: Uint8Array;
 }
@@ -181,7 +181,7 @@ export interface SnapshotIAVLItemAmino {
 
   height: number;
 }
-export interface SnapshotIAVLItemAminoType {
+export interface SnapshotIAVLItemAminoMsg {
   type: "cosmos-sdk/SnapshotIAVLItem";
   value: SnapshotIAVLItemAmino;
 }
@@ -207,7 +207,7 @@ export interface SnapshotExtensionMeta {
   name: string;
   format: number;
 }
-export interface SnapshotExtensionMetaProtoType {
+export interface SnapshotExtensionMetaProtoMsg {
   typeUrl: "/cosmos.base.snapshots.v1beta1.SnapshotExtensionMeta";
   value: Uint8Array;
 }
@@ -221,7 +221,7 @@ export interface SnapshotExtensionMetaAmino {
   name: string;
   format: number;
 }
-export interface SnapshotExtensionMetaAminoType {
+export interface SnapshotExtensionMetaAminoMsg {
   type: "cosmos-sdk/SnapshotExtensionMeta";
   value: SnapshotExtensionMetaAmino;
 }
@@ -244,7 +244,7 @@ export interface SnapshotExtensionMetaSDKType {
 export interface SnapshotExtensionPayload {
   payload: Uint8Array;
 }
-export interface SnapshotExtensionPayloadProtoType {
+export interface SnapshotExtensionPayloadProtoMsg {
   typeUrl: "/cosmos.base.snapshots.v1beta1.SnapshotExtensionPayload";
   value: Uint8Array;
 }
@@ -257,7 +257,7 @@ export interface SnapshotExtensionPayloadProtoType {
 export interface SnapshotExtensionPayloadAmino {
   payload: Uint8Array;
 }
-export interface SnapshotExtensionPayloadAminoType {
+export interface SnapshotExtensionPayloadAminoMsg {
   type: "cosmos-sdk/SnapshotExtensionPayload";
   value: SnapshotExtensionPayloadAmino;
 }
@@ -280,7 +280,7 @@ export interface SnapshotKVItem {
   key: Uint8Array;
   value: Uint8Array;
 }
-export interface SnapshotKVItemProtoType {
+export interface SnapshotKVItemProtoMsg {
   typeUrl: "/cosmos.base.snapshots.v1beta1.SnapshotKVItem";
   value: Uint8Array;
 }
@@ -294,7 +294,7 @@ export interface SnapshotKVItemAmino {
   key: Uint8Array;
   value: Uint8Array;
 }
-export interface SnapshotKVItemAminoType {
+export interface SnapshotKVItemAminoMsg {
   type: "cosmos-sdk/SnapshotKVItem";
   value: SnapshotKVItemAmino;
 }
@@ -317,7 +317,7 @@ export interface SnapshotKVItemSDKType {
 export interface SnapshotSchema {
   keys: Uint8Array[];
 }
-export interface SnapshotSchemaProtoType {
+export interface SnapshotSchemaProtoMsg {
   typeUrl: "/cosmos.base.snapshots.v1beta1.SnapshotSchema";
   value: Uint8Array;
 }
@@ -330,7 +330,7 @@ export interface SnapshotSchemaProtoType {
 export interface SnapshotSchemaAmino {
   keys: Uint8Array[];
 }
-export interface SnapshotSchemaAminoType {
+export interface SnapshotSchemaAminoMsg {
   type: "cosmos-sdk/SnapshotSchema";
   value: SnapshotSchemaAmino;
 }
@@ -465,6 +465,32 @@ export const Snapshot = {
     obj.hash = message.hash;
     obj.metadata = message.metadata ? Metadata.toAmino(message.metadata) : undefined;
     return obj;
+  },
+
+  fromAminoMsg(object: SnapshotAminoMsg): Snapshot {
+    return Snapshot.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: Snapshot): SnapshotAminoMsg {
+    return {
+      type: "cosmos-sdk/Snapshot",
+      value: Snapshot.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: SnapshotProtoMsg): Snapshot {
+    return Snapshot.decode(message.value);
+  },
+
+  toProto(message: Snapshot): Uint8Array {
+    return Snapshot.encode(message).finish();
+  },
+
+  toProtoMsg(message: Snapshot): SnapshotProtoMsg {
+    return {
+      typeUrl: "/cosmos.base.snapshots.v1beta1.Snapshot",
+      value: Snapshot.encode(message).finish()
+    };
   }
 
 };
@@ -546,6 +572,32 @@ export const Metadata = {
     }
 
     return obj;
+  },
+
+  fromAminoMsg(object: MetadataAminoMsg): Metadata {
+    return Metadata.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: Metadata): MetadataAminoMsg {
+    return {
+      type: "cosmos-sdk/Metadata",
+      value: Metadata.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: MetadataProtoMsg): Metadata {
+    return Metadata.decode(message.value);
+  },
+
+  toProto(message: Metadata): Uint8Array {
+    return Metadata.encode(message).finish();
+  },
+
+  toProtoMsg(message: Metadata): MetadataProtoMsg {
+    return {
+      typeUrl: "/cosmos.base.snapshots.v1beta1.Metadata",
+      value: Metadata.encode(message).finish()
+    };
   }
 
 };
@@ -685,6 +737,32 @@ export const SnapshotItem = {
     obj.kv = message.kv ? SnapshotKVItem.toAmino(message.kv) : undefined;
     obj.schema = message.schema ? SnapshotSchema.toAmino(message.schema) : undefined;
     return obj;
+  },
+
+  fromAminoMsg(object: SnapshotItemAminoMsg): SnapshotItem {
+    return SnapshotItem.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: SnapshotItem): SnapshotItemAminoMsg {
+    return {
+      type: "cosmos-sdk/SnapshotItem",
+      value: SnapshotItem.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: SnapshotItemProtoMsg): SnapshotItem {
+    return SnapshotItem.decode(message.value);
+  },
+
+  toProto(message: SnapshotItem): Uint8Array {
+    return SnapshotItem.encode(message).finish();
+  },
+
+  toProtoMsg(message: SnapshotItem): SnapshotItemProtoMsg {
+    return {
+      typeUrl: "/cosmos.base.snapshots.v1beta1.SnapshotItem",
+      value: SnapshotItem.encode(message).finish()
+    };
   }
 
 };
@@ -754,6 +832,32 @@ export const SnapshotStoreItem = {
     const obj: any = {};
     obj.name = message.name;
     return obj;
+  },
+
+  fromAminoMsg(object: SnapshotStoreItemAminoMsg): SnapshotStoreItem {
+    return SnapshotStoreItem.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: SnapshotStoreItem): SnapshotStoreItemAminoMsg {
+    return {
+      type: "cosmos-sdk/SnapshotStoreItem",
+      value: SnapshotStoreItem.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: SnapshotStoreItemProtoMsg): SnapshotStoreItem {
+    return SnapshotStoreItem.decode(message.value);
+  },
+
+  toProto(message: SnapshotStoreItem): Uint8Array {
+    return SnapshotStoreItem.encode(message).finish();
+  },
+
+  toProtoMsg(message: SnapshotStoreItem): SnapshotStoreItemProtoMsg {
+    return {
+      typeUrl: "/cosmos.base.snapshots.v1beta1.SnapshotStoreItem",
+      value: SnapshotStoreItem.encode(message).finish()
+    };
   }
 
 };
@@ -865,6 +969,32 @@ export const SnapshotIAVLItem = {
     obj.version = message.version ? message.version.toString() : undefined;
     obj.height = message.height;
     return obj;
+  },
+
+  fromAminoMsg(object: SnapshotIAVLItemAminoMsg): SnapshotIAVLItem {
+    return SnapshotIAVLItem.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: SnapshotIAVLItem): SnapshotIAVLItemAminoMsg {
+    return {
+      type: "cosmos-sdk/SnapshotIAVLItem",
+      value: SnapshotIAVLItem.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: SnapshotIAVLItemProtoMsg): SnapshotIAVLItem {
+    return SnapshotIAVLItem.decode(message.value);
+  },
+
+  toProto(message: SnapshotIAVLItem): Uint8Array {
+    return SnapshotIAVLItem.encode(message).finish();
+  },
+
+  toProtoMsg(message: SnapshotIAVLItem): SnapshotIAVLItemProtoMsg {
+    return {
+      typeUrl: "/cosmos.base.snapshots.v1beta1.SnapshotIAVLItem",
+      value: SnapshotIAVLItem.encode(message).finish()
+    };
   }
 
 };
@@ -948,6 +1078,32 @@ export const SnapshotExtensionMeta = {
     obj.name = message.name;
     obj.format = message.format;
     return obj;
+  },
+
+  fromAminoMsg(object: SnapshotExtensionMetaAminoMsg): SnapshotExtensionMeta {
+    return SnapshotExtensionMeta.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: SnapshotExtensionMeta): SnapshotExtensionMetaAminoMsg {
+    return {
+      type: "cosmos-sdk/SnapshotExtensionMeta",
+      value: SnapshotExtensionMeta.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: SnapshotExtensionMetaProtoMsg): SnapshotExtensionMeta {
+    return SnapshotExtensionMeta.decode(message.value);
+  },
+
+  toProto(message: SnapshotExtensionMeta): Uint8Array {
+    return SnapshotExtensionMeta.encode(message).finish();
+  },
+
+  toProtoMsg(message: SnapshotExtensionMeta): SnapshotExtensionMetaProtoMsg {
+    return {
+      typeUrl: "/cosmos.base.snapshots.v1beta1.SnapshotExtensionMeta",
+      value: SnapshotExtensionMeta.encode(message).finish()
+    };
   }
 
 };
@@ -1017,6 +1173,32 @@ export const SnapshotExtensionPayload = {
     const obj: any = {};
     obj.payload = message.payload;
     return obj;
+  },
+
+  fromAminoMsg(object: SnapshotExtensionPayloadAminoMsg): SnapshotExtensionPayload {
+    return SnapshotExtensionPayload.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: SnapshotExtensionPayload): SnapshotExtensionPayloadAminoMsg {
+    return {
+      type: "cosmos-sdk/SnapshotExtensionPayload",
+      value: SnapshotExtensionPayload.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: SnapshotExtensionPayloadProtoMsg): SnapshotExtensionPayload {
+    return SnapshotExtensionPayload.decode(message.value);
+  },
+
+  toProto(message: SnapshotExtensionPayload): Uint8Array {
+    return SnapshotExtensionPayload.encode(message).finish();
+  },
+
+  toProtoMsg(message: SnapshotExtensionPayload): SnapshotExtensionPayloadProtoMsg {
+    return {
+      typeUrl: "/cosmos.base.snapshots.v1beta1.SnapshotExtensionPayload",
+      value: SnapshotExtensionPayload.encode(message).finish()
+    };
   }
 
 };
@@ -1100,6 +1282,32 @@ export const SnapshotKVItem = {
     obj.key = message.key;
     obj.value = message.value;
     return obj;
+  },
+
+  fromAminoMsg(object: SnapshotKVItemAminoMsg): SnapshotKVItem {
+    return SnapshotKVItem.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: SnapshotKVItem): SnapshotKVItemAminoMsg {
+    return {
+      type: "cosmos-sdk/SnapshotKVItem",
+      value: SnapshotKVItem.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: SnapshotKVItemProtoMsg): SnapshotKVItem {
+    return SnapshotKVItem.decode(message.value);
+  },
+
+  toProto(message: SnapshotKVItem): Uint8Array {
+    return SnapshotKVItem.encode(message).finish();
+  },
+
+  toProtoMsg(message: SnapshotKVItem): SnapshotKVItemProtoMsg {
+    return {
+      typeUrl: "/cosmos.base.snapshots.v1beta1.SnapshotKVItem",
+      value: SnapshotKVItem.encode(message).finish()
+    };
   }
 
 };
@@ -1181,6 +1389,32 @@ export const SnapshotSchema = {
     }
 
     return obj;
+  },
+
+  fromAminoMsg(object: SnapshotSchemaAminoMsg): SnapshotSchema {
+    return SnapshotSchema.fromAmino(object.value);
+  },
+
+  toAminoMsg(message: SnapshotSchema): SnapshotSchemaAminoMsg {
+    return {
+      type: "cosmos-sdk/SnapshotSchema",
+      value: SnapshotSchema.toAmino(message)
+    };
+  },
+
+  fromProtoMsg(message: SnapshotSchemaProtoMsg): SnapshotSchema {
+    return SnapshotSchema.decode(message.value);
+  },
+
+  toProto(message: SnapshotSchema): Uint8Array {
+    return SnapshotSchema.encode(message).finish();
+  },
+
+  toProtoMsg(message: SnapshotSchema): SnapshotSchemaProtoMsg {
+    return {
+      typeUrl: "/cosmos.base.snapshots.v1beta1.SnapshotSchema",
+      value: SnapshotSchema.encode(message).finish()
+    };
   }
 
 };
