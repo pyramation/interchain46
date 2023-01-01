@@ -13,6 +13,10 @@ export interface Config {
     /** modules are the module configurations for the app. */
     modules: ModuleConfig[];
 }
+export interface ConfigProtoMsg {
+    typeUrl: "/cosmos.app.v1alpha1.Config";
+    value: Uint8Array;
+}
 /**
  * Config represents the configuration for a Cosmos SDK ABCI app.
  * It is intended that all state machine logic including the version of
@@ -25,6 +29,10 @@ export interface Config {
 export interface ConfigAmino {
     /** modules are the module configurations for the app. */
     modules: ModuleConfigAmino[];
+}
+export interface ConfigAminoMsg {
+    type: "cosmos-sdk/Config";
+    value: ConfigAmino;
 }
 /**
  * Config represents the configuration for a Cosmos SDK ABCI app.
@@ -59,6 +67,10 @@ export interface ModuleConfig {
      */
     config?: Any;
 }
+export interface ModuleConfigProtoMsg {
+    typeUrl: "/cosmos.app.v1alpha1.ModuleConfig";
+    value: Uint8Array;
+}
 /** ModuleConfig is a module configuration for an app. */
 export interface ModuleConfigAmino {
     /**
@@ -80,6 +92,10 @@ export interface ModuleConfigAmino {
      */
     config?: AnyAmino;
 }
+export interface ModuleConfigAminoMsg {
+    type: "cosmos-sdk/ModuleConfig";
+    value: ModuleConfigAmino;
+}
 /** ModuleConfig is a module configuration for an app. */
 export interface ModuleConfigSDKType {
     name: string;
@@ -93,6 +109,11 @@ export declare const Config: {
     fromPartial(object: Partial<Config>): Config;
     fromAmino(object: ConfigAmino): Config;
     toAmino(message: Config): ConfigAmino;
+    fromAminoMsg(object: ConfigAminoMsg): Config;
+    toAminoMsg(message: Config): ConfigAminoMsg;
+    fromProtoMsg(message: ConfigProtoMsg): Config;
+    toProto(message: Config): Uint8Array;
+    toProtoMsg(message: Config): ConfigProtoMsg;
 };
 export declare const ModuleConfig: {
     encode(message: ModuleConfig, writer?: _m0.Writer): _m0.Writer;
@@ -102,4 +123,9 @@ export declare const ModuleConfig: {
     fromPartial(object: Partial<ModuleConfig>): ModuleConfig;
     fromAmino(object: ModuleConfigAmino): ModuleConfig;
     toAmino(message: ModuleConfig): ModuleConfigAmino;
+    fromAminoMsg(object: ModuleConfigAminoMsg): ModuleConfig;
+    toAminoMsg(message: ModuleConfig): ModuleConfigAminoMsg;
+    fromProtoMsg(message: ModuleConfigProtoMsg): ModuleConfig;
+    toProto(message: ModuleConfig): Uint8Array;
+    toProtoMsg(message: ModuleConfig): ModuleConfigProtoMsg;
 };

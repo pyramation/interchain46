@@ -62,10 +62,18 @@ export interface WeightedVoteOption {
     option: VoteOption;
     weight: string;
 }
+export interface WeightedVoteOptionProtoMsg {
+    typeUrl: "/cosmos.gov.v1.WeightedVoteOption";
+    value: Uint8Array;
+}
 /** WeightedVoteOption defines a unit of vote for vote split. */
 export interface WeightedVoteOptionAmino {
     option: VoteOption;
     weight: string;
+}
+export interface WeightedVoteOptionAminoMsg {
+    type: "cosmos-sdk/v1/WeightedVoteOption";
+    value: WeightedVoteOptionAmino;
 }
 /** WeightedVoteOption defines a unit of vote for vote split. */
 export interface WeightedVoteOptionSDKType {
@@ -81,6 +89,10 @@ export interface Deposit {
     depositor: string;
     amount: Coin[];
 }
+export interface DepositProtoMsg {
+    typeUrl: "/cosmos.gov.v1.Deposit";
+    value: Uint8Array;
+}
 /**
  * Deposit defines an amount deposited by an account address to an active
  * proposal.
@@ -89,6 +101,10 @@ export interface DepositAmino {
     proposal_id: string;
     depositor: string;
     amount: CoinAmino[];
+}
+export interface DepositAminoMsg {
+    type: "cosmos-sdk/v1/Deposit";
+    value: DepositAmino;
 }
 /**
  * Deposit defines an amount deposited by an account address to an active
@@ -118,6 +134,10 @@ export interface Proposal {
     /** metadata is any arbitrary metadata attached to the proposal. */
     metadata: string;
 }
+export interface ProposalProtoMsg {
+    typeUrl: "/cosmos.gov.v1.Proposal";
+    value: Uint8Array;
+}
 /** Proposal defines the core field members of a governance proposal. */
 export interface ProposalAmino {
     id: string;
@@ -136,6 +156,10 @@ export interface ProposalAmino {
     voting_end_time?: TimestampAmino;
     /** metadata is any arbitrary metadata attached to the proposal. */
     metadata: string;
+}
+export interface ProposalAminoMsg {
+    type: "cosmos-sdk/v1/Proposal";
+    value: ProposalAmino;
 }
 /** Proposal defines the core field members of a governance proposal. */
 export interface ProposalSDKType {
@@ -157,12 +181,20 @@ export interface TallyResult {
     noCount: string;
     noWithVetoCount: string;
 }
+export interface TallyResultProtoMsg {
+    typeUrl: "/cosmos.gov.v1.TallyResult";
+    value: Uint8Array;
+}
 /** TallyResult defines a standard tally for a governance proposal. */
 export interface TallyResultAmino {
     yes_count: string;
     abstain_count: string;
     no_count: string;
     no_with_veto_count: string;
+}
+export interface TallyResultAminoMsg {
+    type: "cosmos-sdk/v1/TallyResult";
+    value: TallyResultAmino;
 }
 /** TallyResult defines a standard tally for a governance proposal. */
 export interface TallyResultSDKType {
@@ -182,6 +214,10 @@ export interface Vote {
     /** metadata is any  arbitrary metadata to attached to the vote. */
     metadata: string;
 }
+export interface VoteProtoMsg {
+    typeUrl: "/cosmos.gov.v1.Vote";
+    value: Uint8Array;
+}
 /**
  * Vote defines a vote on a governance proposal.
  * A Vote consists of a proposal ID, the voter, and the vote option.
@@ -192,6 +228,10 @@ export interface VoteAmino {
     options: WeightedVoteOptionAmino[];
     /** metadata is any  arbitrary metadata to attached to the vote. */
     metadata: string;
+}
+export interface VoteAminoMsg {
+    type: "cosmos-sdk/v1/Vote";
+    value: VoteAmino;
 }
 /**
  * Vote defines a vote on a governance proposal.
@@ -213,6 +253,10 @@ export interface DepositParams {
      */
     maxDepositPeriod?: Duration;
 }
+export interface DepositParamsProtoMsg {
+    typeUrl: "/cosmos.gov.v1.DepositParams";
+    value: Uint8Array;
+}
 /** DepositParams defines the params for deposits on governance proposals. */
 export interface DepositParamsAmino {
     /** Minimum deposit for a proposal to enter voting period. */
@@ -222,6 +266,10 @@ export interface DepositParamsAmino {
      *  months.
      */
     max_deposit_period?: DurationAmino;
+}
+export interface DepositParamsAminoMsg {
+    type: "cosmos-sdk/v1/DepositParams";
+    value: DepositParamsAmino;
 }
 /** DepositParams defines the params for deposits on governance proposals. */
 export interface DepositParamsSDKType {
@@ -233,10 +281,18 @@ export interface VotingParams {
     /** Length of the voting period. */
     votingPeriod?: Duration;
 }
+export interface VotingParamsProtoMsg {
+    typeUrl: "/cosmos.gov.v1.VotingParams";
+    value: Uint8Array;
+}
 /** VotingParams defines the params for voting on governance proposals. */
 export interface VotingParamsAmino {
     /** Length of the voting period. */
     voting_period?: DurationAmino;
+}
+export interface VotingParamsAminoMsg {
+    type: "cosmos-sdk/v1/VotingParams";
+    value: VotingParamsAmino;
 }
 /** VotingParams defines the params for voting on governance proposals. */
 export interface VotingParamsSDKType {
@@ -257,6 +313,10 @@ export interface TallyParams {
      */
     vetoThreshold: string;
 }
+export interface TallyParamsProtoMsg {
+    typeUrl: "/cosmos.gov.v1.TallyParams";
+    value: Uint8Array;
+}
 /** TallyParams defines the params for tallying votes on governance proposals. */
 export interface TallyParamsAmino {
     /**
@@ -272,6 +332,10 @@ export interface TallyParamsAmino {
      */
     veto_threshold: string;
 }
+export interface TallyParamsAminoMsg {
+    type: "cosmos-sdk/v1/TallyParams";
+    value: TallyParamsAmino;
+}
 /** TallyParams defines the params for tallying votes on governance proposals. */
 export interface TallyParamsSDKType {
     quorum: string;
@@ -286,6 +350,11 @@ export declare const WeightedVoteOption: {
     fromPartial(object: Partial<WeightedVoteOption>): WeightedVoteOption;
     fromAmino(object: WeightedVoteOptionAmino): WeightedVoteOption;
     toAmino(message: WeightedVoteOption): WeightedVoteOptionAmino;
+    fromAminoMsg(object: WeightedVoteOptionAminoMsg): WeightedVoteOption;
+    toAminoMsg(message: WeightedVoteOption): WeightedVoteOptionAminoMsg;
+    fromProtoMsg(message: WeightedVoteOptionProtoMsg): WeightedVoteOption;
+    toProto(message: WeightedVoteOption): Uint8Array;
+    toProtoMsg(message: WeightedVoteOption): WeightedVoteOptionProtoMsg;
 };
 export declare const Deposit: {
     encode(message: Deposit, writer?: _m0.Writer): _m0.Writer;
@@ -295,6 +364,11 @@ export declare const Deposit: {
     fromPartial(object: Partial<Deposit>): Deposit;
     fromAmino(object: DepositAmino): Deposit;
     toAmino(message: Deposit): DepositAmino;
+    fromAminoMsg(object: DepositAminoMsg): Deposit;
+    toAminoMsg(message: Deposit): DepositAminoMsg;
+    fromProtoMsg(message: DepositProtoMsg): Deposit;
+    toProto(message: Deposit): Uint8Array;
+    toProtoMsg(message: Deposit): DepositProtoMsg;
 };
 export declare const Proposal: {
     encode(message: Proposal, writer?: _m0.Writer): _m0.Writer;
@@ -304,6 +378,11 @@ export declare const Proposal: {
     fromPartial(object: Partial<Proposal>): Proposal;
     fromAmino(object: ProposalAmino): Proposal;
     toAmino(message: Proposal): ProposalAmino;
+    fromAminoMsg(object: ProposalAminoMsg): Proposal;
+    toAminoMsg(message: Proposal): ProposalAminoMsg;
+    fromProtoMsg(message: ProposalProtoMsg): Proposal;
+    toProto(message: Proposal): Uint8Array;
+    toProtoMsg(message: Proposal): ProposalProtoMsg;
 };
 export declare const TallyResult: {
     encode(message: TallyResult, writer?: _m0.Writer): _m0.Writer;
@@ -313,6 +392,11 @@ export declare const TallyResult: {
     fromPartial(object: Partial<TallyResult>): TallyResult;
     fromAmino(object: TallyResultAmino): TallyResult;
     toAmino(message: TallyResult): TallyResultAmino;
+    fromAminoMsg(object: TallyResultAminoMsg): TallyResult;
+    toAminoMsg(message: TallyResult): TallyResultAminoMsg;
+    fromProtoMsg(message: TallyResultProtoMsg): TallyResult;
+    toProto(message: TallyResult): Uint8Array;
+    toProtoMsg(message: TallyResult): TallyResultProtoMsg;
 };
 export declare const Vote: {
     encode(message: Vote, writer?: _m0.Writer): _m0.Writer;
@@ -322,6 +406,11 @@ export declare const Vote: {
     fromPartial(object: Partial<Vote>): Vote;
     fromAmino(object: VoteAmino): Vote;
     toAmino(message: Vote): VoteAmino;
+    fromAminoMsg(object: VoteAminoMsg): Vote;
+    toAminoMsg(message: Vote): VoteAminoMsg;
+    fromProtoMsg(message: VoteProtoMsg): Vote;
+    toProto(message: Vote): Uint8Array;
+    toProtoMsg(message: Vote): VoteProtoMsg;
 };
 export declare const DepositParams: {
     encode(message: DepositParams, writer?: _m0.Writer): _m0.Writer;
@@ -331,6 +420,11 @@ export declare const DepositParams: {
     fromPartial(object: Partial<DepositParams>): DepositParams;
     fromAmino(object: DepositParamsAmino): DepositParams;
     toAmino(message: DepositParams): DepositParamsAmino;
+    fromAminoMsg(object: DepositParamsAminoMsg): DepositParams;
+    toAminoMsg(message: DepositParams): DepositParamsAminoMsg;
+    fromProtoMsg(message: DepositParamsProtoMsg): DepositParams;
+    toProto(message: DepositParams): Uint8Array;
+    toProtoMsg(message: DepositParams): DepositParamsProtoMsg;
 };
 export declare const VotingParams: {
     encode(message: VotingParams, writer?: _m0.Writer): _m0.Writer;
@@ -340,6 +434,11 @@ export declare const VotingParams: {
     fromPartial(object: Partial<VotingParams>): VotingParams;
     fromAmino(object: VotingParamsAmino): VotingParams;
     toAmino(message: VotingParams): VotingParamsAmino;
+    fromAminoMsg(object: VotingParamsAminoMsg): VotingParams;
+    toAminoMsg(message: VotingParams): VotingParamsAminoMsg;
+    fromProtoMsg(message: VotingParamsProtoMsg): VotingParams;
+    toProto(message: VotingParams): Uint8Array;
+    toProtoMsg(message: VotingParams): VotingParamsProtoMsg;
 };
 export declare const TallyParams: {
     encode(message: TallyParams, writer?: _m0.Writer): _m0.Writer;
@@ -349,4 +448,9 @@ export declare const TallyParams: {
     fromPartial(object: Partial<TallyParams>): TallyParams;
     fromAmino(object: TallyParamsAmino): TallyParams;
     toAmino(message: TallyParams): TallyParamsAmino;
+    fromAminoMsg(object: TallyParamsAminoMsg): TallyParams;
+    toAminoMsg(message: TallyParams): TallyParamsAminoMsg;
+    fromProtoMsg(message: TallyParamsProtoMsg): TallyParams;
+    toProto(message: TallyParams): Uint8Array;
+    toProtoMsg(message: TallyParams): TallyParamsProtoMsg;
 };

@@ -8,12 +8,20 @@ export interface GenesisOwners {
     /** index_owners are the owners at the given index. */
     indexOwners?: CapabilityOwners;
 }
+export interface GenesisOwnersProtoMsg {
+    typeUrl: "/cosmos.capability.v1beta1.GenesisOwners";
+    value: Uint8Array;
+}
 /** GenesisOwners defines the capability owners with their corresponding index. */
 export interface GenesisOwnersAmino {
     /** index is the index of the capability owner. */
     index: string;
     /** index_owners are the owners at the given index. */
     index_owners?: CapabilityOwnersAmino;
+}
+export interface GenesisOwnersAminoMsg {
+    type: "cosmos-sdk/GenesisOwners";
+    value: GenesisOwnersAmino;
 }
 /** GenesisOwners defines the capability owners with their corresponding index. */
 export interface GenesisOwnersSDKType {
@@ -30,6 +38,10 @@ export interface GenesisState {
      */
     owners: GenesisOwners[];
 }
+export interface GenesisStateProtoMsg {
+    typeUrl: "/cosmos.capability.v1beta1.GenesisState";
+    value: Uint8Array;
+}
 /** GenesisState defines the capability module's genesis state. */
 export interface GenesisStateAmino {
     /** index is the capability global index. */
@@ -39,6 +51,10 @@ export interface GenesisStateAmino {
      * index key is string to allow amino marshalling.
      */
     owners: GenesisOwnersAmino[];
+}
+export interface GenesisStateAminoMsg {
+    type: "cosmos-sdk/GenesisState";
+    value: GenesisStateAmino;
 }
 /** GenesisState defines the capability module's genesis state. */
 export interface GenesisStateSDKType {
@@ -53,6 +69,11 @@ export declare const GenesisOwners: {
     fromPartial(object: Partial<GenesisOwners>): GenesisOwners;
     fromAmino(object: GenesisOwnersAmino): GenesisOwners;
     toAmino(message: GenesisOwners): GenesisOwnersAmino;
+    fromAminoMsg(object: GenesisOwnersAminoMsg): GenesisOwners;
+    toAminoMsg(message: GenesisOwners): GenesisOwnersAminoMsg;
+    fromProtoMsg(message: GenesisOwnersProtoMsg): GenesisOwners;
+    toProto(message: GenesisOwners): Uint8Array;
+    toProtoMsg(message: GenesisOwners): GenesisOwnersProtoMsg;
 };
 export declare const GenesisState: {
     encode(message: GenesisState, writer?: _m0.Writer): _m0.Writer;
@@ -62,4 +83,9 @@ export declare const GenesisState: {
     fromPartial(object: Partial<GenesisState>): GenesisState;
     fromAmino(object: GenesisStateAmino): GenesisState;
     toAmino(message: GenesisState): GenesisStateAmino;
+    fromAminoMsg(object: GenesisStateAminoMsg): GenesisState;
+    toAminoMsg(message: GenesisState): GenesisStateAminoMsg;
+    fromProtoMsg(message: GenesisStateProtoMsg): GenesisState;
+    toProto(message: GenesisState): Uint8Array;
+    toProtoMsg(message: GenesisState): GenesisStateProtoMsg;
 };

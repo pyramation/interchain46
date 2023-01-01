@@ -67,10 +67,18 @@ export interface SignatureDescriptors {
     /** signatures are the signature descriptors */
     signatures: SignatureDescriptor[];
 }
+export interface SignatureDescriptorsProtoMsg {
+    typeUrl: "/cosmos.tx.signing.v1beta1.SignatureDescriptors";
+    value: Uint8Array;
+}
 /** SignatureDescriptors wraps multiple SignatureDescriptor's. */
 export interface SignatureDescriptorsAmino {
     /** signatures are the signature descriptors */
     signatures: SignatureDescriptorAmino[];
+}
+export interface SignatureDescriptorsAminoMsg {
+    type: "cosmos-sdk/SignatureDescriptors";
+    value: SignatureDescriptorsAmino;
 }
 /** SignatureDescriptors wraps multiple SignatureDescriptor's. */
 export interface SignatureDescriptorsSDKType {
@@ -93,6 +101,10 @@ export interface SignatureDescriptor {
      */
     sequence: Long;
 }
+export interface SignatureDescriptorProtoMsg {
+    typeUrl: "/cosmos.tx.signing.v1beta1.SignatureDescriptor";
+    value: Uint8Array;
+}
 /**
  * SignatureDescriptor is a convenience type which represents the full data for
  * a signature including the public key of the signer, signing modes and the
@@ -109,6 +121,10 @@ export interface SignatureDescriptorAmino {
      * replay attacks.
      */
     sequence: string;
+}
+export interface SignatureDescriptorAminoMsg {
+    type: "cosmos-sdk/SignatureDescriptor";
+    value: SignatureDescriptorAmino;
 }
 /**
  * SignatureDescriptor is a convenience type which represents the full data for
@@ -128,12 +144,20 @@ export interface SignatureDescriptor_Data {
     /** multi represents a multisig signer */
     multi?: SignatureDescriptor_Data_Multi;
 }
+export interface SignatureDescriptor_DataProtoMsg {
+    typeUrl: "/cosmos.tx.signing.v1beta1.Data";
+    value: Uint8Array;
+}
 /** Data represents signature data */
 export interface SignatureDescriptor_DataAmino {
     /** single represents a single signer */
     single?: SignatureDescriptor_Data_SingleAmino;
     /** multi represents a multisig signer */
     multi?: SignatureDescriptor_Data_MultiAmino;
+}
+export interface SignatureDescriptor_DataAminoMsg {
+    type: "cosmos-sdk/Data";
+    value: SignatureDescriptor_DataAmino;
 }
 /** Data represents signature data */
 export interface SignatureDescriptor_DataSDKType {
@@ -147,12 +171,20 @@ export interface SignatureDescriptor_Data_Single {
     /** signature is the raw signature bytes */
     signature: Uint8Array;
 }
+export interface SignatureDescriptor_Data_SingleProtoMsg {
+    typeUrl: "/cosmos.tx.signing.v1beta1.Single";
+    value: Uint8Array;
+}
 /** Single is the signature data for a single signer */
 export interface SignatureDescriptor_Data_SingleAmino {
     /** mode is the signing mode of the single signer */
     mode: SignMode;
     /** signature is the raw signature bytes */
     signature: Uint8Array;
+}
+export interface SignatureDescriptor_Data_SingleAminoMsg {
+    type: "cosmos-sdk/Single";
+    value: SignatureDescriptor_Data_SingleAmino;
 }
 /** Single is the signature data for a single signer */
 export interface SignatureDescriptor_Data_SingleSDKType {
@@ -166,12 +198,20 @@ export interface SignatureDescriptor_Data_Multi {
     /** signatures is the signatures of the multi-signature */
     signatures: SignatureDescriptor_Data[];
 }
+export interface SignatureDescriptor_Data_MultiProtoMsg {
+    typeUrl: "/cosmos.tx.signing.v1beta1.Multi";
+    value: Uint8Array;
+}
 /** Multi is the signature data for a multisig public key */
 export interface SignatureDescriptor_Data_MultiAmino {
     /** bitarray specifies which keys within the multisig are signing */
     bitarray?: CompactBitArrayAmino;
     /** signatures is the signatures of the multi-signature */
     signatures: SignatureDescriptor_DataAmino[];
+}
+export interface SignatureDescriptor_Data_MultiAminoMsg {
+    type: "cosmos-sdk/Multi";
+    value: SignatureDescriptor_Data_MultiAmino;
 }
 /** Multi is the signature data for a multisig public key */
 export interface SignatureDescriptor_Data_MultiSDKType {
@@ -186,6 +226,11 @@ export declare const SignatureDescriptors: {
     fromPartial(object: Partial<SignatureDescriptors>): SignatureDescriptors;
     fromAmino(object: SignatureDescriptorsAmino): SignatureDescriptors;
     toAmino(message: SignatureDescriptors): SignatureDescriptorsAmino;
+    fromAminoMsg(object: SignatureDescriptorsAminoMsg): SignatureDescriptors;
+    toAminoMsg(message: SignatureDescriptors): SignatureDescriptorsAminoMsg;
+    fromProtoMsg(message: SignatureDescriptorsProtoMsg): SignatureDescriptors;
+    toProto(message: SignatureDescriptors): Uint8Array;
+    toProtoMsg(message: SignatureDescriptors): SignatureDescriptorsProtoMsg;
 };
 export declare const SignatureDescriptor: {
     encode(message: SignatureDescriptor, writer?: _m0.Writer): _m0.Writer;
@@ -195,6 +240,11 @@ export declare const SignatureDescriptor: {
     fromPartial(object: Partial<SignatureDescriptor>): SignatureDescriptor;
     fromAmino(object: SignatureDescriptorAmino): SignatureDescriptor;
     toAmino(message: SignatureDescriptor): SignatureDescriptorAmino;
+    fromAminoMsg(object: SignatureDescriptorAminoMsg): SignatureDescriptor;
+    toAminoMsg(message: SignatureDescriptor): SignatureDescriptorAminoMsg;
+    fromProtoMsg(message: SignatureDescriptorProtoMsg): SignatureDescriptor;
+    toProto(message: SignatureDescriptor): Uint8Array;
+    toProtoMsg(message: SignatureDescriptor): SignatureDescriptorProtoMsg;
 };
 export declare const SignatureDescriptor_Data: {
     encode(message: SignatureDescriptor_Data, writer?: _m0.Writer): _m0.Writer;
@@ -204,6 +254,11 @@ export declare const SignatureDescriptor_Data: {
     fromPartial(object: Partial<SignatureDescriptor_Data>): SignatureDescriptor_Data;
     fromAmino(object: SignatureDescriptor_DataAmino): SignatureDescriptor_Data;
     toAmino(message: SignatureDescriptor_Data): SignatureDescriptor_DataAmino;
+    fromAminoMsg(object: SignatureDescriptor_DataAminoMsg): SignatureDescriptor_Data;
+    toAminoMsg(message: SignatureDescriptor_Data): SignatureDescriptor_DataAminoMsg;
+    fromProtoMsg(message: SignatureDescriptor_DataProtoMsg): SignatureDescriptor_Data;
+    toProto(message: SignatureDescriptor_Data): Uint8Array;
+    toProtoMsg(message: SignatureDescriptor_Data): SignatureDescriptor_DataProtoMsg;
 };
 export declare const SignatureDescriptor_Data_Single: {
     encode(message: SignatureDescriptor_Data_Single, writer?: _m0.Writer): _m0.Writer;
@@ -213,6 +268,11 @@ export declare const SignatureDescriptor_Data_Single: {
     fromPartial(object: Partial<SignatureDescriptor_Data_Single>): SignatureDescriptor_Data_Single;
     fromAmino(object: SignatureDescriptor_Data_SingleAmino): SignatureDescriptor_Data_Single;
     toAmino(message: SignatureDescriptor_Data_Single): SignatureDescriptor_Data_SingleAmino;
+    fromAminoMsg(object: SignatureDescriptor_Data_SingleAminoMsg): SignatureDescriptor_Data_Single;
+    toAminoMsg(message: SignatureDescriptor_Data_Single): SignatureDescriptor_Data_SingleAminoMsg;
+    fromProtoMsg(message: SignatureDescriptor_Data_SingleProtoMsg): SignatureDescriptor_Data_Single;
+    toProto(message: SignatureDescriptor_Data_Single): Uint8Array;
+    toProtoMsg(message: SignatureDescriptor_Data_Single): SignatureDescriptor_Data_SingleProtoMsg;
 };
 export declare const SignatureDescriptor_Data_Multi: {
     encode(message: SignatureDescriptor_Data_Multi, writer?: _m0.Writer): _m0.Writer;
@@ -222,4 +282,9 @@ export declare const SignatureDescriptor_Data_Multi: {
     fromPartial(object: Partial<SignatureDescriptor_Data_Multi>): SignatureDescriptor_Data_Multi;
     fromAmino(object: SignatureDescriptor_Data_MultiAmino): SignatureDescriptor_Data_Multi;
     toAmino(message: SignatureDescriptor_Data_Multi): SignatureDescriptor_Data_MultiAmino;
+    fromAminoMsg(object: SignatureDescriptor_Data_MultiAminoMsg): SignatureDescriptor_Data_Multi;
+    toAminoMsg(message: SignatureDescriptor_Data_Multi): SignatureDescriptor_Data_MultiAminoMsg;
+    fromProtoMsg(message: SignatureDescriptor_Data_MultiProtoMsg): SignatureDescriptor_Data_Multi;
+    toProto(message: SignatureDescriptor_Data_Multi): Uint8Array;
+    toProtoMsg(message: SignatureDescriptor_Data_Multi): SignatureDescriptor_Data_MultiProtoMsg;
 };

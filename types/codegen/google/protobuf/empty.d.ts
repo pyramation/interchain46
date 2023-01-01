@@ -12,6 +12,10 @@ import * as _m0 from "protobufjs/minimal";
  */
 export interface Empty {
 }
+export interface EmptyProtoMsg {
+    typeUrl: "/google.protobuf.Empty";
+    value: Uint8Array;
+}
 /**
  * A generic empty message that you can re-use to avoid defining duplicated
  * empty messages in your APIs. A typical example is to use it as the request
@@ -24,6 +28,10 @@ export interface Empty {
  * The JSON representation for `Empty` is empty JSON object `{}`.
  */
 export interface EmptyAmino {
+}
+export interface EmptyAminoMsg {
+    type: "/google.protobuf.Empty";
+    value: EmptyAmino;
 }
 /**
  * A generic empty message that you can re-use to avoid defining duplicated
@@ -46,4 +54,8 @@ export declare const Empty: {
     fromPartial(_: Partial<Empty>): Empty;
     fromAmino(_: EmptyAmino): Empty;
     toAmino(_: Empty): EmptyAmino;
+    fromAminoMsg(object: EmptyAminoMsg): Empty;
+    fromProtoMsg(message: EmptyProtoMsg): Empty;
+    toProto(message: Empty): Uint8Array;
+    toProtoMsg(message: Empty): EmptyProtoMsg;
 };

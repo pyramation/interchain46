@@ -41,6 +41,10 @@ export interface PageRequest {
      */
     reverse: boolean;
 }
+export interface PageRequestProtoMsg {
+    typeUrl: "/cosmos.base.query.v1beta1.PageRequest";
+    value: Uint8Array;
+}
 /**
  * PageRequest is to be embedded in gRPC request messages for efficient
  * pagination. Ex:
@@ -82,6 +86,10 @@ export interface PageRequestAmino {
      */
     reverse: boolean;
 }
+export interface PageRequestAminoMsg {
+    type: "cosmos-sdk/PageRequest";
+    value: PageRequestAmino;
+}
 /**
  * PageRequest is to be embedded in gRPC request messages for efficient
  * pagination. Ex:
@@ -120,6 +128,10 @@ export interface PageResponse {
      */
     total: Long;
 }
+export interface PageResponseProtoMsg {
+    typeUrl: "/cosmos.base.query.v1beta1.PageResponse";
+    value: Uint8Array;
+}
 /**
  * PageResponse is to be embedded in gRPC response messages where the
  * corresponding request message has used PageRequest.
@@ -142,6 +154,10 @@ export interface PageResponseAmino {
      */
     total: string;
 }
+export interface PageResponseAminoMsg {
+    type: "cosmos-sdk/PageResponse";
+    value: PageResponseAmino;
+}
 /**
  * PageResponse is to be embedded in gRPC response messages where the
  * corresponding request message has used PageRequest.
@@ -163,6 +179,11 @@ export declare const PageRequest: {
     fromPartial(object: Partial<PageRequest>): PageRequest;
     fromAmino(object: PageRequestAmino): PageRequest;
     toAmino(message: PageRequest): PageRequestAmino;
+    fromAminoMsg(object: PageRequestAminoMsg): PageRequest;
+    toAminoMsg(message: PageRequest): PageRequestAminoMsg;
+    fromProtoMsg(message: PageRequestProtoMsg): PageRequest;
+    toProto(message: PageRequest): Uint8Array;
+    toProtoMsg(message: PageRequest): PageRequestProtoMsg;
 };
 export declare const PageResponse: {
     encode(message: PageResponse, writer?: _m0.Writer): _m0.Writer;
@@ -172,4 +193,9 @@ export declare const PageResponse: {
     fromPartial(object: Partial<PageResponse>): PageResponse;
     fromAmino(object: PageResponseAmino): PageResponse;
     toAmino(message: PageResponse): PageResponseAmino;
+    fromAminoMsg(object: PageResponseAminoMsg): PageResponse;
+    toAminoMsg(message: PageResponse): PageResponseAminoMsg;
+    fromProtoMsg(message: PageResponseProtoMsg): PageResponse;
+    toProto(message: PageResponse): Uint8Array;
+    toProtoMsg(message: PageResponse): PageResponseProtoMsg;
 };

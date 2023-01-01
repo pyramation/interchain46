@@ -55,6 +55,10 @@ export interface ModuleSchemaDescriptor {
      */
     prefix: Uint8Array;
 }
+export interface ModuleSchemaDescriptorProtoMsg {
+    typeUrl: "/cosmos.orm.v1alpha1.ModuleSchemaDescriptor";
+    value: Uint8Array;
+}
 /** ModuleSchemaDescriptor describe's a module's ORM schema. */
 export interface ModuleSchemaDescriptorAmino {
     schema_file: ModuleSchemaDescriptor_FileEntryAmino[];
@@ -63,6 +67,10 @@ export interface ModuleSchemaDescriptorAmino {
      * store.
      */
     prefix: Uint8Array;
+}
+export interface ModuleSchemaDescriptorAminoMsg {
+    type: "cosmos-sdk/ModuleSchemaDescriptor";
+    value: ModuleSchemaDescriptorAmino;
 }
 /** ModuleSchemaDescriptor describe's a module's ORM schema. */
 export interface ModuleSchemaDescriptorSDKType {
@@ -89,6 +97,10 @@ export interface ModuleSchemaDescriptor_FileEntry {
      */
     storageType: StorageType;
 }
+export interface ModuleSchemaDescriptor_FileEntryProtoMsg {
+    typeUrl: "/cosmos.orm.v1alpha1.FileEntry";
+    value: Uint8Array;
+}
 /** FileEntry describes an ORM file used in a module. */
 export interface ModuleSchemaDescriptor_FileEntryAmino {
     /**
@@ -109,6 +121,10 @@ export interface ModuleSchemaDescriptor_FileEntryAmino {
      */
     storage_type: StorageType;
 }
+export interface ModuleSchemaDescriptor_FileEntryAminoMsg {
+    type: "cosmos-sdk/FileEntry";
+    value: ModuleSchemaDescriptor_FileEntryAmino;
+}
 /** FileEntry describes an ORM file used in a module. */
 export interface ModuleSchemaDescriptor_FileEntrySDKType {
     id: number;
@@ -123,6 +139,11 @@ export declare const ModuleSchemaDescriptor: {
     fromPartial(object: Partial<ModuleSchemaDescriptor>): ModuleSchemaDescriptor;
     fromAmino(object: ModuleSchemaDescriptorAmino): ModuleSchemaDescriptor;
     toAmino(message: ModuleSchemaDescriptor): ModuleSchemaDescriptorAmino;
+    fromAminoMsg(object: ModuleSchemaDescriptorAminoMsg): ModuleSchemaDescriptor;
+    toAminoMsg(message: ModuleSchemaDescriptor): ModuleSchemaDescriptorAminoMsg;
+    fromProtoMsg(message: ModuleSchemaDescriptorProtoMsg): ModuleSchemaDescriptor;
+    toProto(message: ModuleSchemaDescriptor): Uint8Array;
+    toProtoMsg(message: ModuleSchemaDescriptor): ModuleSchemaDescriptorProtoMsg;
 };
 export declare const ModuleSchemaDescriptor_FileEntry: {
     encode(message: ModuleSchemaDescriptor_FileEntry, writer?: _m0.Writer): _m0.Writer;
@@ -132,4 +153,9 @@ export declare const ModuleSchemaDescriptor_FileEntry: {
     fromPartial(object: Partial<ModuleSchemaDescriptor_FileEntry>): ModuleSchemaDescriptor_FileEntry;
     fromAmino(object: ModuleSchemaDescriptor_FileEntryAmino): ModuleSchemaDescriptor_FileEntry;
     toAmino(message: ModuleSchemaDescriptor_FileEntry): ModuleSchemaDescriptor_FileEntryAmino;
+    fromAminoMsg(object: ModuleSchemaDescriptor_FileEntryAminoMsg): ModuleSchemaDescriptor_FileEntry;
+    toAminoMsg(message: ModuleSchemaDescriptor_FileEntry): ModuleSchemaDescriptor_FileEntryAminoMsg;
+    fromProtoMsg(message: ModuleSchemaDescriptor_FileEntryProtoMsg): ModuleSchemaDescriptor_FileEntry;
+    toProto(message: ModuleSchemaDescriptor_FileEntry): Uint8Array;
+    toProtoMsg(message: ModuleSchemaDescriptor_FileEntry): ModuleSchemaDescriptor_FileEntryProtoMsg;
 };

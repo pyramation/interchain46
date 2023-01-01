@@ -27,6 +27,10 @@ export interface InterfaceDescriptor {
      */
     description: string;
 }
+export interface InterfaceDescriptorProtoMsg {
+    typeUrl: "/cosmos_proto.InterfaceDescriptor";
+    value: Uint8Array;
+}
 /**
  * InterfaceDescriptor describes an interface type to be used with
  * accepts_interface and implements_interface and declared by declare_interface.
@@ -44,6 +48,10 @@ export interface InterfaceDescriptorAmino {
      * purpose.
      */
     description: string;
+}
+export interface InterfaceDescriptorAminoMsg {
+    type: "/cosmos_proto.InterfaceDescriptor";
+    value: InterfaceDescriptorAmino;
 }
 /**
  * InterfaceDescriptor describes an interface type to be used with
@@ -84,6 +92,10 @@ export interface ScalarDescriptor {
      */
     fieldType: ScalarType[];
 }
+export interface ScalarDescriptorProtoMsg {
+    typeUrl: "/cosmos_proto.ScalarDescriptor";
+    value: Uint8Array;
+}
 /**
  * ScalarDescriptor describes an scalar type to be used with
  * the scalar field option and declared by declare_scalar.
@@ -115,6 +127,10 @@ export interface ScalarDescriptorAmino {
      */
     field_type: ScalarType[];
 }
+export interface ScalarDescriptorAminoMsg {
+    type: "/cosmos_proto.ScalarDescriptor";
+    value: ScalarDescriptorAmino;
+}
 /**
  * ScalarDescriptor describes an scalar type to be used with
  * the scalar field option and declared by declare_scalar.
@@ -137,6 +153,10 @@ export declare const InterfaceDescriptor: {
     fromPartial(object: Partial<InterfaceDescriptor>): InterfaceDescriptor;
     fromAmino(object: InterfaceDescriptorAmino): InterfaceDescriptor;
     toAmino(message: InterfaceDescriptor): InterfaceDescriptorAmino;
+    fromAminoMsg(object: InterfaceDescriptorAminoMsg): InterfaceDescriptor;
+    fromProtoMsg(message: InterfaceDescriptorProtoMsg): InterfaceDescriptor;
+    toProto(message: InterfaceDescriptor): Uint8Array;
+    toProtoMsg(message: InterfaceDescriptor): InterfaceDescriptorProtoMsg;
 };
 export declare const ScalarDescriptor: {
     encode(message: ScalarDescriptor, writer?: _m0.Writer): _m0.Writer;
@@ -146,4 +166,8 @@ export declare const ScalarDescriptor: {
     fromPartial(object: Partial<ScalarDescriptor>): ScalarDescriptor;
     fromAmino(object: ScalarDescriptorAmino): ScalarDescriptor;
     toAmino(message: ScalarDescriptor): ScalarDescriptorAmino;
+    fromAminoMsg(object: ScalarDescriptorAminoMsg): ScalarDescriptor;
+    fromProtoMsg(message: ScalarDescriptorProtoMsg): ScalarDescriptor;
+    toProto(message: ScalarDescriptor): Uint8Array;
+    toProtoMsg(message: ScalarDescriptor): ScalarDescriptorProtoMsg;
 };

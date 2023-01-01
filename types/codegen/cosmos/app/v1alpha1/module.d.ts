@@ -25,6 +25,10 @@ export interface ModuleDescriptor {
      */
     canMigrateFrom: MigrateFromInfo[];
 }
+export interface ModuleDescriptorProtoMsg {
+    typeUrl: "/cosmos.app.v1alpha1.ModuleDescriptor";
+    value: Uint8Array;
+}
 /** ModuleDescriptor describes an app module. */
 export interface ModuleDescriptorAmino {
     /**
@@ -50,6 +54,10 @@ export interface ModuleDescriptorAmino {
      * from v1 to v3, assuming all 3 module versions are registered at runtime.
      */
     can_migrate_from: MigrateFromInfoAmino[];
+}
+export interface ModuleDescriptorAminoMsg {
+    type: "cosmos-sdk/ModuleDescriptor";
+    value: ModuleDescriptorAmino;
 }
 /** ModuleDescriptor describes an app module. */
 export interface ModuleDescriptorSDKType {
@@ -100,6 +108,10 @@ export interface PackageReference {
      */
     revision: number;
 }
+export interface PackageReferenceProtoMsg {
+    typeUrl: "/cosmos.app.v1alpha1.PackageReference";
+    value: Uint8Array;
+}
 /** PackageReference is a reference to a protobuf package used by a module. */
 export interface PackageReferenceAmino {
     /** name is the fully-qualified name of the package. */
@@ -143,6 +155,10 @@ export interface PackageReferenceAmino {
      */
     revision: number;
 }
+export interface PackageReferenceAminoMsg {
+    type: "cosmos-sdk/PackageReference";
+    value: PackageReferenceAmino;
+}
 /** PackageReference is a reference to a protobuf package used by a module. */
 export interface PackageReferenceSDKType {
     name: string;
@@ -159,6 +175,10 @@ export interface MigrateFromInfo {
      */
     module: string;
 }
+export interface MigrateFromInfoProtoMsg {
+    typeUrl: "/cosmos.app.v1alpha1.MigrateFromInfo";
+    value: Uint8Array;
+}
 /**
  * MigrateFromInfo is information on a module version that a newer module
  * can migrate from.
@@ -169,6 +189,10 @@ export interface MigrateFromInfoAmino {
      * for the previous module version, ex: "cosmos.group.module.v1.Module".
      */
     module: string;
+}
+export interface MigrateFromInfoAminoMsg {
+    type: "cosmos-sdk/MigrateFromInfo";
+    value: MigrateFromInfoAmino;
 }
 /**
  * MigrateFromInfo is information on a module version that a newer module
@@ -185,6 +209,11 @@ export declare const ModuleDescriptor: {
     fromPartial(object: Partial<ModuleDescriptor>): ModuleDescriptor;
     fromAmino(object: ModuleDescriptorAmino): ModuleDescriptor;
     toAmino(message: ModuleDescriptor): ModuleDescriptorAmino;
+    fromAminoMsg(object: ModuleDescriptorAminoMsg): ModuleDescriptor;
+    toAminoMsg(message: ModuleDescriptor): ModuleDescriptorAminoMsg;
+    fromProtoMsg(message: ModuleDescriptorProtoMsg): ModuleDescriptor;
+    toProto(message: ModuleDescriptor): Uint8Array;
+    toProtoMsg(message: ModuleDescriptor): ModuleDescriptorProtoMsg;
 };
 export declare const PackageReference: {
     encode(message: PackageReference, writer?: _m0.Writer): _m0.Writer;
@@ -194,6 +223,11 @@ export declare const PackageReference: {
     fromPartial(object: Partial<PackageReference>): PackageReference;
     fromAmino(object: PackageReferenceAmino): PackageReference;
     toAmino(message: PackageReference): PackageReferenceAmino;
+    fromAminoMsg(object: PackageReferenceAminoMsg): PackageReference;
+    toAminoMsg(message: PackageReference): PackageReferenceAminoMsg;
+    fromProtoMsg(message: PackageReferenceProtoMsg): PackageReference;
+    toProto(message: PackageReference): Uint8Array;
+    toProtoMsg(message: PackageReference): PackageReferenceProtoMsg;
 };
 export declare const MigrateFromInfo: {
     encode(message: MigrateFromInfo, writer?: _m0.Writer): _m0.Writer;
@@ -203,4 +237,9 @@ export declare const MigrateFromInfo: {
     fromPartial(object: Partial<MigrateFromInfo>): MigrateFromInfo;
     fromAmino(object: MigrateFromInfoAmino): MigrateFromInfo;
     toAmino(message: MigrateFromInfo): MigrateFromInfoAmino;
+    fromAminoMsg(object: MigrateFromInfoAminoMsg): MigrateFromInfo;
+    toAminoMsg(message: MigrateFromInfo): MigrateFromInfoAminoMsg;
+    fromProtoMsg(message: MigrateFromInfoProtoMsg): MigrateFromInfo;
+    toProto(message: MigrateFromInfo): Uint8Array;
+    toProtoMsg(message: MigrateFromInfo): MigrateFromInfoProtoMsg;
 };

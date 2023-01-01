@@ -17,6 +17,10 @@ export interface Class {
     /** data is the app specific metadata of the NFT class. Optional */
     data?: Any;
 }
+export interface ClassProtoMsg {
+    typeUrl: "/cosmos.nft.v1beta1.Class";
+    value: Uint8Array;
+}
 /** Class defines the class of the nft type. */
 export interface ClassAmino {
     /** id defines the unique identifier of the NFT classification, similar to the contract address of ERC721 */
@@ -33,6 +37,10 @@ export interface ClassAmino {
     uri_hash: string;
     /** data is the app specific metadata of the NFT class. Optional */
     data?: AnyAmino;
+}
+export interface ClassAminoMsg {
+    type: "cosmos-sdk/Class";
+    value: ClassAmino;
 }
 /** Class defines the class of the nft type. */
 export interface ClassSDKType {
@@ -57,6 +65,10 @@ export interface NFT {
     /** data is an app specific data of the NFT. Optional */
     data?: Any;
 }
+export interface NFTProtoMsg {
+    typeUrl: "/cosmos.nft.v1beta1.NFT";
+    value: Uint8Array;
+}
 /** NFT defines the NFT. */
 export interface NFTAmino {
     /** class_id associated with the NFT, similar to the contract address of ERC721 */
@@ -69,6 +81,10 @@ export interface NFTAmino {
     uri_hash: string;
     /** data is an app specific data of the NFT. Optional */
     data?: AnyAmino;
+}
+export interface NFTAminoMsg {
+    type: "cosmos-sdk/NFT";
+    value: NFTAmino;
 }
 /** NFT defines the NFT. */
 export interface NFTSDKType {
@@ -86,6 +102,11 @@ export declare const Class: {
     fromPartial(object: Partial<Class>): Class;
     fromAmino(object: ClassAmino): Class;
     toAmino(message: Class): ClassAmino;
+    fromAminoMsg(object: ClassAminoMsg): Class;
+    toAminoMsg(message: Class): ClassAminoMsg;
+    fromProtoMsg(message: ClassProtoMsg): Class;
+    toProto(message: Class): Uint8Array;
+    toProtoMsg(message: Class): ClassProtoMsg;
 };
 export declare const NFT: {
     encode(message: NFT, writer?: _m0.Writer): _m0.Writer;
@@ -95,4 +116,9 @@ export declare const NFT: {
     fromPartial(object: Partial<NFT>): NFT;
     fromAmino(object: NFTAmino): NFT;
     toAmino(message: NFT): NFTAmino;
+    fromAminoMsg(object: NFTAminoMsg): NFT;
+    toAminoMsg(message: NFT): NFTAminoMsg;
+    fromProtoMsg(message: NFTProtoMsg): NFT;
+    toProto(message: NFT): Uint8Array;
+    toProtoMsg(message: NFT): NFTProtoMsg;
 };

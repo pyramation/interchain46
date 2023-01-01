@@ -77,6 +77,10 @@ export interface Duration {
      */
     nanos: number;
 }
+export interface DurationProtoMsg {
+    typeUrl: "/google.protobuf.Duration";
+    value: Uint8Array;
+}
 /**
  * A Duration represents a signed, fixed-length span of time represented
  * as a count of seconds and fractions of seconds at nanosecond
@@ -138,6 +142,10 @@ export interface Duration {
  * microsecond should be expressed in JSON format as "3.000001s".
  */
 export type DurationAmino = string;
+export interface DurationAminoMsg {
+    type: "/google.protobuf.Duration";
+    value: DurationAmino;
+}
 /**
  * A Duration represents a signed, fixed-length span of time represented
  * as a count of seconds and fractions of seconds at nanosecond
@@ -210,4 +218,8 @@ export declare const Duration: {
     fromPartial(object: Partial<Duration>): Duration;
     fromAmino(object: DurationAmino): Duration;
     toAmino(message: Duration): DurationAmino;
+    fromAminoMsg(object: DurationAminoMsg): Duration;
+    fromProtoMsg(message: DurationProtoMsg): Duration;
+    toProto(message: Duration): Uint8Array;
+    toProtoMsg(message: Duration): DurationProtoMsg;
 };

@@ -9,6 +9,10 @@ import * as _m0 from "protobufjs/minimal";
 export interface PubKey {
     key: Uint8Array;
 }
+export interface PubKeyProtoMsg {
+    typeUrl: "/cosmos.crypto.ed25519.PubKey";
+    value: Uint8Array;
+}
 /**
  * PubKey is an ed25519 public key for handling Tendermint keys in SDK.
  * It's needed for Any serialization and SDK compatibility.
@@ -18,6 +22,10 @@ export interface PubKey {
  */
 export interface PubKeyAmino {
     key: Uint8Array;
+}
+export interface PubKeyAminoMsg {
+    type: "cosmos-sdk/PubKey";
+    value: PubKeyAmino;
 }
 /**
  * PubKey is an ed25519 public key for handling Tendermint keys in SDK.
@@ -36,12 +44,20 @@ export interface PubKeySDKType {
 export interface PrivKey {
     key: Uint8Array;
 }
+export interface PrivKeyProtoMsg {
+    typeUrl: "/cosmos.crypto.ed25519.PrivKey";
+    value: Uint8Array;
+}
 /**
  * Deprecated: PrivKey defines a ed25519 private key.
  * NOTE: ed25519 keys must not be used in SDK apps except in a tendermint validator context.
  */
 export interface PrivKeyAmino {
     key: Uint8Array;
+}
+export interface PrivKeyAminoMsg {
+    type: "cosmos-sdk/PrivKey";
+    value: PrivKeyAmino;
 }
 /**
  * Deprecated: PrivKey defines a ed25519 private key.
@@ -58,6 +74,11 @@ export declare const PubKey: {
     fromPartial(object: Partial<PubKey>): PubKey;
     fromAmino(object: PubKeyAmino): PubKey;
     toAmino(message: PubKey): PubKeyAmino;
+    fromAminoMsg(object: PubKeyAminoMsg): PubKey;
+    toAminoMsg(message: PubKey): PubKeyAminoMsg;
+    fromProtoMsg(message: PubKeyProtoMsg): PubKey;
+    toProto(message: PubKey): Uint8Array;
+    toProtoMsg(message: PubKey): PubKeyProtoMsg;
 };
 export declare const PrivKey: {
     encode(message: PrivKey, writer?: _m0.Writer): _m0.Writer;
@@ -67,4 +88,9 @@ export declare const PrivKey: {
     fromPartial(object: Partial<PrivKey>): PrivKey;
     fromAmino(object: PrivKeyAmino): PrivKey;
     toAmino(message: PrivKey): PrivKeyAmino;
+    fromAminoMsg(object: PrivKeyAminoMsg): PrivKey;
+    toAminoMsg(message: PrivKey): PrivKeyAminoMsg;
+    fromProtoMsg(message: PrivKeyProtoMsg): PrivKey;
+    toProto(message: PrivKey): Uint8Array;
+    toProtoMsg(message: PrivKey): PrivKeyProtoMsg;
 };

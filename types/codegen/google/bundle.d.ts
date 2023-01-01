@@ -14,6 +14,10 @@ export declare namespace google {
             fromPartial(object: Partial<_101.Http>): _101.Http;
             fromAmino(object: _101.HttpAmino): _101.Http;
             toAmino(message: _101.Http): _101.HttpAmino;
+            fromAminoMsg(object: _101.HttpAminoMsg): _101.Http;
+            fromProtoMsg(message: _101.HttpProtoMsg): _101.Http;
+            toProto(message: _101.Http): Uint8Array;
+            toProtoMsg(message: _101.Http): _101.HttpProtoMsg;
         };
         HttpRule: {
             encode(message: _101.HttpRule, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
@@ -23,6 +27,10 @@ export declare namespace google {
             fromPartial(object: Partial<_101.HttpRule>): _101.HttpRule;
             fromAmino(object: _101.HttpRuleAmino): _101.HttpRule;
             toAmino(message: _101.HttpRule): _101.HttpRuleAmino;
+            fromAminoMsg(object: _101.HttpRuleAminoMsg): _101.HttpRule;
+            fromProtoMsg(message: _101.HttpRuleProtoMsg): _101.HttpRule;
+            toProto(message: _101.HttpRule): Uint8Array;
+            toProtoMsg(message: _101.HttpRule): _101.HttpRuleProtoMsg;
         };
         CustomHttpPattern: {
             encode(message: _101.CustomHttpPattern, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
@@ -32,6 +40,10 @@ export declare namespace google {
             fromPartial(object: Partial<_101.CustomHttpPattern>): _101.CustomHttpPattern;
             fromAmino(object: _101.CustomHttpPatternAmino): _101.CustomHttpPattern;
             toAmino(message: _101.CustomHttpPattern): _101.CustomHttpPatternAmino;
+            fromAminoMsg(object: _101.CustomHttpPatternAminoMsg): _101.CustomHttpPattern;
+            fromProtoMsg(message: _101.CustomHttpPatternProtoMsg): _101.CustomHttpPattern;
+            toProto(message: _101.CustomHttpPattern): Uint8Array;
+            toProtoMsg(message: _101.CustomHttpPattern): _101.CustomHttpPatternProtoMsg;
         };
     };
     const protobuf: {
@@ -43,6 +55,10 @@ export declare namespace google {
             fromPartial(object: Partial<_106.Timestamp>): _106.Timestamp;
             fromAmino(object: string): _106.Timestamp;
             toAmino(message: _106.Timestamp): string;
+            fromAminoMsg(object: _106.TimestampAminoMsg): _106.Timestamp;
+            fromProtoMsg(message: _106.TimestampProtoMsg): _106.Timestamp;
+            toProto(message: _106.Timestamp): Uint8Array;
+            toProtoMsg(message: _106.Timestamp): _106.TimestampProtoMsg;
         };
         Empty: {
             encode(_: _105.Empty, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
@@ -52,6 +68,10 @@ export declare namespace google {
             fromPartial(_: Partial<_105.Empty>): _105.Empty;
             fromAmino(_: _105.EmptyAmino): _105.Empty;
             toAmino(_: _105.Empty): _105.EmptyAmino;
+            fromAminoMsg(object: _105.EmptyAminoMsg): _105.Empty;
+            fromProtoMsg(message: _105.EmptyProtoMsg): _105.Empty;
+            toProto(message: _105.Empty): Uint8Array;
+            toProtoMsg(message: _105.Empty): _105.EmptyProtoMsg;
         };
         Duration: {
             encode(message: _104.Duration, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
@@ -61,6 +81,10 @@ export declare namespace google {
             fromPartial(object: Partial<_104.Duration>): _104.Duration;
             fromAmino(object: string): _104.Duration;
             toAmino(message: _104.Duration): string;
+            fromAminoMsg(object: _104.DurationAminoMsg): _104.Duration;
+            fromProtoMsg(message: _104.DurationProtoMsg): _104.Duration;
+            toProto(message: _104.Duration): Uint8Array;
+            toProtoMsg(message: _104.Duration): _104.DurationProtoMsg;
         };
         fieldDescriptorProto_TypeFromJSON(object: any): _103.FieldDescriptorProto_Type;
         fieldDescriptorProto_TypeToJSON(object: _103.FieldDescriptorProto_Type): string;
@@ -100,6 +124,10 @@ export declare namespace google {
             fromPartial(object: Partial<_103.FileDescriptorSet>): _103.FileDescriptorSet;
             fromAmino(object: _103.FileDescriptorSetAmino): _103.FileDescriptorSet;
             toAmino(message: _103.FileDescriptorSet): _103.FileDescriptorSetAmino;
+            fromAminoMsg(object: _103.FileDescriptorSetAminoMsg): _103.FileDescriptorSet;
+            fromProtoMsg(message: _103.FileDescriptorSetProtoMsg): _103.FileDescriptorSet;
+            toProto(message: _103.FileDescriptorSet): Uint8Array;
+            toProtoMsg(message: _103.FileDescriptorSet): _103.FileDescriptorSetProtoMsg;
         };
         FileDescriptorProto: {
             encode(message: _103.FileDescriptorProto, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
@@ -109,6 +137,10 @@ export declare namespace google {
             fromPartial(object: Partial<_103.FileDescriptorProto>): _103.FileDescriptorProto;
             fromAmino(object: _103.FileDescriptorProtoAmino): _103.FileDescriptorProto;
             toAmino(message: _103.FileDescriptorProto): _103.FileDescriptorProtoAmino;
+            fromAminoMsg(object: _103.FileDescriptorProtoAminoMsg): _103.FileDescriptorProto;
+            fromProtoMsg(message: _103.FileDescriptorProtoProtoMsg): _103.FileDescriptorProto;
+            toProto(message: _103.FileDescriptorProto): Uint8Array;
+            toProtoMsg(message: _103.FileDescriptorProto): _103.FileDescriptorProtoProtoMsg;
         };
         DescriptorProto: {
             encode(message: _103.DescriptorProto, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
@@ -118,6 +150,10 @@ export declare namespace google {
             fromPartial(object: Partial<_103.DescriptorProto>): _103.DescriptorProto;
             fromAmino(object: _103.DescriptorProtoAmino): _103.DescriptorProto;
             toAmino(message: _103.DescriptorProto): _103.DescriptorProtoAmino;
+            fromAminoMsg(object: _103.DescriptorProtoAminoMsg): _103.DescriptorProto;
+            fromProtoMsg(message: _103.DescriptorProtoProtoMsg): _103.DescriptorProto;
+            toProto(message: _103.DescriptorProto): Uint8Array;
+            toProtoMsg(message: _103.DescriptorProto): _103.DescriptorProtoProtoMsg;
         };
         DescriptorProto_ExtensionRange: {
             encode(message: _103.DescriptorProto_ExtensionRange, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
@@ -127,6 +163,10 @@ export declare namespace google {
             fromPartial(object: Partial<_103.DescriptorProto_ExtensionRange>): _103.DescriptorProto_ExtensionRange;
             fromAmino(object: _103.DescriptorProto_ExtensionRangeAmino): _103.DescriptorProto_ExtensionRange;
             toAmino(message: _103.DescriptorProto_ExtensionRange): _103.DescriptorProto_ExtensionRangeAmino;
+            fromAminoMsg(object: _103.DescriptorProto_ExtensionRangeAminoMsg): _103.DescriptorProto_ExtensionRange;
+            fromProtoMsg(message: _103.DescriptorProto_ExtensionRangeProtoMsg): _103.DescriptorProto_ExtensionRange;
+            toProto(message: _103.DescriptorProto_ExtensionRange): Uint8Array;
+            toProtoMsg(message: _103.DescriptorProto_ExtensionRange): _103.DescriptorProto_ExtensionRangeProtoMsg;
         };
         DescriptorProto_ReservedRange: {
             encode(message: _103.DescriptorProto_ReservedRange, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
@@ -136,6 +176,10 @@ export declare namespace google {
             fromPartial(object: Partial<_103.DescriptorProto_ReservedRange>): _103.DescriptorProto_ReservedRange;
             fromAmino(object: _103.DescriptorProto_ReservedRangeAmino): _103.DescriptorProto_ReservedRange;
             toAmino(message: _103.DescriptorProto_ReservedRange): _103.DescriptorProto_ReservedRangeAmino;
+            fromAminoMsg(object: _103.DescriptorProto_ReservedRangeAminoMsg): _103.DescriptorProto_ReservedRange;
+            fromProtoMsg(message: _103.DescriptorProto_ReservedRangeProtoMsg): _103.DescriptorProto_ReservedRange;
+            toProto(message: _103.DescriptorProto_ReservedRange): Uint8Array;
+            toProtoMsg(message: _103.DescriptorProto_ReservedRange): _103.DescriptorProto_ReservedRangeProtoMsg;
         };
         ExtensionRangeOptions: {
             encode(message: _103.ExtensionRangeOptions, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
@@ -145,6 +189,10 @@ export declare namespace google {
             fromPartial(object: Partial<_103.ExtensionRangeOptions>): _103.ExtensionRangeOptions;
             fromAmino(object: _103.ExtensionRangeOptionsAmino): _103.ExtensionRangeOptions;
             toAmino(message: _103.ExtensionRangeOptions): _103.ExtensionRangeOptionsAmino;
+            fromAminoMsg(object: _103.ExtensionRangeOptionsAminoMsg): _103.ExtensionRangeOptions;
+            fromProtoMsg(message: _103.ExtensionRangeOptionsProtoMsg): _103.ExtensionRangeOptions;
+            toProto(message: _103.ExtensionRangeOptions): Uint8Array;
+            toProtoMsg(message: _103.ExtensionRangeOptions): _103.ExtensionRangeOptionsProtoMsg;
         };
         FieldDescriptorProto: {
             encode(message: _103.FieldDescriptorProto, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
@@ -154,6 +202,10 @@ export declare namespace google {
             fromPartial(object: Partial<_103.FieldDescriptorProto>): _103.FieldDescriptorProto;
             fromAmino(object: _103.FieldDescriptorProtoAmino): _103.FieldDescriptorProto;
             toAmino(message: _103.FieldDescriptorProto): _103.FieldDescriptorProtoAmino;
+            fromAminoMsg(object: _103.FieldDescriptorProtoAminoMsg): _103.FieldDescriptorProto;
+            fromProtoMsg(message: _103.FieldDescriptorProtoProtoMsg): _103.FieldDescriptorProto;
+            toProto(message: _103.FieldDescriptorProto): Uint8Array;
+            toProtoMsg(message: _103.FieldDescriptorProto): _103.FieldDescriptorProtoProtoMsg;
         };
         OneofDescriptorProto: {
             encode(message: _103.OneofDescriptorProto, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
@@ -163,6 +215,10 @@ export declare namespace google {
             fromPartial(object: Partial<_103.OneofDescriptorProto>): _103.OneofDescriptorProto;
             fromAmino(object: _103.OneofDescriptorProtoAmino): _103.OneofDescriptorProto;
             toAmino(message: _103.OneofDescriptorProto): _103.OneofDescriptorProtoAmino;
+            fromAminoMsg(object: _103.OneofDescriptorProtoAminoMsg): _103.OneofDescriptorProto;
+            fromProtoMsg(message: _103.OneofDescriptorProtoProtoMsg): _103.OneofDescriptorProto;
+            toProto(message: _103.OneofDescriptorProto): Uint8Array;
+            toProtoMsg(message: _103.OneofDescriptorProto): _103.OneofDescriptorProtoProtoMsg;
         };
         EnumDescriptorProto: {
             encode(message: _103.EnumDescriptorProto, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
@@ -172,6 +228,10 @@ export declare namespace google {
             fromPartial(object: Partial<_103.EnumDescriptorProto>): _103.EnumDescriptorProto;
             fromAmino(object: _103.EnumDescriptorProtoAmino): _103.EnumDescriptorProto;
             toAmino(message: _103.EnumDescriptorProto): _103.EnumDescriptorProtoAmino;
+            fromAminoMsg(object: _103.EnumDescriptorProtoAminoMsg): _103.EnumDescriptorProto;
+            fromProtoMsg(message: _103.EnumDescriptorProtoProtoMsg): _103.EnumDescriptorProto;
+            toProto(message: _103.EnumDescriptorProto): Uint8Array;
+            toProtoMsg(message: _103.EnumDescriptorProto): _103.EnumDescriptorProtoProtoMsg;
         };
         EnumDescriptorProto_EnumReservedRange: {
             encode(message: _103.EnumDescriptorProto_EnumReservedRange, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
@@ -181,6 +241,10 @@ export declare namespace google {
             fromPartial(object: Partial<_103.EnumDescriptorProto_EnumReservedRange>): _103.EnumDescriptorProto_EnumReservedRange;
             fromAmino(object: _103.EnumDescriptorProto_EnumReservedRangeAmino): _103.EnumDescriptorProto_EnumReservedRange;
             toAmino(message: _103.EnumDescriptorProto_EnumReservedRange): _103.EnumDescriptorProto_EnumReservedRangeAmino;
+            fromAminoMsg(object: _103.EnumDescriptorProto_EnumReservedRangeAminoMsg): _103.EnumDescriptorProto_EnumReservedRange;
+            fromProtoMsg(message: _103.EnumDescriptorProto_EnumReservedRangeProtoMsg): _103.EnumDescriptorProto_EnumReservedRange;
+            toProto(message: _103.EnumDescriptorProto_EnumReservedRange): Uint8Array;
+            toProtoMsg(message: _103.EnumDescriptorProto_EnumReservedRange): _103.EnumDescriptorProto_EnumReservedRangeProtoMsg;
         };
         EnumValueDescriptorProto: {
             encode(message: _103.EnumValueDescriptorProto, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
@@ -190,6 +254,10 @@ export declare namespace google {
             fromPartial(object: Partial<_103.EnumValueDescriptorProto>): _103.EnumValueDescriptorProto;
             fromAmino(object: _103.EnumValueDescriptorProtoAmino): _103.EnumValueDescriptorProto;
             toAmino(message: _103.EnumValueDescriptorProto): _103.EnumValueDescriptorProtoAmino;
+            fromAminoMsg(object: _103.EnumValueDescriptorProtoAminoMsg): _103.EnumValueDescriptorProto;
+            fromProtoMsg(message: _103.EnumValueDescriptorProtoProtoMsg): _103.EnumValueDescriptorProto;
+            toProto(message: _103.EnumValueDescriptorProto): Uint8Array;
+            toProtoMsg(message: _103.EnumValueDescriptorProto): _103.EnumValueDescriptorProtoProtoMsg;
         };
         ServiceDescriptorProto: {
             encode(message: _103.ServiceDescriptorProto, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
@@ -199,6 +267,10 @@ export declare namespace google {
             fromPartial(object: Partial<_103.ServiceDescriptorProto>): _103.ServiceDescriptorProto;
             fromAmino(object: _103.ServiceDescriptorProtoAmino): _103.ServiceDescriptorProto;
             toAmino(message: _103.ServiceDescriptorProto): _103.ServiceDescriptorProtoAmino;
+            fromAminoMsg(object: _103.ServiceDescriptorProtoAminoMsg): _103.ServiceDescriptorProto;
+            fromProtoMsg(message: _103.ServiceDescriptorProtoProtoMsg): _103.ServiceDescriptorProto;
+            toProto(message: _103.ServiceDescriptorProto): Uint8Array;
+            toProtoMsg(message: _103.ServiceDescriptorProto): _103.ServiceDescriptorProtoProtoMsg;
         };
         MethodDescriptorProto: {
             encode(message: _103.MethodDescriptorProto, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
@@ -208,6 +280,10 @@ export declare namespace google {
             fromPartial(object: Partial<_103.MethodDescriptorProto>): _103.MethodDescriptorProto;
             fromAmino(object: _103.MethodDescriptorProtoAmino): _103.MethodDescriptorProto;
             toAmino(message: _103.MethodDescriptorProto): _103.MethodDescriptorProtoAmino;
+            fromAminoMsg(object: _103.MethodDescriptorProtoAminoMsg): _103.MethodDescriptorProto;
+            fromProtoMsg(message: _103.MethodDescriptorProtoProtoMsg): _103.MethodDescriptorProto;
+            toProto(message: _103.MethodDescriptorProto): Uint8Array;
+            toProtoMsg(message: _103.MethodDescriptorProto): _103.MethodDescriptorProtoProtoMsg;
         };
         FileOptions: {
             encode(message: _103.FileOptions, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
@@ -217,6 +293,10 @@ export declare namespace google {
             fromPartial(object: Partial<_103.FileOptions>): _103.FileOptions;
             fromAmino(object: _103.FileOptionsAmino): _103.FileOptions;
             toAmino(message: _103.FileOptions): _103.FileOptionsAmino;
+            fromAminoMsg(object: _103.FileOptionsAminoMsg): _103.FileOptions;
+            fromProtoMsg(message: _103.FileOptionsProtoMsg): _103.FileOptions;
+            toProto(message: _103.FileOptions): Uint8Array;
+            toProtoMsg(message: _103.FileOptions): _103.FileOptionsProtoMsg;
         };
         MessageOptions: {
             encode(message: _103.MessageOptions, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
@@ -226,6 +306,10 @@ export declare namespace google {
             fromPartial(object: Partial<_103.MessageOptions>): _103.MessageOptions;
             fromAmino(object: _103.MessageOptionsAmino): _103.MessageOptions;
             toAmino(message: _103.MessageOptions): _103.MessageOptionsAmino;
+            fromAminoMsg(object: _103.MessageOptionsAminoMsg): _103.MessageOptions;
+            fromProtoMsg(message: _103.MessageOptionsProtoMsg): _103.MessageOptions;
+            toProto(message: _103.MessageOptions): Uint8Array;
+            toProtoMsg(message: _103.MessageOptions): _103.MessageOptionsProtoMsg;
         };
         FieldOptions: {
             encode(message: _103.FieldOptions, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
@@ -235,6 +319,10 @@ export declare namespace google {
             fromPartial(object: Partial<_103.FieldOptions>): _103.FieldOptions;
             fromAmino(object: _103.FieldOptionsAmino): _103.FieldOptions;
             toAmino(message: _103.FieldOptions): _103.FieldOptionsAmino;
+            fromAminoMsg(object: _103.FieldOptionsAminoMsg): _103.FieldOptions;
+            fromProtoMsg(message: _103.FieldOptionsProtoMsg): _103.FieldOptions;
+            toProto(message: _103.FieldOptions): Uint8Array;
+            toProtoMsg(message: _103.FieldOptions): _103.FieldOptionsProtoMsg;
         };
         OneofOptions: {
             encode(message: _103.OneofOptions, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
@@ -244,6 +332,10 @@ export declare namespace google {
             fromPartial(object: Partial<_103.OneofOptions>): _103.OneofOptions;
             fromAmino(object: _103.OneofOptionsAmino): _103.OneofOptions;
             toAmino(message: _103.OneofOptions): _103.OneofOptionsAmino;
+            fromAminoMsg(object: _103.OneofOptionsAminoMsg): _103.OneofOptions;
+            fromProtoMsg(message: _103.OneofOptionsProtoMsg): _103.OneofOptions;
+            toProto(message: _103.OneofOptions): Uint8Array;
+            toProtoMsg(message: _103.OneofOptions): _103.OneofOptionsProtoMsg;
         };
         EnumOptions: {
             encode(message: _103.EnumOptions, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
@@ -253,6 +345,10 @@ export declare namespace google {
             fromPartial(object: Partial<_103.EnumOptions>): _103.EnumOptions;
             fromAmino(object: _103.EnumOptionsAmino): _103.EnumOptions;
             toAmino(message: _103.EnumOptions): _103.EnumOptionsAmino;
+            fromAminoMsg(object: _103.EnumOptionsAminoMsg): _103.EnumOptions;
+            fromProtoMsg(message: _103.EnumOptionsProtoMsg): _103.EnumOptions;
+            toProto(message: _103.EnumOptions): Uint8Array;
+            toProtoMsg(message: _103.EnumOptions): _103.EnumOptionsProtoMsg;
         };
         EnumValueOptions: {
             encode(message: _103.EnumValueOptions, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
@@ -262,6 +358,10 @@ export declare namespace google {
             fromPartial(object: Partial<_103.EnumValueOptions>): _103.EnumValueOptions;
             fromAmino(object: _103.EnumValueOptionsAmino): _103.EnumValueOptions;
             toAmino(message: _103.EnumValueOptions): _103.EnumValueOptionsAmino;
+            fromAminoMsg(object: _103.EnumValueOptionsAminoMsg): _103.EnumValueOptions;
+            fromProtoMsg(message: _103.EnumValueOptionsProtoMsg): _103.EnumValueOptions;
+            toProto(message: _103.EnumValueOptions): Uint8Array;
+            toProtoMsg(message: _103.EnumValueOptions): _103.EnumValueOptionsProtoMsg;
         };
         ServiceOptions: {
             encode(message: _103.ServiceOptions, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
@@ -271,6 +371,10 @@ export declare namespace google {
             fromPartial(object: Partial<_103.ServiceOptions>): _103.ServiceOptions;
             fromAmino(object: _103.ServiceOptionsAmino): _103.ServiceOptions;
             toAmino(message: _103.ServiceOptions): _103.ServiceOptionsAmino;
+            fromAminoMsg(object: _103.ServiceOptionsAminoMsg): _103.ServiceOptions;
+            fromProtoMsg(message: _103.ServiceOptionsProtoMsg): _103.ServiceOptions;
+            toProto(message: _103.ServiceOptions): Uint8Array;
+            toProtoMsg(message: _103.ServiceOptions): _103.ServiceOptionsProtoMsg;
         };
         MethodOptions: {
             encode(message: _103.MethodOptions, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
@@ -280,6 +384,10 @@ export declare namespace google {
             fromPartial(object: Partial<_103.MethodOptions>): _103.MethodOptions;
             fromAmino(object: _103.MethodOptionsAmino): _103.MethodOptions;
             toAmino(message: _103.MethodOptions): _103.MethodOptionsAmino;
+            fromAminoMsg(object: _103.MethodOptionsAminoMsg): _103.MethodOptions;
+            fromProtoMsg(message: _103.MethodOptionsProtoMsg): _103.MethodOptions;
+            toProto(message: _103.MethodOptions): Uint8Array;
+            toProtoMsg(message: _103.MethodOptions): _103.MethodOptionsProtoMsg;
         };
         UninterpretedOption: {
             encode(message: _103.UninterpretedOption, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
@@ -289,6 +397,10 @@ export declare namespace google {
             fromPartial(object: Partial<_103.UninterpretedOption>): _103.UninterpretedOption;
             fromAmino(object: _103.UninterpretedOptionAmino): _103.UninterpretedOption;
             toAmino(message: _103.UninterpretedOption): _103.UninterpretedOptionAmino;
+            fromAminoMsg(object: _103.UninterpretedOptionAminoMsg): _103.UninterpretedOption;
+            fromProtoMsg(message: _103.UninterpretedOptionProtoMsg): _103.UninterpretedOption;
+            toProto(message: _103.UninterpretedOption): Uint8Array;
+            toProtoMsg(message: _103.UninterpretedOption): _103.UninterpretedOptionProtoMsg;
         };
         UninterpretedOption_NamePart: {
             encode(message: _103.UninterpretedOption_NamePart, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
@@ -298,6 +410,10 @@ export declare namespace google {
             fromPartial(object: Partial<_103.UninterpretedOption_NamePart>): _103.UninterpretedOption_NamePart;
             fromAmino(object: _103.UninterpretedOption_NamePartAmino): _103.UninterpretedOption_NamePart;
             toAmino(message: _103.UninterpretedOption_NamePart): _103.UninterpretedOption_NamePartAmino;
+            fromAminoMsg(object: _103.UninterpretedOption_NamePartAminoMsg): _103.UninterpretedOption_NamePart;
+            fromProtoMsg(message: _103.UninterpretedOption_NamePartProtoMsg): _103.UninterpretedOption_NamePart;
+            toProto(message: _103.UninterpretedOption_NamePart): Uint8Array;
+            toProtoMsg(message: _103.UninterpretedOption_NamePart): _103.UninterpretedOption_NamePartProtoMsg;
         };
         SourceCodeInfo: {
             encode(message: _103.SourceCodeInfo, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
@@ -307,6 +423,10 @@ export declare namespace google {
             fromPartial(object: Partial<_103.SourceCodeInfo>): _103.SourceCodeInfo;
             fromAmino(object: _103.SourceCodeInfoAmino): _103.SourceCodeInfo;
             toAmino(message: _103.SourceCodeInfo): _103.SourceCodeInfoAmino;
+            fromAminoMsg(object: _103.SourceCodeInfoAminoMsg): _103.SourceCodeInfo;
+            fromProtoMsg(message: _103.SourceCodeInfoProtoMsg): _103.SourceCodeInfo;
+            toProto(message: _103.SourceCodeInfo): Uint8Array;
+            toProtoMsg(message: _103.SourceCodeInfo): _103.SourceCodeInfoProtoMsg;
         };
         SourceCodeInfo_Location: {
             encode(message: _103.SourceCodeInfo_Location, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
@@ -316,6 +436,10 @@ export declare namespace google {
             fromPartial(object: Partial<_103.SourceCodeInfo_Location>): _103.SourceCodeInfo_Location;
             fromAmino(object: _103.SourceCodeInfo_LocationAmino): _103.SourceCodeInfo_Location;
             toAmino(message: _103.SourceCodeInfo_Location): _103.SourceCodeInfo_LocationAmino;
+            fromAminoMsg(object: _103.SourceCodeInfo_LocationAminoMsg): _103.SourceCodeInfo_Location;
+            fromProtoMsg(message: _103.SourceCodeInfo_LocationProtoMsg): _103.SourceCodeInfo_Location;
+            toProto(message: _103.SourceCodeInfo_Location): Uint8Array;
+            toProtoMsg(message: _103.SourceCodeInfo_Location): _103.SourceCodeInfo_LocationProtoMsg;
         };
         GeneratedCodeInfo: {
             encode(message: _103.GeneratedCodeInfo, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
@@ -325,6 +449,10 @@ export declare namespace google {
             fromPartial(object: Partial<_103.GeneratedCodeInfo>): _103.GeneratedCodeInfo;
             fromAmino(object: _103.GeneratedCodeInfoAmino): _103.GeneratedCodeInfo;
             toAmino(message: _103.GeneratedCodeInfo): _103.GeneratedCodeInfoAmino;
+            fromAminoMsg(object: _103.GeneratedCodeInfoAminoMsg): _103.GeneratedCodeInfo;
+            fromProtoMsg(message: _103.GeneratedCodeInfoProtoMsg): _103.GeneratedCodeInfo;
+            toProto(message: _103.GeneratedCodeInfo): Uint8Array;
+            toProtoMsg(message: _103.GeneratedCodeInfo): _103.GeneratedCodeInfoProtoMsg;
         };
         GeneratedCodeInfo_Annotation: {
             encode(message: _103.GeneratedCodeInfo_Annotation, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
@@ -334,6 +462,10 @@ export declare namespace google {
             fromPartial(object: Partial<_103.GeneratedCodeInfo_Annotation>): _103.GeneratedCodeInfo_Annotation;
             fromAmino(object: _103.GeneratedCodeInfo_AnnotationAmino): _103.GeneratedCodeInfo_Annotation;
             toAmino(message: _103.GeneratedCodeInfo_Annotation): _103.GeneratedCodeInfo_AnnotationAmino;
+            fromAminoMsg(object: _103.GeneratedCodeInfo_AnnotationAminoMsg): _103.GeneratedCodeInfo_Annotation;
+            fromProtoMsg(message: _103.GeneratedCodeInfo_AnnotationProtoMsg): _103.GeneratedCodeInfo_Annotation;
+            toProto(message: _103.GeneratedCodeInfo_Annotation): Uint8Array;
+            toProtoMsg(message: _103.GeneratedCodeInfo_Annotation): _103.GeneratedCodeInfo_AnnotationProtoMsg;
         };
         Any: {
             encode(message: _102.Any, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
@@ -343,6 +475,10 @@ export declare namespace google {
             fromPartial(object: Partial<_102.Any>): _102.Any;
             fromAmino(object: _102.AnyAmino): _102.Any;
             toAmino(message: _102.Any): _102.AnyAmino;
+            fromAminoMsg(object: _102.AnyAminoMsg): _102.Any;
+            fromProtoMsg(message: _102.AnyProtoMsg): _102.Any;
+            toProto(message: _102.Any): Uint8Array;
+            toProtoMsg(message: _102.Any): _102.AnyProtoMsg;
         };
     };
 }

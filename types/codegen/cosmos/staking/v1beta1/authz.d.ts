@@ -42,6 +42,10 @@ export interface StakeAuthorization {
     /** authorization_type defines one of AuthorizationType. */
     authorizationType: AuthorizationType;
 }
+export interface StakeAuthorizationProtoMsg {
+    typeUrl: "/cosmos.staking.v1beta1.StakeAuthorization";
+    value: Uint8Array;
+}
 /**
  * StakeAuthorization defines authorization for delegate/undelegate/redelegate.
  *
@@ -63,6 +67,10 @@ export interface StakeAuthorizationAmino {
     /** authorization_type defines one of AuthorizationType. */
     authorization_type: AuthorizationType;
 }
+export interface StakeAuthorizationAminoMsg {
+    type: "cosmos-sdk/StakeAuthorization";
+    value: StakeAuthorizationAmino;
+}
 /**
  * StakeAuthorization defines authorization for delegate/undelegate/redelegate.
  *
@@ -79,9 +87,17 @@ export interface StakeAuthorizationSDKType {
 export interface StakeAuthorization_Validators {
     address: string[];
 }
+export interface StakeAuthorization_ValidatorsProtoMsg {
+    typeUrl: "/cosmos.staking.v1beta1.Validators";
+    value: Uint8Array;
+}
 /** Validators defines list of validator addresses. */
 export interface StakeAuthorization_ValidatorsAmino {
     address: string[];
+}
+export interface StakeAuthorization_ValidatorsAminoMsg {
+    type: "cosmos-sdk/Validators";
+    value: StakeAuthorization_ValidatorsAmino;
 }
 /** Validators defines list of validator addresses. */
 export interface StakeAuthorization_ValidatorsSDKType {
@@ -95,6 +111,11 @@ export declare const StakeAuthorization: {
     fromPartial(object: Partial<StakeAuthorization>): StakeAuthorization;
     fromAmino(object: StakeAuthorizationAmino): StakeAuthorization;
     toAmino(message: StakeAuthorization): StakeAuthorizationAmino;
+    fromAminoMsg(object: StakeAuthorizationAminoMsg): StakeAuthorization;
+    toAminoMsg(message: StakeAuthorization): StakeAuthorizationAminoMsg;
+    fromProtoMsg(message: StakeAuthorizationProtoMsg): StakeAuthorization;
+    toProto(message: StakeAuthorization): Uint8Array;
+    toProtoMsg(message: StakeAuthorization): StakeAuthorizationProtoMsg;
 };
 export declare const StakeAuthorization_Validators: {
     encode(message: StakeAuthorization_Validators, writer?: _m0.Writer): _m0.Writer;
@@ -104,4 +125,9 @@ export declare const StakeAuthorization_Validators: {
     fromPartial(object: Partial<StakeAuthorization_Validators>): StakeAuthorization_Validators;
     fromAmino(object: StakeAuthorization_ValidatorsAmino): StakeAuthorization_Validators;
     toAmino(message: StakeAuthorization_Validators): StakeAuthorization_ValidatorsAmino;
+    fromAminoMsg(object: StakeAuthorization_ValidatorsAminoMsg): StakeAuthorization_Validators;
+    toAminoMsg(message: StakeAuthorization_Validators): StakeAuthorization_ValidatorsAminoMsg;
+    fromProtoMsg(message: StakeAuthorization_ValidatorsProtoMsg): StakeAuthorization_Validators;
+    toProto(message: StakeAuthorization_Validators): Uint8Array;
+    toProtoMsg(message: StakeAuthorization_Validators): StakeAuthorization_ValidatorsProtoMsg;
 };

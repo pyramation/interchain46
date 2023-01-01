@@ -20,6 +20,10 @@ export interface Tx {
      */
     signatures: Uint8Array[];
 }
+export interface TxProtoMsg {
+    typeUrl: "/cosmos.tx.v1beta1.Tx";
+    value: Uint8Array;
+}
 /** Tx is the standard type used for broadcasting transactions. */
 export interface TxAmino {
     /** body is the processable content of the transaction */
@@ -35,6 +39,10 @@ export interface TxAmino {
      * public key and signing mode by position.
      */
     signatures: Uint8Array[];
+}
+export interface TxAminoMsg {
+    type: "cosmos-sdk/Tx";
+    value: TxAmino;
 }
 /** Tx is the standard type used for broadcasting transactions. */
 export interface TxSDKType {
@@ -67,6 +75,10 @@ export interface TxRaw {
      */
     signatures: Uint8Array[];
 }
+export interface TxRawProtoMsg {
+    typeUrl: "/cosmos.tx.v1beta1.TxRaw";
+    value: Uint8Array;
+}
 /**
  * TxRaw is a variant of Tx that pins the signer's exact binary representation
  * of body and auth_info. This is used for signing, broadcasting and
@@ -91,6 +103,10 @@ export interface TxRawAmino {
      * public key and signing mode by position.
      */
     signatures: Uint8Array[];
+}
+export interface TxRawAminoMsg {
+    type: "cosmos-sdk/TxRaw";
+    value: TxRawAmino;
 }
 /**
  * TxRaw is a variant of Tx that pins the signer's exact binary representation
@@ -125,6 +141,10 @@ export interface SignDoc {
     /** account_number is the account number of the account in state */
     accountNumber: Long;
 }
+export interface SignDocProtoMsg {
+    typeUrl: "/cosmos.tx.v1beta1.SignDoc";
+    value: Uint8Array;
+}
 /** SignDoc is the type used for generating sign bytes for SIGN_MODE_DIRECT. */
 export interface SignDocAmino {
     /**
@@ -145,6 +165,10 @@ export interface SignDocAmino {
     chain_id: string;
     /** account_number is the account number of the account in state */
     account_number: string;
+}
+export interface SignDocAminoMsg {
+    type: "cosmos-sdk/SignDoc";
+    value: SignDocAmino;
 }
 /** SignDoc is the type used for generating sign bytes for SIGN_MODE_DIRECT. */
 export interface SignDocSDKType {
@@ -187,6 +211,10 @@ export interface SignDocDirectAux {
      */
     tip?: Tip;
 }
+export interface SignDocDirectAuxProtoMsg {
+    typeUrl: "/cosmos.tx.v1beta1.SignDocDirectAux";
+    value: Uint8Array;
+}
 /**
  * SignDocDirectAux is the type used for generating sign bytes for
  * SIGN_MODE_DIRECT_AUX.
@@ -220,6 +248,10 @@ export interface SignDocDirectAuxAmino {
      * `TipDecorator` in its posthandler.
      */
     tip?: TipAmino;
+}
+export interface SignDocDirectAuxAminoMsg {
+    type: "cosmos-sdk/SignDocDirectAux";
+    value: SignDocDirectAuxAmino;
 }
 /**
  * SignDocDirectAux is the type used for generating sign bytes for
@@ -271,6 +303,10 @@ export interface TxBody {
      */
     nonCriticalExtensionOptions: Any[];
 }
+export interface TxBodyProtoMsg {
+    typeUrl: "/cosmos.tx.v1beta1.TxBody";
+    value: Uint8Array;
+}
 /** TxBody is the body of a transaction that all signers sign over. */
 export interface TxBodyAmino {
     /**
@@ -306,6 +342,10 @@ export interface TxBodyAmino {
      * and can't be handled, they will be ignored
      */
     non_critical_extension_options: AnyAmino[];
+}
+export interface TxBodyAminoMsg {
+    type: "cosmos-sdk/TxBody";
+    value: TxBodyAmino;
 }
 /** TxBody is the body of a transaction that all signers sign over. */
 export interface TxBodySDKType {
@@ -344,6 +384,10 @@ export interface AuthInfo {
      */
     tip?: Tip;
 }
+export interface AuthInfoProtoMsg {
+    typeUrl: "/cosmos.tx.v1beta1.AuthInfo";
+    value: Uint8Array;
+}
 /**
  * AuthInfo describes the fee and signer modes that are used to sign a
  * transaction.
@@ -372,6 +416,10 @@ export interface AuthInfoAmino {
      * Since: cosmos-sdk 0.46
      */
     tip?: TipAmino;
+}
+export interface AuthInfoAminoMsg {
+    type: "cosmos-sdk/AuthInfo";
+    value: AuthInfoAmino;
 }
 /**
  * AuthInfo describes the fee and signer modes that are used to sign a
@@ -405,6 +453,10 @@ export interface SignerInfo {
      */
     sequence: Long;
 }
+export interface SignerInfoProtoMsg {
+    typeUrl: "/cosmos.tx.v1beta1.SignerInfo";
+    value: Uint8Array;
+}
 /**
  * SignerInfo describes the public key and signing mode of a single top-level
  * signer.
@@ -428,6 +480,10 @@ export interface SignerInfoAmino {
      */
     sequence: string;
 }
+export interface SignerInfoAminoMsg {
+    type: "cosmos-sdk/SignerInfo";
+    value: SignerInfoAmino;
+}
 /**
  * SignerInfo describes the public key and signing mode of a single top-level
  * signer.
@@ -444,12 +500,20 @@ export interface ModeInfo {
     /** multi represents a nested multisig signer */
     multi?: ModeInfo_Multi;
 }
+export interface ModeInfoProtoMsg {
+    typeUrl: "/cosmos.tx.v1beta1.ModeInfo";
+    value: Uint8Array;
+}
 /** ModeInfo describes the signing mode of a single or nested multisig signer. */
 export interface ModeInfoAmino {
     /** single represents a single signer */
     single?: ModeInfo_SingleAmino;
     /** multi represents a nested multisig signer */
     multi?: ModeInfo_MultiAmino;
+}
+export interface ModeInfoAminoMsg {
+    type: "cosmos-sdk/ModeInfo";
+    value: ModeInfoAmino;
 }
 /** ModeInfo describes the signing mode of a single or nested multisig signer. */
 export interface ModeInfoSDKType {
@@ -465,6 +529,10 @@ export interface ModeInfo_Single {
     /** mode is the signing mode of the single signer */
     mode: SignMode;
 }
+export interface ModeInfo_SingleProtoMsg {
+    typeUrl: "/cosmos.tx.v1beta1.Single";
+    value: Uint8Array;
+}
 /**
  * Single is the mode info for a single signer. It is structured as a message
  * to allow for additional fields such as locale for SIGN_MODE_TEXTUAL in the
@@ -473,6 +541,10 @@ export interface ModeInfo_Single {
 export interface ModeInfo_SingleAmino {
     /** mode is the signing mode of the single signer */
     mode: SignMode;
+}
+export interface ModeInfo_SingleAminoMsg {
+    type: "cosmos-sdk/Single";
+    value: ModeInfo_SingleAmino;
 }
 /**
  * Single is the mode info for a single signer. It is structured as a message
@@ -492,6 +564,10 @@ export interface ModeInfo_Multi {
      */
     modeInfos: ModeInfo[];
 }
+export interface ModeInfo_MultiProtoMsg {
+    typeUrl: "/cosmos.tx.v1beta1.Multi";
+    value: Uint8Array;
+}
 /** Multi is the mode info for a multisig public key */
 export interface ModeInfo_MultiAmino {
     /** bitarray specifies which keys within the multisig are signing */
@@ -501,6 +577,10 @@ export interface ModeInfo_MultiAmino {
      * which could include nested multisig public keys
      */
     mode_infos: ModeInfoAmino[];
+}
+export interface ModeInfo_MultiAminoMsg {
+    type: "cosmos-sdk/Multi";
+    value: ModeInfo_MultiAmino;
 }
 /** Multi is the mode info for a multisig public key */
 export interface ModeInfo_MultiSDKType {
@@ -533,6 +613,10 @@ export interface Fee {
      */
     granter: string;
 }
+export interface FeeProtoMsg {
+    typeUrl: "/cosmos.tx.v1beta1.Fee";
+    value: Uint8Array;
+}
 /**
  * Fee includes the amount of coins paid in fees and the maximum
  * gas to be used by the transaction. The ratio yields an effective "gasprice",
@@ -559,6 +643,10 @@ export interface FeeAmino {
      */
     granter: string;
 }
+export interface FeeAminoMsg {
+    type: "cosmos-sdk/Fee";
+    value: FeeAmino;
+}
 /**
  * Fee includes the amount of coins paid in fees and the maximum
  * gas to be used by the transaction. The ratio yields an effective "gasprice",
@@ -581,6 +669,10 @@ export interface Tip {
     /** tipper is the address of the account paying for the tip */
     tipper: string;
 }
+export interface TipProtoMsg {
+    typeUrl: "/cosmos.tx.v1beta1.Tip";
+    value: Uint8Array;
+}
 /**
  * Tip is the tip used for meta-transactions.
  *
@@ -591,6 +683,10 @@ export interface TipAmino {
     amount: CoinAmino[];
     /** tipper is the address of the account paying for the tip */
     tipper: string;
+}
+export interface TipAminoMsg {
+    type: "cosmos-sdk/Tip";
+    value: TipAmino;
 }
 /**
  * Tip is the tip used for meta-transactions.
@@ -627,6 +723,10 @@ export interface AuxSignerData {
     /** sig is the signature of the sign doc. */
     sig: Uint8Array;
 }
+export interface AuxSignerDataProtoMsg {
+    typeUrl: "/cosmos.tx.v1beta1.AuxSignerData";
+    value: Uint8Array;
+}
 /**
  * AuxSignerData is the intermediary format that an auxiliary signer (e.g. a
  * tipper) builds and sends to the fee payer (who will build and broadcast the
@@ -653,6 +753,10 @@ export interface AuxSignerDataAmino {
     /** sig is the signature of the sign doc. */
     sig: Uint8Array;
 }
+export interface AuxSignerDataAminoMsg {
+    type: "cosmos-sdk/AuxSignerData";
+    value: AuxSignerDataAmino;
+}
 /**
  * AuxSignerData is the intermediary format that an auxiliary signer (e.g. a
  * tipper) builds and sends to the fee payer (who will build and broadcast the
@@ -675,6 +779,11 @@ export declare const Tx: {
     fromPartial(object: Partial<Tx>): Tx;
     fromAmino(object: TxAmino): Tx;
     toAmino(message: Tx): TxAmino;
+    fromAminoMsg(object: TxAminoMsg): Tx;
+    toAminoMsg(message: Tx): TxAminoMsg;
+    fromProtoMsg(message: TxProtoMsg): Tx;
+    toProto(message: Tx): Uint8Array;
+    toProtoMsg(message: Tx): TxProtoMsg;
 };
 export declare const TxRaw: {
     encode(message: TxRaw, writer?: _m0.Writer): _m0.Writer;
@@ -684,6 +793,11 @@ export declare const TxRaw: {
     fromPartial(object: Partial<TxRaw>): TxRaw;
     fromAmino(object: TxRawAmino): TxRaw;
     toAmino(message: TxRaw): TxRawAmino;
+    fromAminoMsg(object: TxRawAminoMsg): TxRaw;
+    toAminoMsg(message: TxRaw): TxRawAminoMsg;
+    fromProtoMsg(message: TxRawProtoMsg): TxRaw;
+    toProto(message: TxRaw): Uint8Array;
+    toProtoMsg(message: TxRaw): TxRawProtoMsg;
 };
 export declare const SignDoc: {
     encode(message: SignDoc, writer?: _m0.Writer): _m0.Writer;
@@ -693,6 +807,11 @@ export declare const SignDoc: {
     fromPartial(object: Partial<SignDoc>): SignDoc;
     fromAmino(object: SignDocAmino): SignDoc;
     toAmino(message: SignDoc): SignDocAmino;
+    fromAminoMsg(object: SignDocAminoMsg): SignDoc;
+    toAminoMsg(message: SignDoc): SignDocAminoMsg;
+    fromProtoMsg(message: SignDocProtoMsg): SignDoc;
+    toProto(message: SignDoc): Uint8Array;
+    toProtoMsg(message: SignDoc): SignDocProtoMsg;
 };
 export declare const SignDocDirectAux: {
     encode(message: SignDocDirectAux, writer?: _m0.Writer): _m0.Writer;
@@ -702,6 +821,11 @@ export declare const SignDocDirectAux: {
     fromPartial(object: Partial<SignDocDirectAux>): SignDocDirectAux;
     fromAmino(object: SignDocDirectAuxAmino): SignDocDirectAux;
     toAmino(message: SignDocDirectAux): SignDocDirectAuxAmino;
+    fromAminoMsg(object: SignDocDirectAuxAminoMsg): SignDocDirectAux;
+    toAminoMsg(message: SignDocDirectAux): SignDocDirectAuxAminoMsg;
+    fromProtoMsg(message: SignDocDirectAuxProtoMsg): SignDocDirectAux;
+    toProto(message: SignDocDirectAux): Uint8Array;
+    toProtoMsg(message: SignDocDirectAux): SignDocDirectAuxProtoMsg;
 };
 export declare const TxBody: {
     encode(message: TxBody, writer?: _m0.Writer): _m0.Writer;
@@ -711,6 +835,11 @@ export declare const TxBody: {
     fromPartial(object: Partial<TxBody>): TxBody;
     fromAmino(object: TxBodyAmino): TxBody;
     toAmino(message: TxBody): TxBodyAmino;
+    fromAminoMsg(object: TxBodyAminoMsg): TxBody;
+    toAminoMsg(message: TxBody): TxBodyAminoMsg;
+    fromProtoMsg(message: TxBodyProtoMsg): TxBody;
+    toProto(message: TxBody): Uint8Array;
+    toProtoMsg(message: TxBody): TxBodyProtoMsg;
 };
 export declare const AuthInfo: {
     encode(message: AuthInfo, writer?: _m0.Writer): _m0.Writer;
@@ -720,6 +849,11 @@ export declare const AuthInfo: {
     fromPartial(object: Partial<AuthInfo>): AuthInfo;
     fromAmino(object: AuthInfoAmino): AuthInfo;
     toAmino(message: AuthInfo): AuthInfoAmino;
+    fromAminoMsg(object: AuthInfoAminoMsg): AuthInfo;
+    toAminoMsg(message: AuthInfo): AuthInfoAminoMsg;
+    fromProtoMsg(message: AuthInfoProtoMsg): AuthInfo;
+    toProto(message: AuthInfo): Uint8Array;
+    toProtoMsg(message: AuthInfo): AuthInfoProtoMsg;
 };
 export declare const SignerInfo: {
     encode(message: SignerInfo, writer?: _m0.Writer): _m0.Writer;
@@ -729,6 +863,11 @@ export declare const SignerInfo: {
     fromPartial(object: Partial<SignerInfo>): SignerInfo;
     fromAmino(object: SignerInfoAmino): SignerInfo;
     toAmino(message: SignerInfo): SignerInfoAmino;
+    fromAminoMsg(object: SignerInfoAminoMsg): SignerInfo;
+    toAminoMsg(message: SignerInfo): SignerInfoAminoMsg;
+    fromProtoMsg(message: SignerInfoProtoMsg): SignerInfo;
+    toProto(message: SignerInfo): Uint8Array;
+    toProtoMsg(message: SignerInfo): SignerInfoProtoMsg;
 };
 export declare const ModeInfo: {
     encode(message: ModeInfo, writer?: _m0.Writer): _m0.Writer;
@@ -738,6 +877,11 @@ export declare const ModeInfo: {
     fromPartial(object: Partial<ModeInfo>): ModeInfo;
     fromAmino(object: ModeInfoAmino): ModeInfo;
     toAmino(message: ModeInfo): ModeInfoAmino;
+    fromAminoMsg(object: ModeInfoAminoMsg): ModeInfo;
+    toAminoMsg(message: ModeInfo): ModeInfoAminoMsg;
+    fromProtoMsg(message: ModeInfoProtoMsg): ModeInfo;
+    toProto(message: ModeInfo): Uint8Array;
+    toProtoMsg(message: ModeInfo): ModeInfoProtoMsg;
 };
 export declare const ModeInfo_Single: {
     encode(message: ModeInfo_Single, writer?: _m0.Writer): _m0.Writer;
@@ -747,6 +891,11 @@ export declare const ModeInfo_Single: {
     fromPartial(object: Partial<ModeInfo_Single>): ModeInfo_Single;
     fromAmino(object: ModeInfo_SingleAmino): ModeInfo_Single;
     toAmino(message: ModeInfo_Single): ModeInfo_SingleAmino;
+    fromAminoMsg(object: ModeInfo_SingleAminoMsg): ModeInfo_Single;
+    toAminoMsg(message: ModeInfo_Single): ModeInfo_SingleAminoMsg;
+    fromProtoMsg(message: ModeInfo_SingleProtoMsg): ModeInfo_Single;
+    toProto(message: ModeInfo_Single): Uint8Array;
+    toProtoMsg(message: ModeInfo_Single): ModeInfo_SingleProtoMsg;
 };
 export declare const ModeInfo_Multi: {
     encode(message: ModeInfo_Multi, writer?: _m0.Writer): _m0.Writer;
@@ -756,6 +905,11 @@ export declare const ModeInfo_Multi: {
     fromPartial(object: Partial<ModeInfo_Multi>): ModeInfo_Multi;
     fromAmino(object: ModeInfo_MultiAmino): ModeInfo_Multi;
     toAmino(message: ModeInfo_Multi): ModeInfo_MultiAmino;
+    fromAminoMsg(object: ModeInfo_MultiAminoMsg): ModeInfo_Multi;
+    toAminoMsg(message: ModeInfo_Multi): ModeInfo_MultiAminoMsg;
+    fromProtoMsg(message: ModeInfo_MultiProtoMsg): ModeInfo_Multi;
+    toProto(message: ModeInfo_Multi): Uint8Array;
+    toProtoMsg(message: ModeInfo_Multi): ModeInfo_MultiProtoMsg;
 };
 export declare const Fee: {
     encode(message: Fee, writer?: _m0.Writer): _m0.Writer;
@@ -765,6 +919,11 @@ export declare const Fee: {
     fromPartial(object: Partial<Fee>): Fee;
     fromAmino(object: FeeAmino): Fee;
     toAmino(message: Fee): FeeAmino;
+    fromAminoMsg(object: FeeAminoMsg): Fee;
+    toAminoMsg(message: Fee): FeeAminoMsg;
+    fromProtoMsg(message: FeeProtoMsg): Fee;
+    toProto(message: Fee): Uint8Array;
+    toProtoMsg(message: Fee): FeeProtoMsg;
 };
 export declare const Tip: {
     encode(message: Tip, writer?: _m0.Writer): _m0.Writer;
@@ -774,6 +933,11 @@ export declare const Tip: {
     fromPartial(object: Partial<Tip>): Tip;
     fromAmino(object: TipAmino): Tip;
     toAmino(message: Tip): TipAmino;
+    fromAminoMsg(object: TipAminoMsg): Tip;
+    toAminoMsg(message: Tip): TipAminoMsg;
+    fromProtoMsg(message: TipProtoMsg): Tip;
+    toProto(message: Tip): Uint8Array;
+    toProtoMsg(message: Tip): TipProtoMsg;
 };
 export declare const AuxSignerData: {
     encode(message: AuxSignerData, writer?: _m0.Writer): _m0.Writer;
@@ -783,4 +947,9 @@ export declare const AuxSignerData: {
     fromPartial(object: Partial<AuxSignerData>): AuxSignerData;
     fromAmino(object: AuxSignerDataAmino): AuxSignerData;
     toAmino(message: AuxSignerData): AuxSignerDataAmino;
+    fromAminoMsg(object: AuxSignerDataAminoMsg): AuxSignerData;
+    toAminoMsg(message: AuxSignerData): AuxSignerDataAminoMsg;
+    fromProtoMsg(message: AuxSignerDataProtoMsg): AuxSignerData;
+    toProto(message: AuxSignerData): Uint8Array;
+    toProtoMsg(message: AuxSignerData): AuxSignerDataProtoMsg;
 };

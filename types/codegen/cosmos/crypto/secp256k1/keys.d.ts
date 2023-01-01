@@ -9,6 +9,10 @@ import * as _m0 from "protobufjs/minimal";
 export interface PubKey {
     key: Uint8Array;
 }
+export interface PubKeyProtoMsg {
+    typeUrl: "/cosmos.crypto.secp256k1.PubKey";
+    value: Uint8Array;
+}
 /**
  * PubKey defines a secp256k1 public key
  * Key is the compressed form of the pubkey. The first byte depends is a 0x02 byte
@@ -18,6 +22,10 @@ export interface PubKey {
  */
 export interface PubKeyAmino {
     key: Uint8Array;
+}
+export interface PubKeyAminoMsg {
+    type: "cosmos-sdk/PubKey";
+    value: PubKeyAmino;
 }
 /**
  * PubKey defines a secp256k1 public key
@@ -33,9 +41,17 @@ export interface PubKeySDKType {
 export interface PrivKey {
     key: Uint8Array;
 }
+export interface PrivKeyProtoMsg {
+    typeUrl: "/cosmos.crypto.secp256k1.PrivKey";
+    value: Uint8Array;
+}
 /** PrivKey defines a secp256k1 private key. */
 export interface PrivKeyAmino {
     key: Uint8Array;
+}
+export interface PrivKeyAminoMsg {
+    type: "cosmos-sdk/PrivKey";
+    value: PrivKeyAmino;
 }
 /** PrivKey defines a secp256k1 private key. */
 export interface PrivKeySDKType {
@@ -49,6 +65,11 @@ export declare const PubKey: {
     fromPartial(object: Partial<PubKey>): PubKey;
     fromAmino(object: PubKeyAmino): PubKey;
     toAmino(message: PubKey): PubKeyAmino;
+    fromAminoMsg(object: PubKeyAminoMsg): PubKey;
+    toAminoMsg(message: PubKey): PubKeyAminoMsg;
+    fromProtoMsg(message: PubKeyProtoMsg): PubKey;
+    toProto(message: PubKey): Uint8Array;
+    toProtoMsg(message: PubKey): PubKeyProtoMsg;
 };
 export declare const PrivKey: {
     encode(message: PrivKey, writer?: _m0.Writer): _m0.Writer;
@@ -58,4 +79,9 @@ export declare const PrivKey: {
     fromPartial(object: Partial<PrivKey>): PrivKey;
     fromAmino(object: PrivKeyAmino): PrivKey;
     toAmino(message: PrivKey): PrivKeyAmino;
+    fromAminoMsg(object: PrivKeyAminoMsg): PrivKey;
+    toAminoMsg(message: PrivKey): PrivKeyAminoMsg;
+    fromProtoMsg(message: PrivKeyProtoMsg): PrivKey;
+    toProto(message: PrivKey): Uint8Array;
+    toProtoMsg(message: PrivKey): PrivKeyProtoMsg;
 };

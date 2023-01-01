@@ -72,6 +72,10 @@ export interface ExistenceProof {
     leaf?: LeafOp;
     path: InnerOp[];
 }
+export interface ExistenceProofProtoMsg {
+    typeUrl: "/ics23.ExistenceProof";
+    value: Uint8Array;
+}
 /**
  * ExistenceProof takes a key and a value and a set of steps to perform on it.
  * The result of peforming all these steps will provide a "root hash", which can
@@ -98,6 +102,10 @@ export interface ExistenceProofAmino {
     value: Uint8Array;
     leaf?: LeafOpAmino;
     path: InnerOpAmino[];
+}
+export interface ExistenceProofAminoMsg {
+    type: "/ics23.ExistenceProof";
+    value: ExistenceProofAmino;
 }
 /**
  * ExistenceProof takes a key and a value and a set of steps to perform on it.
@@ -137,6 +145,10 @@ export interface NonExistenceProof {
     left?: ExistenceProof;
     right?: ExistenceProof;
 }
+export interface NonExistenceProofProtoMsg {
+    typeUrl: "/ics23.NonExistenceProof";
+    value: Uint8Array;
+}
 /**
  * NonExistenceProof takes a proof of two neighbors, one left of the desired key,
  * one right of the desired key. If both proofs are valid AND they are neighbors,
@@ -147,6 +159,10 @@ export interface NonExistenceProofAmino {
     key: Uint8Array;
     left?: ExistenceProofAmino;
     right?: ExistenceProofAmino;
+}
+export interface NonExistenceProofAminoMsg {
+    type: "/ics23.NonExistenceProof";
+    value: NonExistenceProofAmino;
 }
 /**
  * NonExistenceProof takes a proof of two neighbors, one left of the desired key,
@@ -165,12 +181,20 @@ export interface CommitmentProof {
     batch?: BatchProof;
     compressed?: CompressedBatchProof;
 }
+export interface CommitmentProofProtoMsg {
+    typeUrl: "/ics23.CommitmentProof";
+    value: Uint8Array;
+}
 /** CommitmentProof is either an ExistenceProof or a NonExistenceProof, or a Batch of such messages */
 export interface CommitmentProofAmino {
     exist?: ExistenceProofAmino;
     nonexist?: NonExistenceProofAmino;
     batch?: BatchProofAmino;
     compressed?: CompressedBatchProofAmino;
+}
+export interface CommitmentProofAminoMsg {
+    type: "/ics23.CommitmentProof";
+    value: CommitmentProofAmino;
 }
 /** CommitmentProof is either an ExistenceProof or a NonExistenceProof, or a Batch of such messages */
 export interface CommitmentProofSDKType {
@@ -206,6 +230,10 @@ export interface LeafOp {
      */
     prefix: Uint8Array;
 }
+export interface LeafOpProtoMsg {
+    typeUrl: "/ics23.LeafOp";
+    value: Uint8Array;
+}
 /**
  * LeafOp represents the raw key-value data we wish to prove, and
  * must be flexible to represent the internal transformation from
@@ -232,6 +260,10 @@ export interface LeafOpAmino {
      * a leaf node from an inner node.
      */
     prefix: Uint8Array;
+}
+export interface LeafOpAminoMsg {
+    type: "/ics23.LeafOp";
+    value: LeafOpAmino;
 }
 /**
  * LeafOp represents the raw key-value data we wish to prove, and
@@ -278,6 +310,10 @@ export interface InnerOp {
     prefix: Uint8Array;
     suffix: Uint8Array;
 }
+export interface InnerOpProtoMsg {
+    typeUrl: "/ics23.InnerOp";
+    value: Uint8Array;
+}
 /**
  * InnerOp represents a merkle-proof step that is not a leaf.
  * It represents concatenating two children and hashing them to provide the next result.
@@ -299,6 +335,10 @@ export interface InnerOpAmino {
     hash: HashOp;
     prefix: Uint8Array;
     suffix: Uint8Array;
+}
+export interface InnerOpAminoMsg {
+    type: "/ics23.InnerOp";
+    value: InnerOpAmino;
 }
 /**
  * InnerOp represents a merkle-proof step that is not a leaf.
@@ -346,6 +386,10 @@ export interface ProofSpec {
     /** min_depth (if > 0) is the minimum number of InnerOps allowed (mainly for fixed-depth tries) */
     minDepth: number;
 }
+export interface ProofSpecProtoMsg {
+    typeUrl: "/ics23.ProofSpec";
+    value: Uint8Array;
+}
 /**
  * ProofSpec defines what the expected parameters are for a given proof type.
  * This can be stored in the client and used to validate any incoming proofs.
@@ -369,6 +413,10 @@ export interface ProofSpecAmino {
     max_depth: number;
     /** min_depth (if > 0) is the minimum number of InnerOps allowed (mainly for fixed-depth tries) */
     min_depth: number;
+}
+export interface ProofSpecAminoMsg {
+    type: "/ics23.ProofSpec";
+    value: ProofSpecAmino;
 }
 /**
  * ProofSpec defines what the expected parameters are for a given proof type.
@@ -413,6 +461,10 @@ export interface InnerSpec {
     /** hash is the algorithm that must be used for each InnerOp */
     hash: HashOp;
 }
+export interface InnerSpecProtoMsg {
+    typeUrl: "/ics23.InnerSpec";
+    value: Uint8Array;
+}
 /**
  * InnerSpec contains all store-specific structure info to determine if two proofs from a
  * given store are neighbors.
@@ -438,6 +490,10 @@ export interface InnerSpecAmino {
     /** hash is the algorithm that must be used for each InnerOp */
     hash: HashOp;
 }
+export interface InnerSpecAminoMsg {
+    type: "/ics23.InnerSpec";
+    value: InnerSpecAmino;
+}
 /**
  * InnerSpec contains all store-specific structure info to determine if two proofs from a
  * given store are neighbors.
@@ -460,9 +516,17 @@ export interface InnerSpecSDKType {
 export interface BatchProof {
     entries: BatchEntry[];
 }
+export interface BatchProofProtoMsg {
+    typeUrl: "/ics23.BatchProof";
+    value: Uint8Array;
+}
 /** BatchProof is a group of multiple proof types than can be compressed */
 export interface BatchProofAmino {
     entries: BatchEntryAmino[];
+}
+export interface BatchProofAminoMsg {
+    type: "/ics23.BatchProof";
+    value: BatchProofAmino;
 }
 /** BatchProof is a group of multiple proof types than can be compressed */
 export interface BatchProofSDKType {
@@ -473,10 +537,18 @@ export interface BatchEntry {
     exist?: ExistenceProof;
     nonexist?: NonExistenceProof;
 }
+export interface BatchEntryProtoMsg {
+    typeUrl: "/ics23.BatchEntry";
+    value: Uint8Array;
+}
 /** Use BatchEntry not CommitmentProof, to avoid recursion */
 export interface BatchEntryAmino {
     exist?: ExistenceProofAmino;
     nonexist?: NonExistenceProofAmino;
+}
+export interface BatchEntryAminoMsg {
+    type: "/ics23.BatchEntry";
+    value: BatchEntryAmino;
 }
 /** Use BatchEntry not CommitmentProof, to avoid recursion */
 export interface BatchEntrySDKType {
@@ -487,9 +559,17 @@ export interface CompressedBatchProof {
     entries: CompressedBatchEntry[];
     lookupInners: InnerOp[];
 }
+export interface CompressedBatchProofProtoMsg {
+    typeUrl: "/ics23.CompressedBatchProof";
+    value: Uint8Array;
+}
 export interface CompressedBatchProofAmino {
     entries: CompressedBatchEntryAmino[];
     lookup_inners: InnerOpAmino[];
+}
+export interface CompressedBatchProofAminoMsg {
+    type: "/ics23.CompressedBatchProof";
+    value: CompressedBatchProofAmino;
 }
 export interface CompressedBatchProofSDKType {
     entries: CompressedBatchEntrySDKType[];
@@ -500,10 +580,18 @@ export interface CompressedBatchEntry {
     exist?: CompressedExistenceProof;
     nonexist?: CompressedNonExistenceProof;
 }
+export interface CompressedBatchEntryProtoMsg {
+    typeUrl: "/ics23.CompressedBatchEntry";
+    value: Uint8Array;
+}
 /** Use BatchEntry not CommitmentProof, to avoid recursion */
 export interface CompressedBatchEntryAmino {
     exist?: CompressedExistenceProofAmino;
     nonexist?: CompressedNonExistenceProofAmino;
+}
+export interface CompressedBatchEntryAminoMsg {
+    type: "/ics23.CompressedBatchEntry";
+    value: CompressedBatchEntryAmino;
 }
 /** Use BatchEntry not CommitmentProof, to avoid recursion */
 export interface CompressedBatchEntrySDKType {
@@ -517,12 +605,20 @@ export interface CompressedExistenceProof {
     /** these are indexes into the lookup_inners table in CompressedBatchProof */
     path: number[];
 }
+export interface CompressedExistenceProofProtoMsg {
+    typeUrl: "/ics23.CompressedExistenceProof";
+    value: Uint8Array;
+}
 export interface CompressedExistenceProofAmino {
     key: Uint8Array;
     value: Uint8Array;
     leaf?: LeafOpAmino;
     /** these are indexes into the lookup_inners table in CompressedBatchProof */
     path: number[];
+}
+export interface CompressedExistenceProofAminoMsg {
+    type: "/ics23.CompressedExistenceProof";
+    value: CompressedExistenceProofAmino;
 }
 export interface CompressedExistenceProofSDKType {
     key: Uint8Array;
@@ -536,11 +632,19 @@ export interface CompressedNonExistenceProof {
     left?: CompressedExistenceProof;
     right?: CompressedExistenceProof;
 }
+export interface CompressedNonExistenceProofProtoMsg {
+    typeUrl: "/ics23.CompressedNonExistenceProof";
+    value: Uint8Array;
+}
 export interface CompressedNonExistenceProofAmino {
     /** TODO: remove this as unnecessary??? we prove a range */
     key: Uint8Array;
     left?: CompressedExistenceProofAmino;
     right?: CompressedExistenceProofAmino;
+}
+export interface CompressedNonExistenceProofAminoMsg {
+    type: "/ics23.CompressedNonExistenceProof";
+    value: CompressedNonExistenceProofAmino;
 }
 export interface CompressedNonExistenceProofSDKType {
     key: Uint8Array;
@@ -555,6 +659,10 @@ export declare const ExistenceProof: {
     fromPartial(object: Partial<ExistenceProof>): ExistenceProof;
     fromAmino(object: ExistenceProofAmino): ExistenceProof;
     toAmino(message: ExistenceProof): ExistenceProofAmino;
+    fromAminoMsg(object: ExistenceProofAminoMsg): ExistenceProof;
+    fromProtoMsg(message: ExistenceProofProtoMsg): ExistenceProof;
+    toProto(message: ExistenceProof): Uint8Array;
+    toProtoMsg(message: ExistenceProof): ExistenceProofProtoMsg;
 };
 export declare const NonExistenceProof: {
     encode(message: NonExistenceProof, writer?: _m0.Writer): _m0.Writer;
@@ -564,6 +672,10 @@ export declare const NonExistenceProof: {
     fromPartial(object: Partial<NonExistenceProof>): NonExistenceProof;
     fromAmino(object: NonExistenceProofAmino): NonExistenceProof;
     toAmino(message: NonExistenceProof): NonExistenceProofAmino;
+    fromAminoMsg(object: NonExistenceProofAminoMsg): NonExistenceProof;
+    fromProtoMsg(message: NonExistenceProofProtoMsg): NonExistenceProof;
+    toProto(message: NonExistenceProof): Uint8Array;
+    toProtoMsg(message: NonExistenceProof): NonExistenceProofProtoMsg;
 };
 export declare const CommitmentProof: {
     encode(message: CommitmentProof, writer?: _m0.Writer): _m0.Writer;
@@ -573,6 +685,10 @@ export declare const CommitmentProof: {
     fromPartial(object: Partial<CommitmentProof>): CommitmentProof;
     fromAmino(object: CommitmentProofAmino): CommitmentProof;
     toAmino(message: CommitmentProof): CommitmentProofAmino;
+    fromAminoMsg(object: CommitmentProofAminoMsg): CommitmentProof;
+    fromProtoMsg(message: CommitmentProofProtoMsg): CommitmentProof;
+    toProto(message: CommitmentProof): Uint8Array;
+    toProtoMsg(message: CommitmentProof): CommitmentProofProtoMsg;
 };
 export declare const LeafOp: {
     encode(message: LeafOp, writer?: _m0.Writer): _m0.Writer;
@@ -582,6 +698,10 @@ export declare const LeafOp: {
     fromPartial(object: Partial<LeafOp>): LeafOp;
     fromAmino(object: LeafOpAmino): LeafOp;
     toAmino(message: LeafOp): LeafOpAmino;
+    fromAminoMsg(object: LeafOpAminoMsg): LeafOp;
+    fromProtoMsg(message: LeafOpProtoMsg): LeafOp;
+    toProto(message: LeafOp): Uint8Array;
+    toProtoMsg(message: LeafOp): LeafOpProtoMsg;
 };
 export declare const InnerOp: {
     encode(message: InnerOp, writer?: _m0.Writer): _m0.Writer;
@@ -591,6 +711,10 @@ export declare const InnerOp: {
     fromPartial(object: Partial<InnerOp>): InnerOp;
     fromAmino(object: InnerOpAmino): InnerOp;
     toAmino(message: InnerOp): InnerOpAmino;
+    fromAminoMsg(object: InnerOpAminoMsg): InnerOp;
+    fromProtoMsg(message: InnerOpProtoMsg): InnerOp;
+    toProto(message: InnerOp): Uint8Array;
+    toProtoMsg(message: InnerOp): InnerOpProtoMsg;
 };
 export declare const ProofSpec: {
     encode(message: ProofSpec, writer?: _m0.Writer): _m0.Writer;
@@ -600,6 +724,10 @@ export declare const ProofSpec: {
     fromPartial(object: Partial<ProofSpec>): ProofSpec;
     fromAmino(object: ProofSpecAmino): ProofSpec;
     toAmino(message: ProofSpec): ProofSpecAmino;
+    fromAminoMsg(object: ProofSpecAminoMsg): ProofSpec;
+    fromProtoMsg(message: ProofSpecProtoMsg): ProofSpec;
+    toProto(message: ProofSpec): Uint8Array;
+    toProtoMsg(message: ProofSpec): ProofSpecProtoMsg;
 };
 export declare const InnerSpec: {
     encode(message: InnerSpec, writer?: _m0.Writer): _m0.Writer;
@@ -609,6 +737,10 @@ export declare const InnerSpec: {
     fromPartial(object: Partial<InnerSpec>): InnerSpec;
     fromAmino(object: InnerSpecAmino): InnerSpec;
     toAmino(message: InnerSpec): InnerSpecAmino;
+    fromAminoMsg(object: InnerSpecAminoMsg): InnerSpec;
+    fromProtoMsg(message: InnerSpecProtoMsg): InnerSpec;
+    toProto(message: InnerSpec): Uint8Array;
+    toProtoMsg(message: InnerSpec): InnerSpecProtoMsg;
 };
 export declare const BatchProof: {
     encode(message: BatchProof, writer?: _m0.Writer): _m0.Writer;
@@ -618,6 +750,10 @@ export declare const BatchProof: {
     fromPartial(object: Partial<BatchProof>): BatchProof;
     fromAmino(object: BatchProofAmino): BatchProof;
     toAmino(message: BatchProof): BatchProofAmino;
+    fromAminoMsg(object: BatchProofAminoMsg): BatchProof;
+    fromProtoMsg(message: BatchProofProtoMsg): BatchProof;
+    toProto(message: BatchProof): Uint8Array;
+    toProtoMsg(message: BatchProof): BatchProofProtoMsg;
 };
 export declare const BatchEntry: {
     encode(message: BatchEntry, writer?: _m0.Writer): _m0.Writer;
@@ -627,6 +763,10 @@ export declare const BatchEntry: {
     fromPartial(object: Partial<BatchEntry>): BatchEntry;
     fromAmino(object: BatchEntryAmino): BatchEntry;
     toAmino(message: BatchEntry): BatchEntryAmino;
+    fromAminoMsg(object: BatchEntryAminoMsg): BatchEntry;
+    fromProtoMsg(message: BatchEntryProtoMsg): BatchEntry;
+    toProto(message: BatchEntry): Uint8Array;
+    toProtoMsg(message: BatchEntry): BatchEntryProtoMsg;
 };
 export declare const CompressedBatchProof: {
     encode(message: CompressedBatchProof, writer?: _m0.Writer): _m0.Writer;
@@ -636,6 +776,10 @@ export declare const CompressedBatchProof: {
     fromPartial(object: Partial<CompressedBatchProof>): CompressedBatchProof;
     fromAmino(object: CompressedBatchProofAmino): CompressedBatchProof;
     toAmino(message: CompressedBatchProof): CompressedBatchProofAmino;
+    fromAminoMsg(object: CompressedBatchProofAminoMsg): CompressedBatchProof;
+    fromProtoMsg(message: CompressedBatchProofProtoMsg): CompressedBatchProof;
+    toProto(message: CompressedBatchProof): Uint8Array;
+    toProtoMsg(message: CompressedBatchProof): CompressedBatchProofProtoMsg;
 };
 export declare const CompressedBatchEntry: {
     encode(message: CompressedBatchEntry, writer?: _m0.Writer): _m0.Writer;
@@ -645,6 +789,10 @@ export declare const CompressedBatchEntry: {
     fromPartial(object: Partial<CompressedBatchEntry>): CompressedBatchEntry;
     fromAmino(object: CompressedBatchEntryAmino): CompressedBatchEntry;
     toAmino(message: CompressedBatchEntry): CompressedBatchEntryAmino;
+    fromAminoMsg(object: CompressedBatchEntryAminoMsg): CompressedBatchEntry;
+    fromProtoMsg(message: CompressedBatchEntryProtoMsg): CompressedBatchEntry;
+    toProto(message: CompressedBatchEntry): Uint8Array;
+    toProtoMsg(message: CompressedBatchEntry): CompressedBatchEntryProtoMsg;
 };
 export declare const CompressedExistenceProof: {
     encode(message: CompressedExistenceProof, writer?: _m0.Writer): _m0.Writer;
@@ -654,6 +802,10 @@ export declare const CompressedExistenceProof: {
     fromPartial(object: Partial<CompressedExistenceProof>): CompressedExistenceProof;
     fromAmino(object: CompressedExistenceProofAmino): CompressedExistenceProof;
     toAmino(message: CompressedExistenceProof): CompressedExistenceProofAmino;
+    fromAminoMsg(object: CompressedExistenceProofAminoMsg): CompressedExistenceProof;
+    fromProtoMsg(message: CompressedExistenceProofProtoMsg): CompressedExistenceProof;
+    toProto(message: CompressedExistenceProof): Uint8Array;
+    toProtoMsg(message: CompressedExistenceProof): CompressedExistenceProofProtoMsg;
 };
 export declare const CompressedNonExistenceProof: {
     encode(message: CompressedNonExistenceProof, writer?: _m0.Writer): _m0.Writer;
@@ -663,4 +815,8 @@ export declare const CompressedNonExistenceProof: {
     fromPartial(object: Partial<CompressedNonExistenceProof>): CompressedNonExistenceProof;
     fromAmino(object: CompressedNonExistenceProofAmino): CompressedNonExistenceProof;
     toAmino(message: CompressedNonExistenceProof): CompressedNonExistenceProofAmino;
+    fromAminoMsg(object: CompressedNonExistenceProofAminoMsg): CompressedNonExistenceProof;
+    fromProtoMsg(message: CompressedNonExistenceProofProtoMsg): CompressedNonExistenceProof;
+    toProto(message: CompressedNonExistenceProof): Uint8Array;
+    toProtoMsg(message: CompressedNonExistenceProof): CompressedNonExistenceProofProtoMsg;
 };

@@ -9,6 +9,10 @@ export interface LegacyAminoPubKey {
     threshold: number;
     publicKeys: Any[];
 }
+export interface LegacyAminoPubKeyProtoMsg {
+    typeUrl: "/cosmos.crypto.multisig.LegacyAminoPubKey";
+    value: Uint8Array;
+}
 /**
  * LegacyAminoPubKey specifies a public key type
  * which nests multiple public keys and a threshold,
@@ -17,6 +21,10 @@ export interface LegacyAminoPubKey {
 export interface LegacyAminoPubKeyAmino {
     threshold: number;
     public_keys: AnyAmino[];
+}
+export interface LegacyAminoPubKeyAminoMsg {
+    type: "cosmos-sdk/LegacyAminoPubKey";
+    value: LegacyAminoPubKeyAmino;
 }
 /**
  * LegacyAminoPubKey specifies a public key type
@@ -35,4 +43,9 @@ export declare const LegacyAminoPubKey: {
     fromPartial(object: Partial<LegacyAminoPubKey>): LegacyAminoPubKey;
     fromAmino(object: LegacyAminoPubKeyAmino): LegacyAminoPubKey;
     toAmino(message: LegacyAminoPubKey): LegacyAminoPubKeyAmino;
+    fromAminoMsg(object: LegacyAminoPubKeyAminoMsg): LegacyAminoPubKey;
+    toAminoMsg(message: LegacyAminoPubKey): LegacyAminoPubKeyAminoMsg;
+    fromProtoMsg(message: LegacyAminoPubKeyProtoMsg): LegacyAminoPubKey;
+    toProto(message: LegacyAminoPubKey): Uint8Array;
+    toProtoMsg(message: LegacyAminoPubKey): LegacyAminoPubKeyProtoMsg;
 };

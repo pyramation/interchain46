@@ -48,6 +48,10 @@ export interface TxResponse {
      */
     events: Event[];
 }
+export interface TxResponseProtoMsg {
+    typeUrl: "/cosmos.base.abci.v1beta1.TxResponse";
+    value: Uint8Array;
+}
 /**
  * TxResponse defines a structure containing relevant tx data and metadata. The
  * tags are stringified and the log is JSON decoded.
@@ -94,6 +98,10 @@ export interface TxResponseAmino {
      */
     events: EventAmino[];
 }
+export interface TxResponseAminoMsg {
+    type: "cosmos-sdk/TxResponse";
+    value: TxResponseAmino;
+}
 /**
  * TxResponse defines a structure containing relevant tx data and metadata. The
  * tags are stringified and the log is JSON decoded.
@@ -123,6 +131,10 @@ export interface ABCIMessageLog {
      */
     events: StringEvent[];
 }
+export interface ABCIMessageLogProtoMsg {
+    typeUrl: "/cosmos.base.abci.v1beta1.ABCIMessageLog";
+    value: Uint8Array;
+}
 /** ABCIMessageLog defines a structure containing an indexed tx ABCI message log. */
 export interface ABCIMessageLogAmino {
     msg_index: number;
@@ -132,6 +144,10 @@ export interface ABCIMessageLogAmino {
      * execution.
      */
     events: StringEventAmino[];
+}
+export interface ABCIMessageLogAminoMsg {
+    type: "cosmos-sdk/ABCIMessageLog";
+    value: ABCIMessageLogAmino;
 }
 /** ABCIMessageLog defines a structure containing an indexed tx ABCI message log. */
 export interface ABCIMessageLogSDKType {
@@ -147,6 +163,10 @@ export interface StringEvent {
     type: string;
     attributes: Attribute[];
 }
+export interface StringEventProtoMsg {
+    typeUrl: "/cosmos.base.abci.v1beta1.StringEvent";
+    value: Uint8Array;
+}
 /**
  * StringEvent defines en Event object wrapper where all the attributes
  * contain key/value pairs that are strings instead of raw bytes.
@@ -154,6 +174,10 @@ export interface StringEvent {
 export interface StringEventAmino {
     type: string;
     attributes: AttributeAmino[];
+}
+export interface StringEventAminoMsg {
+    type: "cosmos-sdk/StringEvent";
+    value: StringEventAmino;
 }
 /**
  * StringEvent defines en Event object wrapper where all the attributes
@@ -171,6 +195,10 @@ export interface Attribute {
     key: string;
     value: string;
 }
+export interface AttributeProtoMsg {
+    typeUrl: "/cosmos.base.abci.v1beta1.Attribute";
+    value: Uint8Array;
+}
 /**
  * Attribute defines an attribute wrapper where the key and value are
  * strings instead of raw bytes.
@@ -178,6 +206,10 @@ export interface Attribute {
 export interface AttributeAmino {
     key: string;
     value: string;
+}
+export interface AttributeAminoMsg {
+    type: "cosmos-sdk/Attribute";
+    value: AttributeAmino;
 }
 /**
  * Attribute defines an attribute wrapper where the key and value are
@@ -194,12 +226,20 @@ export interface GasInfo {
     /** GasUsed is the amount of gas actually consumed. */
     gasUsed: Long;
 }
+export interface GasInfoProtoMsg {
+    typeUrl: "/cosmos.base.abci.v1beta1.GasInfo";
+    value: Uint8Array;
+}
 /** GasInfo defines tx execution gas context. */
 export interface GasInfoAmino {
     /** GasWanted is the maximum units of work we allow this tx to perform. */
     gas_wanted: string;
     /** GasUsed is the amount of gas actually consumed. */
     gas_used: string;
+}
+export interface GasInfoAminoMsg {
+    type: "cosmos-sdk/GasInfo";
+    value: GasInfoAmino;
 }
 /** GasInfo defines tx execution gas context. */
 export interface GasInfoSDKType {
@@ -230,6 +270,10 @@ export interface Result {
      */
     msgResponses: Any[];
 }
+export interface ResultProtoMsg {
+    typeUrl: "/cosmos.base.abci.v1beta1.Result";
+    value: Uint8Array;
+}
 /** Result is the union of ResponseFormat and ResponseCheckTx. */
 export interface ResultAmino {
     /**
@@ -254,6 +298,10 @@ export interface ResultAmino {
      */
     msg_responses: AnyAmino[];
 }
+export interface ResultAminoMsg {
+    type: "cosmos-sdk/Result";
+    value: ResultAmino;
+}
 /** Result is the union of ResponseFormat and ResponseCheckTx. */
 export interface ResultSDKType {
     /** @deprecated */
@@ -270,6 +318,10 @@ export interface SimulationResponse {
     gasInfo?: GasInfo;
     result?: Result;
 }
+export interface SimulationResponseProtoMsg {
+    typeUrl: "/cosmos.base.abci.v1beta1.SimulationResponse";
+    value: Uint8Array;
+}
 /**
  * SimulationResponse defines the response generated when a transaction is
  * successfully simulated.
@@ -277,6 +329,10 @@ export interface SimulationResponse {
 export interface SimulationResponseAmino {
     gas_info?: GasInfoAmino;
     result?: ResultAmino;
+}
+export interface SimulationResponseAminoMsg {
+    type: "cosmos-sdk/SimulationResponse";
+    value: SimulationResponseAmino;
 }
 /**
  * SimulationResponse defines the response generated when a transaction is
@@ -295,6 +351,10 @@ export interface MsgData {
     msgType: string;
     data: Uint8Array;
 }
+export interface MsgDataProtoMsg {
+    typeUrl: "/cosmos.base.abci.v1beta1.MsgData";
+    value: Uint8Array;
+}
 /**
  * MsgData defines the data returned in a Result object during message
  * execution.
@@ -303,6 +363,10 @@ export interface MsgData {
 export interface MsgDataAmino {
     msg_type: string;
     data: Uint8Array;
+}
+export interface MsgDataAminoMsg {
+    type: "cosmos-sdk/MsgData";
+    value: MsgDataAmino;
 }
 /**
  * MsgData defines the data returned in a Result object during message
@@ -328,6 +392,10 @@ export interface TxMsgData {
      */
     msgResponses: Any[];
 }
+export interface TxMsgDataProtoMsg {
+    typeUrl: "/cosmos.base.abci.v1beta1.TxMsgData";
+    value: Uint8Array;
+}
 /**
  * TxMsgData defines a list of MsgData. A transaction will have a MsgData object
  * for each message.
@@ -342,6 +410,10 @@ export interface TxMsgDataAmino {
      * Since: cosmos-sdk 0.46
      */
     msg_responses: AnyAmino[];
+}
+export interface TxMsgDataAminoMsg {
+    type: "cosmos-sdk/TxMsgData";
+    value: TxMsgDataAmino;
 }
 /**
  * TxMsgData defines a list of MsgData. A transaction will have a MsgData object
@@ -367,6 +439,10 @@ export interface SearchTxsResult {
     /** List of txs in current page */
     txs: TxResponse[];
 }
+export interface SearchTxsResultProtoMsg {
+    typeUrl: "/cosmos.base.abci.v1beta1.SearchTxsResult";
+    value: Uint8Array;
+}
 /** SearchTxsResult defines a structure for querying txs pageable */
 export interface SearchTxsResultAmino {
     /** Count of all txs */
@@ -381,6 +457,10 @@ export interface SearchTxsResultAmino {
     limit: string;
     /** List of txs in current page */
     txs: TxResponseAmino[];
+}
+export interface SearchTxsResultAminoMsg {
+    type: "cosmos-sdk/SearchTxsResult";
+    value: SearchTxsResultAmino;
 }
 /** SearchTxsResult defines a structure for querying txs pageable */
 export interface SearchTxsResultSDKType {
@@ -399,6 +479,11 @@ export declare const TxResponse: {
     fromPartial(object: Partial<TxResponse>): TxResponse;
     fromAmino(object: TxResponseAmino): TxResponse;
     toAmino(message: TxResponse): TxResponseAmino;
+    fromAminoMsg(object: TxResponseAminoMsg): TxResponse;
+    toAminoMsg(message: TxResponse): TxResponseAminoMsg;
+    fromProtoMsg(message: TxResponseProtoMsg): TxResponse;
+    toProto(message: TxResponse): Uint8Array;
+    toProtoMsg(message: TxResponse): TxResponseProtoMsg;
 };
 export declare const ABCIMessageLog: {
     encode(message: ABCIMessageLog, writer?: _m0.Writer): _m0.Writer;
@@ -408,6 +493,11 @@ export declare const ABCIMessageLog: {
     fromPartial(object: Partial<ABCIMessageLog>): ABCIMessageLog;
     fromAmino(object: ABCIMessageLogAmino): ABCIMessageLog;
     toAmino(message: ABCIMessageLog): ABCIMessageLogAmino;
+    fromAminoMsg(object: ABCIMessageLogAminoMsg): ABCIMessageLog;
+    toAminoMsg(message: ABCIMessageLog): ABCIMessageLogAminoMsg;
+    fromProtoMsg(message: ABCIMessageLogProtoMsg): ABCIMessageLog;
+    toProto(message: ABCIMessageLog): Uint8Array;
+    toProtoMsg(message: ABCIMessageLog): ABCIMessageLogProtoMsg;
 };
 export declare const StringEvent: {
     encode(message: StringEvent, writer?: _m0.Writer): _m0.Writer;
@@ -417,6 +507,11 @@ export declare const StringEvent: {
     fromPartial(object: Partial<StringEvent>): StringEvent;
     fromAmino(object: StringEventAmino): StringEvent;
     toAmino(message: StringEvent): StringEventAmino;
+    fromAminoMsg(object: StringEventAminoMsg): StringEvent;
+    toAminoMsg(message: StringEvent): StringEventAminoMsg;
+    fromProtoMsg(message: StringEventProtoMsg): StringEvent;
+    toProto(message: StringEvent): Uint8Array;
+    toProtoMsg(message: StringEvent): StringEventProtoMsg;
 };
 export declare const Attribute: {
     encode(message: Attribute, writer?: _m0.Writer): _m0.Writer;
@@ -426,6 +521,11 @@ export declare const Attribute: {
     fromPartial(object: Partial<Attribute>): Attribute;
     fromAmino(object: AttributeAmino): Attribute;
     toAmino(message: Attribute): AttributeAmino;
+    fromAminoMsg(object: AttributeAminoMsg): Attribute;
+    toAminoMsg(message: Attribute): AttributeAminoMsg;
+    fromProtoMsg(message: AttributeProtoMsg): Attribute;
+    toProto(message: Attribute): Uint8Array;
+    toProtoMsg(message: Attribute): AttributeProtoMsg;
 };
 export declare const GasInfo: {
     encode(message: GasInfo, writer?: _m0.Writer): _m0.Writer;
@@ -435,6 +535,11 @@ export declare const GasInfo: {
     fromPartial(object: Partial<GasInfo>): GasInfo;
     fromAmino(object: GasInfoAmino): GasInfo;
     toAmino(message: GasInfo): GasInfoAmino;
+    fromAminoMsg(object: GasInfoAminoMsg): GasInfo;
+    toAminoMsg(message: GasInfo): GasInfoAminoMsg;
+    fromProtoMsg(message: GasInfoProtoMsg): GasInfo;
+    toProto(message: GasInfo): Uint8Array;
+    toProtoMsg(message: GasInfo): GasInfoProtoMsg;
 };
 export declare const Result: {
     encode(message: Result, writer?: _m0.Writer): _m0.Writer;
@@ -444,6 +549,11 @@ export declare const Result: {
     fromPartial(object: Partial<Result>): Result;
     fromAmino(object: ResultAmino): Result;
     toAmino(message: Result): ResultAmino;
+    fromAminoMsg(object: ResultAminoMsg): Result;
+    toAminoMsg(message: Result): ResultAminoMsg;
+    fromProtoMsg(message: ResultProtoMsg): Result;
+    toProto(message: Result): Uint8Array;
+    toProtoMsg(message: Result): ResultProtoMsg;
 };
 export declare const SimulationResponse: {
     encode(message: SimulationResponse, writer?: _m0.Writer): _m0.Writer;
@@ -453,6 +563,11 @@ export declare const SimulationResponse: {
     fromPartial(object: Partial<SimulationResponse>): SimulationResponse;
     fromAmino(object: SimulationResponseAmino): SimulationResponse;
     toAmino(message: SimulationResponse): SimulationResponseAmino;
+    fromAminoMsg(object: SimulationResponseAminoMsg): SimulationResponse;
+    toAminoMsg(message: SimulationResponse): SimulationResponseAminoMsg;
+    fromProtoMsg(message: SimulationResponseProtoMsg): SimulationResponse;
+    toProto(message: SimulationResponse): Uint8Array;
+    toProtoMsg(message: SimulationResponse): SimulationResponseProtoMsg;
 };
 export declare const MsgData: {
     encode(message: MsgData, writer?: _m0.Writer): _m0.Writer;
@@ -462,6 +577,11 @@ export declare const MsgData: {
     fromPartial(object: Partial<MsgData>): MsgData;
     fromAmino(object: MsgDataAmino): MsgData;
     toAmino(message: MsgData): MsgDataAmino;
+    fromAminoMsg(object: MsgDataAminoMsg): MsgData;
+    toAminoMsg(message: MsgData): MsgDataAminoMsg;
+    fromProtoMsg(message: MsgDataProtoMsg): MsgData;
+    toProto(message: MsgData): Uint8Array;
+    toProtoMsg(message: MsgData): MsgDataProtoMsg;
 };
 export declare const TxMsgData: {
     encode(message: TxMsgData, writer?: _m0.Writer): _m0.Writer;
@@ -471,6 +591,11 @@ export declare const TxMsgData: {
     fromPartial(object: Partial<TxMsgData>): TxMsgData;
     fromAmino(object: TxMsgDataAmino): TxMsgData;
     toAmino(message: TxMsgData): TxMsgDataAmino;
+    fromAminoMsg(object: TxMsgDataAminoMsg): TxMsgData;
+    toAminoMsg(message: TxMsgData): TxMsgDataAminoMsg;
+    fromProtoMsg(message: TxMsgDataProtoMsg): TxMsgData;
+    toProto(message: TxMsgData): Uint8Array;
+    toProtoMsg(message: TxMsgData): TxMsgDataProtoMsg;
 };
 export declare const SearchTxsResult: {
     encode(message: SearchTxsResult, writer?: _m0.Writer): _m0.Writer;
@@ -480,4 +605,9 @@ export declare const SearchTxsResult: {
     fromPartial(object: Partial<SearchTxsResult>): SearchTxsResult;
     fromAmino(object: SearchTxsResultAmino): SearchTxsResult;
     toAmino(message: SearchTxsResult): SearchTxsResultAmino;
+    fromAminoMsg(object: SearchTxsResultAminoMsg): SearchTxsResult;
+    toAminoMsg(message: SearchTxsResult): SearchTxsResultAminoMsg;
+    fromProtoMsg(message: SearchTxsResultProtoMsg): SearchTxsResult;
+    toProto(message: SearchTxsResult): Uint8Array;
+    toProtoMsg(message: SearchTxsResult): SearchTxsResultProtoMsg;
 };

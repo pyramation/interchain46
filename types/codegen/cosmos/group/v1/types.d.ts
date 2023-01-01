@@ -1,6 +1,6 @@
 import { Timestamp, TimestampAmino, TimestampSDKType } from "../../../google/protobuf/timestamp";
 import { Duration, DurationAmino, DurationSDKType } from "../../../google/protobuf/duration";
-import { Any, AnyAmino, AnySDKType } from "../../../google/protobuf/any";
+import { Any, AnyProtoMsg, AnyAmino, AnySDKType } from "../../../google/protobuf/any";
 import * as _m0 from "protobufjs/minimal";
 import { Long } from "../../../helpers";
 /** VoteOption enumerates the valid vote options for a given proposal. */
@@ -86,6 +86,10 @@ export interface Member {
     /** added_at is a timestamp specifying when a member was added. */
     addedAt?: Timestamp;
 }
+export interface MemberProtoMsg {
+    typeUrl: "/cosmos.group.v1.Member";
+    value: Uint8Array;
+}
 /**
  * Member represents a group member with an account address,
  * non-zero weight, metadata and added_at timestamp.
@@ -99,6 +103,10 @@ export interface MemberAmino {
     metadata: string;
     /** added_at is a timestamp specifying when a member was added. */
     added_at?: TimestampAmino;
+}
+export interface MemberAminoMsg {
+    type: "cosmos-sdk/Member";
+    value: MemberAmino;
 }
 /**
  * Member represents a group member with an account address,
@@ -123,6 +131,10 @@ export interface MemberRequest {
     /** metadata is any arbitrary metadata attached to the member. */
     metadata: string;
 }
+export interface MemberRequestProtoMsg {
+    typeUrl: "/cosmos.group.v1.MemberRequest";
+    value: Uint8Array;
+}
 /**
  * MemberRequest represents a group member to be used in Msg server requests.
  * Contrary to `Member`, it doesn't have any `added_at` field
@@ -135,6 +147,10 @@ export interface MemberRequestAmino {
     weight: string;
     /** metadata is any arbitrary metadata attached to the member. */
     metadata: string;
+}
+export interface MemberRequestAminoMsg {
+    type: "cosmos-sdk/MemberRequest";
+    value: MemberRequestAmino;
 }
 /**
  * MemberRequest represents a group member to be used in Msg server requests.
@@ -164,6 +180,10 @@ export interface ThresholdDecisionPolicy {
     /** windows defines the different windows for voting and execution. */
     windows?: DecisionPolicyWindows;
 }
+export interface ThresholdDecisionPolicyProtoMsg {
+    typeUrl: "/cosmos.group.v1.ThresholdDecisionPolicy";
+    value: Uint8Array;
+}
 /**
  * ThresholdDecisionPolicy is a decision policy where a proposal passes when it
  * satisfies the two following conditions:
@@ -180,6 +200,10 @@ export interface ThresholdDecisionPolicyAmino {
     threshold: string;
     /** windows defines the different windows for voting and execution. */
     windows?: DecisionPolicyWindowsAmino;
+}
+export interface ThresholdDecisionPolicyAminoMsg {
+    type: "cosmos-sdk/ThresholdDecisionPolicy";
+    value: ThresholdDecisionPolicyAmino;
 }
 /**
  * ThresholdDecisionPolicy is a decision policy where a proposal passes when it
@@ -212,6 +236,10 @@ export interface PercentageDecisionPolicy {
     /** windows defines the different windows for voting and execution. */
     windows?: DecisionPolicyWindows;
 }
+export interface PercentageDecisionPolicyProtoMsg {
+    typeUrl: "/cosmos.group.v1.PercentageDecisionPolicy";
+    value: Uint8Array;
+}
 /**
  * PercentageDecisionPolicy is a decision policy where a proposal passes when
  * it satisfies the two following conditions:
@@ -228,6 +256,10 @@ export interface PercentageDecisionPolicyAmino {
     percentage: string;
     /** windows defines the different windows for voting and execution. */
     windows?: DecisionPolicyWindowsAmino;
+}
+export interface PercentageDecisionPolicyAminoMsg {
+    type: "cosmos-sdk/PercentageDecisionPolicy";
+    value: PercentageDecisionPolicyAmino;
 }
 /**
  * PercentageDecisionPolicy is a decision policy where a proposal passes when
@@ -264,6 +296,10 @@ export interface DecisionPolicyWindows {
      */
     minExecutionPeriod?: Duration;
 }
+export interface DecisionPolicyWindowsProtoMsg {
+    typeUrl: "/cosmos.group.v1.DecisionPolicyWindows";
+    value: Uint8Array;
+}
 /** DecisionPolicyWindows defines the different windows for voting and execution. */
 export interface DecisionPolicyWindowsAmino {
     /**
@@ -285,6 +321,10 @@ export interface DecisionPolicyWindowsAmino {
      * won't be able to be executed.
      */
     min_execution_period?: DurationAmino;
+}
+export interface DecisionPolicyWindowsAminoMsg {
+    type: "cosmos-sdk/DecisionPolicyWindows";
+    value: DecisionPolicyWindowsAmino;
 }
 /** DecisionPolicyWindows defines the different windows for voting and execution. */
 export interface DecisionPolicyWindowsSDKType {
@@ -311,6 +351,10 @@ export interface GroupInfo {
     /** created_at is a timestamp specifying when a group was created. */
     createdAt?: Timestamp;
 }
+export interface GroupInfoProtoMsg {
+    typeUrl: "/cosmos.group.v1.GroupInfo";
+    value: Uint8Array;
+}
 /** GroupInfo represents the high-level on-chain information for a group. */
 export interface GroupInfoAmino {
     /** id is the unique ID of the group. */
@@ -331,6 +375,10 @@ export interface GroupInfoAmino {
     /** created_at is a timestamp specifying when a group was created. */
     created_at?: TimestampAmino;
 }
+export interface GroupInfoAminoMsg {
+    type: "cosmos-sdk/GroupInfo";
+    value: GroupInfoAmino;
+}
 /** GroupInfo represents the high-level on-chain information for a group. */
 export interface GroupInfoSDKType {
     id: Long;
@@ -347,12 +395,20 @@ export interface GroupMember {
     /** member is the member data. */
     member?: Member;
 }
+export interface GroupMemberProtoMsg {
+    typeUrl: "/cosmos.group.v1.GroupMember";
+    value: Uint8Array;
+}
 /** GroupMember represents the relationship between a group and a member. */
 export interface GroupMemberAmino {
     /** group_id is the unique ID of the group. */
     group_id: string;
     /** member is the member data. */
     member?: MemberAmino;
+}
+export interface GroupMemberAminoMsg {
+    type: "cosmos-sdk/GroupMember";
+    value: GroupMemberAmino;
 }
 /** GroupMember represents the relationship between a group and a member. */
 export interface GroupMemberSDKType {
@@ -379,6 +435,14 @@ export interface GroupPolicyInfo {
     /** created_at is a timestamp specifying when a group policy was created. */
     createdAt?: Timestamp;
 }
+export interface GroupPolicyInfoProtoMsg {
+    typeUrl: "/cosmos.group.v1.GroupPolicyInfo";
+    value: Uint8Array;
+}
+export type GroupPolicyInfoEncoded = Omit<GroupPolicyInfo, "decisionPolicy"> & {
+    /** decision_policy specifies the group policy's decision policy. */
+    decisionPolicy?: ThresholdDecisionPolicyProtoMsg | PercentageDecisionPolicyProtoMsg | AnyProtoMsg | undefined;
+};
 /** GroupPolicyInfo represents the high-level on-chain information for a group policy. */
 export interface GroupPolicyInfoAmino {
     /** address is the account address of group policy. */
@@ -399,6 +463,10 @@ export interface GroupPolicyInfoAmino {
     /** created_at is a timestamp specifying when a group policy was created. */
     created_at?: TimestampAmino;
 }
+export interface GroupPolicyInfoAminoMsg {
+    type: "cosmos-sdk/GroupPolicyInfo";
+    value: GroupPolicyInfoAmino;
+}
 /** GroupPolicyInfo represents the high-level on-chain information for a group policy. */
 export interface GroupPolicyInfoSDKType {
     address: string;
@@ -406,7 +474,7 @@ export interface GroupPolicyInfoSDKType {
     admin: string;
     metadata: string;
     version: Long;
-    decision_policy?: AnySDKType;
+    decision_policy?: ThresholdDecisionPolicySDKType | PercentageDecisionPolicySDKType | AnySDKType | undefined;
     created_at?: TimestampSDKType;
 }
 /**
@@ -460,6 +528,10 @@ export interface Proposal {
     /** messages is a list of `sdk.Msg`s that will be executed if the proposal passes. */
     messages: Any[];
 }
+export interface ProposalProtoMsg {
+    typeUrl: "/cosmos.group.v1.Proposal";
+    value: Uint8Array;
+}
 /**
  * Proposal defines a group proposal. Any member of a group can submit a proposal
  * for a group policy to decide upon.
@@ -511,6 +583,10 @@ export interface ProposalAmino {
     /** messages is a list of `sdk.Msg`s that will be executed if the proposal passes. */
     messages: AnyAmino[];
 }
+export interface ProposalAminoMsg {
+    type: "cosmos-sdk/Proposal";
+    value: ProposalAmino;
+}
 /**
  * Proposal defines a group proposal. Any member of a group can submit a proposal
  * for a group policy to decide upon.
@@ -542,6 +618,10 @@ export interface TallyResult {
     /** no_with_veto_count is the weighted sum of veto. */
     noWithVetoCount: string;
 }
+export interface TallyResultProtoMsg {
+    typeUrl: "/cosmos.group.v1.TallyResult";
+    value: Uint8Array;
+}
 /** TallyResult represents the sum of weighted votes for each vote option. */
 export interface TallyResultAmino {
     /** yes_count is the weighted sum of yes votes. */
@@ -552,6 +632,10 @@ export interface TallyResultAmino {
     no_count: string;
     /** no_with_veto_count is the weighted sum of veto. */
     no_with_veto_count: string;
+}
+export interface TallyResultAminoMsg {
+    type: "cosmos-sdk/TallyResult";
+    value: TallyResultAmino;
 }
 /** TallyResult represents the sum of weighted votes for each vote option. */
 export interface TallyResultSDKType {
@@ -573,6 +657,10 @@ export interface Vote {
     /** submit_time is the timestamp when the vote was submitted. */
     submitTime?: Timestamp;
 }
+export interface VoteProtoMsg {
+    typeUrl: "/cosmos.group.v1.Vote";
+    value: Uint8Array;
+}
 /** Vote represents a vote for a proposal. */
 export interface VoteAmino {
     /** proposal is the unique ID of the proposal. */
@@ -585,6 +673,10 @@ export interface VoteAmino {
     metadata: string;
     /** submit_time is the timestamp when the vote was submitted. */
     submit_time?: TimestampAmino;
+}
+export interface VoteAminoMsg {
+    type: "cosmos-sdk/Vote";
+    value: VoteAmino;
 }
 /** Vote represents a vote for a proposal. */
 export interface VoteSDKType {
@@ -602,6 +694,11 @@ export declare const Member: {
     fromPartial(object: Partial<Member>): Member;
     fromAmino(object: MemberAmino): Member;
     toAmino(message: Member): MemberAmino;
+    fromAminoMsg(object: MemberAminoMsg): Member;
+    toAminoMsg(message: Member): MemberAminoMsg;
+    fromProtoMsg(message: MemberProtoMsg): Member;
+    toProto(message: Member): Uint8Array;
+    toProtoMsg(message: Member): MemberProtoMsg;
 };
 export declare const MemberRequest: {
     encode(message: MemberRequest, writer?: _m0.Writer): _m0.Writer;
@@ -611,6 +708,11 @@ export declare const MemberRequest: {
     fromPartial(object: Partial<MemberRequest>): MemberRequest;
     fromAmino(object: MemberRequestAmino): MemberRequest;
     toAmino(message: MemberRequest): MemberRequestAmino;
+    fromAminoMsg(object: MemberRequestAminoMsg): MemberRequest;
+    toAminoMsg(message: MemberRequest): MemberRequestAminoMsg;
+    fromProtoMsg(message: MemberRequestProtoMsg): MemberRequest;
+    toProto(message: MemberRequest): Uint8Array;
+    toProtoMsg(message: MemberRequest): MemberRequestProtoMsg;
 };
 export declare const ThresholdDecisionPolicy: {
     encode(message: ThresholdDecisionPolicy, writer?: _m0.Writer): _m0.Writer;
@@ -620,6 +722,11 @@ export declare const ThresholdDecisionPolicy: {
     fromPartial(object: Partial<ThresholdDecisionPolicy>): ThresholdDecisionPolicy;
     fromAmino(object: ThresholdDecisionPolicyAmino): ThresholdDecisionPolicy;
     toAmino(message: ThresholdDecisionPolicy): ThresholdDecisionPolicyAmino;
+    fromAminoMsg(object: ThresholdDecisionPolicyAminoMsg): ThresholdDecisionPolicy;
+    toAminoMsg(message: ThresholdDecisionPolicy): ThresholdDecisionPolicyAminoMsg;
+    fromProtoMsg(message: ThresholdDecisionPolicyProtoMsg): ThresholdDecisionPolicy;
+    toProto(message: ThresholdDecisionPolicy): Uint8Array;
+    toProtoMsg(message: ThresholdDecisionPolicy): ThresholdDecisionPolicyProtoMsg;
 };
 export declare const PercentageDecisionPolicy: {
     encode(message: PercentageDecisionPolicy, writer?: _m0.Writer): _m0.Writer;
@@ -629,6 +736,11 @@ export declare const PercentageDecisionPolicy: {
     fromPartial(object: Partial<PercentageDecisionPolicy>): PercentageDecisionPolicy;
     fromAmino(object: PercentageDecisionPolicyAmino): PercentageDecisionPolicy;
     toAmino(message: PercentageDecisionPolicy): PercentageDecisionPolicyAmino;
+    fromAminoMsg(object: PercentageDecisionPolicyAminoMsg): PercentageDecisionPolicy;
+    toAminoMsg(message: PercentageDecisionPolicy): PercentageDecisionPolicyAminoMsg;
+    fromProtoMsg(message: PercentageDecisionPolicyProtoMsg): PercentageDecisionPolicy;
+    toProto(message: PercentageDecisionPolicy): Uint8Array;
+    toProtoMsg(message: PercentageDecisionPolicy): PercentageDecisionPolicyProtoMsg;
 };
 export declare const DecisionPolicyWindows: {
     encode(message: DecisionPolicyWindows, writer?: _m0.Writer): _m0.Writer;
@@ -638,6 +750,11 @@ export declare const DecisionPolicyWindows: {
     fromPartial(object: Partial<DecisionPolicyWindows>): DecisionPolicyWindows;
     fromAmino(object: DecisionPolicyWindowsAmino): DecisionPolicyWindows;
     toAmino(message: DecisionPolicyWindows): DecisionPolicyWindowsAmino;
+    fromAminoMsg(object: DecisionPolicyWindowsAminoMsg): DecisionPolicyWindows;
+    toAminoMsg(message: DecisionPolicyWindows): DecisionPolicyWindowsAminoMsg;
+    fromProtoMsg(message: DecisionPolicyWindowsProtoMsg): DecisionPolicyWindows;
+    toProto(message: DecisionPolicyWindows): Uint8Array;
+    toProtoMsg(message: DecisionPolicyWindows): DecisionPolicyWindowsProtoMsg;
 };
 export declare const GroupInfo: {
     encode(message: GroupInfo, writer?: _m0.Writer): _m0.Writer;
@@ -647,6 +764,11 @@ export declare const GroupInfo: {
     fromPartial(object: Partial<GroupInfo>): GroupInfo;
     fromAmino(object: GroupInfoAmino): GroupInfo;
     toAmino(message: GroupInfo): GroupInfoAmino;
+    fromAminoMsg(object: GroupInfoAminoMsg): GroupInfo;
+    toAminoMsg(message: GroupInfo): GroupInfoAminoMsg;
+    fromProtoMsg(message: GroupInfoProtoMsg): GroupInfo;
+    toProto(message: GroupInfo): Uint8Array;
+    toProtoMsg(message: GroupInfo): GroupInfoProtoMsg;
 };
 export declare const GroupMember: {
     encode(message: GroupMember, writer?: _m0.Writer): _m0.Writer;
@@ -656,6 +778,11 @@ export declare const GroupMember: {
     fromPartial(object: Partial<GroupMember>): GroupMember;
     fromAmino(object: GroupMemberAmino): GroupMember;
     toAmino(message: GroupMember): GroupMemberAmino;
+    fromAminoMsg(object: GroupMemberAminoMsg): GroupMember;
+    toAminoMsg(message: GroupMember): GroupMemberAminoMsg;
+    fromProtoMsg(message: GroupMemberProtoMsg): GroupMember;
+    toProto(message: GroupMember): Uint8Array;
+    toProtoMsg(message: GroupMember): GroupMemberProtoMsg;
 };
 export declare const GroupPolicyInfo: {
     encode(message: GroupPolicyInfo, writer?: _m0.Writer): _m0.Writer;
@@ -665,6 +792,11 @@ export declare const GroupPolicyInfo: {
     fromPartial(object: Partial<GroupPolicyInfo>): GroupPolicyInfo;
     fromAmino(object: GroupPolicyInfoAmino): GroupPolicyInfo;
     toAmino(message: GroupPolicyInfo): GroupPolicyInfoAmino;
+    fromAminoMsg(object: GroupPolicyInfoAminoMsg): GroupPolicyInfo;
+    toAminoMsg(message: GroupPolicyInfo): GroupPolicyInfoAminoMsg;
+    fromProtoMsg(message: GroupPolicyInfoProtoMsg): GroupPolicyInfo;
+    toProto(message: GroupPolicyInfo): Uint8Array;
+    toProtoMsg(message: GroupPolicyInfo): GroupPolicyInfoProtoMsg;
 };
 export declare const Proposal: {
     encode(message: Proposal, writer?: _m0.Writer): _m0.Writer;
@@ -674,6 +806,11 @@ export declare const Proposal: {
     fromPartial(object: Partial<Proposal>): Proposal;
     fromAmino(object: ProposalAmino): Proposal;
     toAmino(message: Proposal): ProposalAmino;
+    fromAminoMsg(object: ProposalAminoMsg): Proposal;
+    toAminoMsg(message: Proposal): ProposalAminoMsg;
+    fromProtoMsg(message: ProposalProtoMsg): Proposal;
+    toProto(message: Proposal): Uint8Array;
+    toProtoMsg(message: Proposal): ProposalProtoMsg;
 };
 export declare const TallyResult: {
     encode(message: TallyResult, writer?: _m0.Writer): _m0.Writer;
@@ -683,6 +820,11 @@ export declare const TallyResult: {
     fromPartial(object: Partial<TallyResult>): TallyResult;
     fromAmino(object: TallyResultAmino): TallyResult;
     toAmino(message: TallyResult): TallyResultAmino;
+    fromAminoMsg(object: TallyResultAminoMsg): TallyResult;
+    toAminoMsg(message: TallyResult): TallyResultAminoMsg;
+    fromProtoMsg(message: TallyResultProtoMsg): TallyResult;
+    toProto(message: TallyResult): Uint8Array;
+    toProtoMsg(message: TallyResult): TallyResultProtoMsg;
 };
 export declare const Vote: {
     encode(message: Vote, writer?: _m0.Writer): _m0.Writer;
@@ -692,13 +834,12 @@ export declare const Vote: {
     fromPartial(object: Partial<Vote>): Vote;
     fromAmino(object: VoteAmino): Vote;
     toAmino(message: Vote): VoteAmino;
+    fromAminoMsg(object: VoteAminoMsg): Vote;
+    toAminoMsg(message: Vote): VoteAminoMsg;
+    fromProtoMsg(message: VoteProtoMsg): Vote;
+    toProto(message: Vote): Uint8Array;
+    toProtoMsg(message: Vote): VoteProtoMsg;
 };
 export declare const DecisionPolicy_InterfaceDecoder: (input: _m0.Reader | Uint8Array) => ThresholdDecisionPolicy | PercentageDecisionPolicy | Any;
 export declare const DecisionPolicy_FromAmino: (content: AnyAmino) => Any;
-export declare const DecisionPolicy_ToAmino: (content: Any) => AnyAmino | {
-    type: string;
-    value: ThresholdDecisionPolicyAmino;
-} | {
-    type: string;
-    value: PercentageDecisionPolicyAmino;
-};
+export declare const DecisionPolicy_ToAmino: (content: Any) => AnyAmino;

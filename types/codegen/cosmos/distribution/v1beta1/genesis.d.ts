@@ -13,6 +13,10 @@ export interface DelegatorWithdrawInfo {
     /** withdraw_address is the address to withdraw the delegation rewards to. */
     withdrawAddress: string;
 }
+export interface DelegatorWithdrawInfoProtoMsg {
+    typeUrl: "/cosmos.distribution.v1beta1.DelegatorWithdrawInfo";
+    value: Uint8Array;
+}
 /**
  * DelegatorWithdrawInfo is the address for where distributions rewards are
  * withdrawn to by default this struct is only used at genesis to feed in
@@ -23,6 +27,10 @@ export interface DelegatorWithdrawInfoAmino {
     delegator_address: string;
     /** withdraw_address is the address to withdraw the delegation rewards to. */
     withdraw_address: string;
+}
+export interface DelegatorWithdrawInfoAminoMsg {
+    type: "cosmos-sdk/DelegatorWithdrawInfo";
+    value: DelegatorWithdrawInfoAmino;
 }
 /**
  * DelegatorWithdrawInfo is the address for where distributions rewards are
@@ -40,12 +48,20 @@ export interface ValidatorOutstandingRewardsRecord {
     /** outstanding_rewards represents the oustanding rewards of a validator. */
     outstandingRewards: DecCoin[];
 }
+export interface ValidatorOutstandingRewardsRecordProtoMsg {
+    typeUrl: "/cosmos.distribution.v1beta1.ValidatorOutstandingRewardsRecord";
+    value: Uint8Array;
+}
 /** ValidatorOutstandingRewardsRecord is used for import/export via genesis json. */
 export interface ValidatorOutstandingRewardsRecordAmino {
     /** validator_address is the address of the validator. */
     validator_address: string;
     /** outstanding_rewards represents the oustanding rewards of a validator. */
     outstanding_rewards: DecCoinAmino[];
+}
+export interface ValidatorOutstandingRewardsRecordAminoMsg {
+    type: "cosmos-sdk/ValidatorOutstandingRewardsRecord";
+    value: ValidatorOutstandingRewardsRecordAmino;
 }
 /** ValidatorOutstandingRewardsRecord is used for import/export via genesis json. */
 export interface ValidatorOutstandingRewardsRecordSDKType {
@@ -62,6 +78,10 @@ export interface ValidatorAccumulatedCommissionRecord {
     /** accumulated is the accumulated commission of a validator. */
     accumulated?: ValidatorAccumulatedCommission;
 }
+export interface ValidatorAccumulatedCommissionRecordProtoMsg {
+    typeUrl: "/cosmos.distribution.v1beta1.ValidatorAccumulatedCommissionRecord";
+    value: Uint8Array;
+}
 /**
  * ValidatorAccumulatedCommissionRecord is used for import / export via genesis
  * json.
@@ -71,6 +91,10 @@ export interface ValidatorAccumulatedCommissionRecordAmino {
     validator_address: string;
     /** accumulated is the accumulated commission of a validator. */
     accumulated?: ValidatorAccumulatedCommissionAmino;
+}
+export interface ValidatorAccumulatedCommissionRecordAminoMsg {
+    type: "cosmos-sdk/ValidatorAccumulatedCommissionRecord";
+    value: ValidatorAccumulatedCommissionRecordAmino;
 }
 /**
  * ValidatorAccumulatedCommissionRecord is used for import / export via genesis
@@ -92,6 +116,10 @@ export interface ValidatorHistoricalRewardsRecord {
     /** rewards defines the historical rewards of a validator. */
     rewards?: ValidatorHistoricalRewards;
 }
+export interface ValidatorHistoricalRewardsRecordProtoMsg {
+    typeUrl: "/cosmos.distribution.v1beta1.ValidatorHistoricalRewardsRecord";
+    value: Uint8Array;
+}
 /**
  * ValidatorHistoricalRewardsRecord is used for import / export via genesis
  * json.
@@ -103,6 +131,10 @@ export interface ValidatorHistoricalRewardsRecordAmino {
     period: string;
     /** rewards defines the historical rewards of a validator. */
     rewards?: ValidatorHistoricalRewardsAmino;
+}
+export interface ValidatorHistoricalRewardsRecordAminoMsg {
+    type: "cosmos-sdk/ValidatorHistoricalRewardsRecord";
+    value: ValidatorHistoricalRewardsRecordAmino;
 }
 /**
  * ValidatorHistoricalRewardsRecord is used for import / export via genesis
@@ -120,12 +152,20 @@ export interface ValidatorCurrentRewardsRecord {
     /** rewards defines the current rewards of a validator. */
     rewards?: ValidatorCurrentRewards;
 }
+export interface ValidatorCurrentRewardsRecordProtoMsg {
+    typeUrl: "/cosmos.distribution.v1beta1.ValidatorCurrentRewardsRecord";
+    value: Uint8Array;
+}
 /** ValidatorCurrentRewardsRecord is used for import / export via genesis json. */
 export interface ValidatorCurrentRewardsRecordAmino {
     /** validator_address is the address of the validator. */
     validator_address: string;
     /** rewards defines the current rewards of a validator. */
     rewards?: ValidatorCurrentRewardsAmino;
+}
+export interface ValidatorCurrentRewardsRecordAminoMsg {
+    type: "cosmos-sdk/ValidatorCurrentRewardsRecord";
+    value: ValidatorCurrentRewardsRecordAmino;
 }
 /** ValidatorCurrentRewardsRecord is used for import / export via genesis json. */
 export interface ValidatorCurrentRewardsRecordSDKType {
@@ -141,6 +181,10 @@ export interface DelegatorStartingInfoRecord {
     /** starting_info defines the starting info of a delegator. */
     startingInfo?: DelegatorStartingInfo;
 }
+export interface DelegatorStartingInfoRecordProtoMsg {
+    typeUrl: "/cosmos.distribution.v1beta1.DelegatorStartingInfoRecord";
+    value: Uint8Array;
+}
 /** DelegatorStartingInfoRecord used for import / export via genesis json. */
 export interface DelegatorStartingInfoRecordAmino {
     /** delegator_address is the address of the delegator. */
@@ -149,6 +193,10 @@ export interface DelegatorStartingInfoRecordAmino {
     validator_address: string;
     /** starting_info defines the starting info of a delegator. */
     starting_info?: DelegatorStartingInfoAmino;
+}
+export interface DelegatorStartingInfoRecordAminoMsg {
+    type: "cosmos-sdk/DelegatorStartingInfoRecord";
+    value: DelegatorStartingInfoRecordAmino;
 }
 /** DelegatorStartingInfoRecord used for import / export via genesis json. */
 export interface DelegatorStartingInfoRecordSDKType {
@@ -167,6 +215,10 @@ export interface ValidatorSlashEventRecord {
     /** validator_slash_event describes the slash event. */
     validatorSlashEvent?: ValidatorSlashEvent;
 }
+export interface ValidatorSlashEventRecordProtoMsg {
+    typeUrl: "/cosmos.distribution.v1beta1.ValidatorSlashEventRecord";
+    value: Uint8Array;
+}
 /** ValidatorSlashEventRecord is used for import / export via genesis json. */
 export interface ValidatorSlashEventRecordAmino {
     /** validator_address is the address of the validator. */
@@ -177,6 +229,10 @@ export interface ValidatorSlashEventRecordAmino {
     period: string;
     /** validator_slash_event describes the slash event. */
     validator_slash_event?: ValidatorSlashEventAmino;
+}
+export interface ValidatorSlashEventRecordAminoMsg {
+    type: "cosmos-sdk/ValidatorSlashEventRecord";
+    value: ValidatorSlashEventRecordAmino;
 }
 /** ValidatorSlashEventRecord is used for import / export via genesis json. */
 export interface ValidatorSlashEventRecordSDKType {
@@ -208,6 +264,10 @@ export interface GenesisState {
     /** fee_pool defines the validator slash events at genesis. */
     validatorSlashEvents: ValidatorSlashEventRecord[];
 }
+export interface GenesisStateProtoMsg {
+    typeUrl: "/cosmos.distribution.v1beta1.GenesisState";
+    value: Uint8Array;
+}
 /** GenesisState defines the distribution module's genesis state. */
 export interface GenesisStateAmino {
     /** params defines all the paramaters of the module. */
@@ -231,6 +291,10 @@ export interface GenesisStateAmino {
     /** fee_pool defines the validator slash events at genesis. */
     validator_slash_events: ValidatorSlashEventRecordAmino[];
 }
+export interface GenesisStateAminoMsg {
+    type: "cosmos-sdk/GenesisState";
+    value: GenesisStateAmino;
+}
 /** GenesisState defines the distribution module's genesis state. */
 export interface GenesisStateSDKType {
     params?: ParamsSDKType;
@@ -252,6 +316,11 @@ export declare const DelegatorWithdrawInfo: {
     fromPartial(object: Partial<DelegatorWithdrawInfo>): DelegatorWithdrawInfo;
     fromAmino(object: DelegatorWithdrawInfoAmino): DelegatorWithdrawInfo;
     toAmino(message: DelegatorWithdrawInfo): DelegatorWithdrawInfoAmino;
+    fromAminoMsg(object: DelegatorWithdrawInfoAminoMsg): DelegatorWithdrawInfo;
+    toAminoMsg(message: DelegatorWithdrawInfo): DelegatorWithdrawInfoAminoMsg;
+    fromProtoMsg(message: DelegatorWithdrawInfoProtoMsg): DelegatorWithdrawInfo;
+    toProto(message: DelegatorWithdrawInfo): Uint8Array;
+    toProtoMsg(message: DelegatorWithdrawInfo): DelegatorWithdrawInfoProtoMsg;
 };
 export declare const ValidatorOutstandingRewardsRecord: {
     encode(message: ValidatorOutstandingRewardsRecord, writer?: _m0.Writer): _m0.Writer;
@@ -261,6 +330,11 @@ export declare const ValidatorOutstandingRewardsRecord: {
     fromPartial(object: Partial<ValidatorOutstandingRewardsRecord>): ValidatorOutstandingRewardsRecord;
     fromAmino(object: ValidatorOutstandingRewardsRecordAmino): ValidatorOutstandingRewardsRecord;
     toAmino(message: ValidatorOutstandingRewardsRecord): ValidatorOutstandingRewardsRecordAmino;
+    fromAminoMsg(object: ValidatorOutstandingRewardsRecordAminoMsg): ValidatorOutstandingRewardsRecord;
+    toAminoMsg(message: ValidatorOutstandingRewardsRecord): ValidatorOutstandingRewardsRecordAminoMsg;
+    fromProtoMsg(message: ValidatorOutstandingRewardsRecordProtoMsg): ValidatorOutstandingRewardsRecord;
+    toProto(message: ValidatorOutstandingRewardsRecord): Uint8Array;
+    toProtoMsg(message: ValidatorOutstandingRewardsRecord): ValidatorOutstandingRewardsRecordProtoMsg;
 };
 export declare const ValidatorAccumulatedCommissionRecord: {
     encode(message: ValidatorAccumulatedCommissionRecord, writer?: _m0.Writer): _m0.Writer;
@@ -270,6 +344,11 @@ export declare const ValidatorAccumulatedCommissionRecord: {
     fromPartial(object: Partial<ValidatorAccumulatedCommissionRecord>): ValidatorAccumulatedCommissionRecord;
     fromAmino(object: ValidatorAccumulatedCommissionRecordAmino): ValidatorAccumulatedCommissionRecord;
     toAmino(message: ValidatorAccumulatedCommissionRecord): ValidatorAccumulatedCommissionRecordAmino;
+    fromAminoMsg(object: ValidatorAccumulatedCommissionRecordAminoMsg): ValidatorAccumulatedCommissionRecord;
+    toAminoMsg(message: ValidatorAccumulatedCommissionRecord): ValidatorAccumulatedCommissionRecordAminoMsg;
+    fromProtoMsg(message: ValidatorAccumulatedCommissionRecordProtoMsg): ValidatorAccumulatedCommissionRecord;
+    toProto(message: ValidatorAccumulatedCommissionRecord): Uint8Array;
+    toProtoMsg(message: ValidatorAccumulatedCommissionRecord): ValidatorAccumulatedCommissionRecordProtoMsg;
 };
 export declare const ValidatorHistoricalRewardsRecord: {
     encode(message: ValidatorHistoricalRewardsRecord, writer?: _m0.Writer): _m0.Writer;
@@ -279,6 +358,11 @@ export declare const ValidatorHistoricalRewardsRecord: {
     fromPartial(object: Partial<ValidatorHistoricalRewardsRecord>): ValidatorHistoricalRewardsRecord;
     fromAmino(object: ValidatorHistoricalRewardsRecordAmino): ValidatorHistoricalRewardsRecord;
     toAmino(message: ValidatorHistoricalRewardsRecord): ValidatorHistoricalRewardsRecordAmino;
+    fromAminoMsg(object: ValidatorHistoricalRewardsRecordAminoMsg): ValidatorHistoricalRewardsRecord;
+    toAminoMsg(message: ValidatorHistoricalRewardsRecord): ValidatorHistoricalRewardsRecordAminoMsg;
+    fromProtoMsg(message: ValidatorHistoricalRewardsRecordProtoMsg): ValidatorHistoricalRewardsRecord;
+    toProto(message: ValidatorHistoricalRewardsRecord): Uint8Array;
+    toProtoMsg(message: ValidatorHistoricalRewardsRecord): ValidatorHistoricalRewardsRecordProtoMsg;
 };
 export declare const ValidatorCurrentRewardsRecord: {
     encode(message: ValidatorCurrentRewardsRecord, writer?: _m0.Writer): _m0.Writer;
@@ -288,6 +372,11 @@ export declare const ValidatorCurrentRewardsRecord: {
     fromPartial(object: Partial<ValidatorCurrentRewardsRecord>): ValidatorCurrentRewardsRecord;
     fromAmino(object: ValidatorCurrentRewardsRecordAmino): ValidatorCurrentRewardsRecord;
     toAmino(message: ValidatorCurrentRewardsRecord): ValidatorCurrentRewardsRecordAmino;
+    fromAminoMsg(object: ValidatorCurrentRewardsRecordAminoMsg): ValidatorCurrentRewardsRecord;
+    toAminoMsg(message: ValidatorCurrentRewardsRecord): ValidatorCurrentRewardsRecordAminoMsg;
+    fromProtoMsg(message: ValidatorCurrentRewardsRecordProtoMsg): ValidatorCurrentRewardsRecord;
+    toProto(message: ValidatorCurrentRewardsRecord): Uint8Array;
+    toProtoMsg(message: ValidatorCurrentRewardsRecord): ValidatorCurrentRewardsRecordProtoMsg;
 };
 export declare const DelegatorStartingInfoRecord: {
     encode(message: DelegatorStartingInfoRecord, writer?: _m0.Writer): _m0.Writer;
@@ -297,6 +386,11 @@ export declare const DelegatorStartingInfoRecord: {
     fromPartial(object: Partial<DelegatorStartingInfoRecord>): DelegatorStartingInfoRecord;
     fromAmino(object: DelegatorStartingInfoRecordAmino): DelegatorStartingInfoRecord;
     toAmino(message: DelegatorStartingInfoRecord): DelegatorStartingInfoRecordAmino;
+    fromAminoMsg(object: DelegatorStartingInfoRecordAminoMsg): DelegatorStartingInfoRecord;
+    toAminoMsg(message: DelegatorStartingInfoRecord): DelegatorStartingInfoRecordAminoMsg;
+    fromProtoMsg(message: DelegatorStartingInfoRecordProtoMsg): DelegatorStartingInfoRecord;
+    toProto(message: DelegatorStartingInfoRecord): Uint8Array;
+    toProtoMsg(message: DelegatorStartingInfoRecord): DelegatorStartingInfoRecordProtoMsg;
 };
 export declare const ValidatorSlashEventRecord: {
     encode(message: ValidatorSlashEventRecord, writer?: _m0.Writer): _m0.Writer;
@@ -306,6 +400,11 @@ export declare const ValidatorSlashEventRecord: {
     fromPartial(object: Partial<ValidatorSlashEventRecord>): ValidatorSlashEventRecord;
     fromAmino(object: ValidatorSlashEventRecordAmino): ValidatorSlashEventRecord;
     toAmino(message: ValidatorSlashEventRecord): ValidatorSlashEventRecordAmino;
+    fromAminoMsg(object: ValidatorSlashEventRecordAminoMsg): ValidatorSlashEventRecord;
+    toAminoMsg(message: ValidatorSlashEventRecord): ValidatorSlashEventRecordAminoMsg;
+    fromProtoMsg(message: ValidatorSlashEventRecordProtoMsg): ValidatorSlashEventRecord;
+    toProto(message: ValidatorSlashEventRecord): Uint8Array;
+    toProtoMsg(message: ValidatorSlashEventRecord): ValidatorSlashEventRecordProtoMsg;
 };
 export declare const GenesisState: {
     encode(message: GenesisState, writer?: _m0.Writer): _m0.Writer;
@@ -315,4 +414,9 @@ export declare const GenesisState: {
     fromPartial(object: Partial<GenesisState>): GenesisState;
     fromAmino(object: GenesisStateAmino): GenesisState;
     toAmino(message: GenesisState): GenesisStateAmino;
+    fromAminoMsg(object: GenesisStateAminoMsg): GenesisState;
+    toAminoMsg(message: GenesisState): GenesisStateAminoMsg;
+    fromProtoMsg(message: GenesisStateProtoMsg): GenesisState;
+    toProto(message: GenesisState): Uint8Array;
+    toProtoMsg(message: GenesisState): GenesisStateProtoMsg;
 };

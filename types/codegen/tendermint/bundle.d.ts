@@ -39,6 +39,10 @@ export declare namespace tendermint {
             fromPartial(object: Partial<_107.Request>): _107.Request;
             fromAmino(object: _107.RequestAmino): _107.Request;
             toAmino(message: _107.Request): _107.RequestAmino;
+            fromAminoMsg(object: _107.RequestAminoMsg): _107.Request;
+            fromProtoMsg(message: _107.RequestProtoMsg): _107.Request;
+            toProto(message: _107.Request): Uint8Array;
+            toProtoMsg(message: _107.Request): _107.RequestProtoMsg;
         };
         RequestEcho: {
             encode(message: _107.RequestEcho, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
@@ -48,6 +52,10 @@ export declare namespace tendermint {
             fromPartial(object: Partial<_107.RequestEcho>): _107.RequestEcho;
             fromAmino(object: _107.RequestEchoAmino): _107.RequestEcho;
             toAmino(message: _107.RequestEcho): _107.RequestEchoAmino;
+            fromAminoMsg(object: _107.RequestEchoAminoMsg): _107.RequestEcho;
+            fromProtoMsg(message: _107.RequestEchoProtoMsg): _107.RequestEcho;
+            toProto(message: _107.RequestEcho): Uint8Array;
+            toProtoMsg(message: _107.RequestEcho): _107.RequestEchoProtoMsg;
         };
         RequestFlush: {
             encode(_: _107.RequestFlush, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
@@ -57,6 +65,10 @@ export declare namespace tendermint {
             fromPartial(_: Partial<_107.RequestFlush>): _107.RequestFlush;
             fromAmino(_: _107.RequestFlushAmino): _107.RequestFlush;
             toAmino(_: _107.RequestFlush): _107.RequestFlushAmino;
+            fromAminoMsg(object: _107.RequestFlushAminoMsg): _107.RequestFlush;
+            fromProtoMsg(message: _107.RequestFlushProtoMsg): _107.RequestFlush;
+            toProto(message: _107.RequestFlush): Uint8Array;
+            toProtoMsg(message: _107.RequestFlush): _107.RequestFlushProtoMsg;
         };
         RequestInfo: {
             encode(message: _107.RequestInfo, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
@@ -66,6 +78,10 @@ export declare namespace tendermint {
             fromPartial(object: Partial<_107.RequestInfo>): _107.RequestInfo;
             fromAmino(object: _107.RequestInfoAmino): _107.RequestInfo;
             toAmino(message: _107.RequestInfo): _107.RequestInfoAmino;
+            fromAminoMsg(object: _107.RequestInfoAminoMsg): _107.RequestInfo;
+            fromProtoMsg(message: _107.RequestInfoProtoMsg): _107.RequestInfo;
+            toProto(message: _107.RequestInfo): Uint8Array;
+            toProtoMsg(message: _107.RequestInfo): _107.RequestInfoProtoMsg;
         };
         RequestSetOption: {
             encode(message: _107.RequestSetOption, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
@@ -75,6 +91,10 @@ export declare namespace tendermint {
             fromPartial(object: Partial<_107.RequestSetOption>): _107.RequestSetOption;
             fromAmino(object: _107.RequestSetOptionAmino): _107.RequestSetOption;
             toAmino(message: _107.RequestSetOption): _107.RequestSetOptionAmino;
+            fromAminoMsg(object: _107.RequestSetOptionAminoMsg): _107.RequestSetOption;
+            fromProtoMsg(message: _107.RequestSetOptionProtoMsg): _107.RequestSetOption;
+            toProto(message: _107.RequestSetOption): Uint8Array;
+            toProtoMsg(message: _107.RequestSetOption): _107.RequestSetOptionProtoMsg;
         };
         RequestInitChain: {
             encode(message: _107.RequestInitChain, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
@@ -84,6 +104,10 @@ export declare namespace tendermint {
             fromPartial(object: Partial<_107.RequestInitChain>): _107.RequestInitChain;
             fromAmino(object: _107.RequestInitChainAmino): _107.RequestInitChain;
             toAmino(message: _107.RequestInitChain): _107.RequestInitChainAmino;
+            fromAminoMsg(object: _107.RequestInitChainAminoMsg): _107.RequestInitChain;
+            fromProtoMsg(message: _107.RequestInitChainProtoMsg): _107.RequestInitChain;
+            toProto(message: _107.RequestInitChain): Uint8Array;
+            toProtoMsg(message: _107.RequestInitChain): _107.RequestInitChainProtoMsg;
         };
         RequestQuery: {
             encode(message: _107.RequestQuery, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
@@ -93,6 +117,10 @@ export declare namespace tendermint {
             fromPartial(object: Partial<_107.RequestQuery>): _107.RequestQuery;
             fromAmino(object: _107.RequestQueryAmino): _107.RequestQuery;
             toAmino(message: _107.RequestQuery): _107.RequestQueryAmino;
+            fromAminoMsg(object: _107.RequestQueryAminoMsg): _107.RequestQuery;
+            fromProtoMsg(message: _107.RequestQueryProtoMsg): _107.RequestQuery;
+            toProto(message: _107.RequestQuery): Uint8Array;
+            toProtoMsg(message: _107.RequestQuery): _107.RequestQueryProtoMsg;
         };
         RequestBeginBlock: {
             encode(message: _107.RequestBeginBlock, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
@@ -102,6 +130,10 @@ export declare namespace tendermint {
             fromPartial(object: Partial<_107.RequestBeginBlock>): _107.RequestBeginBlock;
             fromAmino(object: _107.RequestBeginBlockAmino): _107.RequestBeginBlock;
             toAmino(message: _107.RequestBeginBlock): _107.RequestBeginBlockAmino;
+            fromAminoMsg(object: _107.RequestBeginBlockAminoMsg): _107.RequestBeginBlock;
+            fromProtoMsg(message: _107.RequestBeginBlockProtoMsg): _107.RequestBeginBlock;
+            toProto(message: _107.RequestBeginBlock): Uint8Array;
+            toProtoMsg(message: _107.RequestBeginBlock): _107.RequestBeginBlockProtoMsg;
         };
         RequestCheckTx: {
             encode(message: _107.RequestCheckTx, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
@@ -111,6 +143,10 @@ export declare namespace tendermint {
             fromPartial(object: Partial<_107.RequestCheckTx>): _107.RequestCheckTx;
             fromAmino(object: _107.RequestCheckTxAmino): _107.RequestCheckTx;
             toAmino(message: _107.RequestCheckTx): _107.RequestCheckTxAmino;
+            fromAminoMsg(object: _107.RequestCheckTxAminoMsg): _107.RequestCheckTx;
+            fromProtoMsg(message: _107.RequestCheckTxProtoMsg): _107.RequestCheckTx;
+            toProto(message: _107.RequestCheckTx): Uint8Array;
+            toProtoMsg(message: _107.RequestCheckTx): _107.RequestCheckTxProtoMsg;
         };
         RequestDeliverTx: {
             encode(message: _107.RequestDeliverTx, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
@@ -120,6 +156,10 @@ export declare namespace tendermint {
             fromPartial(object: Partial<_107.RequestDeliverTx>): _107.RequestDeliverTx;
             fromAmino(object: _107.RequestDeliverTxAmino): _107.RequestDeliverTx;
             toAmino(message: _107.RequestDeliverTx): _107.RequestDeliverTxAmino;
+            fromAminoMsg(object: _107.RequestDeliverTxAminoMsg): _107.RequestDeliverTx;
+            fromProtoMsg(message: _107.RequestDeliverTxProtoMsg): _107.RequestDeliverTx;
+            toProto(message: _107.RequestDeliverTx): Uint8Array;
+            toProtoMsg(message: _107.RequestDeliverTx): _107.RequestDeliverTxProtoMsg;
         };
         RequestEndBlock: {
             encode(message: _107.RequestEndBlock, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
@@ -129,6 +169,10 @@ export declare namespace tendermint {
             fromPartial(object: Partial<_107.RequestEndBlock>): _107.RequestEndBlock;
             fromAmino(object: _107.RequestEndBlockAmino): _107.RequestEndBlock;
             toAmino(message: _107.RequestEndBlock): _107.RequestEndBlockAmino;
+            fromAminoMsg(object: _107.RequestEndBlockAminoMsg): _107.RequestEndBlock;
+            fromProtoMsg(message: _107.RequestEndBlockProtoMsg): _107.RequestEndBlock;
+            toProto(message: _107.RequestEndBlock): Uint8Array;
+            toProtoMsg(message: _107.RequestEndBlock): _107.RequestEndBlockProtoMsg;
         };
         RequestCommit: {
             encode(_: _107.RequestCommit, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
@@ -138,6 +182,10 @@ export declare namespace tendermint {
             fromPartial(_: Partial<_107.RequestCommit>): _107.RequestCommit;
             fromAmino(_: _107.RequestCommitAmino): _107.RequestCommit;
             toAmino(_: _107.RequestCommit): _107.RequestCommitAmino;
+            fromAminoMsg(object: _107.RequestCommitAminoMsg): _107.RequestCommit;
+            fromProtoMsg(message: _107.RequestCommitProtoMsg): _107.RequestCommit;
+            toProto(message: _107.RequestCommit): Uint8Array;
+            toProtoMsg(message: _107.RequestCommit): _107.RequestCommitProtoMsg;
         };
         RequestListSnapshots: {
             encode(_: _107.RequestListSnapshots, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
@@ -147,6 +195,10 @@ export declare namespace tendermint {
             fromPartial(_: Partial<_107.RequestListSnapshots>): _107.RequestListSnapshots;
             fromAmino(_: _107.RequestListSnapshotsAmino): _107.RequestListSnapshots;
             toAmino(_: _107.RequestListSnapshots): _107.RequestListSnapshotsAmino;
+            fromAminoMsg(object: _107.RequestListSnapshotsAminoMsg): _107.RequestListSnapshots;
+            fromProtoMsg(message: _107.RequestListSnapshotsProtoMsg): _107.RequestListSnapshots;
+            toProto(message: _107.RequestListSnapshots): Uint8Array;
+            toProtoMsg(message: _107.RequestListSnapshots): _107.RequestListSnapshotsProtoMsg;
         };
         RequestOfferSnapshot: {
             encode(message: _107.RequestOfferSnapshot, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
@@ -156,6 +208,10 @@ export declare namespace tendermint {
             fromPartial(object: Partial<_107.RequestOfferSnapshot>): _107.RequestOfferSnapshot;
             fromAmino(object: _107.RequestOfferSnapshotAmino): _107.RequestOfferSnapshot;
             toAmino(message: _107.RequestOfferSnapshot): _107.RequestOfferSnapshotAmino;
+            fromAminoMsg(object: _107.RequestOfferSnapshotAminoMsg): _107.RequestOfferSnapshot;
+            fromProtoMsg(message: _107.RequestOfferSnapshotProtoMsg): _107.RequestOfferSnapshot;
+            toProto(message: _107.RequestOfferSnapshot): Uint8Array;
+            toProtoMsg(message: _107.RequestOfferSnapshot): _107.RequestOfferSnapshotProtoMsg;
         };
         RequestLoadSnapshotChunk: {
             encode(message: _107.RequestLoadSnapshotChunk, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
@@ -165,6 +221,10 @@ export declare namespace tendermint {
             fromPartial(object: Partial<_107.RequestLoadSnapshotChunk>): _107.RequestLoadSnapshotChunk;
             fromAmino(object: _107.RequestLoadSnapshotChunkAmino): _107.RequestLoadSnapshotChunk;
             toAmino(message: _107.RequestLoadSnapshotChunk): _107.RequestLoadSnapshotChunkAmino;
+            fromAminoMsg(object: _107.RequestLoadSnapshotChunkAminoMsg): _107.RequestLoadSnapshotChunk;
+            fromProtoMsg(message: _107.RequestLoadSnapshotChunkProtoMsg): _107.RequestLoadSnapshotChunk;
+            toProto(message: _107.RequestLoadSnapshotChunk): Uint8Array;
+            toProtoMsg(message: _107.RequestLoadSnapshotChunk): _107.RequestLoadSnapshotChunkProtoMsg;
         };
         RequestApplySnapshotChunk: {
             encode(message: _107.RequestApplySnapshotChunk, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
@@ -174,6 +234,10 @@ export declare namespace tendermint {
             fromPartial(object: Partial<_107.RequestApplySnapshotChunk>): _107.RequestApplySnapshotChunk;
             fromAmino(object: _107.RequestApplySnapshotChunkAmino): _107.RequestApplySnapshotChunk;
             toAmino(message: _107.RequestApplySnapshotChunk): _107.RequestApplySnapshotChunkAmino;
+            fromAminoMsg(object: _107.RequestApplySnapshotChunkAminoMsg): _107.RequestApplySnapshotChunk;
+            fromProtoMsg(message: _107.RequestApplySnapshotChunkProtoMsg): _107.RequestApplySnapshotChunk;
+            toProto(message: _107.RequestApplySnapshotChunk): Uint8Array;
+            toProtoMsg(message: _107.RequestApplySnapshotChunk): _107.RequestApplySnapshotChunkProtoMsg;
         };
         Response: {
             encode(message: _107.Response, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
@@ -183,6 +247,10 @@ export declare namespace tendermint {
             fromPartial(object: Partial<_107.Response>): _107.Response;
             fromAmino(object: _107.ResponseAmino): _107.Response;
             toAmino(message: _107.Response): _107.ResponseAmino;
+            fromAminoMsg(object: _107.ResponseAminoMsg): _107.Response;
+            fromProtoMsg(message: _107.ResponseProtoMsg): _107.Response;
+            toProto(message: _107.Response): Uint8Array;
+            toProtoMsg(message: _107.Response): _107.ResponseProtoMsg;
         };
         ResponseException: {
             encode(message: _107.ResponseException, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
@@ -192,6 +260,10 @@ export declare namespace tendermint {
             fromPartial(object: Partial<_107.ResponseException>): _107.ResponseException;
             fromAmino(object: _107.ResponseExceptionAmino): _107.ResponseException;
             toAmino(message: _107.ResponseException): _107.ResponseExceptionAmino;
+            fromAminoMsg(object: _107.ResponseExceptionAminoMsg): _107.ResponseException;
+            fromProtoMsg(message: _107.ResponseExceptionProtoMsg): _107.ResponseException;
+            toProto(message: _107.ResponseException): Uint8Array;
+            toProtoMsg(message: _107.ResponseException): _107.ResponseExceptionProtoMsg;
         };
         ResponseEcho: {
             encode(message: _107.ResponseEcho, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
@@ -201,6 +273,10 @@ export declare namespace tendermint {
             fromPartial(object: Partial<_107.ResponseEcho>): _107.ResponseEcho;
             fromAmino(object: _107.ResponseEchoAmino): _107.ResponseEcho;
             toAmino(message: _107.ResponseEcho): _107.ResponseEchoAmino;
+            fromAminoMsg(object: _107.ResponseEchoAminoMsg): _107.ResponseEcho;
+            fromProtoMsg(message: _107.ResponseEchoProtoMsg): _107.ResponseEcho;
+            toProto(message: _107.ResponseEcho): Uint8Array;
+            toProtoMsg(message: _107.ResponseEcho): _107.ResponseEchoProtoMsg;
         };
         ResponseFlush: {
             encode(_: _107.ResponseFlush, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
@@ -210,6 +286,10 @@ export declare namespace tendermint {
             fromPartial(_: Partial<_107.ResponseFlush>): _107.ResponseFlush;
             fromAmino(_: _107.ResponseFlushAmino): _107.ResponseFlush;
             toAmino(_: _107.ResponseFlush): _107.ResponseFlushAmino;
+            fromAminoMsg(object: _107.ResponseFlushAminoMsg): _107.ResponseFlush;
+            fromProtoMsg(message: _107.ResponseFlushProtoMsg): _107.ResponseFlush;
+            toProto(message: _107.ResponseFlush): Uint8Array;
+            toProtoMsg(message: _107.ResponseFlush): _107.ResponseFlushProtoMsg;
         };
         ResponseInfo: {
             encode(message: _107.ResponseInfo, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
@@ -219,6 +299,10 @@ export declare namespace tendermint {
             fromPartial(object: Partial<_107.ResponseInfo>): _107.ResponseInfo;
             fromAmino(object: _107.ResponseInfoAmino): _107.ResponseInfo;
             toAmino(message: _107.ResponseInfo): _107.ResponseInfoAmino;
+            fromAminoMsg(object: _107.ResponseInfoAminoMsg): _107.ResponseInfo;
+            fromProtoMsg(message: _107.ResponseInfoProtoMsg): _107.ResponseInfo;
+            toProto(message: _107.ResponseInfo): Uint8Array;
+            toProtoMsg(message: _107.ResponseInfo): _107.ResponseInfoProtoMsg;
         };
         ResponseSetOption: {
             encode(message: _107.ResponseSetOption, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
@@ -228,6 +312,10 @@ export declare namespace tendermint {
             fromPartial(object: Partial<_107.ResponseSetOption>): _107.ResponseSetOption;
             fromAmino(object: _107.ResponseSetOptionAmino): _107.ResponseSetOption;
             toAmino(message: _107.ResponseSetOption): _107.ResponseSetOptionAmino;
+            fromAminoMsg(object: _107.ResponseSetOptionAminoMsg): _107.ResponseSetOption;
+            fromProtoMsg(message: _107.ResponseSetOptionProtoMsg): _107.ResponseSetOption;
+            toProto(message: _107.ResponseSetOption): Uint8Array;
+            toProtoMsg(message: _107.ResponseSetOption): _107.ResponseSetOptionProtoMsg;
         };
         ResponseInitChain: {
             encode(message: _107.ResponseInitChain, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
@@ -237,6 +325,10 @@ export declare namespace tendermint {
             fromPartial(object: Partial<_107.ResponseInitChain>): _107.ResponseInitChain;
             fromAmino(object: _107.ResponseInitChainAmino): _107.ResponseInitChain;
             toAmino(message: _107.ResponseInitChain): _107.ResponseInitChainAmino;
+            fromAminoMsg(object: _107.ResponseInitChainAminoMsg): _107.ResponseInitChain;
+            fromProtoMsg(message: _107.ResponseInitChainProtoMsg): _107.ResponseInitChain;
+            toProto(message: _107.ResponseInitChain): Uint8Array;
+            toProtoMsg(message: _107.ResponseInitChain): _107.ResponseInitChainProtoMsg;
         };
         ResponseQuery: {
             encode(message: _107.ResponseQuery, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
@@ -246,6 +338,10 @@ export declare namespace tendermint {
             fromPartial(object: Partial<_107.ResponseQuery>): _107.ResponseQuery;
             fromAmino(object: _107.ResponseQueryAmino): _107.ResponseQuery;
             toAmino(message: _107.ResponseQuery): _107.ResponseQueryAmino;
+            fromAminoMsg(object: _107.ResponseQueryAminoMsg): _107.ResponseQuery;
+            fromProtoMsg(message: _107.ResponseQueryProtoMsg): _107.ResponseQuery;
+            toProto(message: _107.ResponseQuery): Uint8Array;
+            toProtoMsg(message: _107.ResponseQuery): _107.ResponseQueryProtoMsg;
         };
         ResponseBeginBlock: {
             encode(message: _107.ResponseBeginBlock, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
@@ -255,6 +351,10 @@ export declare namespace tendermint {
             fromPartial(object: Partial<_107.ResponseBeginBlock>): _107.ResponseBeginBlock;
             fromAmino(object: _107.ResponseBeginBlockAmino): _107.ResponseBeginBlock;
             toAmino(message: _107.ResponseBeginBlock): _107.ResponseBeginBlockAmino;
+            fromAminoMsg(object: _107.ResponseBeginBlockAminoMsg): _107.ResponseBeginBlock;
+            fromProtoMsg(message: _107.ResponseBeginBlockProtoMsg): _107.ResponseBeginBlock;
+            toProto(message: _107.ResponseBeginBlock): Uint8Array;
+            toProtoMsg(message: _107.ResponseBeginBlock): _107.ResponseBeginBlockProtoMsg;
         };
         ResponseCheckTx: {
             encode(message: _107.ResponseCheckTx, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
@@ -264,6 +364,10 @@ export declare namespace tendermint {
             fromPartial(object: Partial<_107.ResponseCheckTx>): _107.ResponseCheckTx;
             fromAmino(object: _107.ResponseCheckTxAmino): _107.ResponseCheckTx;
             toAmino(message: _107.ResponseCheckTx): _107.ResponseCheckTxAmino;
+            fromAminoMsg(object: _107.ResponseCheckTxAminoMsg): _107.ResponseCheckTx;
+            fromProtoMsg(message: _107.ResponseCheckTxProtoMsg): _107.ResponseCheckTx;
+            toProto(message: _107.ResponseCheckTx): Uint8Array;
+            toProtoMsg(message: _107.ResponseCheckTx): _107.ResponseCheckTxProtoMsg;
         };
         ResponseDeliverTx: {
             encode(message: _107.ResponseDeliverTx, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
@@ -273,6 +377,10 @@ export declare namespace tendermint {
             fromPartial(object: Partial<_107.ResponseDeliverTx>): _107.ResponseDeliverTx;
             fromAmino(object: _107.ResponseDeliverTxAmino): _107.ResponseDeliverTx;
             toAmino(message: _107.ResponseDeliverTx): _107.ResponseDeliverTxAmino;
+            fromAminoMsg(object: _107.ResponseDeliverTxAminoMsg): _107.ResponseDeliverTx;
+            fromProtoMsg(message: _107.ResponseDeliverTxProtoMsg): _107.ResponseDeliverTx;
+            toProto(message: _107.ResponseDeliverTx): Uint8Array;
+            toProtoMsg(message: _107.ResponseDeliverTx): _107.ResponseDeliverTxProtoMsg;
         };
         ResponseEndBlock: {
             encode(message: _107.ResponseEndBlock, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
@@ -282,6 +390,10 @@ export declare namespace tendermint {
             fromPartial(object: Partial<_107.ResponseEndBlock>): _107.ResponseEndBlock;
             fromAmino(object: _107.ResponseEndBlockAmino): _107.ResponseEndBlock;
             toAmino(message: _107.ResponseEndBlock): _107.ResponseEndBlockAmino;
+            fromAminoMsg(object: _107.ResponseEndBlockAminoMsg): _107.ResponseEndBlock;
+            fromProtoMsg(message: _107.ResponseEndBlockProtoMsg): _107.ResponseEndBlock;
+            toProto(message: _107.ResponseEndBlock): Uint8Array;
+            toProtoMsg(message: _107.ResponseEndBlock): _107.ResponseEndBlockProtoMsg;
         };
         ResponseCommit: {
             encode(message: _107.ResponseCommit, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
@@ -291,6 +403,10 @@ export declare namespace tendermint {
             fromPartial(object: Partial<_107.ResponseCommit>): _107.ResponseCommit;
             fromAmino(object: _107.ResponseCommitAmino): _107.ResponseCommit;
             toAmino(message: _107.ResponseCommit): _107.ResponseCommitAmino;
+            fromAminoMsg(object: _107.ResponseCommitAminoMsg): _107.ResponseCommit;
+            fromProtoMsg(message: _107.ResponseCommitProtoMsg): _107.ResponseCommit;
+            toProto(message: _107.ResponseCommit): Uint8Array;
+            toProtoMsg(message: _107.ResponseCommit): _107.ResponseCommitProtoMsg;
         };
         ResponseListSnapshots: {
             encode(message: _107.ResponseListSnapshots, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
@@ -300,6 +416,10 @@ export declare namespace tendermint {
             fromPartial(object: Partial<_107.ResponseListSnapshots>): _107.ResponseListSnapshots;
             fromAmino(object: _107.ResponseListSnapshotsAmino): _107.ResponseListSnapshots;
             toAmino(message: _107.ResponseListSnapshots): _107.ResponseListSnapshotsAmino;
+            fromAminoMsg(object: _107.ResponseListSnapshotsAminoMsg): _107.ResponseListSnapshots;
+            fromProtoMsg(message: _107.ResponseListSnapshotsProtoMsg): _107.ResponseListSnapshots;
+            toProto(message: _107.ResponseListSnapshots): Uint8Array;
+            toProtoMsg(message: _107.ResponseListSnapshots): _107.ResponseListSnapshotsProtoMsg;
         };
         ResponseOfferSnapshot: {
             encode(message: _107.ResponseOfferSnapshot, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
@@ -309,6 +429,10 @@ export declare namespace tendermint {
             fromPartial(object: Partial<_107.ResponseOfferSnapshot>): _107.ResponseOfferSnapshot;
             fromAmino(object: _107.ResponseOfferSnapshotAmino): _107.ResponseOfferSnapshot;
             toAmino(message: _107.ResponseOfferSnapshot): _107.ResponseOfferSnapshotAmino;
+            fromAminoMsg(object: _107.ResponseOfferSnapshotAminoMsg): _107.ResponseOfferSnapshot;
+            fromProtoMsg(message: _107.ResponseOfferSnapshotProtoMsg): _107.ResponseOfferSnapshot;
+            toProto(message: _107.ResponseOfferSnapshot): Uint8Array;
+            toProtoMsg(message: _107.ResponseOfferSnapshot): _107.ResponseOfferSnapshotProtoMsg;
         };
         ResponseLoadSnapshotChunk: {
             encode(message: _107.ResponseLoadSnapshotChunk, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
@@ -318,6 +442,10 @@ export declare namespace tendermint {
             fromPartial(object: Partial<_107.ResponseLoadSnapshotChunk>): _107.ResponseLoadSnapshotChunk;
             fromAmino(object: _107.ResponseLoadSnapshotChunkAmino): _107.ResponseLoadSnapshotChunk;
             toAmino(message: _107.ResponseLoadSnapshotChunk): _107.ResponseLoadSnapshotChunkAmino;
+            fromAminoMsg(object: _107.ResponseLoadSnapshotChunkAminoMsg): _107.ResponseLoadSnapshotChunk;
+            fromProtoMsg(message: _107.ResponseLoadSnapshotChunkProtoMsg): _107.ResponseLoadSnapshotChunk;
+            toProto(message: _107.ResponseLoadSnapshotChunk): Uint8Array;
+            toProtoMsg(message: _107.ResponseLoadSnapshotChunk): _107.ResponseLoadSnapshotChunkProtoMsg;
         };
         ResponseApplySnapshotChunk: {
             encode(message: _107.ResponseApplySnapshotChunk, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
@@ -327,6 +455,10 @@ export declare namespace tendermint {
             fromPartial(object: Partial<_107.ResponseApplySnapshotChunk>): _107.ResponseApplySnapshotChunk;
             fromAmino(object: _107.ResponseApplySnapshotChunkAmino): _107.ResponseApplySnapshotChunk;
             toAmino(message: _107.ResponseApplySnapshotChunk): _107.ResponseApplySnapshotChunkAmino;
+            fromAminoMsg(object: _107.ResponseApplySnapshotChunkAminoMsg): _107.ResponseApplySnapshotChunk;
+            fromProtoMsg(message: _107.ResponseApplySnapshotChunkProtoMsg): _107.ResponseApplySnapshotChunk;
+            toProto(message: _107.ResponseApplySnapshotChunk): Uint8Array;
+            toProtoMsg(message: _107.ResponseApplySnapshotChunk): _107.ResponseApplySnapshotChunkProtoMsg;
         };
         ConsensusParams: {
             encode(message: _107.ConsensusParams, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
@@ -336,6 +468,10 @@ export declare namespace tendermint {
             fromPartial(object: Partial<_107.ConsensusParams>): _107.ConsensusParams;
             fromAmino(object: _107.ConsensusParamsAmino): _107.ConsensusParams;
             toAmino(message: _107.ConsensusParams): _107.ConsensusParamsAmino;
+            fromAminoMsg(object: _107.ConsensusParamsAminoMsg): _107.ConsensusParams;
+            fromProtoMsg(message: _107.ConsensusParamsProtoMsg): _107.ConsensusParams;
+            toProto(message: _107.ConsensusParams): Uint8Array;
+            toProtoMsg(message: _107.ConsensusParams): _107.ConsensusParamsProtoMsg;
         };
         BlockParams: {
             encode(message: _107.BlockParams, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
@@ -345,6 +481,10 @@ export declare namespace tendermint {
             fromPartial(object: Partial<_107.BlockParams>): _107.BlockParams;
             fromAmino(object: _107.BlockParamsAmino): _107.BlockParams;
             toAmino(message: _107.BlockParams): _107.BlockParamsAmino;
+            fromAminoMsg(object: _107.BlockParamsAminoMsg): _107.BlockParams;
+            fromProtoMsg(message: _107.BlockParamsProtoMsg): _107.BlockParams;
+            toProto(message: _107.BlockParams): Uint8Array;
+            toProtoMsg(message: _107.BlockParams): _107.BlockParamsProtoMsg;
         };
         LastCommitInfo: {
             encode(message: _107.LastCommitInfo, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
@@ -354,6 +494,10 @@ export declare namespace tendermint {
             fromPartial(object: Partial<_107.LastCommitInfo>): _107.LastCommitInfo;
             fromAmino(object: _107.LastCommitInfoAmino): _107.LastCommitInfo;
             toAmino(message: _107.LastCommitInfo): _107.LastCommitInfoAmino;
+            fromAminoMsg(object: _107.LastCommitInfoAminoMsg): _107.LastCommitInfo;
+            fromProtoMsg(message: _107.LastCommitInfoProtoMsg): _107.LastCommitInfo;
+            toProto(message: _107.LastCommitInfo): Uint8Array;
+            toProtoMsg(message: _107.LastCommitInfo): _107.LastCommitInfoProtoMsg;
         };
         Event: {
             encode(message: _107.Event, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
@@ -363,6 +507,10 @@ export declare namespace tendermint {
             fromPartial(object: Partial<_107.Event>): _107.Event;
             fromAmino(object: _107.EventAmino): _107.Event;
             toAmino(message: _107.Event): _107.EventAmino;
+            fromAminoMsg(object: _107.EventAminoMsg): _107.Event;
+            fromProtoMsg(message: _107.EventProtoMsg): _107.Event;
+            toProto(message: _107.Event): Uint8Array;
+            toProtoMsg(message: _107.Event): _107.EventProtoMsg;
         };
         EventAttribute: {
             encode(message: _107.EventAttribute, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
@@ -372,6 +520,10 @@ export declare namespace tendermint {
             fromPartial(object: Partial<_107.EventAttribute>): _107.EventAttribute;
             fromAmino(object: _107.EventAttributeAmino): _107.EventAttribute;
             toAmino(message: _107.EventAttribute): _107.EventAttributeAmino;
+            fromAminoMsg(object: _107.EventAttributeAminoMsg): _107.EventAttribute;
+            fromProtoMsg(message: _107.EventAttributeProtoMsg): _107.EventAttribute;
+            toProto(message: _107.EventAttribute): Uint8Array;
+            toProtoMsg(message: _107.EventAttribute): _107.EventAttributeProtoMsg;
         };
         TxResult: {
             encode(message: _107.TxResult, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
@@ -381,6 +533,10 @@ export declare namespace tendermint {
             fromPartial(object: Partial<_107.TxResult>): _107.TxResult;
             fromAmino(object: _107.TxResultAmino): _107.TxResult;
             toAmino(message: _107.TxResult): _107.TxResultAmino;
+            fromAminoMsg(object: _107.TxResultAminoMsg): _107.TxResult;
+            fromProtoMsg(message: _107.TxResultProtoMsg): _107.TxResult;
+            toProto(message: _107.TxResult): Uint8Array;
+            toProtoMsg(message: _107.TxResult): _107.TxResultProtoMsg;
         };
         Validator: {
             encode(message: _107.Validator, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
@@ -390,6 +546,10 @@ export declare namespace tendermint {
             fromPartial(object: Partial<_107.Validator>): _107.Validator;
             fromAmino(object: _107.ValidatorAmino): _107.Validator;
             toAmino(message: _107.Validator): _107.ValidatorAmino;
+            fromAminoMsg(object: _107.ValidatorAminoMsg): _107.Validator;
+            fromProtoMsg(message: _107.ValidatorProtoMsg): _107.Validator;
+            toProto(message: _107.Validator): Uint8Array;
+            toProtoMsg(message: _107.Validator): _107.ValidatorProtoMsg;
         };
         ValidatorUpdate: {
             encode(message: _107.ValidatorUpdate, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
@@ -399,6 +559,10 @@ export declare namespace tendermint {
             fromPartial(object: Partial<_107.ValidatorUpdate>): _107.ValidatorUpdate;
             fromAmino(object: _107.ValidatorUpdateAmino): _107.ValidatorUpdate;
             toAmino(message: _107.ValidatorUpdate): _107.ValidatorUpdateAmino;
+            fromAminoMsg(object: _107.ValidatorUpdateAminoMsg): _107.ValidatorUpdate;
+            fromProtoMsg(message: _107.ValidatorUpdateProtoMsg): _107.ValidatorUpdate;
+            toProto(message: _107.ValidatorUpdate): Uint8Array;
+            toProtoMsg(message: _107.ValidatorUpdate): _107.ValidatorUpdateProtoMsg;
         };
         VoteInfo: {
             encode(message: _107.VoteInfo, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
@@ -408,6 +572,10 @@ export declare namespace tendermint {
             fromPartial(object: Partial<_107.VoteInfo>): _107.VoteInfo;
             fromAmino(object: _107.VoteInfoAmino): _107.VoteInfo;
             toAmino(message: _107.VoteInfo): _107.VoteInfoAmino;
+            fromAminoMsg(object: _107.VoteInfoAminoMsg): _107.VoteInfo;
+            fromProtoMsg(message: _107.VoteInfoProtoMsg): _107.VoteInfo;
+            toProto(message: _107.VoteInfo): Uint8Array;
+            toProtoMsg(message: _107.VoteInfo): _107.VoteInfoProtoMsg;
         };
         Evidence: {
             encode(message: _107.Evidence, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
@@ -417,6 +585,10 @@ export declare namespace tendermint {
             fromPartial(object: Partial<_107.Evidence>): _107.Evidence;
             fromAmino(object: _107.EvidenceAmino): _107.Evidence;
             toAmino(message: _107.Evidence): _107.EvidenceAmino;
+            fromAminoMsg(object: _107.EvidenceAminoMsg): _107.Evidence;
+            fromProtoMsg(message: _107.EvidenceProtoMsg): _107.Evidence;
+            toProto(message: _107.Evidence): Uint8Array;
+            toProtoMsg(message: _107.Evidence): _107.EvidenceProtoMsg;
         };
         Snapshot: {
             encode(message: _107.Snapshot, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
@@ -426,6 +598,10 @@ export declare namespace tendermint {
             fromPartial(object: Partial<_107.Snapshot>): _107.Snapshot;
             fromAmino(object: _107.SnapshotAmino): _107.Snapshot;
             toAmino(message: _107.Snapshot): _107.SnapshotAmino;
+            fromAminoMsg(object: _107.SnapshotAminoMsg): _107.Snapshot;
+            fromProtoMsg(message: _107.SnapshotProtoMsg): _107.Snapshot;
+            toProto(message: _107.Snapshot): Uint8Array;
+            toProtoMsg(message: _107.Snapshot): _107.SnapshotProtoMsg;
         };
     };
     const crypto: {
@@ -437,6 +613,10 @@ export declare namespace tendermint {
             fromPartial(object: Partial<_109.Proof>): _109.Proof;
             fromAmino(object: _109.ProofAmino): _109.Proof;
             toAmino(message: _109.Proof): _109.ProofAmino;
+            fromAminoMsg(object: _109.ProofAminoMsg): _109.Proof;
+            fromProtoMsg(message: _109.ProofProtoMsg): _109.Proof;
+            toProto(message: _109.Proof): Uint8Array;
+            toProtoMsg(message: _109.Proof): _109.ProofProtoMsg;
         };
         ValueOp: {
             encode(message: _109.ValueOp, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
@@ -446,6 +626,10 @@ export declare namespace tendermint {
             fromPartial(object: Partial<_109.ValueOp>): _109.ValueOp;
             fromAmino(object: _109.ValueOpAmino): _109.ValueOp;
             toAmino(message: _109.ValueOp): _109.ValueOpAmino;
+            fromAminoMsg(object: _109.ValueOpAminoMsg): _109.ValueOp;
+            fromProtoMsg(message: _109.ValueOpProtoMsg): _109.ValueOp;
+            toProto(message: _109.ValueOp): Uint8Array;
+            toProtoMsg(message: _109.ValueOp): _109.ValueOpProtoMsg;
         };
         DominoOp: {
             encode(message: _109.DominoOp, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
@@ -455,6 +639,10 @@ export declare namespace tendermint {
             fromPartial(object: Partial<_109.DominoOp>): _109.DominoOp;
             fromAmino(object: _109.DominoOpAmino): _109.DominoOp;
             toAmino(message: _109.DominoOp): _109.DominoOpAmino;
+            fromAminoMsg(object: _109.DominoOpAminoMsg): _109.DominoOp;
+            fromProtoMsg(message: _109.DominoOpProtoMsg): _109.DominoOp;
+            toProto(message: _109.DominoOp): Uint8Array;
+            toProtoMsg(message: _109.DominoOp): _109.DominoOpProtoMsg;
         };
         ProofOp: {
             encode(message: _109.ProofOp, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
@@ -464,6 +652,10 @@ export declare namespace tendermint {
             fromPartial(object: Partial<_109.ProofOp>): _109.ProofOp;
             fromAmino(object: _109.ProofOpAmino): _109.ProofOp;
             toAmino(message: _109.ProofOp): _109.ProofOpAmino;
+            fromAminoMsg(object: _109.ProofOpAminoMsg): _109.ProofOp;
+            fromProtoMsg(message: _109.ProofOpProtoMsg): _109.ProofOp;
+            toProto(message: _109.ProofOp): Uint8Array;
+            toProtoMsg(message: _109.ProofOp): _109.ProofOpProtoMsg;
         };
         ProofOps: {
             encode(message: _109.ProofOps, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
@@ -473,6 +665,10 @@ export declare namespace tendermint {
             fromPartial(object: Partial<_109.ProofOps>): _109.ProofOps;
             fromAmino(object: _109.ProofOpsAmino): _109.ProofOps;
             toAmino(message: _109.ProofOps): _109.ProofOpsAmino;
+            fromAminoMsg(object: _109.ProofOpsAminoMsg): _109.ProofOps;
+            fromProtoMsg(message: _109.ProofOpsProtoMsg): _109.ProofOps;
+            toProto(message: _109.ProofOps): Uint8Array;
+            toProtoMsg(message: _109.ProofOps): _109.ProofOpsProtoMsg;
         };
         PublicKey: {
             encode(message: _108.PublicKey, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
@@ -482,6 +678,10 @@ export declare namespace tendermint {
             fromPartial(object: Partial<_108.PublicKey>): _108.PublicKey;
             fromAmino(object: _108.PublicKeyAmino): _108.PublicKey;
             toAmino(message: _108.PublicKey): _108.PublicKeyAmino;
+            fromAminoMsg(object: _108.PublicKeyAminoMsg): _108.PublicKey;
+            fromProtoMsg(message: _108.PublicKeyProtoMsg): _108.PublicKey;
+            toProto(message: _108.PublicKey): Uint8Array;
+            toProtoMsg(message: _108.PublicKey): _108.PublicKeyProtoMsg;
         };
     };
     namespace libs {
@@ -494,6 +694,10 @@ export declare namespace tendermint {
                 fromPartial(object: Partial<_110.BitArray>): _110.BitArray;
                 fromAmino(object: _110.BitArrayAmino): _110.BitArray;
                 toAmino(message: _110.BitArray): _110.BitArrayAmino;
+                fromAminoMsg(object: _110.BitArrayAminoMsg): _110.BitArray;
+                fromProtoMsg(message: _110.BitArrayProtoMsg): _110.BitArray;
+                toProto(message: _110.BitArray): Uint8Array;
+                toProtoMsg(message: _110.BitArray): _110.BitArrayProtoMsg;
             };
         };
     }
@@ -506,6 +710,10 @@ export declare namespace tendermint {
             fromPartial(object: Partial<_111.NetAddress>): _111.NetAddress;
             fromAmino(object: _111.NetAddressAmino): _111.NetAddress;
             toAmino(message: _111.NetAddress): _111.NetAddressAmino;
+            fromAminoMsg(object: _111.NetAddressAminoMsg): _111.NetAddress;
+            fromProtoMsg(message: _111.NetAddressProtoMsg): _111.NetAddress;
+            toProto(message: _111.NetAddress): Uint8Array;
+            toProtoMsg(message: _111.NetAddress): _111.NetAddressProtoMsg;
         };
         ProtocolVersion: {
             encode(message: _111.ProtocolVersion, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
@@ -515,6 +723,10 @@ export declare namespace tendermint {
             fromPartial(object: Partial<_111.ProtocolVersion>): _111.ProtocolVersion;
             fromAmino(object: _111.ProtocolVersionAmino): _111.ProtocolVersion;
             toAmino(message: _111.ProtocolVersion): _111.ProtocolVersionAmino;
+            fromAminoMsg(object: _111.ProtocolVersionAminoMsg): _111.ProtocolVersion;
+            fromProtoMsg(message: _111.ProtocolVersionProtoMsg): _111.ProtocolVersion;
+            toProto(message: _111.ProtocolVersion): Uint8Array;
+            toProtoMsg(message: _111.ProtocolVersion): _111.ProtocolVersionProtoMsg;
         };
         DefaultNodeInfo: {
             encode(message: _111.DefaultNodeInfo, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
@@ -524,6 +736,10 @@ export declare namespace tendermint {
             fromPartial(object: Partial<_111.DefaultNodeInfo>): _111.DefaultNodeInfo;
             fromAmino(object: _111.DefaultNodeInfoAmino): _111.DefaultNodeInfo;
             toAmino(message: _111.DefaultNodeInfo): _111.DefaultNodeInfoAmino;
+            fromAminoMsg(object: _111.DefaultNodeInfoAminoMsg): _111.DefaultNodeInfo;
+            fromProtoMsg(message: _111.DefaultNodeInfoProtoMsg): _111.DefaultNodeInfo;
+            toProto(message: _111.DefaultNodeInfo): Uint8Array;
+            toProtoMsg(message: _111.DefaultNodeInfo): _111.DefaultNodeInfoProtoMsg;
         };
         DefaultNodeInfoOther: {
             encode(message: _111.DefaultNodeInfoOther, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
@@ -533,6 +749,10 @@ export declare namespace tendermint {
             fromPartial(object: Partial<_111.DefaultNodeInfoOther>): _111.DefaultNodeInfoOther;
             fromAmino(object: _111.DefaultNodeInfoOtherAmino): _111.DefaultNodeInfoOther;
             toAmino(message: _111.DefaultNodeInfoOther): _111.DefaultNodeInfoOtherAmino;
+            fromAminoMsg(object: _111.DefaultNodeInfoOtherAminoMsg): _111.DefaultNodeInfoOther;
+            fromProtoMsg(message: _111.DefaultNodeInfoOtherProtoMsg): _111.DefaultNodeInfoOther;
+            toProto(message: _111.DefaultNodeInfoOther): Uint8Array;
+            toProtoMsg(message: _111.DefaultNodeInfoOther): _111.DefaultNodeInfoOtherProtoMsg;
         };
     };
     const types: {
@@ -544,6 +764,10 @@ export declare namespace tendermint {
             fromPartial(object: Partial<_116.ValidatorSet>): _116.ValidatorSet;
             fromAmino(object: _116.ValidatorSetAmino): _116.ValidatorSet;
             toAmino(message: _116.ValidatorSet): _116.ValidatorSetAmino;
+            fromAminoMsg(object: _116.ValidatorSetAminoMsg): _116.ValidatorSet;
+            fromProtoMsg(message: _116.ValidatorSetProtoMsg): _116.ValidatorSet;
+            toProto(message: _116.ValidatorSet): Uint8Array;
+            toProtoMsg(message: _116.ValidatorSet): _116.ValidatorSetProtoMsg;
         };
         Validator: {
             encode(message: _116.Validator, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
@@ -553,6 +777,10 @@ export declare namespace tendermint {
             fromPartial(object: Partial<_116.Validator>): _116.Validator;
             fromAmino(object: _116.ValidatorAmino): _116.Validator;
             toAmino(message: _116.Validator): _116.ValidatorAmino;
+            fromAminoMsg(object: _116.ValidatorAminoMsg): _116.Validator;
+            fromProtoMsg(message: _116.ValidatorProtoMsg): _116.Validator;
+            toProto(message: _116.Validator): Uint8Array;
+            toProtoMsg(message: _116.Validator): _116.ValidatorProtoMsg;
         };
         SimpleValidator: {
             encode(message: _116.SimpleValidator, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
@@ -562,6 +790,10 @@ export declare namespace tendermint {
             fromPartial(object: Partial<_116.SimpleValidator>): _116.SimpleValidator;
             fromAmino(object: _116.SimpleValidatorAmino): _116.SimpleValidator;
             toAmino(message: _116.SimpleValidator): _116.SimpleValidatorAmino;
+            fromAminoMsg(object: _116.SimpleValidatorAminoMsg): _116.SimpleValidator;
+            fromProtoMsg(message: _116.SimpleValidatorProtoMsg): _116.SimpleValidator;
+            toProto(message: _116.SimpleValidator): Uint8Array;
+            toProtoMsg(message: _116.SimpleValidator): _116.SimpleValidatorProtoMsg;
         };
         blockIDFlagFromJSON(object: any): _115.BlockIDFlag;
         blockIDFlagToJSON(object: _115.BlockIDFlag): string;
@@ -581,6 +813,10 @@ export declare namespace tendermint {
             fromPartial(object: Partial<_115.PartSetHeader>): _115.PartSetHeader;
             fromAmino(object: _115.PartSetHeaderAmino): _115.PartSetHeader;
             toAmino(message: _115.PartSetHeader): _115.PartSetHeaderAmino;
+            fromAminoMsg(object: _115.PartSetHeaderAminoMsg): _115.PartSetHeader;
+            fromProtoMsg(message: _115.PartSetHeaderProtoMsg): _115.PartSetHeader;
+            toProto(message: _115.PartSetHeader): Uint8Array;
+            toProtoMsg(message: _115.PartSetHeader): _115.PartSetHeaderProtoMsg;
         };
         Part: {
             encode(message: _115.Part, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
@@ -590,6 +826,10 @@ export declare namespace tendermint {
             fromPartial(object: Partial<_115.Part>): _115.Part;
             fromAmino(object: _115.PartAmino): _115.Part;
             toAmino(message: _115.Part): _115.PartAmino;
+            fromAminoMsg(object: _115.PartAminoMsg): _115.Part;
+            fromProtoMsg(message: _115.PartProtoMsg): _115.Part;
+            toProto(message: _115.Part): Uint8Array;
+            toProtoMsg(message: _115.Part): _115.PartProtoMsg;
         };
         BlockID: {
             encode(message: _115.BlockID, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
@@ -599,6 +839,10 @@ export declare namespace tendermint {
             fromPartial(object: Partial<_115.BlockID>): _115.BlockID;
             fromAmino(object: _115.BlockIDAmino): _115.BlockID;
             toAmino(message: _115.BlockID): _115.BlockIDAmino;
+            fromAminoMsg(object: _115.BlockIDAminoMsg): _115.BlockID;
+            fromProtoMsg(message: _115.BlockIDProtoMsg): _115.BlockID;
+            toProto(message: _115.BlockID): Uint8Array;
+            toProtoMsg(message: _115.BlockID): _115.BlockIDProtoMsg;
         };
         Header: {
             encode(message: _115.Header, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
@@ -608,6 +852,10 @@ export declare namespace tendermint {
             fromPartial(object: Partial<_115.Header>): _115.Header;
             fromAmino(object: _115.HeaderAmino): _115.Header;
             toAmino(message: _115.Header): _115.HeaderAmino;
+            fromAminoMsg(object: _115.HeaderAminoMsg): _115.Header;
+            fromProtoMsg(message: _115.HeaderProtoMsg): _115.Header;
+            toProto(message: _115.Header): Uint8Array;
+            toProtoMsg(message: _115.Header): _115.HeaderProtoMsg;
         };
         Data: {
             encode(message: _115.Data, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
@@ -617,6 +865,10 @@ export declare namespace tendermint {
             fromPartial(object: Partial<_115.Data>): _115.Data;
             fromAmino(object: _115.DataAmino): _115.Data;
             toAmino(message: _115.Data): _115.DataAmino;
+            fromAminoMsg(object: _115.DataAminoMsg): _115.Data;
+            fromProtoMsg(message: _115.DataProtoMsg): _115.Data;
+            toProto(message: _115.Data): Uint8Array;
+            toProtoMsg(message: _115.Data): _115.DataProtoMsg;
         };
         Vote: {
             encode(message: _115.Vote, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
@@ -626,6 +878,10 @@ export declare namespace tendermint {
             fromPartial(object: Partial<_115.Vote>): _115.Vote;
             fromAmino(object: _115.VoteAmino): _115.Vote;
             toAmino(message: _115.Vote): _115.VoteAmino;
+            fromAminoMsg(object: _115.VoteAminoMsg): _115.Vote;
+            fromProtoMsg(message: _115.VoteProtoMsg): _115.Vote;
+            toProto(message: _115.Vote): Uint8Array;
+            toProtoMsg(message: _115.Vote): _115.VoteProtoMsg;
         };
         Commit: {
             encode(message: _115.Commit, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
@@ -635,6 +891,10 @@ export declare namespace tendermint {
             fromPartial(object: Partial<_115.Commit>): _115.Commit;
             fromAmino(object: _115.CommitAmino): _115.Commit;
             toAmino(message: _115.Commit): _115.CommitAmino;
+            fromAminoMsg(object: _115.CommitAminoMsg): _115.Commit;
+            fromProtoMsg(message: _115.CommitProtoMsg): _115.Commit;
+            toProto(message: _115.Commit): Uint8Array;
+            toProtoMsg(message: _115.Commit): _115.CommitProtoMsg;
         };
         CommitSig: {
             encode(message: _115.CommitSig, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
@@ -644,6 +904,10 @@ export declare namespace tendermint {
             fromPartial(object: Partial<_115.CommitSig>): _115.CommitSig;
             fromAmino(object: _115.CommitSigAmino): _115.CommitSig;
             toAmino(message: _115.CommitSig): _115.CommitSigAmino;
+            fromAminoMsg(object: _115.CommitSigAminoMsg): _115.CommitSig;
+            fromProtoMsg(message: _115.CommitSigProtoMsg): _115.CommitSig;
+            toProto(message: _115.CommitSig): Uint8Array;
+            toProtoMsg(message: _115.CommitSig): _115.CommitSigProtoMsg;
         };
         Proposal: {
             encode(message: _115.Proposal, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
@@ -653,6 +917,10 @@ export declare namespace tendermint {
             fromPartial(object: Partial<_115.Proposal>): _115.Proposal;
             fromAmino(object: _115.ProposalAmino): _115.Proposal;
             toAmino(message: _115.Proposal): _115.ProposalAmino;
+            fromAminoMsg(object: _115.ProposalAminoMsg): _115.Proposal;
+            fromProtoMsg(message: _115.ProposalProtoMsg): _115.Proposal;
+            toProto(message: _115.Proposal): Uint8Array;
+            toProtoMsg(message: _115.Proposal): _115.ProposalProtoMsg;
         };
         SignedHeader: {
             encode(message: _115.SignedHeader, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
@@ -662,6 +930,10 @@ export declare namespace tendermint {
             fromPartial(object: Partial<_115.SignedHeader>): _115.SignedHeader;
             fromAmino(object: _115.SignedHeaderAmino): _115.SignedHeader;
             toAmino(message: _115.SignedHeader): _115.SignedHeaderAmino;
+            fromAminoMsg(object: _115.SignedHeaderAminoMsg): _115.SignedHeader;
+            fromProtoMsg(message: _115.SignedHeaderProtoMsg): _115.SignedHeader;
+            toProto(message: _115.SignedHeader): Uint8Array;
+            toProtoMsg(message: _115.SignedHeader): _115.SignedHeaderProtoMsg;
         };
         LightBlock: {
             encode(message: _115.LightBlock, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
@@ -671,6 +943,10 @@ export declare namespace tendermint {
             fromPartial(object: Partial<_115.LightBlock>): _115.LightBlock;
             fromAmino(object: _115.LightBlockAmino): _115.LightBlock;
             toAmino(message: _115.LightBlock): _115.LightBlockAmino;
+            fromAminoMsg(object: _115.LightBlockAminoMsg): _115.LightBlock;
+            fromProtoMsg(message: _115.LightBlockProtoMsg): _115.LightBlock;
+            toProto(message: _115.LightBlock): Uint8Array;
+            toProtoMsg(message: _115.LightBlock): _115.LightBlockProtoMsg;
         };
         BlockMeta: {
             encode(message: _115.BlockMeta, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
@@ -680,6 +956,10 @@ export declare namespace tendermint {
             fromPartial(object: Partial<_115.BlockMeta>): _115.BlockMeta;
             fromAmino(object: _115.BlockMetaAmino): _115.BlockMeta;
             toAmino(message: _115.BlockMeta): _115.BlockMetaAmino;
+            fromAminoMsg(object: _115.BlockMetaAminoMsg): _115.BlockMeta;
+            fromProtoMsg(message: _115.BlockMetaProtoMsg): _115.BlockMeta;
+            toProto(message: _115.BlockMeta): Uint8Array;
+            toProtoMsg(message: _115.BlockMeta): _115.BlockMetaProtoMsg;
         };
         TxProof: {
             encode(message: _115.TxProof, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
@@ -689,6 +969,10 @@ export declare namespace tendermint {
             fromPartial(object: Partial<_115.TxProof>): _115.TxProof;
             fromAmino(object: _115.TxProofAmino): _115.TxProof;
             toAmino(message: _115.TxProof): _115.TxProofAmino;
+            fromAminoMsg(object: _115.TxProofAminoMsg): _115.TxProof;
+            fromProtoMsg(message: _115.TxProofProtoMsg): _115.TxProof;
+            toProto(message: _115.TxProof): Uint8Array;
+            toProtoMsg(message: _115.TxProof): _115.TxProofProtoMsg;
         };
         ConsensusParams: {
             encode(message: _114.ConsensusParams, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
@@ -698,6 +982,10 @@ export declare namespace tendermint {
             fromPartial(object: Partial<_114.ConsensusParams>): _114.ConsensusParams;
             fromAmino(object: _114.ConsensusParamsAmino): _114.ConsensusParams;
             toAmino(message: _114.ConsensusParams): _114.ConsensusParamsAmino;
+            fromAminoMsg(object: _114.ConsensusParamsAminoMsg): _114.ConsensusParams;
+            fromProtoMsg(message: _114.ConsensusParamsProtoMsg): _114.ConsensusParams;
+            toProto(message: _114.ConsensusParams): Uint8Array;
+            toProtoMsg(message: _114.ConsensusParams): _114.ConsensusParamsProtoMsg;
         };
         BlockParams: {
             encode(message: _114.BlockParams, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
@@ -707,6 +995,10 @@ export declare namespace tendermint {
             fromPartial(object: Partial<_114.BlockParams>): _114.BlockParams;
             fromAmino(object: _114.BlockParamsAmino): _114.BlockParams;
             toAmino(message: _114.BlockParams): _114.BlockParamsAmino;
+            fromAminoMsg(object: _114.BlockParamsAminoMsg): _114.BlockParams;
+            fromProtoMsg(message: _114.BlockParamsProtoMsg): _114.BlockParams;
+            toProto(message: _114.BlockParams): Uint8Array;
+            toProtoMsg(message: _114.BlockParams): _114.BlockParamsProtoMsg;
         };
         EvidenceParams: {
             encode(message: _114.EvidenceParams, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
@@ -716,6 +1008,10 @@ export declare namespace tendermint {
             fromPartial(object: Partial<_114.EvidenceParams>): _114.EvidenceParams;
             fromAmino(object: _114.EvidenceParamsAmino): _114.EvidenceParams;
             toAmino(message: _114.EvidenceParams): _114.EvidenceParamsAmino;
+            fromAminoMsg(object: _114.EvidenceParamsAminoMsg): _114.EvidenceParams;
+            fromProtoMsg(message: _114.EvidenceParamsProtoMsg): _114.EvidenceParams;
+            toProto(message: _114.EvidenceParams): Uint8Array;
+            toProtoMsg(message: _114.EvidenceParams): _114.EvidenceParamsProtoMsg;
         };
         ValidatorParams: {
             encode(message: _114.ValidatorParams, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
@@ -725,6 +1021,10 @@ export declare namespace tendermint {
             fromPartial(object: Partial<_114.ValidatorParams>): _114.ValidatorParams;
             fromAmino(object: _114.ValidatorParamsAmino): _114.ValidatorParams;
             toAmino(message: _114.ValidatorParams): _114.ValidatorParamsAmino;
+            fromAminoMsg(object: _114.ValidatorParamsAminoMsg): _114.ValidatorParams;
+            fromProtoMsg(message: _114.ValidatorParamsProtoMsg): _114.ValidatorParams;
+            toProto(message: _114.ValidatorParams): Uint8Array;
+            toProtoMsg(message: _114.ValidatorParams): _114.ValidatorParamsProtoMsg;
         };
         VersionParams: {
             encode(message: _114.VersionParams, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
@@ -734,6 +1034,10 @@ export declare namespace tendermint {
             fromPartial(object: Partial<_114.VersionParams>): _114.VersionParams;
             fromAmino(object: _114.VersionParamsAmino): _114.VersionParams;
             toAmino(message: _114.VersionParams): _114.VersionParamsAmino;
+            fromAminoMsg(object: _114.VersionParamsAminoMsg): _114.VersionParams;
+            fromProtoMsg(message: _114.VersionParamsProtoMsg): _114.VersionParams;
+            toProto(message: _114.VersionParams): Uint8Array;
+            toProtoMsg(message: _114.VersionParams): _114.VersionParamsProtoMsg;
         };
         HashedParams: {
             encode(message: _114.HashedParams, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
@@ -743,6 +1047,10 @@ export declare namespace tendermint {
             fromPartial(object: Partial<_114.HashedParams>): _114.HashedParams;
             fromAmino(object: _114.HashedParamsAmino): _114.HashedParams;
             toAmino(message: _114.HashedParams): _114.HashedParamsAmino;
+            fromAminoMsg(object: _114.HashedParamsAminoMsg): _114.HashedParams;
+            fromProtoMsg(message: _114.HashedParamsProtoMsg): _114.HashedParams;
+            toProto(message: _114.HashedParams): Uint8Array;
+            toProtoMsg(message: _114.HashedParams): _114.HashedParamsProtoMsg;
         };
         Evidence: {
             encode(message: _113.Evidence, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
@@ -752,6 +1060,10 @@ export declare namespace tendermint {
             fromPartial(object: Partial<_113.Evidence>): _113.Evidence;
             fromAmino(object: _113.EvidenceAmino): _113.Evidence;
             toAmino(message: _113.Evidence): _113.EvidenceAmino;
+            fromAminoMsg(object: _113.EvidenceAminoMsg): _113.Evidence;
+            fromProtoMsg(message: _113.EvidenceProtoMsg): _113.Evidence;
+            toProto(message: _113.Evidence): Uint8Array;
+            toProtoMsg(message: _113.Evidence): _113.EvidenceProtoMsg;
         };
         DuplicateVoteEvidence: {
             encode(message: _113.DuplicateVoteEvidence, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
@@ -761,6 +1073,10 @@ export declare namespace tendermint {
             fromPartial(object: Partial<_113.DuplicateVoteEvidence>): _113.DuplicateVoteEvidence;
             fromAmino(object: _113.DuplicateVoteEvidenceAmino): _113.DuplicateVoteEvidence;
             toAmino(message: _113.DuplicateVoteEvidence): _113.DuplicateVoteEvidenceAmino;
+            fromAminoMsg(object: _113.DuplicateVoteEvidenceAminoMsg): _113.DuplicateVoteEvidence;
+            fromProtoMsg(message: _113.DuplicateVoteEvidenceProtoMsg): _113.DuplicateVoteEvidence;
+            toProto(message: _113.DuplicateVoteEvidence): Uint8Array;
+            toProtoMsg(message: _113.DuplicateVoteEvidence): _113.DuplicateVoteEvidenceProtoMsg;
         };
         LightClientAttackEvidence: {
             encode(message: _113.LightClientAttackEvidence, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
@@ -770,6 +1086,10 @@ export declare namespace tendermint {
             fromPartial(object: Partial<_113.LightClientAttackEvidence>): _113.LightClientAttackEvidence;
             fromAmino(object: _113.LightClientAttackEvidenceAmino): _113.LightClientAttackEvidence;
             toAmino(message: _113.LightClientAttackEvidence): _113.LightClientAttackEvidenceAmino;
+            fromAminoMsg(object: _113.LightClientAttackEvidenceAminoMsg): _113.LightClientAttackEvidence;
+            fromProtoMsg(message: _113.LightClientAttackEvidenceProtoMsg): _113.LightClientAttackEvidence;
+            toProto(message: _113.LightClientAttackEvidence): Uint8Array;
+            toProtoMsg(message: _113.LightClientAttackEvidence): _113.LightClientAttackEvidenceProtoMsg;
         };
         EvidenceList: {
             encode(message: _113.EvidenceList, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
@@ -779,6 +1099,10 @@ export declare namespace tendermint {
             fromPartial(object: Partial<_113.EvidenceList>): _113.EvidenceList;
             fromAmino(object: _113.EvidenceListAmino): _113.EvidenceList;
             toAmino(message: _113.EvidenceList): _113.EvidenceListAmino;
+            fromAminoMsg(object: _113.EvidenceListAminoMsg): _113.EvidenceList;
+            fromProtoMsg(message: _113.EvidenceListProtoMsg): _113.EvidenceList;
+            toProto(message: _113.EvidenceList): Uint8Array;
+            toProtoMsg(message: _113.EvidenceList): _113.EvidenceListProtoMsg;
         };
         Block: {
             encode(message: _112.Block, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
@@ -788,6 +1112,10 @@ export declare namespace tendermint {
             fromPartial(object: Partial<_112.Block>): _112.Block;
             fromAmino(object: _112.BlockAmino): _112.Block;
             toAmino(message: _112.Block): _112.BlockAmino;
+            fromAminoMsg(object: _112.BlockAminoMsg): _112.Block;
+            fromProtoMsg(message: _112.BlockProtoMsg): _112.Block;
+            toProto(message: _112.Block): Uint8Array;
+            toProtoMsg(message: _112.Block): _112.BlockProtoMsg;
         };
     };
     const version: {
@@ -799,6 +1127,10 @@ export declare namespace tendermint {
             fromPartial(object: Partial<_117.App>): _117.App;
             fromAmino(object: _117.AppAmino): _117.App;
             toAmino(message: _117.App): _117.AppAmino;
+            fromAminoMsg(object: _117.AppAminoMsg): _117.App;
+            fromProtoMsg(message: _117.AppProtoMsg): _117.App;
+            toProto(message: _117.App): Uint8Array;
+            toProtoMsg(message: _117.App): _117.AppProtoMsg;
         };
         Consensus: {
             encode(message: _117.Consensus, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
@@ -808,6 +1140,10 @@ export declare namespace tendermint {
             fromPartial(object: Partial<_117.Consensus>): _117.Consensus;
             fromAmino(object: _117.ConsensusAmino): _117.Consensus;
             toAmino(message: _117.Consensus): _117.ConsensusAmino;
+            fromAminoMsg(object: _117.ConsensusAminoMsg): _117.Consensus;
+            fromProtoMsg(message: _117.ConsensusProtoMsg): _117.Consensus;
+            toProto(message: _117.Consensus): Uint8Array;
+            toProtoMsg(message: _117.Consensus): _117.ConsensusProtoMsg;
         };
     };
 }

@@ -18,6 +18,10 @@ export interface GenesisState {
     /** params defines all the paramaters of related to tally. */
     tallyParams?: TallyParams;
 }
+export interface GenesisStateProtoMsg {
+    typeUrl: "/cosmos.gov.v1beta1.GenesisState";
+    value: Uint8Array;
+}
 /** GenesisState defines the gov module's genesis state. */
 export interface GenesisStateAmino {
     /** starting_proposal_id is the ID of the starting proposal. */
@@ -34,6 +38,10 @@ export interface GenesisStateAmino {
     voting_params?: VotingParamsAmino;
     /** params defines all the paramaters of related to tally. */
     tally_params?: TallyParamsAmino;
+}
+export interface GenesisStateAminoMsg {
+    type: "cosmos-sdk/GenesisState";
+    value: GenesisStateAmino;
 }
 /** GenesisState defines the gov module's genesis state. */
 export interface GenesisStateSDKType {
@@ -53,4 +61,9 @@ export declare const GenesisState: {
     fromPartial(object: Partial<GenesisState>): GenesisState;
     fromAmino(object: GenesisStateAmino): GenesisState;
     toAmino(message: GenesisState): GenesisStateAmino;
+    fromAminoMsg(object: GenesisStateAminoMsg): GenesisState;
+    toAminoMsg(message: GenesisState): GenesisStateAminoMsg;
+    fromProtoMsg(message: GenesisStateProtoMsg): GenesisState;
+    toProto(message: GenesisState): Uint8Array;
+    toProtoMsg(message: GenesisState): GenesisStateProtoMsg;
 };

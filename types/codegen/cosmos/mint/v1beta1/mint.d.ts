@@ -7,12 +7,20 @@ export interface Minter {
     /** current annual expected provisions */
     annualProvisions: string;
 }
+export interface MinterProtoMsg {
+    typeUrl: "/cosmos.mint.v1beta1.Minter";
+    value: Uint8Array;
+}
 /** Minter represents the minting state. */
 export interface MinterAmino {
     /** current annual inflation rate */
     inflation: string;
     /** current annual expected provisions */
     annual_provisions: string;
+}
+export interface MinterAminoMsg {
+    type: "cosmos-sdk/Minter";
+    value: MinterAmino;
 }
 /** Minter represents the minting state. */
 export interface MinterSDKType {
@@ -34,6 +42,10 @@ export interface Params {
     /** expected blocks per year */
     blocksPerYear: Long;
 }
+export interface ParamsProtoMsg {
+    typeUrl: "/cosmos.mint.v1beta1.Params";
+    value: Uint8Array;
+}
 /** Params holds parameters for the mint module. */
 export interface ParamsAmino {
     /** type of coin to mint */
@@ -48,6 +60,10 @@ export interface ParamsAmino {
     goal_bonded: string;
     /** expected blocks per year */
     blocks_per_year: string;
+}
+export interface ParamsAminoMsg {
+    type: "cosmos-sdk/Params";
+    value: ParamsAmino;
 }
 /** Params holds parameters for the mint module. */
 export interface ParamsSDKType {
@@ -66,6 +82,11 @@ export declare const Minter: {
     fromPartial(object: Partial<Minter>): Minter;
     fromAmino(object: MinterAmino): Minter;
     toAmino(message: Minter): MinterAmino;
+    fromAminoMsg(object: MinterAminoMsg): Minter;
+    toAminoMsg(message: Minter): MinterAminoMsg;
+    fromProtoMsg(message: MinterProtoMsg): Minter;
+    toProto(message: Minter): Uint8Array;
+    toProtoMsg(message: Minter): MinterProtoMsg;
 };
 export declare const Params: {
     encode(message: Params, writer?: _m0.Writer): _m0.Writer;
@@ -75,4 +96,9 @@ export declare const Params: {
     fromPartial(object: Partial<Params>): Params;
     fromAmino(object: ParamsAmino): Params;
     toAmino(message: Params): ParamsAmino;
+    fromAminoMsg(object: ParamsAminoMsg): Params;
+    toAminoMsg(message: Params): ParamsAminoMsg;
+    fromProtoMsg(message: ParamsProtoMsg): Params;
+    toProto(message: Params): Uint8Array;
+    toProtoMsg(message: Params): ParamsProtoMsg;
 };

@@ -99,6 +99,10 @@ export interface Timestamp {
      */
     nanos: number;
 }
+export interface TimestampProtoMsg {
+    typeUrl: "/google.protobuf.Timestamp";
+    value: Uint8Array;
+}
 /**
  * A Timestamp represents a point in time independent of any time zone or local
  * calendar, encoded as a count of seconds and fractions of seconds at
@@ -184,6 +188,10 @@ export interface Timestamp {
  * ) to obtain a formatter capable of generating timestamps in this format.
  */
 export type TimestampAmino = string;
+export interface TimestampAminoMsg {
+    type: "/google.protobuf.Timestamp";
+    value: TimestampAmino;
+}
 /**
  * A Timestamp represents a point in time independent of any time zone or local
  * calendar, encoded as a count of seconds and fractions of seconds at
@@ -280,4 +288,8 @@ export declare const Timestamp: {
     fromPartial(object: Partial<Timestamp>): Timestamp;
     fromAmino(object: TimestampAmino): Timestamp;
     toAmino(message: Timestamp): TimestampAmino;
+    fromAminoMsg(object: TimestampAminoMsg): Timestamp;
+    fromProtoMsg(message: TimestampProtoMsg): Timestamp;
+    toProto(message: Timestamp): Uint8Array;
+    toProtoMsg(message: Timestamp): TimestampProtoMsg;
 };

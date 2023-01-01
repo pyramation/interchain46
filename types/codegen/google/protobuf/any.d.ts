@@ -115,6 +115,10 @@ export interface Any {
     /** Must be a valid serialized protocol buffer of the above specified type. */
     value: Uint8Array;
 }
+export interface AnyProtoMsg {
+    typeUrl: "/google.protobuf.Any";
+    value: Uint8Array;
+}
 /**
  * `Any` contains an arbitrary serialized protocol buffer message along with a
  * URL that describes the type of the serialized message.
@@ -228,7 +232,11 @@ export interface AnyAmino {
      */
     type: string;
     /** Must be a valid serialized protocol buffer of the above specified type. */
-    value: Uint8Array;
+    value: any;
+}
+export interface AnyAminoMsg {
+    type: string;
+    value: AnyAmino;
 }
 /**
  * `Any` contains an arbitrary serialized protocol buffer message along with a
@@ -324,4 +332,8 @@ export declare const Any: {
     fromPartial(object: Partial<Any>): Any;
     fromAmino(object: AnyAmino): Any;
     toAmino(message: Any): AnyAmino;
+    fromAminoMsg(object: AnyAminoMsg): Any;
+    fromProtoMsg(message: AnyProtoMsg): Any;
+    toProto(message: Any): Uint8Array;
+    toProtoMsg(message: Any): AnyProtoMsg;
 };

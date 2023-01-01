@@ -21,6 +21,10 @@ export interface Http {
      */
     fullyDecodeReservedExpansion: boolean;
 }
+export interface HttpProtoMsg {
+    typeUrl: "/google.api.Http";
+    value: Uint8Array;
+}
 /**
  * Defines the HTTP configuration for an API service. It contains a list of
  * [HttpRule][google.api.HttpRule], each specifying the mapping of an RPC method
@@ -42,6 +46,10 @@ export interface HttpAmino {
      * segment matches.
      */
     fully_decode_reserved_expansion: boolean;
+}
+export interface HttpAminoMsg {
+    type: "/google.api.Http";
+    value: HttpAmino;
 }
 /**
  * Defines the HTTP configuration for an API service. It contains a list of
@@ -375,6 +383,10 @@ export interface HttpRule {
      */
     additionalBindings: HttpRule[];
 }
+export interface HttpRuleProtoMsg {
+    typeUrl: "/google.api.HttpRule";
+    value: Uint8Array;
+}
 /**
  * # gRPC Transcoding
  *
@@ -698,6 +710,10 @@ export interface HttpRuleAmino {
      */
     additional_bindings: HttpRuleAmino[];
 }
+export interface HttpRuleAminoMsg {
+    type: "/google.api.HttpRule";
+    value: HttpRuleAmino;
+}
 /**
  * # gRPC Transcoding
  *
@@ -988,12 +1004,20 @@ export interface CustomHttpPattern {
     /** The path matched by this custom verb. */
     path: string;
 }
+export interface CustomHttpPatternProtoMsg {
+    typeUrl: "/google.api.CustomHttpPattern";
+    value: Uint8Array;
+}
 /** A custom pattern is used for defining custom HTTP verb. */
 export interface CustomHttpPatternAmino {
     /** The name of this custom HTTP verb. */
     kind: string;
     /** The path matched by this custom verb. */
     path: string;
+}
+export interface CustomHttpPatternAminoMsg {
+    type: "/google.api.CustomHttpPattern";
+    value: CustomHttpPatternAmino;
 }
 /** A custom pattern is used for defining custom HTTP verb. */
 export interface CustomHttpPatternSDKType {
@@ -1008,6 +1032,10 @@ export declare const Http: {
     fromPartial(object: Partial<Http>): Http;
     fromAmino(object: HttpAmino): Http;
     toAmino(message: Http): HttpAmino;
+    fromAminoMsg(object: HttpAminoMsg): Http;
+    fromProtoMsg(message: HttpProtoMsg): Http;
+    toProto(message: Http): Uint8Array;
+    toProtoMsg(message: Http): HttpProtoMsg;
 };
 export declare const HttpRule: {
     encode(message: HttpRule, writer?: _m0.Writer): _m0.Writer;
@@ -1017,6 +1045,10 @@ export declare const HttpRule: {
     fromPartial(object: Partial<HttpRule>): HttpRule;
     fromAmino(object: HttpRuleAmino): HttpRule;
     toAmino(message: HttpRule): HttpRuleAmino;
+    fromAminoMsg(object: HttpRuleAminoMsg): HttpRule;
+    fromProtoMsg(message: HttpRuleProtoMsg): HttpRule;
+    toProto(message: HttpRule): Uint8Array;
+    toProtoMsg(message: HttpRule): HttpRuleProtoMsg;
 };
 export declare const CustomHttpPattern: {
     encode(message: CustomHttpPattern, writer?: _m0.Writer): _m0.Writer;
@@ -1026,4 +1058,8 @@ export declare const CustomHttpPattern: {
     fromPartial(object: Partial<CustomHttpPattern>): CustomHttpPattern;
     fromAmino(object: CustomHttpPatternAmino): CustomHttpPattern;
     toAmino(message: CustomHttpPattern): CustomHttpPatternAmino;
+    fromAminoMsg(object: CustomHttpPatternAminoMsg): CustomHttpPattern;
+    fromProtoMsg(message: CustomHttpPatternProtoMsg): CustomHttpPattern;
+    toProto(message: CustomHttpPattern): Uint8Array;
+    toProtoMsg(message: CustomHttpPattern): CustomHttpPatternProtoMsg;
 };
